@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre-Discovery Form — Soul-Led Business | Energy with Jess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:   #FAF6F1;
+      --accent:  #9B8DB8;
+      --accent-l:#C4BAD8;
+      --accent-d:#7A6D9A;
+      --brown:   #3A2E2E;
+      --mid:     #6B5757;
+      --border:  #E0D3C8;
+      --white:   #FFFFFF;
+      --shadow:  rgba(58,46,46,0.08);
+    }
+    body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--brown); min-height:100vh; font-weight:300; line-height:1.7; }
+    .page-wrap { max-width:620px; margin:0 auto; padding:0 24px 80px; }
+    .form-header { text-align:center; padding:64px 0 48px; }
+    .eyebrow { font-size:10px; letter-spacing:3.5px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .form-header h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,5vw,2.8rem); font-weight:300; line-height:1.15; color:var(--brown); margin-bottom:12px; }
+    .form-header h1 em { font-style:italic; color:var(--accent); }
+    .service-tag { display:inline-block; font-size:0.68rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--mid); border:1px solid var(--border); padding:5px 16px; border-radius:20px; margin-bottom:22px; }
+    .intro-text { max-width:460px; margin:0 auto; font-size:0.9rem; color:var(--mid); line-height:1.85; }
+    .form-card { background:var(--white); border:1.5px solid var(--border); border-radius:16px; padding:48px 40px; box-shadow:0 4px 24px var(--shadow); }
+    @media(max-width:480px){ .form-card { padding:32px 20px; } }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+    @media(max-width:480px){ .field-row { grid-template-columns:1fr; } }
+    .field { display:flex; flex-direction:column; gap:8px; margin-bottom:28px; }
+    .field:last-of-type { margin-bottom:0; }
+    label.field-label { font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--mid); font-weight:400; }
+    .field-note { font-size:0.78rem; color:var(--mid); opacity:0.75; font-style:italic; margin-top:-2px; }
+    input[type="text"], input[type="email"], textarea { font-family:'Jost',sans-serif; font-weight:300; font-size:0.93rem; color:var(--brown); background:var(--cream); border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; width:100%; outline:none; transition:border-color 0.2s; resize:vertical; }
+    input:focus, textarea:focus { border-color:var(--accent); }
+    textarea { min-height:96px; }
+    .divider { height:1px; background:var(--border); margin:32px 0; }
+    .options-list { display:flex; flex-direction:column; gap:10px; }
+    .opt { display:flex; align-items:flex-start; gap:12px; cursor:pointer; padding:12px 16px; border:1.5px solid var(--border); border-radius:8px; background:var(--cream); transition:border-color 0.18s, background 0.18s; }
+    .opt:hover { border-color:var(--accent-l); }
+    .opt.selected { border-color:var(--accent); background:rgba(155,141,184,0.06); }
+    .opt input[type="radio"] { appearance:none; width:18px; height:18px; min-width:18px; border:1.5px solid var(--border); border-radius:50%; background:white; cursor:pointer; transition:all 0.18s; position:relative; margin-top:2px; flex-shrink:0; }
+    .opt input[type="radio"]:checked { background:var(--accent); border-color:var(--accent); }
+    .opt input[type="radio"]:checked::after { content:''; position:absolute; width:6px; height:6px; background:white; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .opt-body { flex:1; }
+    .opt-label { font-size:0.9rem; color:var(--brown); }
+    .opt-sub { font-size:0.78rem; color:var(--mid); margin-top:2px; }
+    .btn-submit { width:100%; margin-top:36px; padding:16px 32px; background:var(--accent); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:400; letter-spacing:2.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, opacity 0.2s; }
+    .btn-submit:hover { background:var(--accent-d); }
+    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
+    .ty-wrap { text-align:center; padding:80px 24px; display:none; }
+    .ty-icon { font-size:2.8rem; margin-bottom:24px; }
+    .ty-wrap h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,4vw,2.5rem); font-weight:300; color:var(--brown); margin-bottom:16px; line-height:1.2; }
+    .ty-wrap h2 em { font-style:italic; color:var(--accent); }
+    .ty-wrap p { font-size:0.92rem; color:var(--mid); max-width:400px; margin:0 auto 10px; line-height:1.85; }
+    .ty-sig { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--accent); margin-top:20px; }
+    .page-footer { text-align:center; padding:40px 0 0; font-size:0.72rem; color:var(--mid); letter-spacing:1px; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="form-header">
+    <p class="eyebrow">Energy with Jess</p>
+    <h1>Before your <em>discovery call</em></h1>
+    <p class="service-tag">Soul-Led Business</p>
+    <p class="intro-text">You're booked in. Before we speak, take a few quiet minutes with these questions. The more honest you are here, the more useful our time together will be.</p>
+  </header>
+
+  <div id="form-section">
+    <div class="form-card">
+      <form id="pdForm" novalidate>
+
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="firstName">First name</label>
+            <input type="text" id="firstName" placeholder="Your first name" required />
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field">
+          <label class="field-label">Where are you right now?</label>
+          <div class="options-list">
+            <label class="opt">
+              <input type="radio" name="stage" value="Soul-Led Business (Already in Business)" />
+              <div class="opt-body">
+                <div class="opt-label">Already in business</div>
+                <div class="opt-sub">I have something running and I'm looking to transition or grow</div>
+              </div>
+            </label>
+            <label class="opt">
+              <input type="radio" name="stage" value="Soul-Led Business (Starting Out)" />
+              <div class="opt-body">
+                <div class="opt-label">Starting out</div>
+                <div class="opt-sub">I'm building from scratch or in the early stages</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field">
+          <label class="field-label">Identifiers and pronouns</label>
+          <p class="field-note">And anything else you'd like to include</p>
+          <input type="text" id="q_identifiers" placeholder="e.g. she/her, they/them..." />
+        </div>
+
+        <div class="field">
+          <label class="field-label">Tell me about your business or the idea you're building</label>
+          <p class="field-note">What it is, who it's for, where you're at with it</p>
+          <textarea id="q_business" placeholder="Give me a feel for where you're at right now..." rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What is prompting you to seek support right now?</label>
+          <p class="field-note">What's the transition or change you're moving through - or toward</p>
+          <textarea id="q_prompting" placeholder="What's shifted, or what's calling you forward?" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What gaps are you currently experiencing?</label>
+          <p class="field-note">Where do you feel stuck, unclear, or like something is missing - in the business or idea itself, or in how you're showing up</p>
+          <textarea id="q_gaps" placeholder="Be as specific as you can..." rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What are you looking for from this work together?</label>
+          <p class="field-note">What would feel like a win at the end of our time together</p>
+          <textarea id="q_lookingfor" placeholder="What does success look like for you?" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What are your expectations around how we work together?</label>
+          <p class="field-note">How hands-on do you want the support to be, what does accountability look like for you, anything you've tried before that has or hasn't worked</p>
+          <textarea id="q_expectations" placeholder="How do you work best?" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What are your current qualifications, certifications or services?</label>
+          <p class="field-note">Include anything relevant - formal qualifications, self-taught skills, what you currently offer or have offered</p>
+          <textarea id="q_qualifications" placeholder="What do you bring to this?" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">How are you looking to move forward - and how flexible does that need to be?</label>
+          <p class="field-note">A complete change of direction, building on what you have, or something in between - and how open are you to that evolving as we go</p>
+          <textarea id="q_pivot" placeholder="Where do you want to go from here?" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Are you open to further training or education as part of this?</label>
+          <p class="field-note">Certifications, courses, mentoring in a specific skill - or you may want to work only with what you already have. Either is fine.</p>
+          <textarea id="q_training" placeholder="What feels right for you?" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">How much time do you realistically have available each week?</label>
+          <p class="field-note">For tasks and actions outside of our sessions - be honest, there's no wrong answer</p>
+          <textarea id="q_time" placeholder="e.g. a few hours, half a day, evenings only..." rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Anything else you would like me to know before we connect?</label>
+          <textarea id="q_else" placeholder="No pressure - anything you'd like to share..." rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Send to Jess</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ty-wrap" id="thankyou">
+    <div class="ty-icon">🌱</div>
+    <h2>Thank you, <em id="ty-name">lovely</em>.</h2>
+    <p>I'll read this before our call. I'm looking forward to connecting with you.</p>
+    <p>See you soon.</p>
+    <p class="ty-sig">Jess x</p>
+  </div>
+
+  <footer class="page-footer"><p>energywithjess.com.au</p></footer>
+</div>
+
+<script>
+  const CRM_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+  document.querySelectorAll('.opt input').forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.type === 'radio') document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => r.closest('.opt').classList.remove('selected'));
+      input.closest('.opt').classList.toggle('selected', input.checked);
+    });
+  });
+
+  document.getElementById('pdForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const firstName = document.getElementById('firstName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    if (!firstName || !email) { alert('Please add your name and email so I know who this is from.'); return; }
+
+    const stageEl = document.querySelector('input[name="stage"]:checked');
+    if (!stageEl) { alert('Please let me know where you are right now - already in business or starting out.'); return; }
+
+    const data = {
+      formType:      'pre-discovery-response',
+      service:       stageEl.value,
+      firstName,     email,
+      identifiers:   document.getElementById('q_identifiers').value.trim(),
+      business:      document.getElementById('q_business').value.trim(),
+      prompting:     document.getElementById('q_prompting').value.trim(),
+      gaps:          document.getElementById('q_gaps').value.trim(),
+      lookingfor:    document.getElementById('q_lookingfor').value.trim(),
+      expectations:  document.getElementById('q_expectations').value.trim(),
+      qualifications:document.getElementById('q_qualifications').value.trim(),
+      pivot:         document.getElementById('q_pivot').value.trim(),
+      training:      document.getElementById('q_training').value.trim(),
+      time:          document.getElementById('q_time').value.trim(),
+      anythingelse:  document.getElementById('q_else').value.trim(),
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    fetch(CRM_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }).catch(()=>{});
+
+    setTimeout(() => {
+      document.getElementById('form-section').style.display = 'none';
+      const ty = document.getElementById('thankyou');
+      ty.style.display = 'block';
+      document.getElementById('ty-name').textContent = firstName;
+    }, 600);
+  });
+</script>
+</body>
+</html>

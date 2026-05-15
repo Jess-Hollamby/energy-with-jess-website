@@ -1,0 +1,417 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reiki Master & Teacher - Energy with Jess</title>
+<meta name="description" content="Reiki Master and Reiki Master/Teacher training with Jess Hollamby. Coming Late 2026. Join the waitlist to be first to know when training opens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* intro */
+.rm-intro { padding: 100px 0; }
+.rm-intro-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
+.rm-intro p { font-size: 15.5px; color: rgba(250,247,242,0.68); line-height: 1.88; margin-bottom: 18px; }
+.rm-intro p strong { color: var(--cream); }
+.rm-quote { font-family: var(--h); font-size: 21px; font-style: italic; color: var(--lavender); border-left: 3px solid var(--gold); padding-left: 22px; margin: 32px 0; line-height: 1.6; }
+
+.rm-panel { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 16px; padding: 38px 34px; position: sticky; top: 100px; }
+.rm-coming-soon { text-align: center; padding: 20px 0 24px; }
+.rm-coming-soon-badge { display: inline-block; background: rgba(242,193,78,0.08); border: 1px solid rgba(242,193,78,0.25); color: var(--gold); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 8px 18px; border-radius: 50px; margin-bottom: 16px; }
+.rm-coming-soon h3 { font-family: var(--h); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+.rm-coming-soon p { font-size: 14px; color: rgba(250,247,242,0.45); line-height: 1.7; margin-bottom: 0; }
+.panel-divider { height: 1px; background: rgba(250,247,242,0.06); margin: 24px 0; }
+.panel-note { font-size: 13px; color: rgba(250,247,242,0.38); line-height: 1.7; text-align: center; }
+
+/* two tracks */
+.rm-tracks { padding: 80px 0; background: var(--mid); }
+.tracks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
+.track-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 18px; padding: 44px 36px; position: relative; overflow: hidden; }
+.track-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--lavender), transparent); }
+.track-num { font-family: var(--h); font-size: 80px; font-weight: 300; color: rgba(196,176,212,0.06); position: absolute; top: 10px; right: 20px; line-height: 1; pointer-events: none; }
+.track-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lavender); margin-bottom: 14px; }
+.track-card h3 { font-family: var(--h); font-size: 28px; font-weight: 400; color: var(--cream); margin-bottom: 14px; line-height: 1.2; }
+.track-card p { font-size: 15px; color: rgba(250,247,242,0.6); line-height: 1.82; margin-bottom: 14px; }
+.track-card .tbd { display: inline-block; background: rgba(242,193,78,0.07); border: 1px solid rgba(242,193,78,0.18); color: var(--gold); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; padding: 6px 14px; border-radius: 50px; margin-top: 8px; }
+.track-prereq { font-size: 13px; color: rgba(250,247,242,0.38); margin-top: 16px; line-height: 1.6; }
+
+/* what to expect */
+.rm-what { padding: 80px 0; }
+.rm-what-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 52px; }
+.what-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 32px 26px; transition: transform 0.4s ease, border-color 0.4s ease; }
+.what-card:hover { transform: translateY(-4px); border-color: rgba(196,176,212,0.2); }
+.what-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+.what-card h3 { font-family: var(--h); font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+.what-card p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.75; }
+
+/* waitlist form */
+.rm-waitlist { padding: 100px 0; background: var(--cream); }
+.rm-waitlist-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+.rm-waitlist-sidebar { position: sticky; top: 100px; }
+.rm-waitlist-eyebrow { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); margin-bottom: 18px; font-family: var(--b); }
+.rm-waitlist-sidebar h2 { font-family: var(--h); font-size: clamp(28px, 3.5vw, 42px); font-weight: 300; line-height: 1.2; color: var(--dark); margin-bottom: 20px; }
+.rm-waitlist-sidebar h2 em { font-style: italic; color: var(--rose); }
+.rm-waitlist-body { font-family: var(--b); font-size: 15.5px; line-height: 1.85; color: var(--teal); margin-bottom: 0; }
+
+.rm-form-card { background: white; border-radius: 24px; padding: 48px; box-shadow: 0 8px 60px rgba(30,46,50,0.08); }
+.rm-form-group { margin-bottom: 20px; }
+.rm-label { display: block; font-family: var(--b); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+.rm-label .req { color: var(--rose); margin-left: 2px; }
+.rm-field { width: 100%; padding: 14px 18px; font-family: var(--b); font-size: 15px; color: var(--dark); background: var(--cream); border: 1.5px solid rgba(59,94,110,0.18); border-radius: 10px; outline: none; transition: border-color 0.25s, box-shadow 0.25s, background 0.25s; -webkit-appearance: none; appearance: none; }
+.rm-field:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(191,66,136,0.1); background: white; }
+select.rm-field { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%233B5E6E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 44px; cursor: pointer; }
+textarea.rm-field { resize: vertical; min-height: 100px; line-height: 1.65; }
+.rm-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.rm-sep { height: 1px; background: linear-gradient(90deg, transparent, rgba(196,176,212,0.45), transparent); margin: 28px 0; }
+.rm-consent { background: rgba(196,176,212,0.1); border: 1px solid rgba(196,176,212,0.3); border-radius: 14px; padding: 22px; margin-top: 24px; }
+.rm-consent-row { display: flex; gap: 13px; align-items: flex-start; cursor: pointer; }
+.rm-consent-row input[type="checkbox"] { width: 17px; height: 17px; min-width: 17px; margin-top: 3px; accent-color: var(--rose); cursor: pointer; }
+.rm-consent-text { font-family: var(--b); font-size: 14px; line-height: 1.65; color: var(--dark); }
+.rm-submit-area { margin-top: 36px; text-align: center; }
+.rm-submit-btn { background: var(--rose); color: white; font-family: var(--h); font-size: 21px; font-weight: 400; letter-spacing: 0.05em; padding: 18px 52px; border-radius: 50px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(191,66,136,0.3); }
+.rm-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(191,66,136,0.42); }
+.rm-submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+.rm-submit-note { font-family: var(--b); font-size: 13px; color: var(--teal); margin-top: 12px; opacity: 0.75; }
+.rm-success { display: none; text-align: center; padding: 60px 32px; }
+.rm-success.visible { display: block; animation: fadeUp 0.6s ease both; }
+.rm-success-glyph { font-size: 52px; display: block; margin-bottom: 24px; }
+.rm-success h3 { font-family: var(--h); font-size: 32px; font-weight: 300; color: var(--rose); margin-bottom: 14px; }
+.rm-success p { font-family: var(--b); font-size: 16px; line-height: 1.8; color: var(--teal); max-width: 400px; margin: 0 auto; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+/* journey */
+.rm-journey { padding: 80px 0; background: var(--mid); }
+.rm-journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+.journey-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 32px 28px; text-decoration: none; display: block; transition: transform 0.4s ease, border-color 0.4s ease; }
+.journey-card:hover { transform: translateY(-4px); border-color: rgba(196,176,212,0.2); }
+.journey-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 10px; }
+.journey-card h3 { font-family: var(--h); font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+.journey-card p { font-size: 13.5px; color: rgba(250,247,242,0.48); line-height: 1.7; }
+.journey-arrow { margin-top: 16px; font-size: 13px; color: var(--rose); }
+
+@media (max-width: 760px) {
+  .rm-intro { padding: 72px 0; }
+  .rm-intro-grid { grid-template-columns: 1fr; gap: 52px; }
+  .rm-panel { position: static; }
+  .rm-tracks { padding: 72px 0; }
+  .tracks-grid { grid-template-columns: 1fr; }
+  .rm-what { padding: 72px 0; }
+  .rm-what-grid { grid-template-columns: 1fr; }
+  .rm-waitlist { padding: 72px 0; }
+  .rm-waitlist-grid { grid-template-columns: 1fr; gap: 48px; }
+  .rm-waitlist-sidebar { position: static; }
+  .rm-form-card { padding: 32px 24px; }
+  .rm-two-col { grid-template-columns: 1fr; }
+  .rm-journey { padding: 72px 0; }
+  .rm-journey-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="vibe-crystals.jpg" alt="Reiki Master and Teacher Training with Jess Hollamby" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Reiki Training &middot; Level 3 &middot; Shinpiden</span>
+    <h1>Reiki Master <em>&amp; Teacher</em></h1>
+    <p class="page-hero-sub">The highest level of Reiki training. Dates to be announced - join the waitlist to be first to know.</p>
+  </div>
+</section>
+
+<section class="rm-intro">
+  <div class="container">
+    <div class="rm-intro-grid">
+      <div>
+        <span class="label">What This Is</span>
+        <h2 class="section-title">You've done the work. Now it's time to <em>step into your mastery.</em></h2>
+
+        <p>You've done the foundational work connecting with your energy and the energy of the universe, and you're ready for the final step. Whether you want to deepen your own practice further, enhance your treatments, or step into teaching others - Level 3 is where that becomes possible.</p>
+
+        <p><strong>Note: Reiki Levels 1 and 2 are prerequisites for this training.</strong></p>
+
+        <div class="rm-quote">
+          This isn't just a qualification. It's a deepening of your relationship with energy itself - and the beginning of a lifelong practice of teaching, sharing, and holding space.
+        </div>
+
+        <p>Reiki Level 3 is offered in two distinct pathways. You can complete Reiki Master for yourself and your deepened practice - or go all the way to Reiki Master/Teacher, which equips you to attune and teach others.</p>
+
+        <p>Jess will be opening both pathways when dates are confirmed. Register your interest below and you'll be the first to know when registration opens.</p>
+      </div>
+
+      <div class="reveal right">
+        <div class="rm-panel">
+          <div class="rm-coming-soon">
+            <div class="rm-coming-soon-badge">Coming Late 2026</div>
+            <h3>Opening Soon</h3>
+            <p>Jess is preparing both the Reiki Master and Reiki Master/Teacher pathways. Join the waitlist below to be first in line when dates are confirmed.</p>
+          </div>
+          <div class="panel-divider"></div>
+          <a href="#waitlist" class="btn btn-primary" style="width: 100%; justify-content: center;">Join the Waitlist</a>
+          <div class="panel-divider"></div>
+          <p class="panel-note">Questions? <a href="connect.html" style="color: var(--rose); text-decoration: none;">Reach out to Jess</a> directly and she'll let you know what to expect.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rm-tracks">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Two Pathways</span>
+      <h2 class="section-title">Choose the path that <em>calls to you</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.45); max-width: 520px; margin: 0 auto;">Both pathways begin with the Master attunement. Where they differ is in what you're able to do next.</p>
+    </div>
+    <div class="tracks-grid">
+      <div class="track-card reveal d1">
+        <div class="track-num">M</div>
+        <div class="track-label">Pathway One</div>
+        <h3>Reiki Master</h3>
+        <p>For those who want to work with Reiki at the deepest level for themselves and in their treatments with others - without moving into teaching. You'll receive the Master attunement and the Master symbol, significantly deepening your capacity to channel and work with Reiki energy.</p>
+        <p>This pathway is complete in itself. Many experienced practitioners choose it to elevate their existing work without taking on a teaching role.</p>
+        <div class="prereq">Prerequisites: Reiki Level 1 &amp; 2</div>
+        <div class="tbd">Coming Late 2026</div>
+      </div>
+      <div class="track-card reveal d2">
+        <div class="track-num">T</div>
+        <div class="track-label">Pathway Two</div>
+        <h3>Reiki Master &amp; Teacher</h3>
+        <p>For those called to teach. You'll receive the Master attunement, learn the Master symbol, and gain everything you need to attune students at all three levels of Reiki. You become a Reiki lineage holder in your own right - with the ability to pass on this practice to others.</p>
+        <p>This is a significant step. It asks not just for skill, but for the readiness to hold space for others in their own energetic awakening.</p>
+        <div class="prereq">Prerequisites: Reiki Level 1 &amp; 2</div>
+        <div class="tbd">Coming Late 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rm-what">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">What This Opens</span>
+      <h2 class="section-title">What becomes possible at <em>Master level</em></h2>
+    </div>
+    <div class="rm-what-grid">
+      <div class="what-card reveal d1">
+        <span class="what-icon">⚡</span>
+        <h3>The Master Attunement</h3>
+        <p>A significant deepening of your Reiki channel. The Master attunement changes how you work with energy - and often, how you feel it.</p>
+      </div>
+      <div class="what-card reveal d2">
+        <span class="what-icon">✦</span>
+        <h3>The Master Symbol</h3>
+        <p>A powerful energetic tool available only at this level. Used in healing, in teaching, and in your own spiritual practice.</p>
+      </div>
+      <div class="what-card reveal d3">
+        <span class="what-icon">🎓</span>
+        <h3>The Ability to Teach</h3>
+        <p>For those who choose the Master/Teacher pathway - the knowledge and ability to attune students at all three levels of Reiki.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST FORM -->
+<section class="rm-waitlist" id="waitlist">
+  <div class="container">
+    <div class="rm-waitlist-grid">
+
+      <div class="rm-waitlist-sidebar reveal left">
+        <div class="rm-waitlist-eyebrow">Waitlist</div>
+        <h2>Register your <em>interest</em></h2>
+        <p class="rm-waitlist-body">
+          Dates are still being confirmed. Add your name to the waitlist and Jess will reach out personally as soon as registration opens - with all the details you need.
+          <br><br>
+          No commitment, no pressure. Just a way to make sure you don't miss out.
+        </p>
+      </div>
+
+      <div class="rm-form-card reveal right">
+        <form id="rm-form-el" action="https://formspree.io/f/xgorpdpd" method="POST">
+          <input type="hidden" name="_replyto" value="energywjess@gmail.com">
+          <input type="hidden" name="_subject" value="Reiki Master/Teacher Waitlist - Energy with Jess">
+          <input type="hidden" name="form_type" value="Reiki Master Teacher Waitlist">
+
+          <div id="rm-form-fields">
+
+            <div class="rm-two-col">
+              <div class="rm-form-group">
+                <label class="rm-label" for="rm_first">First Name <span class="req">*</span></label>
+                <input class="rm-field" type="text" id="rm_first" name="first_name" placeholder="Your first name" required>
+              </div>
+              <div class="rm-form-group">
+                <label class="rm-label" for="rm_last">Last Name <span class="req">*</span></label>
+                <input class="rm-field" type="text" id="rm_last" name="last_name" placeholder="Your last name" required>
+              </div>
+            </div>
+
+            <div class="rm-form-group">
+              <label class="rm-label" for="rm_email">Email Address <span class="req">*</span></label>
+              <input class="rm-field" type="email" id="rm_email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="rm-form-group">
+              <label class="rm-label" for="rm_pathway">Which pathway interests you? <span class="req">*</span></label>
+              <select class="rm-field" id="rm_pathway" name="pathway" required>
+                <option value="" disabled selected>Choose one...</option>
+                <option value="Reiki Master">Reiki Master</option>
+                <option value="Reiki Master and Teacher">Reiki Master &amp; Teacher</option>
+                <option value="Not sure yet">Not sure yet - happy to chat</option>
+              </select>
+            </div>
+
+            <div class="rm-form-group">
+              <label class="rm-label" for="rm_level">Have you completed Levels 1 &amp; 2?</label>
+              <select class="rm-field" id="rm_level" name="reiki_levels_completed">
+                <option value="" disabled selected>Choose one...</option>
+                <option value="Yes - both Level 1 and 2">Yes - both Level 1 and 2</option>
+                <option value="Level 1 only">Level 1 only</option>
+                <option value="Not yet - planning to">Not yet - planning to</option>
+              </select>
+            </div>
+
+            <div class="rm-sep"></div>
+
+            <div class="rm-form-group">
+              <label class="rm-label" for="rm_notes">Anything you'd like Jess to know?</label>
+              <textarea class="rm-field" id="rm_notes" name="notes" placeholder="Questions, where you're based, anything else on your mind..."></textarea>
+            </div>
+
+            <div class="rm-consent">
+              <label class="rm-consent-row">
+                <input type="checkbox" name="consent_contact" value="yes" required>
+                <span class="rm-consent-text">I'm happy for Jess to reach out with details about Reiki Master/Teacher training when dates are confirmed. <strong style="color:var(--rose)">*</strong></span>
+              </label>
+            </div>
+
+            <div class="rm-submit-area">
+              <button type="submit" class="rm-submit-btn" id="rm-submit-btn">Add Me to the Waitlist ✦</button>
+              <p class="rm-submit-note">No commitment. Just a way to make sure you hear first.</p>
+            </div>
+
+          </div>
+
+          <div class="rm-success" id="rm-success">
+            <span class="rm-success-glyph">🌸</span>
+            <h3>You're on the list.</h3>
+            <p>Jess will be in touch as soon as dates are confirmed. Trust that you reached out at exactly the right time.</p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="rm-journey">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">The Complete Pathway</span>
+      <h2 class="section-title">Where did you <em>begin?</em></h2>
+    </div>
+    <div class="rm-journey-grid">
+      <a href="reiki-level-1.html" class="journey-card reveal d1">
+        <div class="journey-label">The Beginning</div>
+        <h3>Reiki Level 1</h3>
+        <p>Your foundation. The attunement that opens you to Reiki and begins your daily practice.</p>
+        <div class="journey-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="reiki-level-2.html" class="journey-card reveal d2">
+        <div class="journey-label">Going Deeper</div>
+        <h3>Reiki Level 2</h3>
+        <p>Symbols, distance healing, and a professional practice. The level most practitioners work from.</p>
+        <div class="journey-arrow">Learn more &rarr;</div>
+      </a>
+      <a href="learn-reiki.html" class="journey-card reveal d3">
+        <div class="journey-label">All Levels</div>
+        <h3>See All Training</h3>
+        <p>Not sure where to start? See all levels and find the one that feels right for where you are now.</p>
+        <div class="journey-arrow">View all levels &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Waitlist form
+const rmForm = document.getElementById('rm-form-el');
+if (rmForm) {
+  const rmBtn = document.getElementById('rm-submit-btn');
+  const rmFields = document.getElementById('rm-form-fields');
+  const rmSuccess = document.getElementById('rm-success');
+
+  rmForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const consent = document.querySelector('input[name="consent_contact"]').checked;
+    if (!consent) { alert('Please tick the consent box so Jess knows she can reach out to you.'); return; }
+
+    rmBtn.disabled = true;
+    rmBtn.textContent = 'Adding you...';
+
+    try {
+      const response = await fetch(rmForm.action, {
+        method: 'POST',
+        body: new FormData(rmForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        rmFields.style.display = 'none';
+        rmSuccess.classList.add('visible');
+        window.scrollTo({ top: document.getElementById('waitlist').offsetTop - 80, behavior: 'smooth' });
+      } else {
+        rmBtn.disabled = false;
+        rmBtn.textContent = 'Add Me to the Waitlist ✦';
+        alert('Something went sideways. Please try again or email Jess directly at energywjess@gmail.com');
+      }
+    } catch (err) {
+      rmBtn.disabled = false;
+      rmBtn.textContent = 'Add Me to the Waitlist ✦';
+      alert('Something went sideways. Please try again or email Jess directly at energywjess@gmail.com');
+    }
+  });
+}
+</script>
+</body>
+</html>

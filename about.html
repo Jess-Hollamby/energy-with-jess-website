@@ -1,0 +1,508 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Jess - Energy with Jess</title>
+<meta name="description" content="Meet Jess Hollamby - Psychic, Reiki Master/Teacher and Empath Coach helping sensitive women come home to themselves. Adelaide, Port Elliot & online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─── ABOUT PAGE SPECIFIC ─── */
+.story {
+  padding: 110px 0;
+  position: relative;
+  overflow: hidden;
+}
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+.story-photo-wrap { position: relative; }
+.story-photo {
+  aspect-ratio: 3/4;
+  border-radius: 14px;
+}
+.story-photo img { border-radius: 14px; }
+.story-badge {
+  position: absolute;
+  bottom: -18px;
+  right: -18px;
+  background: var(--rose);
+  color: var(--cream);
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-family: var(--h);
+  font-size: 17px;
+  font-weight: 400;
+  box-shadow: 0 8px 28px rgba(191,66,136,0.28);
+  line-height: 1.4;
+  text-align: center;
+}
+.story p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.7);
+  line-height: 1.88;
+  margin-bottom: 20px;
+}
+.story p strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+.story-quote {
+  font-family: var(--h);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--lavender);
+  border-left: 3px solid var(--gold);
+  padding-left: 22px;
+  margin: 32px 0;
+  line-height: 1.6;
+}
+
+/* credentials */
+.credentials {
+  padding: 100px 0;
+  background: var(--mid);
+}
+.credentials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 56px;
+}
+.cred-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 14px;
+  padding: 34px 28px;
+  text-align: center;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.cred-card:hover { transform: translateY(-5px); border-color: rgba(242,193,78,0.2); }
+.cred-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+}
+.cred-card h3 {
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.cred-card p {
+  font-size: 14px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.75;
+}
+
+/* approach */
+.approach {
+  padding: 110px 0;
+}
+.approach-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.approach h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 300;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.approach h2 em { font-style: italic; color: var(--rose); }
+.approach p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.68);
+  line-height: 1.88;
+  margin-bottom: 18px;
+}
+.approach-list {
+  list-style: none;
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.approach-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 15px;
+  color: rgba(250,247,242,0.68);
+  line-height: 1.7;
+}
+.approach-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* values panel */
+.values-panel {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 16px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.value-item h4 {
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.value-item p {
+  font-size: 14px;
+  color: rgba(250,247,242,0.5);
+  line-height: 1.72;
+  margin-bottom: 0;
+}
+.value-divider {
+  height: 1px;
+  background: rgba(250,247,242,0.06);
+}
+
+/* who it's for */
+.who {
+  padding: 100px 0;
+  background: var(--mid);
+}
+.who-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 56px;
+}
+.who-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 14px;
+  padding: 34px 30px;
+}
+.who-card h3 {
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.who-card h3.yes { color: var(--rose); }
+.who-card h3.no  { color: rgba(250,247,242,0.4); }
+.who-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.who-list li {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.62);
+  line-height: 1.7;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.who-list li .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+.yes-dot { background: var(--rose); }
+.no-dot  { background: rgba(250,247,242,0.2); }
+
+@media (max-width: 760px) {
+  .story { padding: 80px 0; }
+  .story-grid { grid-template-columns: 1fr; gap: 52px; }
+  .story-photo { max-width: 360px; margin: 0 auto; }
+  .story-badge { right: 0; bottom: -14px; }
+  .credentials { padding: 80px 0; }
+  .credentials-grid { grid-template-columns: 1fr; }
+  .approach { padding: 80px 0; }
+  .approach-grid { grid-template-columns: 1fr; gap: 48px; }
+  .who { padding: 80px 0; }
+  .who-grid { grid-template-columns: 1fr; }
+}
+.cta-bg::after { background: rgba(21,37,42,0.55) !important; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html" class="active">About</a>
+      <a href="offerings.html">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"     onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html"   onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="jess-shadow-light.jpg" alt="Jess Hollamby" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <h1>Meet <em>Jess</em></h1>
+    <p class="page-hero-sub">The woman behind the energy.</p>
+  </div>
+</section>
+
+<!-- ─── STORY ─── -->
+<section class="story">
+  <div class="container">
+    <div class="story-grid">
+
+      <div class="story-photo-wrap reveal left">
+        <div class="story-photo photo">
+          <!-- PHOTO: hero.jpg — you with tarot fan -->
+          <img src="hero.jpg" alt="Jess Hollamby - Psychic and Reiki Master" />
+        </div>
+        <div class="story-badge">Adelaide &amp; Port Elliot<br>+ Online Worldwide</div>
+      </div>
+
+      <div class="reveal right">
+        <span class="label">My Story</span>
+        <h2 class="section-title">I know what it feels like to carry <em>everyone else's energy</em></h2>
+
+        <p>I'm Jess - a Psychic, Reiki Master/Teacher, and Empath based in Adelaide, South Australia. I built Energy with Jess for women who've spent their lives being told they're too sensitive, too much, or too emotional.</p>
+
+        <p>I know that feeling intimately. For a long time I thought my sensitivity was a flaw - something to manage, hide, or apologise for. It took years of doing the inner work to realise it was actually <strong>my greatest gift</strong>.</p>
+
+        <div class="story-quote">
+          The moment I stopped trying to fix myself and started learning to work with my energy instead of against it, everything shifted.
+        </div>
+
+        <p>That shift is what I want for you. Whether you're navigating grief, burnout, relationship patterns, or just a deep sense that something isn't quite right - I'm here to help you find your way back to yourself.</p>
+
+        <p>I work across multiple modalities including psychic readings, Reiki, tarot, and one-on-one mentoring. My approach is deliberately <strong>slow, gentle, and personal</strong> - because real change doesn't come from force, it comes from flow.</p>
+
+        <div class="divider" style="margin-top: 36px;">
+          <div class="divider-line"></div>
+          <div class="divider-dot"></div>
+          <div class="divider-line"></div>
+        </div>
+
+        <a href="booking.html#clarity" class="btn btn-primary">Book a Session with Jess</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── PULL QUOTE ─── -->
+<div class="pull-quote">
+  <blockquote class="reveal">
+    Your sensitivity isn't a weakness to overcome. It's a superpower waiting to be understood.
+    <cite>Jess Hollamby</cite>
+  </blockquote>
+</div>
+
+<!-- ─── CREDENTIALS ─── -->
+<section class="credentials">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">Training &amp; Modalities</span>
+      <h2 class="section-title">What I bring to the <em>table</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.55); max-width: 520px; margin: 0 auto;">Five modalities, woven together into one deeply personal experience for each client.</p>
+    </div>
+
+    <div class="credentials-grid">
+      <div class="cred-card reveal d1">
+        <span class="cred-icon">🔮</span>
+        <h3>Psychic Reading</h3>
+        <p>Tuning into your energy field and the guidance available to you - offering insight, clarity, and a perspective that goes beyond the surface level.</p>
+      </div>
+      <div class="cred-card reveal d2">
+        <span class="cred-icon">✋</span>
+        <h3>Reiki Master / Teacher</h3>
+        <p>Trained to Reiki Master/Teacher level, I both offer Reiki healing sessions and teach all levels - from Level 1 through to Master.</p>
+      </div>
+      <div class="cred-card reveal d3">
+        <span class="cred-icon">🃏</span>
+        <h3>Tarot &amp; Oracle</h3>
+        <p>Working with tarot and oracle cards as a tool for reflection, clarity, and tapping into what your soul already knows but your mind hasn't quite caught up with.</p>
+      </div>
+      <div class="cred-card reveal d1">
+        <span class="cred-icon">💜</span>
+        <h3>Empath Coaching</h3>
+        <p>Helping sensitive women understand their gift, set energetic boundaries, and stop absorbing the world around them as their own.</p>
+      </div>
+      <div class="cred-card reveal d2">
+        <span class="cred-icon">🌿</span>
+        <h3>Mentoring &amp; Self-Development</h3>
+        <p>One-on-one mentoring for women navigating life transitions, shadow work, inner child healing, and building a life that actually feels like theirs.</p>
+      </div>
+      <div class="cred-card reveal d3">
+        <span class="cred-icon">📚</span>
+        <h3>Self-Paced Courses</h3>
+        <p>Digital learning available anytime, anywhere - no live commitment needed. Learn at your own pace and in your own space.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── APPROACH ─── -->
+<section class="approach">
+  <div class="container">
+    <div class="approach-grid">
+
+      <div class="reveal left">
+        <span class="label">My Approach</span>
+        <h2>Slow. Gentle. <em>Entirely yours.</em></h2>
+        <p>I don't believe in cookie-cutter healing. Every woman who comes to me is treated as an individual - because your path is your own, and what works for someone else may not be what you need.</p>
+        <p>I encourage experimentation over prescription. I'll share tools, practices, and perspectives - but you're always the one who decides what resonates and what doesn't.</p>
+        <p>And you don't need to keep working with me forever for me to be your biggest cheerleader. Some women come for one session and walk away with everything they needed. Others stay for the long haul. Both are completely right.</p>
+
+        <ul class="approach-list">
+          <li>Non-judgmental - you can say anything here</li>
+          <li>No spiritual gatekeeping - wherever you are is the right place to start</li>
+          <li>Practical as well as energetic - real life, real results</li>
+          <li>No pressure to commit to more than you're ready for</li>
+          <li>Available in-person (Adelaide &amp; Port Elliot) and online worldwide</li>
+        </ul>
+      </div>
+
+      <div class="values-panel reveal right">
+        <div class="value-item">
+          <h4>Warm Wisdom</h4>
+          <p>I speak from experience, not theory. Everything I share comes from having walked the path myself.</p>
+        </div>
+        <div class="value-divider"></div>
+        <div class="value-item">
+          <h4>Gentle Power</h4>
+          <p>Strength doesn't always look like force. Healing can be quiet, soft, and still completely profound.</p>
+        </div>
+        <div class="value-divider"></div>
+        <div class="value-item">
+          <h4>Soulful Authenticity</h4>
+          <p>No performance here. I show up as I am and I invite you to do the same.</p>
+        </div>
+        <div class="value-divider"></div>
+        <div class="value-item">
+          <h4>Grounded Presence</h4>
+          <p>Mystical doesn't mean impractical. I keep one foot on the earth and help you do the same.</p>
+        </div>
+        <div class="value-divider"></div>
+        <div class="value-item">
+          <h4>Playful Spirit</h4>
+          <p>Deep work doesn't have to be heavy. There's always room for lightness, laughter, and a bit of magic.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHO IT'S FOR ─── -->
+<section class="who">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">Is This For You?</span>
+      <h2 class="section-title">Real talk - <em>who I work best with</em></h2>
+    </div>
+
+    <div class="who-grid">
+      <div class="who-card reveal d1">
+        <h3 class="yes">This is for you if...</h3>
+        <ul class="who-list">
+          <li><span class="dot yes-dot"></span>You've always felt things more deeply than the people around you</li>
+          <li><span class="dot yes-dot"></span>You're exhausted from carrying everyone else's emotions</li>
+          <li><span class="dot yes-dot"></span>You know something needs to change, even if you can't name it yet</li>
+          <li><span class="dot yes-dot"></span>You're curious about your own energy and what it's telling you</li>
+          <li><span class="dot yes-dot"></span>You're ready to do the inner work - even the uncomfortable bits</li>
+          <li><span class="dot yes-dot"></span>You want someone in your corner who actually gets it</li>
+          <li><span class="dot yes-dot"></span>You believe there's more to life than what you've been living</li>
+        </ul>
+      </div>
+      <div class="who-card reveal d2">
+        <h3 class="no">This isn't the right fit if...</h3>
+        <ul class="who-list">
+          <li><span class="dot no-dot"></span>You're looking for a quick fix or overnight transformation</li>
+          <li><span class="dot no-dot"></span>You want to be told exactly what to do with your life</li>
+          <li><span class="dot no-dot"></span>You're not open to exploring the energetic or spiritual side</li>
+          <li><span class="dot no-dot"></span>You're not ready to take an honest look inward</li>
+          <li><span class="dot no-dot"></span>You need clinical mental health support (please reach out to a qualified professional)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="service-featured.jpg" alt="Jess Hollamby" style="object-position: center 55%;" />
+  </div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Ready to <em>come home</em> to yourself?</h2>
+    <p>The first step is always the simplest one. Book a session and let's see what comes up.</p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="booking.html#clarity" class="btn btn-primary">Book a Session</a>
+      <a href="offerings.html" class="btn btn-ghost">See All Offerings</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

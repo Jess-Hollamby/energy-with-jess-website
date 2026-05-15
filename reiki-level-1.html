@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reiki Level 1 - Energy with Jess</title>
+<meta name="description" content="Learn Reiki Level 1 with Jess Hollamby. Over 2 x 5hr days, learn the foundations of energy healing, chakras, attunements, and treatments. Adelaide, SA & online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.rl-body { padding: 100px 0; }
+.rl-body-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
+.rl-body p { font-size: 15.5px; color: rgba(250,247,242,0.68); line-height: 1.88; margin-bottom: 18px; }
+.rl-body p strong { color: var(--cream); }
+.rl-quote { font-family: var(--h); font-size: 21px; font-style: italic; color: var(--lavender); border-left: 3px solid var(--gold); padding-left: 22px; margin: 32px 0; line-height: 1.6; }
+
+.rl-panel { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 16px; padding: 38px 34px; position: sticky; top: 100px; }
+.rl-panel h3 { font-family: var(--h); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 20px; }
+.rl-panel-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.rl-panel-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; color: rgba(250,247,242,0.65); line-height: 1.6; }
+.rl-panel-list li::before { content: ''; width: 5px; height: 5px; background: var(--lavender); transform: rotate(45deg); flex-shrink: 0; margin-top: 7px; }
+.panel-divider { height: 1px; background: rgba(250,247,242,0.06); margin: 22px 0; }
+.panel-note { font-size: 13px; color: rgba(250,247,242,0.38); line-height: 1.7; text-align: center; }
+
+/* dates */
+.rl-dates { padding: 80px 0; background: var(--mid); }
+.dates-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+.date-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 14px; padding: 30px 24px; text-align: center; transition: border-color 0.3s ease, transform 0.3s ease; }
+.date-card:hover { border-color: rgba(196,176,212,0.25); transform: translateY(-4px); }
+a.date-card { text-decoration: none; cursor: pointer; display: block; }
+.date-book { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rose); margin-top: 14px; }
+.date-month { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lavender); margin-bottom: 8px; }
+.date-num { font-family: var(--h); font-size: 32px; font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 4px; }
+.date-year { font-size: 13px; color: rgba(250,247,242,0.38); }
+
+/* curriculum */
+.rl-curriculum { padding: 80px 0; }
+.curriculum-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 52px; }
+.curriculum-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 30px 26px; transition: border-color 0.3s ease, transform 0.3s ease; }
+.curriculum-card:hover { border-color: rgba(196,176,212,0.2); transform: translateY(-3px); }
+.curriculum-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+.curriculum-card h3 { font-family: var(--h); font-size: 19px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+.curriculum-card p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.72; }
+
+/* location */
+.rl-location { padding: 80px 0; background: var(--mid); }
+.location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 52px; }
+.location-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 16px; padding: 38px 32px; }
+.location-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+.location-card h3 { font-family: var(--h); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 12px; }
+.location-card p { font-size: 15px; color: rgba(250,247,242,0.6); line-height: 1.8; margin-bottom: 24px; }
+
+/* next steps */
+.rl-next { padding: 80px 0; }
+.rl-next-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 52px; }
+.next-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 32px 28px; text-decoration: none; display: block; transition: transform 0.4s ease, border-color 0.4s ease; }
+.next-card:hover { transform: translateY(-4px); border-color: rgba(196,176,212,0.2); }
+.next-card-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 10px; }
+.next-card h3 { font-family: var(--h); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+.next-card p { font-size: 14px; color: rgba(250,247,242,0.5); line-height: 1.7; }
+.next-card-arrow { margin-top: 18px; font-size: 13px; color: var(--rose); }
+
+.cta-bg::after { background: rgba(21,37,42,0.68) !important; }
+
+@media (max-width: 760px) {
+  .rl-body { padding: 72px 0; }
+  .rl-body-grid { grid-template-columns: 1fr; gap: 52px; }
+  .rl-panel { position: static; }
+  .rl-dates { padding: 72px 0; }
+  .dates-grid { grid-template-columns: 1fr; }
+  .rl-curriculum { padding: 72px 0; }
+  .curriculum-grid { grid-template-columns: 1fr; }
+  .rl-location { padding: 72px 0; }
+  .location-grid { grid-template-columns: 1fr; }
+  .rl-next { padding: 72px 0; }
+  .rl-next-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="vibe-crystals.jpg" alt="Reiki Level 1 with Jess Hollamby" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Reiki Training &middot; Level 1 &middot; Shoden</span>
+    <h1>Reiki <em>Level 1</em></h1>
+    <p class="page-hero-sub">It all begins here. Your path into connecting with your energy and the energy of the universe.</p>
+  </div>
+</section>
+
+<section class="rl-body">
+  <div class="container">
+    <div class="rl-body-grid">
+      <div>
+        <span class="label">What This Is</span>
+        <h2 class="section-title">The place where everything <em>begins to shift</em></h2>
+
+        <p>Reiki is a Japanese energy healing system that uses hand placements on and above the body to promote relaxation and wellbeing - affecting a person's energy levels, stress, and health in ways that are both gentle and profound.</p>
+
+        <p>It is an <strong>amazing self-help tool</strong> that aids in balancing the mind, body, and spirit. And Level 1 is where your practice begins.</p>
+
+        <div class="rl-quote">
+          This is your entry point. Your first attunement. The beginning of a relationship with energy that, once opened, stays with you for life.
+        </div>
+
+        <p>Over 2 x 5-hour days, you'll move through the full foundation of Reiki - from its history and philosophy through to giving hands-on treatments to yourself and others. You'll receive four attunements, which open you to channel Reiki energy. And you'll leave with a practice you can use every single day.</p>
+
+        <p>Many students say the same thing after Level 1 - they didn't realise how disconnected they'd been from their own body and energy until they started finding their way back.</p>
+      </div>
+
+      <div class="reveal right">
+        <div class="rl-panel">
+          <span class="tag tag-lavender" style="margin-bottom: 20px; display: inline-block;">2 x 5hr Days</span>
+          <h3>Also included</h3>
+          <ul class="rl-panel-list">
+            <li>Access to Jess during the 28 days post certification</li>
+            <li>Manual &amp; Certificate</li>
+            <li>Tools to help you on your way</li>
+            <li>4 x Reiki attunements</li>
+          </ul>
+          <a href="#dates" class="btn btn-primary" style="width: 100%; justify-content: center;">Book Now</a>
+          <div class="panel-divider"></div>
+          <p class="panel-note">Already done Level 1? <a href="reiki-level-2.html" style="color: var(--rose); text-decoration: none;">See Level 2</a> - or <a href="connect.html" style="color: var(--rose); text-decoration: none;">reach out to Jess</a> with any questions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rl-dates" id="dates">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Upcoming Dates</span>
+      <h2 class="section-title">2026 Reiki Level 1 <em>training dates</em></h2>
+      <p style="font-size: 15px; color: rgba(250,247,242,0.45); max-width: 480px; margin: 0 auto;">Each intake runs over two consecutive days. Click a date to book directly.</p>
+    </div>
+    <div class="dates-grid">
+      <a href="booking.html#events" class="date-card reveal d1">
+        <div class="date-month">June</div>
+        <div class="date-num">6th &amp; 7th</div>
+        <div class="date-year">2026</div>
+        <div class="date-book">Book this date →</div>
+      </a>
+      <a href="booking.html#events" class="date-card reveal d2">
+        <div class="date-month">September</div>
+        <div class="date-num">19th &amp; 20th</div>
+        <div class="date-year">2026</div>
+        <div class="date-book">Book this date →</div>
+      </a>
+      <a href="booking.html#events" class="date-card reveal d3">
+        <div class="date-month">December</div>
+        <div class="date-num">5th &amp; 6th</div>
+        <div class="date-year">2026</div>
+        <div class="date-book">Book this date →</div>
+      </a>
+    </div>
+    <div style="text-align: center; margin-top: 40px;" class="reveal">
+      <a href="ask-question.html" class="btn btn-primary">Questions / Payment Plans</a>
+    </div>
+  </div>
+</section>
+
+<section class="rl-curriculum">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">What We Cover</span>
+      <h2 class="section-title">Your Level 1 <em>curriculum</em></h2>
+      <p style="font-size: 15px; color: rgba(250,247,242,0.45); max-width: 480px; margin: 0 auto;">Over 2 x 5 hours, you'll move through all of this - and leave with a foundation you can use for the rest of your life.</p>
+    </div>
+    <div class="curriculum-grid">
+      <div class="curriculum-card reveal d1">
+        <span class="curriculum-icon">🌿</span>
+        <h3>History of Healing</h3>
+        <p>Where healing began, how it evolved, and where Reiki sits within the broader story of energy medicine.</p>
+      </div>
+      <div class="curriculum-card reveal d2">
+        <span class="curriculum-icon">✦</span>
+        <h3>What Reiki Is &amp; Its History</h3>
+        <p>The origins of Reiki, Mikao Usui's story, and how this practice has been passed through lineages around the world.</p>
+      </div>
+      <div class="curriculum-card reveal d1">
+        <span class="curriculum-icon">💜</span>
+        <h3>The Chakras &amp; Aura</h3>
+        <p>An introduction to the energy body - the seven chakras, the aura, and how energy moves through and around us.</p>
+      </div>
+      <div class="curriculum-card reveal d2">
+        <span class="curriculum-icon">🙌</span>
+        <h3>Giving Treatments</h3>
+        <p>How to give a full Reiki treatment to yourself and others - hand positions, intention, and how to hold space for healing.</p>
+      </div>
+      <div class="curriculum-card reveal d1">
+        <span class="curriculum-icon">⚖️</span>
+        <h3>Ethics &amp; Health</h3>
+        <p>Practitioner ethics, boundaries, and how to work responsibly with Reiki alongside conventional health care.</p>
+      </div>
+      <div class="curriculum-card reveal d2">
+        <span class="curriculum-icon">📿</span>
+        <h3>Reiki Principles</h3>
+        <p>The five Reiki principles - simple guidelines for living that form the spiritual foundation of this practice.</p>
+      </div>
+      <div class="curriculum-card reveal d1">
+        <span class="curriculum-icon">🌙</span>
+        <h3>Meditation Techniques</h3>
+        <p>Grounding and awareness practices to support your Reiki work and deepen your connection to your own energy.</p>
+      </div>
+      <div class="curriculum-card reveal d2">
+        <span class="curriculum-icon">⚡</span>
+        <h3>4 x Attunements</h3>
+        <p>The energetic activations that open you to channel Reiki. These are the heart of your Level 1 training - and they stay with you for life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rl-location">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Where We Train</span>
+      <h2 class="section-title">Find a <em>location near you</em></h2>
+    </div>
+    <div class="location-grid">
+      <div class="location-card reveal d1">
+        <span class="location-icon">🌿</span>
+        <h3>Adelaide &amp; South Australia</h3>
+        <p>In-person training available across Adelaide and South Australia. Reach out to register your interest and Jess will be in touch with all the details.</p>
+        <a href="reiki-eoi.html" class="btn btn-primary">Register Your Interest</a>
+      </div>
+      <div class="location-card reveal d2">
+        <span class="location-icon">✈️</span>
+        <h3>Melbourne, Sydney &amp; Brisbane</h3>
+        <p>If you're based interstate and have a suitable space to teach from, Jess may be able to come to you. Reach out and let's see what's possible.</p>
+        <a href="reiki-eoi.html" class="btn btn-primary">Register Your Interest</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-bg"><img src="vibe-tarot-candles.jpg" alt="Jess Hollamby" /></div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Ready to take your <em>first step?</em></h2>
+    <p>Register your interest and Jess will be in touch with everything you need to know.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="reiki-eoi.html" class="btn btn-primary">Register Your Interest</a>
+      <a href="learn-reiki.html" class="btn btn-ghost">Back to All Levels</a>
+    </div>
+  </div>
+</section>
+
+<section class="rl-next">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">What Comes Next</span>
+      <h2 class="section-title">When you're ready to <em>go deeper</em></h2>
+    </div>
+    <div class="rl-next-grid">
+      <a href="reiki-level-2.html" class="next-card reveal d1">
+        <div class="next-card-label">Next Level</div>
+        <h3>Reiki Level 2</h3>
+        <p>Symbols, distance healing, and a significantly expanded practice. This is where most practitioners step into their professional work.</p>
+        <div class="next-card-arrow">Learn about Level 2 &rarr;</div>
+      </a>
+      <a href="reiki-master-teacher.html" class="next-card reveal d2">
+        <div class="next-card-label">Coming Late 2026</div>
+        <h3>Reiki Master / Teacher</h3>
+        <p>The highest level of Reiki training. Learn to attune others and step fully into your mastery. Dates to be announced.</p>
+        <div class="next-card-arrow">Join the waitlist &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

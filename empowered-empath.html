@@ -1,0 +1,1411 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Empowered Empath - Energy with Jess</title>
+<meta name="description" content="A self-paced course for sensitive women ready to stop surviving their gift and start thriving with it. 12 modules. Video lessons, meditations, worksheets and bonus content.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Belleza&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════
+   SALES PAGE TEMPLATE — CREAM / LIGHT THEME
+   Energy with Jess · energywithjess.com.au
+   ══════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --rose:     #bf4288;
+  --gold:     #F2C14E;
+  --cream:    #FAF7F2;
+  --cream-alt: #F0EBE1;
+  --dark:     #1E2E32;
+  --teal:     #3B5E6E;
+  --lavender: #C4B0D4;
+  --h: 'Cormorant Garamond', serif;
+  --b: 'Belleza', sans-serif;
+  /* text opacity shortcuts */
+  --t1: rgba(30,46,50,1);
+  --t2: rgba(30,46,50,0.65);
+  --t3: rgba(30,46,50,0.42);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--b);
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* ── NAV (light override) ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(250,247,242,0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(30,46,50,0.08);
+}
+
+.nav-logo {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+
+.nav-links a {
+  font-family: var(--b);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--rose); }
+
+.nav-book {
+  background: var(--rose);
+  color: white !important;
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: 12px !important;
+  letter-spacing: 0.1em !important;
+  transition: box-shadow 0.2s, transform 0.2s !important;
+}
+
+.nav-book:hover {
+  box-shadow: 0 4px 18px rgba(191,66,136,0.35) !important;
+  transform: translateY(-1px);
+  color: white !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--dark);
+  transition: all 0.3s;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--cream);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  font-family: var(--h);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover { color: var(--rose); }
+
+/* ── SHARED UTILS ── */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+.label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 18px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rose);
+  color: white;
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 15px 42px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(191,66,136,0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(191,66,136,0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--dark);
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 14px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1.5px solid rgba(30,46,50,0.22);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--rose);
+  color: var(--rose);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal.left { transform: translateX(-20px); }
+.reveal.left.visible { transform: none; }
+.reveal.right { transform: translateX(20px); }
+.reveal.right.visible { transform: none; }
+.d1 { transition-delay: 0.05s; }
+.d2 { transition-delay: 0.15s; }
+.d3 { transition-delay: 0.25s; }
+
+/* Fade-in for hero */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in   { animation: fadeUp 0.7s ease both; }
+.fade-in-1 { animation: fadeUp 0.7s 0.12s ease both; }
+.fade-in-2 { animation: fadeUp 0.7s 0.24s ease both; }
+.fade-in-3 { animation: fadeUp 0.7s 0.38s ease both; }
+.fade-in-4 { animation: fadeUp 0.7s 0.54s ease both; }
+
+/* ── HERO ── */
+.ee-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 130px 24px 90px;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.ee-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 25% 35%, rgba(191,66,136,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 40% at 78% 68%, rgba(196,176,212,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ee-hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+}
+
+.ee-hero-eyebrow::before,
+.ee-hero-eyebrow::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 36px;
+  background: var(--rose);
+  opacity: 0.4;
+}
+
+.ee-hero h1 {
+  font-family: var(--h);
+  font-weight: 300;
+  font-size: clamp(52px, 8vw, 96px);
+  line-height: 1.05;
+  color: var(--dark);
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.ee-hero h1 em {
+  font-style: italic;
+  color: var(--rose);
+  display: block;
+}
+
+.ee-hero-sub {
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.8;
+  color: var(--t2);
+  max-width: 620px;
+  margin: 0 auto 52px;
+  position: relative;
+}
+
+.ee-hero-cta-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.ee-scroll-hint {
+  position: relative;
+  margin-top: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.3;
+  color: var(--dark);
+}
+
+.ee-scroll-hint span {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.ee-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--dark), transparent);
+}
+
+/* ── TRUTH STRIP ── */
+.ee-truth {
+  background: var(--cream-alt);
+  padding: 88px 0;
+  text-align: center;
+}
+
+.ee-truth-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ee-truth blockquote {
+  font-family: var(--h);
+  font-size: clamp(22px, 3.5vw, 34px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.55;
+  margin-bottom: 28px;
+}
+
+.ee-truth blockquote em { color: var(--rose); font-style: normal; }
+
+.ee-truth p {
+  font-size: 15.5px;
+  color: var(--t2);
+  line-height: 1.85;
+}
+
+/* ── IS THIS YOU ── */
+.ee-isyou { padding: 100px 0; background: var(--cream); }
+
+.ee-isyou-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.ee-isyou-intro h2 {
+  font-family: var(--h);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.ee-isyou-intro h2 em { font-style: italic; color: var(--rose); }
+
+.ee-isyou-intro p {
+  font-size: 15.5px;
+  color: var(--t2);
+  line-height: 1.88;
+  margin-bottom: 18px;
+}
+
+.ee-check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ee-check-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.6;
+  padding: 14px 18px;
+  background: white;
+  border: 1px solid rgba(30,46,50,0.07);
+  border-radius: 10px;
+}
+
+.ee-check-list li::before {
+  content: '✦';
+  color: var(--rose);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* ── PROMISE SECTION ── */
+.ee-promise {
+  background: var(--cream-alt);
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.ee-promise::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(191,66,136,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ee-promise-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.ee-promise h2 {
+  font-family: var(--h);
+  font-size: clamp(34px, 5vw, 60px);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 28px;
+}
+
+.ee-promise h2 em { font-style: italic; color: var(--gold); }
+
+.ee-promise-lead {
+  font-size: 17px;
+  color: var(--t2);
+  line-height: 1.85;
+  max-width: 680px;
+  margin: 0 auto 64px;
+}
+
+.ee-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: left;
+}
+
+.ee-outcome {
+  background: white;
+  border: 1px solid rgba(30,46,50,0.07);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 2px 16px rgba(30,46,50,0.04);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.ee-outcome:hover {
+  border-color: rgba(191,66,136,0.22);
+  box-shadow: 0 8px 32px rgba(191,66,136,0.08);
+  transform: translateY(-3px);
+}
+
+.ee-outcome-icon { font-size: 28px; display: block; margin-bottom: 16px; }
+
+.ee-outcome h3 {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.ee-outcome p {
+  font-size: 14px;
+  color: var(--t3);
+  line-height: 1.75;
+}
+
+/* ── MODULES ── */
+.ee-modules { padding: 100px 0; background: var(--cream); }
+
+.ee-modules-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.ee-modules-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.ee-modules-header h2 {
+  font-family: var(--h);
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.ee-modules-header h2 em { font-style: italic; color: var(--rose); }
+
+.ee-modules-header p {
+  font-size: 15.5px;
+  color: var(--t3);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.ee-module-list { display: flex; flex-direction: column; }
+
+.ee-module-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid rgba(30,46,50,0.07);
+  align-items: start;
+}
+
+.ee-module-item:first-child { border-top: 1px solid rgba(30,46,50,0.07); }
+
+.ee-module-number {
+  font-family: var(--h);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: rgba(30,46,50,0.22);
+  text-align: right;
+  padding-top: 3px;
+  font-style: italic;
+}
+
+.ee-module-content h4 {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.ee-module-content h4 em { font-style: italic; color: var(--rose); }
+
+.ee-module-content p {
+  font-size: 14px;
+  color: var(--t3);
+  line-height: 1.7;
+}
+
+.ee-module-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-right: 6px;
+  margin-top: 8px;
+}
+
+.ee-module-tag-video  { background: rgba(191,66,136,0.08);  color: var(--rose);    border: 1px solid rgba(191,66,136,0.18); }
+.ee-module-tag-med    { background: rgba(196,176,212,0.12);  color: #8B7AA0;        border: 1px solid rgba(196,176,212,0.3); }
+.ee-module-tag-work   { background: rgba(242,193,78,0.10);   color: #A07C00;        border: 1px solid rgba(242,193,78,0.25); }
+.ee-module-tag-bonus  { background: rgba(30,46,50,0.04);     color: var(--t3);      border: 1px solid rgba(30,46,50,0.1); }
+.ee-module-tag-audio  { background: rgba(59,94,110,0.08);   color: #3B5E6E;        border: 1px solid rgba(59,94,110,0.2); }
+
+.ee-module-item.special {
+  background: rgba(191,66,136,0.04);
+  border-radius: 12px;
+  padding-left: 20px; padding-right: 20px;
+  border: 1px solid rgba(191,66,136,0.12);
+  margin: 14px 0;
+}
+
+.ee-module-item.special .ee-module-number { color: rgba(191,66,136,0.45); }
+
+/* ── INCLUDES ── */
+.ee-includes { background: var(--cream-alt); padding: 100px 0; }
+
+.ee-includes-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.ee-includes-header { text-align: center; margin-bottom: 56px; }
+
+.ee-includes-header h2 {
+  font-family: var(--h);
+  font-size: clamp(30px, 4vw, 50px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.ee-includes-header h2 em { font-style: italic; color: var(--gold); }
+
+.ee-includes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+.ee-include-card {
+  background: white;
+  border: 1px solid rgba(30,46,50,0.07);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  box-shadow: 0 2px 14px rgba(30,46,50,0.04);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.ee-include-card:hover {
+  box-shadow: 0 6px 28px rgba(30,46,50,0.07);
+  transform: translateY(-2px);
+}
+
+.ee-include-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+
+.ee-include-body h4 {
+  font-family: var(--h);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.ee-include-body p { font-size: 14px; color: var(--t3); line-height: 1.7; }
+
+/* ── ABOUT JESS ── */
+.ee-jess { padding: 100px 0; background: var(--cream); }
+
+.ee-jess-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.ee-jess-img {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: 0 16px 60px rgba(30,46,50,0.12);
+}
+
+.ee-jess-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.ee-jess-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, rgba(250,235,225,0.4) 100%);
+}
+
+.ee-jess-text h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.ee-jess-text h2 em { font-style: italic; color: var(--rose); }
+
+.ee-jess-text p { font-size: 15.5px; color: var(--t2); line-height: 1.88; margin-bottom: 18px; }
+
+.ee-jess-creds { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+
+.ee-jess-cred {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--t3);
+}
+
+.ee-jess-cred::before { content: '✦'; color: var(--gold); font-size: 9px; flex-shrink: 0; }
+
+/* ── INVESTMENT ── */
+.ee-invest {
+  background: var(--cream-alt);
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ee-invest::before {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -80px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(242,193,78,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ee-invest-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+
+.ee-invest h2 {
+  font-family: var(--h);
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.ee-invest h2 em { font-style: italic; color: var(--gold); }
+
+.ee-invest-lead { font-size: 15.5px; color: var(--t2); line-height: 1.85; margin-bottom: 48px; }
+
+.ee-price-card {
+  background: white;
+  border: 1px solid rgba(30,46,50,0.08);
+  border-radius: 24px;
+  padding: 52px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 48px rgba(30,46,50,0.07);
+}
+
+.ee-price-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 20px;
+}
+
+.ee-price-amount {
+  font-family: var(--h);
+  font-size: clamp(56px, 9vw, 88px);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.ee-price-note { font-size: 14px; color: var(--t3); margin-bottom: 36px; line-height: 1.6; }
+
+.ee-price-list {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.ee-price-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.5;
+}
+
+.ee-price-list li::before {
+  content: '✦';
+  color: var(--rose);
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.ee-price-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(30,46,50,0.1), transparent);
+  margin: 36px 0;
+}
+
+.ee-payment-note { font-size: 13.5px; color: var(--t3); line-height: 1.7; }
+
+/* ── FAQ ── */
+.ee-faq { padding: 100px 0; background: var(--cream); }
+
+.ee-faq-inner { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+.ee-faq h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 300;
+  color: var(--dark);
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.ee-faq h2 em { font-style: italic; color: var(--rose); }
+
+.ee-faq-item { border-bottom: 1px solid rgba(30,46,50,0.08); padding: 28px 0; }
+
+.ee-faq-q {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.ee-faq-a { font-size: 15px; color: var(--t2); line-height: 1.85; }
+
+/* ── FINAL CTA ── */
+.ee-final {
+  position: relative;
+  padding: 120px 0;
+  text-align: center;
+  overflow: hidden;
+  background: var(--cream-alt);
+}
+
+.ee-final-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(191,66,136,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ee-final-inner {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ee-final h2 {
+  font-family: var(--h);
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1.1;
+  margin-bottom: 28px;
+}
+
+.ee-final h2 em { font-style: italic; color: var(--rose); display: block; }
+
+.ee-final p { font-size: 16px; color: var(--t2); line-height: 1.85; margin-bottom: 48px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: var(--h);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.footer-tagline {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.38);
+  margin-bottom: 24px;
+}
+
+.footer-nav { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+
+.footer-nav a {
+  font-size: 13px;
+  color: rgba(250,247,242,0.45);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover { color: var(--rose); }
+
+.footer-copy { font-size: 12px; color: rgba(250,247,242,0.25); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; }
+  .ee-isyou-grid { grid-template-columns: 1fr; gap: 52px; padding: 0 24px; }
+  .ee-promise-inner { padding: 0 24px; }
+  .ee-outcomes { grid-template-columns: 1fr; }
+  .ee-modules-inner { padding: 0 24px; }
+  .ee-includes-inner { padding: 0 24px; }
+  .ee-includes-grid { grid-template-columns: 1fr; }
+  .ee-jess-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+  .ee-jess-img { aspect-ratio: 4/3; }
+  .ee-invest-inner { padding: 0 24px; }
+  .ee-price-card { padding: 36px 28px; }
+  .ee-faq-inner { padding: 0 24px; }
+  footer { padding: 52px 24px; }
+}
+
+@media (max-width: 600px) {
+  .ee-hero { padding: 110px 20px 72px; }
+  .ee-module-item { grid-template-columns: 36px 1fr; gap: 14px; }
+  .ee-hero-cta-group { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">Energy with Jess</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="offerings.html">Offerings</a>
+    <a href="connect.html">Connect</a>
+    <a href="booking.html" class="nav-book">Book Now</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="ee-hero">
+  <div class="ee-hero-bg"></div>
+  <div class="ee-hero-eyebrow fade-in">Self-Paced Course &middot; For Sensitive Women</div>
+  <h1 class="fade-in-1">
+    The Empowered
+    <em>Empath</em>
+  </h1>
+  <p class="ee-hero-sub fade-in-2">
+    If being an empath has ever felt more like a curse than a gift - this is where that changes.
+    12 modules. Your pace. Your power.
+  </p>
+  <div class="ee-hero-cta-group fade-in-3">
+    <a href="#enrol" class="btn-primary">Enrol Now ✦</a>
+    <a href="#modules" class="btn-ghost">See What's Inside</a>
+  </div>
+  <div class="ee-scroll-hint fade-in-4">
+    <div class="ee-scroll-line"></div>
+    <span>Keep reading</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     TRUTH STRIP
+══════════════════════════════════ -->
+<section class="ee-truth">
+  <div class="ee-truth-inner reveal">
+    <blockquote>
+      "Feeling everything all the time with no way to turn it down isn't just exhausting.
+      It starts to feel like <em>something is wrong with you.</em> Nothing is wrong with you."
+    </blockquote>
+    <p>Your sensitivity was never the problem. The problem is that no one ever taught you what to do with it.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     IS THIS YOU
+══════════════════════════════════ -->
+<section class="ee-isyou">
+  <div class="ee-isyou-grid">
+
+    <div class="ee-isyou-intro reveal left">
+      <span class="label">Sound familiar?</span>
+      <h2>You feel everything - and you're <em>exhausted</em> by it</h2>
+      <p>You walk into a room and pick up on every mood, every tension, every unspoken thing. You leave a conversation carrying feelings that aren't yours. You lie awake replaying other people's problems. You cancel plans because the world just feels like too much today.</p>
+      <p>You've been called too sensitive for as long as you can remember. Maybe you've even started to believe it.</p>
+      <p>But here's what's actually true - you're not broken. You're not too much. You're an empath who was never handed the toolkit to go with the gift.</p>
+    </div>
+
+    <div class="reveal right">
+      <ul class="ee-check-list">
+        <li>You absorb other people's emotions like they're your own - and can't always tell the difference</li>
+        <li>Crowded places, loud environments, or tense people leave you drained for hours</li>
+        <li>You give and give until there's nothing left - and feel guilty saying no</li>
+        <li>You've tried to manage it with logic and it hasn't worked</li>
+        <li>You can feel energy shifts before anyone says a word</li>
+        <li>You want to stop surviving your sensitivity and actually use it</li>
+        <li>You're ready to learn what it means to protect and own your energy</li>
+        <li>You know this is a gift - you just haven't been taught how to unwrap it</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     PROMISE
+══════════════════════════════════ -->
+<section class="ee-promise">
+  <div class="ee-promise-inner">
+    <div class="reveal">
+      <span class="label">What changes</span>
+      <h2>You'll walk away knowing how to <em>thrive</em></h2>
+      <p class="ee-promise-lead">This isn't about turning down your sensitivity. It's about learning to work with it - to move through the world as an empath who is grounded, boundaried, and genuinely powerful.</p>
+    </div>
+    <div class="ee-outcomes">
+      <div class="ee-outcome reveal d1">
+        <span class="ee-outcome-icon">🛡</span>
+        <h3>Your energy is your own</h3>
+        <p>You'll know how to open and close your energy field and stop absorbing what isn't yours to carry.</p>
+      </div>
+      <div class="ee-outcome reveal d2">
+        <span class="ee-outcome-icon">🌿</span>
+        <h3>A regulated nervous system</h3>
+        <p>Real tools to identify, soothe, and regulate your emotional body - in the moment, not an hour later.</p>
+      </div>
+      <div class="ee-outcome reveal d3">
+        <span class="ee-outcome-icon">🌙</span>
+        <h3>A relationship with yourself</h3>
+        <p>You'll reconnect with your inner child and higher self - the parts of you that have been waiting to be heard.</p>
+      </div>
+      <div class="ee-outcome reveal d1">
+        <span class="ee-outcome-icon">👑</span>
+        <h3>Genuine self-mastery</h3>
+        <p>You'll learn to hold space for yourself with the same care you've always given everyone else.</p>
+      </div>
+      <div class="ee-outcome reveal d2">
+        <span class="ee-outcome-icon">✨</span>
+        <h3>Your gift reclaimed</h3>
+        <p>Sensitivity stops being a burden and becomes exactly what it always was - your greatest superpower.</p>
+      </div>
+      <div class="ee-outcome reveal d3">
+        <span class="ee-outcome-icon">🏡</span>
+        <h3>Walk into any room</h3>
+        <p>You'll enter any environment - a supermarket, a party, a workplace - and know you can handle it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     MODULES
+══════════════════════════════════ -->
+<section class="ee-modules" id="modules">
+  <div class="ee-modules-inner">
+    <div class="ee-modules-header reveal">
+      <span class="label">The Course</span>
+      <h2>What's <em>inside</em></h2>
+      <p>Work through the modules in order, at your own pace, in your own time. Each one builds on the last - and you can revisit any of them whenever you need to.</p>
+    </div>
+
+    <div class="ee-module-list">
+
+      <div class="ee-module-item special reveal">
+        <div class="ee-module-number">00</div>
+        <div class="ee-module-content">
+          <h4><em>Welcome</em></h4>
+          <p>An introduction from Jess, plus a podcast episode on her own empath journey. Everything you need to feel ready before you begin.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">01</div>
+        <div class="ee-module-content">
+          <h4>Empath Basics</h4>
+          <p>The what, how, and why of being an empath. Your energy, your aura, and the basics of energetic boundaries - the foundation everything else builds on.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-video">Video</span>
+          <span class="ee-module-tag ee-module-tag-work">PDF</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">02</div>
+        <div class="ee-module-content">
+          <h4>Inner Child</h4>
+          <p>A guided meditation to connect with your inner child - to establish connection, release old ties, and begin creating a sense of inner calm.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-med">Meditation</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">03</div>
+        <div class="ee-module-content">
+          <h4>Emotions</h4>
+          <p>Emotional regulation, the wheel of emotion, your emotional body, and how to process and hold space for what comes up.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-video">Video</span>
+          <span class="ee-module-tag ee-module-tag-work">PDF</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">04</div>
+        <div class="ee-module-content">
+          <h4>Higher Self</h4>
+          <p>A meditation to connect with your Higher Self and receive guidance around your empath gifts, abilities, and what's next for you.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-med">Meditation</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">05</div>
+        <div class="ee-module-content">
+          <h4>Nervous System</h4>
+          <p>The nervous system, the 4 F's, and practical tools for recognition and regulation - so you can come back to yourself when the world gets loud.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-video">Video</span>
+          <span class="ee-module-tag ee-module-tag-work">PDF</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">06</div>
+        <div class="ee-module-content">
+          <h4>Past Lives</h4>
+          <p>Connect with past versions of yourself - to talk, to release, and to find what's still influencing you now so you can finally let it go.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">07</div>
+        <div class="ee-module-content">
+          <h4>Inner World</h4>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-video">Video</span>
+          <span class="ee-module-tag ee-module-tag-work">PDF</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">08</div>
+        <div class="ee-module-content">
+          <h4>The Aura</h4>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-med">Meditation</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item reveal">
+        <div class="ee-module-number">09</div>
+        <div class="ee-module-content">
+          <h4>Patterns</h4>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-video">Video</span>
+          <span class="ee-module-tag ee-module-tag-work">PDF</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item special reveal">
+        <div class="ee-module-number">✦</div>
+        <div class="ee-module-content">
+          <h4>Bonus <em>Content</em></h4>
+          <p>Soul Contracts meditation, Grounding meditation, plus Opening and Closing meditations for those who are energetically inclined. Chakra PDF included.</p>
+          <span class="ee-module-tag ee-module-tag-bonus">Bonus</span>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+          <span class="ee-module-tag ee-module-tag-med">Meditation</span>
+        </div>
+      </div>
+
+      <div class="ee-module-item special reveal">
+        <div class="ee-module-number">✦</div>
+        <div class="ee-module-content">
+          <h4>Congratulations + <em>What's Next</em></h4>
+          <p>You did the work. Here's what's available when you're ready to go deeper.</p>
+          <span class="ee-module-tag ee-module-tag-audio">Audio</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     WHAT'S INCLUDED
+══════════════════════════════════ -->
+<section class="ee-includes">
+  <div class="ee-includes-inner">
+    <div class="ee-includes-header reveal">
+      <span class="label">What You Get</span>
+      <h2>Everything you need to <em>do the work</em></h2>
+    </div>
+    <div class="ee-includes-grid">
+      <div class="ee-include-card reveal">
+        <span class="ee-include-icon">🎬</span>
+        <div class="ee-include-body">
+          <h4>Video Lessons</h4>
+          <p>Taught by Jess in the same warm, direct way she shows up in every 1:1 session. Watch them as many times as you need.</p>
+        </div>
+      </div>
+      <div class="ee-include-card reveal">
+        <span class="ee-include-icon">🧘</span>
+        <div class="ee-include-body">
+          <h4>Guided Meditations</h4>
+          <p>Woven throughout the course to help you embody - not just understand - what you're learning. Return to them whenever you need to reset.</p>
+        </div>
+      </div>
+      <div class="ee-include-card reveal">
+        <span class="ee-include-icon">📋</span>
+        <div class="ee-include-body">
+          <h4>Worksheets &amp; Exercises</h4>
+          <p>Practical tools to help you integrate each module into your actual life. Not busywork - real reflection that moves things.</p>
+        </div>
+      </div>
+      <div class="ee-include-card reveal">
+        <span class="ee-include-icon">🔑</span>
+        <div class="ee-include-body">
+          <h4>Lifetime Access</h4>
+          <p>No expiry date. Come back when something new opens up, revisit the parts that hit differently the second time, or start again from scratch whenever you're ready.</p>
+        </div>
+      </div>
+      <div class="ee-include-card reveal">
+        <span class="ee-include-icon">⭐</span>
+        <div class="ee-include-body">
+          <h4>Bonus Content</h4>
+          <p>Additional teachings and practices beyond the core 9 modules - because some things are worth going deeper on.</p>
+        </div>
+      </div>
+      <div class="ee-include-card reveal">
+        <span class="ee-include-icon">🌍</span>
+        <div class="ee-include-body">
+          <h4>Access Anywhere</h4>
+          <p>Self-paced and available worldwide. No timezone, no schedule, no pressure to show up on someone else's terms.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     ABOUT JESS
+══════════════════════════════════ -->
+<section class="ee-jess">
+  <div class="ee-jess-inner">
+    <div class="ee-jess-img reveal left">
+      <img src="jess-hero.webp" alt="Jess Hollamby - Psychic, Reiki Master and Empath Coach">
+      <div class="ee-jess-img-overlay"></div>
+    </div>
+    <div class="ee-jess-text reveal right">
+      <span class="label">Your Teacher</span>
+      <h2>Hi, I'm <em>Jess</em></h2>
+      <p>I'm a Psychic, Reiki Master/Teacher and Empath based in South Australia. I built Energy with Jess for women who've spent their lives being told they're too sensitive, too much, or too emotional.</p>
+      <p>I know what it's like to absorb everything in a room and have no idea how to put it down. I know the exhaustion of giving and giving until there's nothing left. And I know what it feels like when things finally start to shift.</p>
+      <p>This course is the foundational work I wish I'd had earlier - everything I now teach my 1:1 clients, packaged so you can move through it in your own time, in your own space, at your own pace.</p>
+      <div class="ee-jess-creds">
+        <div class="ee-jess-cred">Psychic &middot; Reiki Master/Teacher &middot; Empath Coach</div>
+        <div class="ee-jess-cred">Based in Adelaide, South Australia</div>
+        <div class="ee-jess-cred">Working with sensitive women worldwide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     INVESTMENT
+══════════════════════════════════ -->
+<section class="ee-invest" id="enrol">
+  <div class="ee-invest-inner">
+    <div class="reveal">
+      <span class="label">The Investment</span>
+      <h2>Ready to <em>reclaim your energy?</em></h2>
+      <p class="ee-invest-lead">One purchase. Lifetime access. Everything you need to stop surviving your sensitivity and start thriving with it.</p>
+    </div>
+
+    <div class="ee-price-card reveal">
+      <div class="ee-price-label">The Empowered Empath &middot; Full Course</div>
+      <div class="ee-price-amount">$333</div>
+      <p class="ee-price-note">One-time payment &middot; AUD &middot; Payment plans available</p>
+      <ul class="ee-price-list">
+        <li>12 modules including Welcome, Bonus Content, and Congratulations/What's Next</li>
+        <li>Video lessons taught by Jess</li>
+        <li>Guided meditations woven throughout</li>
+        <li>Worksheets and practical exercises</li>
+        <li>Bonus content videos</li>
+        <li>Lifetime access - revisit anytime</li>
+        <li>Available worldwide, start immediately</li>
+      </ul>
+      <div class="ee-price-divider"></div>
+      <a href="ask-question.html" class="btn-primary" style="font-size: 17px; padding: 18px 56px;">Join Waitlist ✦</a>
+      <p class="ee-price-note" style="margin-top: 20px;">Secure checkout. Questions? <a href="mailto:energywjess@gmail.com" style="color: var(--rose); text-decoration: underline;">Email Jess directly.</a></p>
+    </div>
+
+    <div class="reveal" style="background: white; border: 1px solid rgba(196,176,212,0.28); border-radius: 16px; padding: 28px 32px; text-align: left; box-shadow: 0 2px 14px rgba(30,46,50,0.04);">
+      <div style="font-family: var(--h); font-size: 19px; color: var(--teal); margin-bottom: 10px;">Want to go deeper?</div>
+      <p class="ee-payment-note">The 1:1 version of this work is available as a 12-week <a href="expansion.html#soul-support" style="color: var(--rose); text-decoration: underline;">Soul Support mentoring pathway</a> - fully personalised, fully held. Or if you're ready to go all the way in, explore <a href="the-unbecoming.html" style="color: var(--rose); text-decoration: underline;">The Unbecoming</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FAQ
+══════════════════════════════════ -->
+<section class="ee-faq">
+  <div class="ee-faq-inner">
+    <h2 class="reveal">A few <em>questions</em></h2>
+
+    <div class="ee-faq-item reveal">
+      <div class="ee-faq-q">Do I need any prior knowledge of energy work?</div>
+      <div class="ee-faq-a">Not at all. This course is designed to meet you exactly where you are. Whether you've been exploring energy for years or this is your very first step, the content is built to be accessible and practical from the very beginning.</div>
+    </div>
+
+    <div class="ee-faq-item reveal">
+      <div class="ee-faq-q">How long will the course take?</div>
+      <div class="ee-faq-a">That's entirely up to you. There's no schedule, no deadline, and no pressure. Some women move through a module a week, others go faster or slower depending on what's coming up for them. You have lifetime access, so take all the time you need.</div>
+    </div>
+
+    <div class="ee-faq-item reveal">
+      <div class="ee-faq-q">Is this suitable for complete beginners?</div>
+      <div class="ee-faq-a">Yes - and it's also genuinely useful for women who've been in the spiritual space for a while but haven't had structured support around their empathic gifts specifically. If you identify as an empath and you're exhausted, this is for you.</div>
+    </div>
+
+    <div class="ee-faq-item reveal">
+      <div class="ee-faq-q">What if I want more personalised support?</div>
+      <div class="ee-faq-a">The Empowered Empath is a wonderful starting point. If you find yourself wanting to go deeper with 1:1 support, the Soul Support pathway is available - 12 weeks, fully personalised. You can also reach out to Jess directly at any time.</div>
+    </div>
+
+    <div class="ee-faq-item reveal">
+      <div class="ee-faq-q">Are payment plans available?</div>
+      <div class="ee-faq-a">Yes. If a payment plan would make this more accessible for you, reach out to Jess directly at energywjess@gmail.com and she'll sort something out.</div>
+    </div>
+
+    <div class="ee-faq-item reveal">
+      <div class="ee-faq-q">How do I access the course after purchasing?</div>
+      <div class="ee-faq-a">You'll receive an email with your login details straight after purchase. The course lives on a dedicated platform where you can move through the modules at your own pace, from any device, anywhere in the world.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FINAL CTA
+══════════════════════════════════ -->
+<section class="ee-final">
+  <div class="ee-final-bg"></div>
+  <div class="ee-final-inner reveal">
+    <h2>
+      Your sensitivity isn't the problem.
+      <em>It never was.</em>
+    </h2>
+    <p>You've spent long enough managing it, suppressing it, apologising for it. This is where you learn to own it. Come home to yourself.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://buy.stripe.com/dRm6oH74IgpS3HM5aScZa0K" target="_blank" class="btn-primary" style="font-size: 15px; padding: 17px 48px;">Enrol Now ✦</a>
+      <a href="ask-question.html" class="btn-ghost">Ask a Question First</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Energy with Jess</div>
+  <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="offerings.html">Offerings</a>
+    <a href="connect.html">Connect</a>
+  </nav>
+  <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>

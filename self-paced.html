@@ -1,0 +1,491 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Paced Learning - Energy with Jess</title>
+<meta name="description" content="Learn energy, Reiki, and self-development at your own pace with Jess Hollamby. No live sessions, no timezone barriers - just you and the work, whenever you're ready.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.sp-intro { padding: 100px 0; }
+.sp-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.sp-intro p { font-size: 15.5px; color: rgba(250,247,242,0.68); line-height: 1.88; margin-bottom: 18px; }
+.sp-intro p strong { color: var(--cream); }
+.sp-quote { font-family: var(--h); font-size: 21px; font-style: italic; color: var(--lavender); border-left: 3px solid var(--gold); padding-left: 22px; margin: 32px 0; line-height: 1.6; }
+
+.sp-benefits { display: flex; flex-direction: column; gap: 16px; }
+.sp-benefit { display: flex; gap: 16px; align-items: flex-start; }
+.sp-benefit-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.sp-benefit-body h4 { font-family: var(--h); font-size: 18px; font-weight: 400; color: var(--cream); margin-bottom: 4px; }
+.sp-benefit-body p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.7; margin: 0; }
+
+/* course cards */
+.sp-courses { padding: 100px 0; background: var(--mid); }
+.sp-courses-stack { display: flex; flex-direction: column; gap: 32px; margin-top: 60px; }
+.course-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+  position: relative;
+}
+.course-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.course-card:hover { border-color: rgba(242,193,78,0.2); }
+.course-card:hover::after { transform: scaleX(1); }
+.course-card-body { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; }
+.course-card-main { padding: 52px 48px; }
+.course-card-main h3 { font-family: var(--h); font-size: 32px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.course-card-main h3 em { font-style: italic; color: var(--rose); }
+.course-card-main p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.85; margin-bottom: 18px; }
+.course-card-main p strong { color: var(--cream); }
+.course-story {
+  font-family: var(--h);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--lavender);
+  border-left: 3px solid rgba(196,176,212,0.3);
+  padding-left: 20px;
+  margin: 24px 0;
+  line-height: 1.65;
+}
+.course-card-side {
+  background: rgba(250,247,242,0.02);
+  border-left: 1px solid rgba(250,247,242,0.06);
+  padding: 52px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.course-side-block { }
+.course-side-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.course-side-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.course-side-list li {
+  font-size: 13.5px;
+  color: rgba(250,247,242,0.55);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.55;
+}
+.course-side-list li::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.course-resonates-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.course-resonates-list li {
+  font-size: 13.5px;
+  color: rgba(250,247,242,0.55);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.55;
+}
+.course-resonates-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--rose);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.course-modules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 20px 0;
+}
+.course-module-pill {
+  background: rgba(250,247,242,0.04);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.4;
+}
+.course-module-pill strong { color: rgba(250,247,242,0.75); display: block; margin-bottom: 2px; }
+.course-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+
+@media (max-width: 900px) {
+  .course-card-body { grid-template-columns: 1fr; }
+  .course-card-side { border-left: none; border-top: 1px solid rgba(250,247,242,0.06); padding: 36px 36px; }
+  .course-modules { grid-template-columns: 1fr; }
+}
+
+/* who it suits */
+.sp-who { padding: 100px 0; }
+.sp-who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+.sp-who-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 32px 26px; text-align: center; transition: transform 0.4s ease; }
+.sp-who-card:hover { transform: translateY(-4px); }
+.sp-who-icon { font-size: 30px; margin-bottom: 14px; display: block; }
+.sp-who-card h3 { font-family: var(--h); font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+.sp-who-card p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.75; }
+
+.cta-bg::after { background: rgba(21,37,42,0.68) !important; }
+
+@media (max-width: 760px) {
+  .sp-intro { padding: 72px 0; }
+  .sp-intro-grid { grid-template-columns: 1fr; gap: 52px; }
+  .sp-courses { padding: 72px 0; }
+  .sp-courses-grid { grid-template-columns: 1fr; }
+  .sp-who { padding: 72px 0; }
+  .sp-who-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="service-featured.jpg" alt="Self-Paced Learning with Jess" style="object-position: center 55%;" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Learn Anytime, Anywhere</span>
+    <h1>Self-Paced <em>Learning</em></h1>
+    <p class="page-hero-sub">No live sessions. No timezone stress. Just you and the work - whenever you're ready for it.</p>
+  </div>
+</section>
+
+<section class="sp-intro">
+  <div class="container">
+    <div class="sp-intro-grid">
+      <div class="reveal left">
+        <span class="label">Learn on Your Terms</span>
+        <h2 class="section-title">Because real life doesn't run on <em>someone else's schedule</em></h2>
+        <p>Not everyone can commit to a live session. Not everyone wants to. And that's completely valid. Self-paced learning is for the woman who wants to do the work but needs it to fit around her actual life.</p>
+        <p>Jess's self-paced offerings let you access the wisdom, the tools, and the practices - <strong>on your own timeline.</strong> No pressure to show up on a specific day, no guilt about missing a session, no catching up on recordings that feel stale by the time you get to them.</p>
+        <div class="sp-quote">You learn best when you're actually ready to learn - not when a calendar tells you to.</div>
+        <p>These courses are designed to be revisited. Come back when something new opens up. Return to the parts that hit differently the second time. The work will meet you wherever you are.</p>
+      </div>
+      <div class="reveal right">
+        <div class="sp-benefits">
+          <div class="sp-benefit">
+            <span class="sp-benefit-icon">🌍</span>
+            <div class="sp-benefit-body">
+              <h4>Available worldwide</h4>
+              <p>No timezone, no location, no barriers. Wherever you are, the work is accessible.</p>
+            </div>
+          </div>
+          <div class="sp-benefit">
+            <span class="sp-benefit-icon">⏱</span>
+            <div class="sp-benefit-body">
+              <h4>No time pressure</h4>
+              <p>Work through it slowly or binge it over a weekend. Completely your call.</p>
+            </div>
+          </div>
+          <div class="sp-benefit">
+            <span class="sp-benefit-icon">🔁</span>
+            <div class="sp-benefit-body">
+              <h4>Revisit as many times as you need</h4>
+              <p>The content doesn't expire. Come back whenever something new clicks or life brings you back to it.</p>
+            </div>
+          </div>
+          <div class="sp-benefit">
+            <span class="sp-benefit-icon">💜</span>
+            <div class="sp-benefit-body">
+              <h4>Jess's voice, Jess's way</h4>
+              <p>Everything is taught with the same warmth and depth as a one-on-one session - just in a format that travels.</p>
+            </div>
+          </div>
+          <div class="sp-benefit">
+            <span class="sp-benefit-icon">🚀</span>
+            <div class="sp-benefit-body">
+              <h4>Start immediately</h4>
+              <p>No waiting for the next intake, no scheduling. Purchase and begin whenever the time feels right.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-courses">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Available Courses</span>
+      <h2 class="section-title">Do the work <em>on your terms</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.52); max-width: 520px; margin: 0 auto;">Self-paced offerings to work through on your own terms - with more always in the works.</p>
+    </div>
+    <div class="sp-courses-stack">
+
+      <!-- EMOTION RESET -->
+      <div class="course-card reveal">
+        <div class="course-card-body">
+          <div class="course-card-main">
+            <div class="course-tag-row">
+              <span class="tag tag-gold">21-Day Process</span>
+              <span class="tag">PDF + Community</span>
+            </div>
+            <h3>Emotion <em>Reset</em></h3>
+            <div class="course-story">"I grew up in a house where children were seen and not heard - and that applied to our emotions too. I bottled everything up until it exploded over the smallest things. That straw-that-broke-the-camel's-back feeling? I lived there for years. It wasn't until early 2022, when I started putting this process together, that things finally started to shift."</div>
+            <p>Emotion Reset is a <strong>21-day process</strong> designed to help you deeply reconnect with both your emotional and physical body. Over three weeks, you'll work through prompts, questions, and self-reflection that gently guide you back to yourself - releasing what's been building, restoring the connection between how you feel and how you function, and returning to a place of peace, balance, and grounded emotional wellbeing.</p>
+            <p>Once you purchase, you'll find a link inside the PDF to join the private Facebook and Telegram groups - a supportive space to share your responses, ask questions, and move through this process with real-time company alongside you.</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+              <a href="emotion-reset.html" class="btn btn-primary" style="font-size: 13px;">Get the PDF - $3.99</a>
+            </div>
+            <p style="font-size: 13px; color: rgba(250,247,242,0.35); margin-top: 16px; margin-bottom: 0;">Once purchased, your Telegram link is on page 5. Reach out if you have any questions.</p>
+          </div>
+          <div class="course-card-side">
+            <div class="course-side-block">
+              <div class="course-side-label">This is for you if you...</div>
+              <ul class="course-resonates-list">
+                <li>Want to establish a deeper emotional connection with yourself</li>
+                <li>Struggle to identify how or what you feel</li>
+                <li>Are moving through life feeling numb</li>
+                <li>Aren't good at expressing how you feel</li>
+                <li>Have a habit of bottling your emotions until they overflow</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="course-side-label">Why you deserve this</div>
+              <ul class="course-resonates-list">
+                <li>You deserve to know who you are and what you feel</li>
+                <li>You deserve to regulate and connect with yourself emotionally</li>
+                <li>You deserve to feel safe in your body and to feel your feelings without judgement</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="course-side-label">What's included</div>
+              <ul class="course-side-list">
+                <li>Emotion Reset PDF with 21 days of prompts and self-reflection</li>
+                <li>Access to the private Telegram support group</li>
+                <li>Access to the private Facebook community</li>
+                <li>Real-time opportunity for support and to have questions answered</li>
+                <li>A safe space to start learning about yourself, your emotions, and your experiences</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMPOWERED EMPATH -->
+      <div class="course-card reveal">
+        <div class="course-card-body">
+          <div class="course-card-main">
+            <div class="course-tag-row">
+              <span class="tag tag-lavender">8 Modules</span>
+              <span class="tag">For Empaths</span>
+              <span class="tag">Self-Paced</span>
+              <span class="tag tag-gold">Available 17 Aug</span>
+            </div>
+            <h3>The Empowered <em>Empath</em></h3>
+            <p>Real talk - if being an empath has ever felt more like a curse than a gift, you're not alone. <strong>This course was designed specifically for you.</strong></p>
+            <p>If you're tired of feeling overwhelmed with no idea how to turn it down - if you want to be able to walk into a room, a supermarket, or a party and actually know you have the skills not just to survive but to <em>thrive</em> - this is where it starts.</p>
+            <p>Over 8 modules, you'll learn to open and close your energy, identify and regulate your emotional body and nervous system, connect with your inner child and higher self, and step into genuine self-mastery. This isn't about managing your sensitivity - it's about reclaiming it as the superpower it actually is.</p>
+            <div style="margin: 8px 0 28px;">
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 14px;">8 Modules</div>
+              <div class="course-modules">
+                <div class="course-module-pill"><strong>Theory / Exercise</strong>4 modules of core learning and practice</div>
+                <div class="course-module-pill"><strong>Practical</strong>4 hands-on modules to apply and embody</div>
+                <div class="course-module-pill"><strong>Meditations</strong>Guided practices woven throughout</div>
+                <div class="course-module-pill"><strong>Homework</strong>Activities to integrate between modules</div>
+              </div>
+            </div>
+            <a href="empowered-empath.html" class="btn btn-primary" style="font-size: 13px;">Learn More &amp; Enrol</a>
+          </div>
+          <div class="course-card-side">
+            <div class="course-side-block">
+              <div class="course-side-label">This is for you if you're...</div>
+              <ul class="course-resonates-list">
+                <li>Tired of feeling overwhelmed and like you have no choice about being an empath</li>
+                <li>Ready to reclaim your power, time and energy</li>
+                <li>Wanting to enter any environment and know you can handle it</li>
+                <li>Looking for a grounded starting point before deeper 1:1 work</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="course-side-label">What you'll learn</div>
+              <ul class="course-side-list">
+                <li>How to open and close your energy</li>
+                <li>How to identify, soothe and regulate your emotional body and nervous system</li>
+                <li>How to connect with your inner child and higher self</li>
+                <li>How to step into self-mastery and hold space for yourself</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- REGULATION MENTORING -->
+      <div class="course-card reveal">
+        <div class="course-card-body">
+          <div class="course-card-main">
+            <div class="course-tag-row">
+              <span class="tag">Emotional &amp; Nervous System</span>
+              <span class="tag tag-gold">Coming Soon</span>
+            </div>
+            <h3>Regulation <em>Mentoring</em></h3>
+            <p>For the woman who's tired of being at war with her own inner world. Ready to feel settled in her body, process what comes up without being swept away, and develop tools that actually work for how she's wired.</p>
+            <p>Three self-paced pathways - start with emotional regulation, add nervous system work when you're ready, or take on the full container from the start.</p>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin: 24px 0;">
+              <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                  <div style="font-family: var(--h); font-size: 16px; color: var(--cream);">Emotional Regulation &middot; 6 Weeks</div>
+                  <div style="font-size: 13px; color: rgba(250,247,242,0.45); margin-top: 4px;">Personalised tools to process, release and integrate. Reconnecting mind to body.</div>
+                </div>
+                <div style="font-family: var(--h); font-size: 22px; font-weight: 300; color: var(--gold);">$333</div>
+              </div>
+              <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                  <div style="font-family: var(--h); font-size: 16px; color: var(--cream);">Nervous System Regulation &middot; 12 Weeks</div>
+                  <div style="font-size: 13px; color: rgba(250,247,242,0.45); margin-top: 4px;">Emphasis on somatic release. Recommended after Emotional Regulation.</div>
+                </div>
+                <div style="font-family: var(--h); font-size: 22px; font-weight: 300; color: var(--gold);">$777</div>
+              </div>
+              <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.07); border-radius: 10px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+                <div>
+                  <div style="font-family: var(--h); font-size: 16px; color: var(--cream);">Full Regulation &middot; 18 Weeks</div>
+                  <div style="font-size: 13px; color: rgba(250,247,242,0.45); margin-top: 4px;">Emotional and Nervous System combined - the full path in one container.</div>
+                </div>
+                <div style="font-family: var(--h); font-size: 22px; font-weight: 300; color: var(--gold);">$999</div>
+              </div>
+            </div>
+            <p style="font-size: 13px; color: rgba(250,247,242,0.35); margin-bottom: 20px;">Payment plans available &middot; Date to be confirmed</p>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <a href="ask-question.html" class="btn btn-ghost" style="font-size: 13px;">Register Interest</a>
+            </div>
+          </div>
+          <div class="course-card-side">
+            <div class="course-side-block">
+              <div class="course-side-label">This is for you if you...</div>
+              <ul class="course-resonates-list">
+                <li>Feel constantly at war with your own emotions or reactions</li>
+                <li>Want to feel settled and grounded in your body</li>
+                <li>Struggle to process what comes up without being swept away</li>
+                <li>Are ready for real tools built around how you actually work</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="course-side-label">What you'll develop</div>
+              <ul class="course-side-list">
+                <li>Personalised tools to process, release and integrate emotion</li>
+                <li>A deeper connection between mind and body</li>
+                <li>Somatic release practices (Nervous System pathway)</li>
+                <li>A foundation for lasting regulation - not just coping</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; margin-top: 52px;" class="reveal">
+      <a href="booking.html" class="btn btn-primary">Browse All Available Courses</a>
+    </div>
+  </div>
+</section>
+
+<section class="sp-who">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Who This Is For</span>
+      <h2 class="section-title">Self-paced learning works best <em>when...</em></h2>
+    </div>
+    <div class="sp-who-grid">
+      <div class="sp-who-card reveal d1">
+        <span class="sp-who-icon">🌙</span>
+        <h3>You need flexibility</h3>
+        <p>Shift work, kids, irregular hours, or just an unpredictable life - self-paced learning bends to fit you, not the other way around.</p>
+      </div>
+      <div class="sp-who-card reveal d2">
+        <span class="sp-who-icon">🌍</span>
+        <h3>You're outside Australia</h3>
+        <p>Timezones won't hold you back. Access everything from anywhere in the world, whenever it suits you.</p>
+      </div>
+      <div class="sp-who-card reveal d3">
+        <span class="sp-who-icon">🦋</span>
+        <h3>You're just starting out</h3>
+        <p>Not sure if this is for you yet? Self-paced learning is a lower-commitment way to dip your toe in before jumping into one-on-one work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-bg"><img src="vibe-tarot-candles.jpg" alt="Jess Hollamby" /></div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Ready to learn at your <em>own pace?</em></h2>
+    <p>Browse what's available and start whenever you're ready. No waiting, no scheduling, no pressure.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="booking.html" class="btn btn-primary">Browse Courses</a>
+      <a href="offerings.html" class="btn btn-ghost">See All Offerings</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

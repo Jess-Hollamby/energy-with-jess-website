@@ -1,0 +1,766 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Reiki - Energy with Jess</title>
+<meta name="description" content="Learn Reiki with Jess Hollamby - Reiki Master/Teacher. All levels from beginner through to Master/Teacher. Available fully online worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.reiki-intro { padding: 100px 0; }
+.reiki-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.reiki-intro p { font-size: 15.5px; color: rgba(250,247,242,0.68); line-height: 1.88; margin-bottom: 18px; }
+.reiki-intro p strong { color: var(--cream); }
+.intro-quote { font-family: var(--h); font-size: 21px; font-style: italic; color: var(--lavender); border-left: 3px solid var(--gold); padding-left: 22px; margin: 32px 0; line-height: 1.6; }
+
+/* levels */
+.levels { padding: 100px 0; background: var(--mid); }
+.levels-stack { display: flex; flex-direction: column; gap: 24px; margin-top: 60px; }
+.level-card { display: grid; grid-template-columns: 120px 1fr; border: 1px solid rgba(250,247,242,0.06); border-radius: 16px; overflow: hidden; transition: border-color 0.4s ease; }
+.level-card:hover { border-color: rgba(196,176,212,0.25); }
+.level-num-col { background: rgba(196,176,212,0.05); display: flex; align-items: center; justify-content: center; padding: 36px 20px; }
+.level-roman { font-family: var(--h); font-size: 64px; font-weight: 300; color: var(--lavender); line-height: 1; text-align: center; }
+.level-body { padding: 36px 40px; }
+.level-body h3 { font-family: var(--h); font-size: 28px; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+.level-body .tag { margin-bottom: 14px; }
+.level-body p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.82; margin-bottom: 16px; }
+.level-includes { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.level-includes li { font-size: 12px; color: rgba(250,247,242,0.5); background: rgba(250,247,242,0.04); border: 1px solid rgba(250,247,242,0.07); border-radius: 20px; padding: 5px 14px; }
+
+/* why jess */
+.why-jess { padding: 100px 0; }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
+.why-card { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 32px 28px; text-align: center; transition: transform 0.4s ease; }
+.why-card:hover { transform: translateY(-5px); }
+.why-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+.why-card h3 { font-family: var(--h); font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 10px; }
+.why-card p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.75; }
+
+@media (max-width: 760px) {
+  .reiki-intro { padding: 72px 0; }
+  .reiki-intro-grid { grid-template-columns: 1fr; gap: 48px; }
+  .levels { padding: 72px 0; }
+  .level-card { grid-template-columns: 1fr; }
+  .level-num-col { padding: 24px; }
+  .level-body { padding: 28px 24px; }
+  .why-jess { padding: 72px 0; }
+  .why-grid { grid-template-columns: 1fr; }
+}
+
+/* ── EOI FORM SECTION ── */
+.eoi-section {
+  background: var(--cream);
+  padding: 100px 0;
+}
+.eoi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+.eoi-sidebar {
+  position: sticky;
+  top: 100px;
+}
+.eoi-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 18px;
+  font-family: var(--b);
+}
+.eoi-sidebar h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.eoi-sidebar h2 em { font-style: italic; color: var(--rose); }
+.eoi-sidebar-body {
+  font-family: var(--b);
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--teal);
+  margin-bottom: 36px;
+}
+.eoi-promise {
+  background: white;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 2px 20px rgba(30,46,50,0.06);
+}
+.eoi-promise-title {
+  font-family: var(--h);
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--rose);
+  margin-bottom: 14px;
+}
+.eoi-promise ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.eoi-promise li {
+  font-family: var(--b);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--dark);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.eoi-promise li::before {
+  content: '✦';
+  color: var(--rose);
+  font-size: 10px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Form card */
+.eoi-form-card {
+  background: white;
+  border-radius: 24px;
+  padding: 52px;
+  box-shadow: 0 8px 60px rgba(30,46,50,0.08);
+}
+.eoi-block-title {
+  font-family: var(--h);
+  font-size: 19px;
+  font-weight: 400;
+  color: var(--rose);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(196,176,212,0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eoi-form-group { margin-bottom: 22px; }
+.eoi-label {
+  display: block;
+  font-family: var(--b);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.eoi-label .req { color: var(--rose); margin-left: 2px; }
+.eoi-field {
+  width: 100%;
+  padding: 14px 18px;
+  font-family: var(--b);
+  font-size: 15px;
+  color: var(--dark);
+  background: var(--cream);
+  border: 1.5px solid rgba(59,94,110,0.18);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.eoi-field:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(191,66,136,0.1);
+  background: white;
+}
+select.eoi-field {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' stroke='%233B5E6E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 44px;
+  cursor: pointer;
+}
+textarea.eoi-field {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.65;
+}
+.eoi-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.eoi-helper {
+  font-family: var(--b);
+  font-size: 12.5px;
+  color: var(--teal);
+  margin-top: 6px;
+  opacity: 0.72;
+  line-height: 1.5;
+}
+.eoi-options { display: flex; flex-direction: column; gap: 10px; }
+.eoi-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 13px 16px;
+  border: 1.5px solid rgba(59,94,110,0.13);
+  border-radius: 10px;
+  background: var(--cream);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.eoi-opt:hover {
+  border-color: var(--lavender);
+  background: rgba(196,176,212,0.08);
+}
+.eoi-opt:has(input:checked) {
+  border-color: var(--rose);
+  background: rgba(191,66,136,0.04);
+}
+.eoi-opt input[type="radio"],
+.eoi-opt input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  min-width: 17px;
+  margin-top: 2px;
+  accent-color: var(--rose);
+  cursor: pointer;
+}
+.eoi-opt-label {
+  font-family: var(--b);
+  font-size: 15px;
+  color: var(--dark);
+  line-height: 1.4;
+  cursor: pointer;
+}
+.eoi-opt-label small {
+  display: block;
+  font-size: 12.5px;
+  color: var(--teal);
+  margin-top: 3px;
+  opacity: 0.78;
+}
+.eoi-days-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.eoi-sep {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(196,176,212,0.45), transparent);
+  margin: 36px 0;
+}
+.eoi-consent {
+  background: rgba(196,176,212,0.1);
+  border: 1px solid rgba(196,176,212,0.3);
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.eoi-consent-row {
+  display: flex;
+  gap: 13px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.eoi-consent-row input[type="checkbox"] {
+  width: 17px; height: 17px; min-width: 17px; margin-top: 3px;
+  accent-color: var(--rose); cursor: pointer;
+}
+.eoi-consent-row + .eoi-consent-row {
+  padding-top: 16px;
+  border-top: 1px solid rgba(196,176,212,0.3);
+}
+.eoi-consent-text {
+  font-family: var(--b);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--dark);
+  cursor: pointer;
+}
+.eoi-submit-area { margin-top: 40px; text-align: center; }
+.eoi-submit-btn {
+  background: var(--rose);
+  color: white;
+  font-family: var(--h);
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  padding: 18px 56px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(191,66,136,0.3);
+}
+.eoi-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(191,66,136,0.42);
+}
+.eoi-submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+.eoi-submit-note {
+  font-family: var(--b);
+  font-size: 13px;
+  color: var(--teal);
+  margin-top: 14px;
+  opacity: 0.75;
+}
+.eoi-success {
+  display: none;
+  text-align: center;
+  padding: 60px 32px;
+}
+.eoi-success.visible {
+  display: block;
+  animation: fadeUp 0.6s ease both;
+}
+.eoi-success-glyph { font-size: 52px; display: block; margin-bottom: 24px; }
+.eoi-success h3 {
+  font-family: var(--h);
+  font-size: 34px;
+  font-weight: 300;
+  color: var(--rose);
+  margin-bottom: 16px;
+}
+.eoi-success p {
+  font-family: var(--b);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--teal);
+  max-width: 420px;
+  margin: 0 auto;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cta-bg::after { background: rgba(21,37,42,0.68) !important; }
+
+@media (max-width: 760px) {
+  .eoi-section { padding: 72px 0; }
+  .eoi-grid { grid-template-columns: 1fr; gap: 48px; }
+  .eoi-sidebar { position: static; }
+  .eoi-form-card { padding: 32px 24px; }
+  .eoi-two-col { grid-template-columns: 1fr; }
+  .eoi-days-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="vibe-crystals.jpg" alt="Learn Reiki with Jess" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Reiki Training &middot; All Levels</span>
+    <h1>Learn <em>Reiki</em></h1>
+    <p class="page-hero-sub">For personal healing, for sharing with others, or for building a practice - every level, at your own pace.</p>
+    <a href="#eoi-form" class="btn btn-ghost" style="margin-top: 24px; display: inline-flex;">Register your interest in training &darr;</a>
+  </div>
+</section>
+
+<section class="reiki-intro">
+  <div class="container">
+    <div class="reiki-intro-grid">
+      <div class="reveal left">
+        <span class="label">What is Reiki?</span>
+        <h2 class="section-title">A gentle, powerful way to work with <em>your own energy</em></h2>
+        <p>Reiki is a Japanese energy healing practice that works with the body's natural energy field to promote deep relaxation, emotional release, and balance. It's gentle, non-invasive, and available to anyone - regardless of background or belief.</p>
+        <p>When you learn Reiki, you receive an attunement - an energetic activation that opens you to channel Reiki energy. You don't create the energy; <strong>you become a conduit for it.</strong> And that changes things.</p>
+        <div class="intro-quote">Learning Reiki gave me something I didn't expect - a way to come back to myself whenever I needed it.</div>
+        <p>Whether you want to use it for your own daily practice, support your family and friends, or build a professional healing practice - learning Reiki is one of the most practical, accessible, and genuinely powerful things you can do.</p>
+      </div>
+      <div class="reveal right">
+        <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 16px; padding: 38px 32px;">
+          <h3 style="font-family: var(--h); font-size: 22px; font-weight: 400; color: var(--cream); margin-bottom: 20px;">What people learn Reiki for</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 13px;">
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(250,247,242,0.62);line-height:1.65;"><span style="width:5px;height:5px;background:var(--lavender);transform:rotate(45deg);flex-shrink:0;margin-top:7px;"></span>Daily self-care and personal healing</li>
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(250,247,242,0.62);line-height:1.65;"><span style="width:5px;height:5px;background:var(--lavender);transform:rotate(45deg);flex-shrink:0;margin-top:7px;"></span>Supporting family, friends, and pets</li>
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(250,247,242,0.62);line-height:1.65;"><span style="width:5px;height:5px;background:var(--lavender);transform:rotate(45deg);flex-shrink:0;margin-top:7px;"></span>Building a professional healing practice</li>
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(250,247,242,0.62);line-height:1.65;"><span style="width:5px;height:5px;background:var(--lavender);transform:rotate(45deg);flex-shrink:0;margin-top:7px;"></span>Deepening an existing spiritual practice</li>
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(250,247,242,0.62);line-height:1.65;"><span style="width:5px;height:5px;background:var(--lavender);transform:rotate(45deg);flex-shrink:0;margin-top:7px;"></span>Adding to a complementary health offering</li>
+            <li style="display:flex;gap:12px;align-items:flex-start;font-size:14.5px;color:rgba(250,247,242,0.62);line-height:1.65;"><span style="width:5px;height:5px;background:var(--lavender);transform:rotate(45deg);flex-shrink:0;margin-top:7px;"></span>Pure curiosity - and that's enough</li>
+          </ul>
+          <div style="height: 1px; background: rgba(250,247,242,0.06); margin: 28px 0;"></div>
+          <p style="font-size: 13px; color: rgba(250,247,242,0.38); line-height: 1.7; text-align: center;">Not sure which level to start with? <a href="connect.html" style="color: var(--rose); text-decoration: none;">Ask Jess</a> and she'll point you in the right direction.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="levels">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Choose Your Level</span>
+      <h2 class="section-title">Where do you want to <em>begin?</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.52); max-width: 500px; margin: 0 auto;">Each level builds on the last - but you don't have to commit to all three upfront. Start where feels right.</p>
+    </div>
+
+    <div class="levels-stack">
+      <div class="level-card reveal">
+        <div class="level-num-col"><div class="level-roman">I</div></div>
+        <div class="level-body">
+          <span class="tag tag-lavender">The Beginning</span>
+          <h3>Reiki Level 1</h3>
+          <p>Your entry point into energy healing. Level 1 is about learning to work with Reiki energy for yourself - and for those closest to you. You'll receive your first attunement, learn the history and principles of Reiki, and begin a hands-on practice you can use every single day.</p>
+          <p>This is where the shift begins. Many students find Level 1 alone changes how they relate to their own body, emotions, and energy.</p>
+          <ul class="level-includes">
+            <li>First Reiki attunement</li>
+            <li>History and principles of Reiki</li>
+            <li>Hands-on self-healing practice</li>
+            <li>Working with others at a foundational level</li>
+            <li>Certificate of completion</li>
+          </ul>
+          <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+            <a href="reiki-level-1.html" class="btn btn-ghost" style="font-size:13px;">Learn More</a>
+            <a href="booking.html" class="btn btn-primary" style="font-size:13px;">Book Level 1</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="level-card reveal">
+        <div class="level-num-col"><div class="level-roman">II</div></div>
+        <div class="level-body">
+          <span class="tag tag-lavender">Going Deeper</span>
+          <h3>Reiki Level 2</h3>
+          <p>Level 2 expands your practice significantly. You'll learn the Reiki symbols - tools that allow you to focus energy more precisely, work across distance, and go deeper in your healing sessions. This is the level most practitioners use professionally.</p>
+          <p>Distance healing becomes available at this level, meaning you can offer Reiki to anyone, anywhere in the world - without being in the same room.</p>
+          <ul class="level-includes">
+            <li>Second Reiki attunement</li>
+            <li>The three core Reiki symbols</li>
+            <li>Distance healing techniques</li>
+            <li>Working with emotional and mental patterns</li>
+            <li>Certificate of completion</li>
+          </ul>
+          <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+            <a href="reiki-level-2.html" class="btn btn-ghost" style="font-size:13px;">Learn More</a>
+            <a href="booking.html" class="btn btn-primary" style="font-size:13px;">Book Level 2</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="level-card reveal" style="opacity: 0.72;">
+        <div class="level-num-col"><div class="level-roman">III</div></div>
+        <div class="level-body">
+          <span class="tag" style="background: rgba(242,193,78,0.08); color: var(--gold); border-color: rgba(242,193,78,0.2);">Coming Late 2026</span>
+          <h3>Reiki Master &amp; Teacher</h3>
+          <p>The highest level of Reiki training. At Master level you receive the Master attunement, learn the Master symbol, and - if you choose to teach - gain the knowledge and ability to attune others. You become a Reiki lineage holder in your own right.</p>
+          <p>This isn't just a qualification. It's a deepening of your relationship with energy itself - and the beginning of a lifelong practice of teaching, sharing, and holding space.</p>
+          <ul class="level-includes">
+            <li>Master attunement</li>
+            <li>The Master symbol</li>
+            <li>How to attune students at all levels</li>
+            <li>Teaching frameworks and practice</li>
+            <li>Certificate of Master/Teacher completion</li>
+          </ul>
+          <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+            <a href="reiki-master-teacher.html" class="btn btn-ghost" style="font-size:13px;">Learn More &amp; Join Waitlist</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-jess">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Why Learn with Jess</span>
+      <h2 class="section-title">Reiki training that's <em>actually personal</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1">
+        <span class="why-icon">💜</span>
+        <h3>Personal, not packaged</h3>
+        <p>Jess doesn't run group courses with 20 strangers. Your training is one-on-one, tailored to where you are - and you get her full attention throughout.</p>
+      </div>
+      <div class="why-card reveal d2">
+        <span class="why-icon">🌿</span>
+        <h3>No pressure to level up</h3>
+        <p>Each level is complete in itself. You won't be pushed to continue before you're ready. If Level 1 is where you stay, that's completely right.</p>
+      </div>
+      <div class="why-card reveal d3">
+        <span class="why-icon">✨</span>
+        <h3>Real-world, embodied practice</h3>
+        <p>Jess teaches from lived experience - not just textbook knowledge. You'll leave with a practice you can actually use, not just a theory you understand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EOI FORM ── -->
+<section class="eoi-section" id="eoi-form">
+  <div class="container">
+    <div class="eoi-grid">
+
+      <!-- Sidebar -->
+      <div class="eoi-sidebar reveal left">
+        <div class="eoi-eyebrow">Expression of Interest</div>
+        <h2>Ready to feel <em>into this?</em></h2>
+        <p class="eoi-sidebar-body">
+          This form takes about three minutes. There's no commitment, no pressure and no wrong answers.
+          <br><br>
+          Just reach out and Jess will be in touch personally to talk through the details and find a date that works for you.
+        </p>
+        <div class="eoi-promise">
+          <div class="eoi-promise-title">What happens next</div>
+          <ul>
+            <li>Jess receives your interest and will reach out personally</li>
+            <li>You'll get all the details - dates, location, what's included</li>
+            <li>No hard sell. If it's a yes, wonderful. If not, that's okay too</li>
+            <li>Your email stays safe - no sharing, ever</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="eoi-form-card reveal right">
+        <form id="eoi-form-el" action="https://formspree.io/f/xgorpdpd" method="POST">
+          <input type="hidden" name="_replyto" value="energywjess@gmail.com">
+          <input type="hidden" name="_subject" value="New Reiki Training EOI - Energy with Jess">
+
+          <div id="eoi-form-fields">
+
+            <div class="eoi-block-title">✦ About You</div>
+
+            <div class="eoi-two-col">
+              <div class="eoi-form-group">
+                <label class="eoi-label" for="first_name">First Name <span class="req">*</span></label>
+                <input class="eoi-field" type="text" id="first_name" name="first_name" placeholder="Your first name" required>
+              </div>
+              <div class="eoi-form-group">
+                <label class="eoi-label" for="last_name">Last Name <span class="req">*</span></label>
+                <input class="eoi-field" type="text" id="last_name" name="last_name" placeholder="Your last name" required>
+              </div>
+            </div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="email">Email Address <span class="req">*</span></label>
+              <input class="eoi-field" type="email" id="email" name="email" placeholder="your@email.com" required>
+              <p class="eoi-helper">This is how Jess will reach you with all the details.</p>
+            </div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="phone">Phone Number</label>
+              <input class="eoi-field" type="tel" id="phone" name="phone" placeholder="Optional - if you'd prefer a call or text">
+            </div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="suburb">Your Suburb / Town</label>
+              <input class="eoi-field" type="text" id="suburb" name="suburb" placeholder="e.g. Glenelg, Kadina, Victor Harbor">
+              <p class="eoi-helper">Helps Jess understand travel and plan future locations.</p>
+            </div>
+
+            <div class="eoi-sep"></div>
+
+            <div class="eoi-block-title">✦ Where Are You Based?</div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="location">Preferred Training Location <span class="req">*</span></label>
+              <select class="eoi-field" id="location" name="preferred_location" required>
+                <option value="" disabled selected>Choose your location...</option>
+                <option value="York Peninsula">York Peninsula</option>
+                <option value="Port Elliot">Port Elliot</option>
+                <option value="Adelaide">Adelaide</option>
+                <option value="Other">Other - I'll share details below</option>
+              </select>
+              <p class="eoi-helper">Classes are held across South Australia. Select the area that works best for you.</p>
+            </div>
+
+            <div class="eoi-sep"></div>
+
+            <div class="eoi-block-title">✦ Which Level Calls to You?</div>
+
+            <div class="eoi-form-group">
+              <div class="eoi-options">
+                <label class="eoi-opt">
+                  <input type="radio" name="reiki_level" value="Level 1 - Shoden" required>
+                  <div class="eoi-opt-label">Reiki Level 1 - Shoden<small>Brand new to Reiki - ready to begin</small></div>
+                </label>
+                <label class="eoi-opt">
+                  <input type="radio" name="reiki_level" value="Level 2 - Okuden">
+                  <div class="eoi-opt-label">Reiki Level 2 - Okuden<small>Attuned to Level 1 and ready to go deeper</small></div>
+                </label>
+                <label class="eoi-opt">
+                  <input type="radio" name="reiki_level" value="Reiki Master / Teacher">
+                  <div class="eoi-opt-label">Reiki Master / Teacher - Shinpiden<small>Coming Late 2026 - register your interest now</small></div>
+                </label>
+                <label class="eoi-opt">
+                  <input type="radio" name="reiki_level" value="Not sure yet">
+                  <div class="eoi-opt-label">Not sure yet<small>Happy to have a chat and feel into what's right</small></div>
+                </label>
+              </div>
+            </div>
+
+            <div class="eoi-sep"></div>
+
+            <div class="eoi-block-title">✦ When Works for You?</div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label">Days That Generally Work</label>
+              <div class="eoi-days-grid">
+                <label class="eoi-opt"><input type="checkbox" name="days[]" value="Weekdays"><span class="eoi-opt-label">Weekdays</span></label>
+                <label class="eoi-opt"><input type="checkbox" name="days[]" value="Saturdays"><span class="eoi-opt-label">Saturdays</span></label>
+                <label class="eoi-opt"><input type="checkbox" name="days[]" value="Sundays"><span class="eoi-opt-label">Sundays</span></label>
+                <label class="eoi-opt"><input type="checkbox" name="days[]" value="Flexible"><span class="eoi-opt-label">I'm flexible!</span></label>
+              </div>
+            </div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="unavailable">Any Dates or Periods That Don't Work?</label>
+              <input class="eoi-field" type="text" id="unavailable" name="unavailable_dates" placeholder="e.g. School holidays, July onwards...">
+            </div>
+
+            <div class="eoi-sep"></div>
+
+            <div class="eoi-block-title">✦ A Little More About You</div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="experience">Prior Reiki Experience</label>
+              <select class="eoi-field" id="experience" name="reiki_experience">
+                <option value="" disabled selected>Choose one...</option>
+                <option value="None - completely new">Completely new to Reiki</option>
+                <option value="Received but not trained">I've received Reiki but never trained</option>
+                <option value="Attuned to Level 1">I'm attuned to Level 1</option>
+                <option value="Attuned to Level 2">I'm attuned to Level 2</option>
+                <option value="Existing Reiki Master">I'm already a Reiki Master</option>
+              </select>
+            </div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="motivation">What's Drawing You to This?</label>
+              <textarea class="eoi-field" id="motivation" name="motivation" placeholder="There's no right or wrong answer here. What's calling you toward Reiki right now?"></textarea>
+            </div>
+
+            <div class="eoi-form-group">
+              <label class="eoi-label" for="other_notes">Anything Else Jess Should Know?</label>
+              <textarea class="eoi-field" id="other_notes" name="other_notes" placeholder="Questions, accessibility needs, your preferred location if you chose 'Other'... anything at all."></textarea>
+            </div>
+
+            <div class="eoi-consent">
+              <label class="eoi-consent-row">
+                <input type="checkbox" name="consent_contact" value="yes" required>
+                <span class="eoi-consent-text">I'm happy for Jess to reach out about Reiki training, dates and class information. <strong style="color:var(--rose)">*</strong></span>
+              </label>
+              <label class="eoi-consent-row">
+                <input type="checkbox" name="consent_email_list" value="yes">
+                <span class="eoi-consent-text">I'd also love to join Jess's email list for Reiki updates, energy insights and upcoming offerings - I can unsubscribe anytime.</span>
+              </label>
+            </div>
+
+            <div class="eoi-submit-area">
+              <button type="submit" class="eoi-submit-btn" id="eoi-submit-btn">Send My Interest ✦</button>
+              <p class="eoi-submit-note">No commitment. Just a conversation to see if the timing and energy align.</p>
+            </div>
+
+          </div>
+
+          <div class="eoi-success" id="eoi-success">
+            <span class="eoi-success-glyph">🌸</span>
+            <h3>Thank you - your interest is received.</h3>
+            <p>Jess will be in touch personally with all the details. In the meantime, trust that you reached out at exactly the right moment.</p>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-bg"><img src="jess-shadow-light.jpg" alt="Jess Hollamby" /></div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Ready to begin with <em>Reiki?</em></h2>
+    <p>Book a training call and Jess will help you figure out where to begin.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="booking.html" class="btn btn-primary">Book a Training Call</a>
+      <a href="offerings.html" class="btn btn-ghost">See All Offerings</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// EOI Form - Formspree submission
+const eoiForm = document.getElementById('eoi-form-el');
+if (eoiForm) {
+  const eoiSubmitBtn = document.getElementById('eoi-submit-btn');
+  const eoiFormFields = document.getElementById('eoi-form-fields');
+  const eoiSuccess = document.getElementById('eoi-success');
+
+  eoiForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const level = document.querySelector('input[name="reiki_level"]:checked');
+    if (!level) { alert('Which Reiki level is calling to you? Please select one.'); return; }
+    const consent = document.querySelector('input[name="consent_contact"]').checked;
+    if (!consent) { alert('Please tick the consent box so Jess knows she can reach out to you.'); return; }
+
+    eoiSubmitBtn.disabled = true;
+    eoiSubmitBtn.textContent = 'Sending...';
+
+    try {
+      const response = await fetch(eoiForm.action, {
+        method: 'POST',
+        body: new FormData(eoiForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        eoiFormFields.style.display = 'none';
+        eoiSuccess.classList.add('visible');
+        window.scrollTo({ top: document.getElementById('eoi-form').offsetTop - 80, behavior: 'smooth' });
+      } else {
+        eoiSubmitBtn.disabled = false;
+        eoiSubmitBtn.textContent = 'Send My Interest ✦';
+        alert('Something went a bit sideways. Please try again or email Jess directly at energywjess@gmail.com');
+      }
+    } catch (err) {
+      eoiSubmitBtn.disabled = false;
+      eoiSubmitBtn.textContent = 'Send My Interest ✦';
+      alert('Something went a bit sideways. Please try again or email Jess directly at energywjess@gmail.com');
+    }
+  });
+}
+</script>
+</body>
+</html>

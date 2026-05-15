@@ -1,0 +1,1140 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unbecoming - 12 Month Path of Unbecoming - Energy with Jess</title>
+<meta name="description" content="A full year of putting down everything that was never yours. 12 months of working together with Jess Hollamby to shed what was never yours, find who you actually are, and build a life that fits.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Belleza&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════
+   SALES PAGE TEMPLATE — CREAM / LIGHT THEME
+   Energy with Jess · energywithjess.com.au
+   ══════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --rose:      #bf4288;
+  --gold:      #F2C14E;
+  --cream:     #FAF7F2;
+  --cream-alt: #F0EBE1;
+  --dark:      #1E2E32;
+  --teal:      #3B5E6E;
+  --lavender:  #C4B0D4;
+  --h: 'Cormorant Garamond', serif;
+  --b: 'Belleza', sans-serif;
+  --t1: rgba(30,46,50,1);
+  --t2: rgba(30,46,50,0.65);
+  --t3: rgba(30,46,50,0.42);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--b); background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(250,247,242,0.95);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(30,46,50,0.08);
+}
+
+.nav-logo {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+
+.nav-links a {
+  font-family: var(--b);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--rose); }
+
+.nav-book {
+  background: var(--rose) !important;
+  color: white !important;
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: 12px !important;
+  letter-spacing: 0.1em !important;
+  transition: box-shadow 0.2s, transform 0.2s !important;
+}
+
+.nav-book:hover {
+  box-shadow: 0 4px 18px rgba(191,66,136,0.35) !important;
+  transform: translateY(-1px);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--dark); transition: all 0.3s; }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--cream);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  font-family: var(--h);
+  font-size: 32px;
+  font-weight: 300;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobile-menu a:hover { color: var(--rose); }
+
+/* ── UTILS ── */
+.label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 18px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rose);
+  color: white;
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 15px 42px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(191,66,136,0.25);
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(191,66,136,0.35); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--dark);
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding: 14px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  border: 1.5px solid rgba(30,46,50,0.22);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+
+/* Reveal animations */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal.left { transform: translateX(-20px); }
+.reveal.left.visible { transform: none; }
+.reveal.right { transform: translateX(20px); }
+.reveal.right.visible { transform: none; }
+.d1 { transition-delay: 0.05s; }
+.d2 { transition-delay: 0.15s; }
+.d3 { transition-delay: 0.25s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in   { animation: fadeUp 0.7s ease both; }
+.fade-in-1 { animation: fadeUp 0.7s 0.12s ease both; }
+.fade-in-2 { animation: fadeUp 0.7s 0.26s ease both; }
+.fade-in-3 { animation: fadeUp 0.7s 0.42s ease both; }
+.fade-in-4 { animation: fadeUp 0.7s 0.58s ease both; }
+
+/* ── HERO ── */
+.ub-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 130px 24px 90px;
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.ub-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(196,176,212,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 80% 70%, rgba(191,66,136,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ub-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+}
+
+.ub-eyebrow::before,
+.ub-eyebrow::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 36px;
+  background: var(--gold);
+  opacity: 0.45;
+}
+
+.ub-title {
+  font-family: var(--h);
+  font-weight: 300;
+  font-size: clamp(62px, 12vw, 148px);
+  line-height: 0.92;
+  color: var(--dark);
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.ub-title em { font-style: italic; color: var(--rose); }
+
+.ub-subtitle {
+  font-family: var(--h);
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--t2);
+  line-height: 1.55;
+  max-width: 580px;
+  margin: 0 auto 48px;
+  position: relative;
+}
+
+.ub-hero-ctas {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.ub-price-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(30,46,50,0.15);
+  background: white;
+  font-size: 14px;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 12px rgba(30,46,50,0.06);
+  position: relative;
+}
+
+.ub-scroll-hint {
+  position: relative;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.3;
+  color: var(--dark);
+}
+
+.ub-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--dark), transparent);
+}
+
+.ub-scroll-text {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ── OPENING ── */
+.ub-opening {
+  background: var(--cream-alt);
+  padding: 100px 0;
+}
+
+.ub-opening-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.ub-opening-inner p {
+  font-family: var(--h);
+  font-size: clamp(20px, 2.8vw, 29px);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--t2);
+  margin-bottom: 28px;
+}
+
+.ub-opening-inner p strong { color: var(--dark); font-weight: 400; }
+.ub-opening-inner p em { font-style: italic; color: var(--rose); }
+
+.ub-either-way {
+  font-family: var(--h);
+  font-size: clamp(22px, 3vw, 32px) !important;
+  color: var(--dark) !important;
+  font-style: italic !important;
+  margin-top: 40px !important;
+}
+
+/* ── WHAT THIS IS ── */
+.ub-what {
+  padding: 100px 0;
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.ub-what::before {
+  content: 'unbecoming';
+  position: absolute;
+  font-family: var(--h);
+  font-size: 18vw;
+  font-weight: 300;
+  color: rgba(30,46,50,0.025);
+  bottom: -2%;
+  right: -3%;
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 1;
+  user-select: none;
+}
+
+.ub-what-inner {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.ub-what-eyebrow {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.ub-what-intro {
+  font-size: 17px;
+  color: var(--t2);
+  line-height: 1.88;
+  margin-bottom: 56px;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ub-what-intro strong { color: var(--dark); }
+
+.ub-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ub-pillar {
+  background: white;
+  border: 1px solid rgba(30,46,50,0.07);
+  border-radius: 16px;
+  padding: 36px 40px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 28px;
+  align-items: start;
+  box-shadow: 0 2px 16px rgba(30,46,50,0.04);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.ub-pillar:hover {
+  border-color: rgba(191,66,136,0.18);
+  box-shadow: 0 8px 32px rgba(191,66,136,0.07);
+  transform: translateY(-2px);
+}
+
+.ub-pillar-num {
+  font-family: var(--h);
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--rose);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.ub-pillar-body h3 {
+  font-family: var(--h);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.ub-pillar-body p {
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.8;
+}
+
+.ub-pillar-body p strong { color: var(--dark); }
+
+/* ── WHO IT'S FOR ── */
+.ub-who {
+  padding: 100px 0;
+  background: var(--cream-alt);
+}
+
+.ub-who-inner {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.ub-who-inner h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.ub-who-inner h2 em { font-style: italic; color: var(--rose); }
+
+.ub-check-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 52px;
+}
+
+.ub-check-list li {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  font-family: var(--h);
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.55;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(30,46,50,0.07);
+}
+
+.ub-check-list li:first-child { border-top: 1px solid rgba(30,46,50,0.07); }
+
+.ub-check-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--rose);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+
+.ub-nod {
+  text-align: center;
+  font-family: var(--h);
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--teal);
+}
+
+/* ── WHAT'S WAITING ── */
+.ub-ready {
+  padding: 100px 0;
+  background: var(--cream);
+}
+
+.ub-ready-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.ub-ready-intro h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 18px;
+  line-height: 1.15;
+}
+
+.ub-ready-intro h2 em { font-style: italic; color: var(--rose); }
+
+.ub-ready-intro p {
+  font-size: 15.5px;
+  color: var(--t2);
+  line-height: 1.85;
+}
+
+.ub-ready-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ub-ready-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15.5px;
+  color: var(--t2);
+  line-height: 1.7;
+  padding: 14px 18px;
+  background: white;
+  border: 1px solid rgba(30,46,50,0.07);
+  border-radius: 10px;
+}
+
+.ub-ready-list li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* ── CURRICULUM ── */
+.ub-curriculum {
+  padding: 100px 0;
+  background: var(--cream-alt);
+}
+
+.ub-curriculum-inner {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.ub-curriculum-header { margin-bottom: 56px; }
+
+.ub-curriculum-header h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.ub-curriculum-header h2 em { font-style: italic; color: var(--rose); }
+
+.ub-curriculum-sub {
+  font-size: 15.5px;
+  color: var(--t2);
+  line-height: 1.8;
+}
+
+.ub-modules {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ub-module {
+  background: white;
+  border: 1px solid rgba(30,46,50,0.07);
+  border-radius: 14px;
+  padding: 28px 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  box-shadow: 0 2px 12px rgba(30,46,50,0.04);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.ub-module:hover {
+  border-color: rgba(242,193,78,0.3);
+  box-shadow: 0 6px 24px rgba(242,193,78,0.08);
+  transform: translateY(-2px);
+}
+
+.ub-module-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+
+.ub-module p {
+  font-size: 15.5px;
+  color: var(--t2);
+  line-height: 1.7;
+}
+
+.ub-module p strong { color: var(--dark); }
+
+.ub-and-more {
+  font-family: var(--h);
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--teal);
+  text-align: center;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(30,46,50,0.08);
+}
+
+/* ── INVESTMENT ── */
+.ub-invest {
+  padding: 100px 0;
+  background: var(--cream);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ub-invest::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%; transform: translateX(-50%);
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(191,66,136,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ub-invest-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+}
+
+.ub-invest-intro h2 {
+  font-family: var(--h);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 300;
+  color: var(--dark);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.ub-invest-intro h2 em { font-style: italic; color: var(--rose); }
+
+.ub-invest-intro p {
+  font-size: 16px;
+  color: var(--t2);
+  line-height: 1.85;
+  margin-bottom: 52px;
+}
+
+.ub-price-card {
+  background: white;
+  border: 1px solid rgba(30,46,50,0.08);
+  border-radius: 24px;
+  padding: 52px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 48px rgba(30,46,50,0.07);
+}
+
+.ub-price-label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.ub-price-amount {
+  font-family: var(--h);
+  font-size: clamp(56px, 9vw, 88px);
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.ub-price-duration {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 36px;
+}
+
+.ub-price-list {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.ub-price-list li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: var(--t2);
+  line-height: 1.55;
+}
+
+.ub-price-list li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.ub-price-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(30,46,50,0.10), transparent);
+  margin: 36px 0;
+}
+
+.ub-price-note {
+  font-size: 14px;
+  color: var(--t3);
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+.ub-clarity-nudge {
+  background: white;
+  border: 1px solid rgba(196,176,212,0.28);
+  border-radius: 16px;
+  padding: 28px 32px;
+  text-align: left;
+  box-shadow: 0 2px 14px rgba(30,46,50,0.04);
+}
+
+.ub-clarity-nudge-title {
+  font-family: var(--h);
+  font-size: 19px;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+
+.ub-clarity-nudge p {
+  font-size: 14px;
+  color: var(--t3);
+  line-height: 1.75;
+}
+
+.ub-clarity-nudge a { color: var(--rose); text-decoration: underline; }
+
+/* ── FINAL CTA ── */
+.ub-final {
+  position: relative;
+  padding: 120px 0;
+  text-align: center;
+  overflow: hidden;
+  background: var(--cream-alt);
+}
+
+.ub-final-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(191,66,136,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ub-final-inner {
+  position: relative;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ub-final-inner p {
+  font-family: var(--h);
+  font-size: clamp(20px, 2.8vw, 28px);
+  font-weight: 300;
+  color: var(--t2);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.ub-final-close {
+  font-family: var(--h);
+  font-size: clamp(24px, 3.5vw, 38px) !important;
+  color: var(--dark) !important;
+  font-style: italic;
+  margin: 36px 0 52px !important;
+  line-height: 1.4;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.footer-logo { font-family: var(--h); font-size: 26px; font-weight: 300; color: var(--cream); margin-bottom: 10px; }
+.footer-tagline { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.38); margin-bottom: 24px; }
+.footer-nav { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+.footer-nav a { font-size: 13px; color: rgba(250,247,242,0.45); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+.footer-nav a:hover { color: var(--rose); }
+.footer-copy { font-size: 12px; color: rgba(250,247,242,0.25); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; }
+  .ub-pillars { gap: 12px; }
+  .ub-pillar { grid-template-columns: 1fr; gap: 12px; padding: 28px 24px; }
+  .ub-pillar-num { font-size: 40px; }
+  .ub-ready-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+  .ub-curriculum-inner { padding: 0 24px; }
+  .ub-invest-inner { padding: 0 24px; }
+  .ub-price-card { padding: 36px 28px; }
+  .ub-who-inner { padding: 0 24px; }
+  footer { padding: 52px 24px; }
+}
+
+@media (max-width: 600px) {
+  .ub-hero { padding: 120px 20px 80px; }
+  .ub-hero-ctas { flex-direction: column; align-items: center; }
+  .ub-module { flex-direction: column; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">Energy with Jess</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="offerings.html">Offerings</a>
+    <a href="connect.html">Connect</a>
+    <a href="booking.html" class="nav-book">Book Now</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="ub-hero">
+  <div class="ub-hero-bg"></div>
+  <div class="ub-eyebrow fade-in">12 Month Path of Unbecoming &middot; Energy with Jess</div>
+  <h1 class="ub-title fade-in-1">The <em>Un</em>becoming</h1>
+  <p class="ub-subtitle fade-in-2">A full year of putting down everything that was never yours.</p>
+  <div class="ub-hero-ctas fade-in-3">
+    <a href="booking.html#discovery" class="btn-primary">I'm Ready - Let's Talk</a>
+    <a href="#what-this-is" class="btn-ghost">Tell Me More</a>
+  </div>
+  <div class="ub-price-flag fade-in-4">Investment: $8,888 &middot; 12 Months</div>
+  <div class="ub-scroll-hint fade-in-4" style="margin-top: 52px;">
+    <div class="ub-scroll-line"></div>
+    <span class="ub-scroll-text">Keep reading</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     OPENING
+══════════════════════════════════ -->
+<section class="ub-opening">
+  <div class="ub-opening-inner">
+    <p class="reveal">Somewhere along the way, you started carrying a version of yourself that felt <em>safer</em> than the real one.</p>
+    <p class="reveal">Maybe it happened slowly - years of putting everyone else first, absorbing everyone else's feelings, making yourself smaller so there was more room for everyone else.</p>
+    <p class="reveal">Or maybe you just woke up one day and realised the woman showing up to your life <strong>isn't actually you.</strong></p>
+    <p class="ub-either-way reveal">Either way - you're here now. And that matters.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     WHAT THIS IS
+══════════════════════════════════ -->
+<section class="ub-what" id="what-this-is">
+  <div class="ub-what-inner">
+    <div class="reveal" style="text-align: center; margin-bottom: 8px;">
+      <span class="label">What This Is</span>
+    </div>
+    <p class="ub-what-intro reveal">
+      The Unbecoming is <strong>12 months of working together</strong> to gently shed what was never yours, find out who you actually are underneath it all, and build a life that finally feels like it fits.
+    </p>
+
+    <div class="reveal" style="text-align: center; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 28px;">
+      This works because it's built on three things
+    </div>
+
+    <div class="ub-pillars">
+      <div class="ub-pillar reveal d1">
+        <div class="ub-pillar-num">1</div>
+        <div class="ub-pillar-body">
+          <h3>Giving the power back to you</h3>
+          <p>Not me, not a crystal, not a course. <strong>You.</strong> Everything we do is designed to bring you back to your own knowing - not create a dependency on anyone or anything outside yourself.</p>
+        </div>
+      </div>
+      <div class="ub-pillar reveal d2">
+        <div class="ub-pillar-num">2</div>
+        <div class="ub-pillar-body">
+          <h3>Learning what's yours and what isn't</h3>
+          <p>So you stop carrying weight that was never meant for you. So much of the exhaustion, the stuckness, the confusion - it isn't even yours. And once you learn to tell the difference, everything shifts.</p>
+        </div>
+      </div>
+      <div class="ub-pillar reveal d3">
+        <div class="ub-pillar-num">3</div>
+        <div class="ub-pillar-body">
+          <h3>Trusting yourself again</h3>
+          <p>Because the answers you keep looking for outside yourself? They've been living in you the whole time. We're not adding anything new. We're clearing the path back to what was always there.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     WHO IT'S FOR
+══════════════════════════════════ -->
+<section class="ub-who">
+  <div class="ub-who-inner">
+    <h2 class="reveal">You might be in the <em>right place</em> if...</h2>
+
+    <ul class="ub-check-list">
+      <li class="reveal d1"><span class="ub-check-dot"></span>You're a woman who feels everything - and you're exhausted by it.</li>
+      <li class="reveal d2"><span class="ub-check-dot"></span>You absorb other people's moods, stress, and emotions and have no idea how to put them back down.</li>
+      <li class="reveal d3"><span class="ub-check-dot"></span>You feel stuck, small, or like something keeps blocking you no matter what you try.</li>
+      <li class="reveal d1"><span class="ub-check-dot"></span>You've done the courses, the journals, the meditations. And they help - a little. But nothing is actually shifting the way you need it to.</li>
+      <li class="reveal d2"><span class="ub-check-dot"></span>You know there's more for you. You can feel it. You just can't find your way there alone.</li>
+      <li class="reveal d3"><span class="ub-check-dot"></span>You've stopped trusting your own gut - so you keep looking for the answers everywhere but inside yourself.</li>
+    </ul>
+
+    <p class="ub-nod reveal">If you're nodding along, keep reading.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     WHAT'S WAITING
+══════════════════════════════════ -->
+<section class="ub-ready">
+  <div class="ub-ready-inner">
+    <div class="ub-ready-intro reveal left">
+      <span class="label">You're ready to...</span>
+      <h2>What's waiting for you <em>on the other side</em></h2>
+      <p>This isn't about becoming someone new. It's about finally meeting the woman who was always there - and building a life that actually fits her.</p>
+    </div>
+    <ul class="ub-ready-list reveal right">
+      <li>Stop performing a version of yourself built for everyone else's comfort.</li>
+      <li>Put down what was never yours to carry.</li>
+      <li>Feel your feelings without being swept away by them.</li>
+      <li>Learn how to take up space - all of it - without apologising.</li>
+      <li>Build something that feels like real, sustainable joy.</li>
+      <li>Trust yourself again. Your gut, your instincts, your knowing.</li>
+      <li>Have actual fun - the kind that fills you up.</li>
+      <li>Feel seen, heard, and loved - starting from the inside out.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     WHAT WE'LL MOVE THROUGH
+══════════════════════════════════ -->
+<section class="ub-curriculum">
+  <div class="ub-curriculum-inner">
+    <div class="ub-curriculum-header reveal">
+      <span class="label">What We'll Move Through Together</span>
+      <h2>Here's what the <em>year holds</em></h2>
+      <p class="ub-curriculum-sub">This isn't a rigid curriculum. It unfolds as you do. But here's some of what we'll move through together:</p>
+    </div>
+
+    <div class="ub-modules">
+      <div class="ub-module reveal d1">
+        <span class="ub-module-icon">✋</span>
+        <p><strong>Reiki Levels 1 and 2</strong> - so you can start working with your own energy, not just receiving healing from others.</p>
+      </div>
+      <div class="ub-module reveal d2">
+        <span class="ub-module-icon">⚡</span>
+        <p><strong>Understanding how energy moves</strong> - in your body and in your life. What you're picking up, what you're putting out, and how to work with it.</p>
+      </div>
+      <div class="ub-module reveal d3">
+        <span class="ub-module-icon">🌊</span>
+        <p><strong>Your emotions and your nervous system</strong> - working with them, not against them. Learning to feel without being flooded.</p>
+      </div>
+      <div class="ub-module reveal d1">
+        <span class="ub-module-icon">🪞</span>
+        <p><strong>Getting to know yourself</strong> on a level most people never reach. Your patterns, your gifts, your edges, your truth.</p>
+      </div>
+      <div class="ub-module reveal d2">
+        <span class="ub-module-icon">👧</span>
+        <p><strong>Shadow work, inner child and inner teen healing</strong> - gently meeting the parts of you that learned to hide and helping them come home.</p>
+      </div>
+      <div class="ub-module reveal d3">
+        <span class="ub-module-icon">✨</span>
+        <p><strong>Reconnecting with play, joy, and the lightness</strong> you've been missing. This isn't all shadow work - there's genuine delight waiting for you here.</p>
+      </div>
+    </div>
+
+    <p class="ub-and-more reveal">And so much more that unfolds as you do.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     INVESTMENT
+══════════════════════════════════ -->
+<section class="ub-invest">
+  <div class="ub-invest-inner">
+    <div class="ub-invest-intro reveal">
+      <span class="label">Your Investment</span>
+      <h2>A full year of being <em>fully held</em></h2>
+      <p>No templates, no shortcuts, no one-size-fits-all approach. This is your path - built entirely around you.</p>
+    </div>
+
+    <div class="ub-price-card reveal">
+      <div class="ub-price-label">The Unbecoming &middot; 12 Month Journey</div>
+      <div class="ub-price-amount">$8,888</div>
+      <p class="ub-price-duration">12 Months &middot; Fully Personalised &middot; Online</p>
+      <ul class="ub-price-list">
+        <li>Regular one-on-one sessions across the full 12 months</li>
+        <li>Reiki Level 1 and Level 2 training included</li>
+        <li>Shadow work, inner child and inner teen healing</li>
+        <li>Energy, nervous system and emotional processing support</li>
+        <li>Ongoing access to Jess between sessions</li>
+        <li>A completely personalised path - no templates, no shortcuts</li>
+        <li>Fully online - available from anywhere in the world</li>
+      </ul>
+      <div class="ub-price-divider"></div>
+      <a href="booking.html#discovery" class="btn-primary" style="width: 100%; justify-content: center; font-size: 17px; padding: 18px;">
+        I'm Ready - Book a Discovery Call ✦
+      </a>
+      <p class="ub-price-note">Payment plans available. Reach out to Jess directly at <a href="mailto:energywjess@gmail.com" style="color: var(--rose); text-decoration: underline;">energywjess@gmail.com</a> to discuss.</p>
+    </div>
+
+    <div class="ub-clarity-nudge reveal">
+      <div class="ub-clarity-nudge-title">Not sure if this is right for you?</div>
+      <p><a href="booking.html#clarity">Book a Clarity &amp; Healing session first</a> and we'll feel into it together. No pressure, no commitment - just an honest conversation about where you are and what you need.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FINAL CTA
+══════════════════════════════════ -->
+<section class="ub-final">
+  <div class="ub-final-bg"></div>
+  <div class="ub-final-inner reveal">
+    <p>This isn't about becoming someone new.</p>
+    <p>It never was.</p>
+    <p class="ub-final-close">It's about finally meeting the woman who was always there.</p>
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+      <a href="booking.html#discovery" class="btn-primary" style="font-size: 15px; padding: 17px 48px;">
+        Book a Discovery Call ✦
+      </a>
+      <a href="ask-question.html" class="btn-ghost">Ask a Question First</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Energy with Jess</div>
+  <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="offerings.html">Offerings</a>
+    <a href="connect.html">Connect</a>
+  </nav>
+  <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>

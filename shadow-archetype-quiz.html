@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What's Your Shadow Archetype? - Energy with Jess</title>
+<meta name="description" content="A short quiz to reveal the hidden part of you that's been waiting. Discover your Shadow Archetype and begin the work of integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+
+<style>
+/* ── RESET & TOKENS ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal:     #3B5E6E;
+  --rose:     #bf4288;
+  --gold:     #F2C14E;
+  --cream:    #FAF7F2;
+  --dark:     #0a1a1e;
+  --mid:      #111f24;
+  --lavender: #C4B0D4;
+  --h: 'Cormorant Garamond', serif;
+  --b: 'Belleza', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--b);
+  background: var(--dark);
+  color: var(--cream);
+  line-height: 1.75;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND ORBS ── */
+.orb-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  animation: pulse 11s ease-in-out infinite;
+}
+.orb-a {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(196,176,212,0.07), transparent 65%);
+  top: -15%; right: -12%;
+}
+.orb-b {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(191,66,136,0.05), transparent 65%);
+  bottom: 5%; left: -10%;
+  animation-delay: 5s;
+}
+.orb-c {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(242,193,78,0.04), transparent 65%);
+  top: 40%; left: 30%;
+  animation-delay: 3s;
+}
+@keyframes pulse {
+  0%, 100% { opacity: .5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* ── LAYOUT ── */
+.quiz-shell {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px 20px 80px;
+}
+
+/* ── NAV ── */
+.quiz-nav {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+.quiz-logo {
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(250,247,242,0.55);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.quiz-logo:hover { color: var(--cream); }
+.quiz-nav-note {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.22);
+}
+
+/* ── SCREENS ── */
+.screen {
+  width: 100%;
+  max-width: 680px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translateY(18px);
+}
+.screen.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+.screen.fade-out {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+
+/* ── INTRO SCREEN ── */
+.intro-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  border: 1px solid rgba(196,176,212,0.18);
+  border-radius: 50px;
+  padding: 6px 18px;
+  margin-bottom: 32px;
+}
+.intro-title {
+  font-family: var(--h);
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--cream);
+  text-align: center;
+  margin-bottom: 24px;
+}
+.intro-title em { font-style: italic; color: var(--lavender); }
+.intro-body {
+  font-size: 16px;
+  color: rgba(250,247,242,0.62);
+  line-height: 1.88;
+  text-align: center;
+  max-width: 520px;
+  margin-bottom: 16px;
+}
+.intro-detail {
+  font-size: 12.5px;
+  color: rgba(250,247,242,0.28);
+  letter-spacing: 0.1em;
+  text-align: center;
+  margin-bottom: 44px;
+}
+.btn-start {
+  background: var(--lavender);
+  color: #0e1e22;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 52px;
+  font-family: var(--b);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.btn-start:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(196,176,212,0.22);
+}
+
+/* ── PROGRESS ── */
+.progress-wrap {
+  width: 100%;
+  max-width: 680px;
+  margin-bottom: 40px;
+  display: none;
+}
+.progress-wrap.visible { display: block; }
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.progress-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.28);
+}
+.progress-count {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: rgba(250,247,242,0.32);
+}
+.progress-bar {
+  height: 2px;
+  background: rgba(250,247,242,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--lavender), var(--rose));
+  border-radius: 2px;
+  transition: width 0.6s cubic-bezier(0.16,1,0.3,1);
+  width: 0%;
+}
+
+/* ── QUESTION SCREEN ── */
+.question-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  opacity: 0.7;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.question-text {
+  font-family: var(--h);
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 300;
+  line-height: 1.25;
+  color: var(--cream);
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 580px;
+}
+.question-text em { font-style: italic; color: var(--lavender); }
+
+.options-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.option-btn {
+  width: 100%;
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.08);
+  border-radius: 14px;
+  padding: 18px 24px;
+  font-family: var(--b);
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.72);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.28s ease;
+  line-height: 1.55;
+  position: relative;
+  overflow: hidden;
+}
+.option-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(196,176,212,0.06), transparent);
+  opacity: 0;
+  transition: opacity 0.28s;
+}
+.option-btn:hover {
+  border-color: rgba(196,176,212,0.3);
+  color: var(--cream);
+  transform: translateX(4px);
+}
+.option-btn:hover::before { opacity: 1; }
+.option-btn.selected {
+  border-color: var(--lavender);
+  background: rgba(196,176,212,0.08);
+  color: var(--cream);
+}
+.option-btn.selected::before { opacity: 1; }
+.option-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(196,176,212,0.4);
+  margin-right: 14px;
+  vertical-align: middle;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+.option-btn.selected .option-dot,
+.option-btn:hover .option-dot {
+  background: var(--lavender);
+  border-color: var(--lavender);
+}
+
+/* ── EMAIL GATE ── */
+.gate-wrap {
+  width: 100%;
+  text-align: center;
+}
+.gate-symbol {
+  font-size: 36px;
+  margin-bottom: 24px;
+  display: block;
+  color: var(--lavender);
+  opacity: 0.7;
+}
+.gate-title {
+  font-family: var(--h);
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.gate-title em { font-style: italic; color: var(--lavender); }
+.gate-body {
+  font-size: 15px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.85;
+  max-width: 480px;
+  margin: 0 auto 36px;
+}
+.gate-form {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(196,176,212,0.12);
+  border-radius: 20px;
+  padding: 36px 32px 32px;
+  text-align: left;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.gate-field { margin-bottom: 18px; }
+.gate-field label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.38);
+  margin-bottom: 8px;
+}
+.gate-field input {
+  width: 100%;
+  background: rgba(250,247,242,0.05);
+  border: 1px solid rgba(250,247,242,0.09);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-family: var(--b);
+  font-size: 14px;
+  color: var(--cream);
+  transition: border-color 0.25s;
+}
+.gate-field input:focus {
+  outline: none;
+  border-color: rgba(196,176,212,0.38);
+}
+.gate-field input::placeholder { color: rgba(250,247,242,0.22); }
+.btn-reveal {
+  width: 100%;
+  background: var(--lavender);
+  color: #0e1e22;
+  border: none;
+  border-radius: 50px;
+  padding: 15px 24px;
+  font-family: var(--b);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.25s;
+  margin-top: 6px;
+}
+.btn-reveal:hover { opacity: 0.88; transform: translateY(-1px); }
+.gate-skip {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(250,247,242,0.25);
+  margin-top: 18px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+  border: none;
+  background: none;
+  font-family: var(--b);
+}
+.gate-skip:hover { color: rgba(250,247,242,0.5); }
+.gate-consent {
+  font-size: 11px;
+  color: rgba(250,247,242,0.22);
+  line-height: 1.65;
+  margin-top: 14px;
+  text-align: center;
+}
+
+/* ── RESULT SCREEN ── */
+.result-wrap { width: 100%; }
+
+.result-top {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.result-archetype-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  opacity: 0.7;
+  margin-bottom: 12px;
+  display: block;
+}
+.result-name {
+  font-family: var(--h);
+  font-size: clamp(44px, 8vw, 88px);
+  font-weight: 300;
+  line-height: 1.0;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+.result-name em { font-style: italic; color: var(--lavender); }
+.result-tagline {
+  font-family: var(--h);
+  font-size: clamp(17px, 2.5vw, 22px);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(250,247,242,0.5);
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.result-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 36px auto;
+  max-width: 200px;
+  justify-content: center;
+}
+.result-divider-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(196,176,212,0.3), transparent);
+}
+.result-divider-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--lavender);
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+.result-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(196,176,212,0.12);
+  border-radius: 20px;
+  padding: 44px 40px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.result-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--lavender), var(--rose));
+  opacity: 0.5;
+}
+.result-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  opacity: 0.6;
+  margin-bottom: 16px;
+  display: block;
+}
+.result-card-text {
+  font-size: 16px;
+  color: rgba(250,247,242,0.72);
+  line-height: 1.9;
+}
+.result-card-text strong { color: var(--cream); font-weight: 400; }
+.result-card-text em {
+  font-style: italic;
+  color: var(--lavender);
+  font-family: var(--h);
+  font-size: 17.5px;
+}
+
+.result-prompts {
+  background: rgba(250,247,242,0.02);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 20px;
+}
+.result-prompts-title {
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 22px;
+}
+.prompt-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.prompt-list li {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.62);
+  line-height: 1.7;
+  padding-left: 22px;
+  position: relative;
+}
+.prompt-list li::before {
+  content: '◈';
+  position: absolute;
+  left: 0;
+  color: var(--lavender);
+  font-size: 10px;
+  top: 4px;
+  opacity: 0.6;
+}
+
+.result-integration {
+  background: rgba(196,176,212,0.04);
+  border: 1px solid rgba(196,176,212,0.1);
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 36px;
+}
+.result-integration-title {
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.result-integration p {
+  font-size: 15px;
+  color: rgba(250,247,242,0.62);
+  line-height: 1.88;
+  margin-bottom: 14px;
+}
+.result-integration p:last-child { margin-bottom: 0; }
+.result-integration strong { color: var(--cream); font-weight: 400; }
+
+.result-cta {
+  text-align: center;
+  padding: 48px 36px;
+  background: linear-gradient(135deg, rgba(196,176,212,0.05) 0%, rgba(10,26,30,0) 60%);
+  border: 1px solid rgba(196,176,212,0.1);
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+.result-cta-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  opacity: 0.7;
+  margin-bottom: 16px;
+  display: block;
+}
+.result-cta h3 {
+  font-family: var(--h);
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.result-cta h3 em { font-style: italic; color: var(--lavender); }
+.result-cta p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.5);
+  line-height: 1.8;
+  max-width: 440px;
+  margin: 0 auto 30px;
+}
+.btn-waitlist {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--rose);
+  color: var(--cream);
+  text-decoration: none;
+  border-radius: 50px;
+  padding: 15px 40px;
+  font-family: var(--b);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn-waitlist:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(191,66,136,0.32);
+}
+
+.result-retake {
+  text-align: center;
+  margin-top: 8px;
+}
+.btn-retake {
+  background: none;
+  border: none;
+  font-family: var(--b);
+  font-size: 12px;
+  color: rgba(250,247,242,0.22);
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+.btn-retake:hover { color: rgba(250,247,242,0.5); }
+
+/* ── FOOTER ── */
+.quiz-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 24px 20px 36px;
+  border-top: 1px solid rgba(250,247,242,0.05);
+}
+.quiz-footer-logo {
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(250,247,242,0.3);
+  text-decoration: none;
+}
+.quiz-footer p {
+  font-size: 11px;
+  color: rgba(250,247,242,0.14);
+  margin-top: 6px;
+}
+
+/* ── UTILS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeUp 0.65s ease forwards; }
+
+@media (max-width: 600px) {
+  .result-card, .result-prompts, .result-integration, .result-cta {
+    padding: 28px 24px;
+  }
+  .gate-form { padding: 28px 22px 24px; }
+  .quiz-shell { padding: 32px 16px 64px; }
+}
+</style>
+</head>
+<body>
+
+<div class="orb-field">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+</div>
+
+<!-- ── PROGRESS BAR ── -->
+<div class="quiz-shell">
+
+  <nav class="quiz-nav">
+    <a href="index.html" class="quiz-logo">Energy with Jess</a>
+    <span class="quiz-nav-note">Shadow Archetype Quiz</span>
+  </nav>
+
+  <div class="progress-wrap" id="progressWrap">
+    <div class="progress-meta">
+      <span class="progress-label">Your reading</span>
+      <span class="progress-count" id="progressCount">1 of 8</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- ── INTRO ── -->
+  <div class="screen active fade-in" id="screenIntro">
+    <span class="intro-tag">Shadow Work</span>
+    <h1 class="intro-title">What's Your<br><em>Shadow Archetype?</em></h1>
+    <p class="intro-body">You know there are parts of you you've kept tucked away. The edges you don't show, the feelings you've learned to manage, the pieces that feel too dark, too raw, too much.</p>
+    <p class="intro-body">This quiz will help you name the hidden part of you that's ready to be seen - and begin the work of bringing it home.</p>
+    <p class="intro-detail">8 questions &nbsp;·&nbsp; 5 minutes &nbsp;·&nbsp; Your results are waiting</p>
+    <button class="btn-start" onclick="startQuiz()">Begin the reading</button>
+  </div>
+
+  <!-- ── QUESTIONS (injected by JS) ── -->
+  <div class="screen" id="screenQuestion">
+    <span class="question-label" id="questionLabel">Question 1</span>
+    <p class="question-text" id="questionText"></p>
+    <div class="options-grid" id="optionsGrid"></div>
+  </div>
+
+  <!-- ── EMAIL GATE ── -->
+  <div class="screen" id="screenGate">
+    <div class="gate-wrap">
+      <span class="gate-symbol">◈</span>
+      <h2 class="gate-title">Your archetype is<br><em>ready.</em></h2>
+      <p class="gate-body">Leave your name and email to receive your full reading - plus a set of shadow work journal prompts to help you begin the integration.</p>
+      <div class="gate-form">
+        <form id="gateForm">
+          <div class="gate-field">
+            <label for="gateName">Your name</label>
+            <input type="text" id="gateName" placeholder="First name" />
+          </div>
+          <div class="gate-field">
+            <label for="gateEmail">Email address</label>
+            <input type="email" id="gateEmail" placeholder="your@email.com" />
+          </div>
+          <button type="submit" class="btn-reveal">Reveal My Archetype</button>
+          <p class="gate-consent">Jess will send you your reading. No spam - just soul work.</p>
+        </form>
+      </div>
+      <button class="gate-skip" onclick="showResult(false)">Skip - just show me my result</button>
+    </div>
+  </div>
+
+  <!-- ── RESULT ── -->
+  <div class="screen" id="screenResult">
+    <div class="result-wrap" id="resultWrap"></div>
+  </div>
+
+</div>
+
+<footer class="quiz-footer">
+  <a href="index.html" class="quiz-footer-logo">Energy with Jess</a>
+  <p>&copy; 2026 Energy with Jess. All rights reserved.</p>
+</footer>
+
+<script>
+/* ──────────────────────────────────────────────
+   QUIZ DATA
+   Archetype keys: R = Rage, G = Grief, S = Shame, A = Abandoned, W = Wild
+────────────────────────────────────────────── */
+
+const questions = [
+  {
+    text: "When something upsets you deeply, your instinct is to...",
+    options: [
+      { text: "Go quiet and carry it. The anger has nowhere to go.", key: "R" },
+      { text: "Absorb it and feel it long after everyone else has moved on.", key: "G" },
+      { text: "Wonder what it says about you that this happened at all.", key: "S" },
+      { text: "Pull away quietly. It feels safer not to need anything.", key: "A" },
+      { text: "React - then feel guilty for how big your feelings were.", key: "W" }
+    ]
+  },
+  {
+    text: "Which of these feels most familiar to you?",
+    options: [
+      { text: "Swallowing what you really want to say - for the sake of the peace.", key: "R" },
+      { text: "Grieving things that everyone else seems to have moved on from.", key: "G" },
+      { text: "Editing yourself before you've even opened your mouth.", key: "S" },
+      { text: "Waiting to be chosen. Wanting to be seen - but not asking for it.", key: "A" },
+      { text: "Being told you're too much, too intense, too loud.", key: "W" }
+    ]
+  },
+  {
+    text: "The emotion you work hardest to keep a lid on is...",
+    options: [
+      { text: "Anger. The kind that builds and builds with nowhere to go.", key: "R" },
+      { text: "A sadness that runs deeper than the situation warrants.", key: "G" },
+      { text: "The rawness of being truly, unguardedly seen.", key: "S" },
+      { text: "Longing. Neediness. The ache of wanting to matter to someone.", key: "A" },
+      { text: "Something wild, restless, untameable that wants to break free.", key: "W" }
+    ]
+  },
+  {
+    text: "In relationships, your pattern tends to be...",
+    options: [
+      { text: "Keeping the peace even when it costs you. Always.", key: "R" },
+      { text: "Feeling things more deeply than the other person seems to.", key: "G" },
+      { text: "Dimming yourself so others feel comfortable around you.", key: "S" },
+      { text: "Bracing - somewhere in you, you're always waiting for them to leave.", key: "A" },
+      { text: "All in, then completely overwhelmed. Back and forth.", key: "W" }
+    ]
+  },
+  {
+    text: "What did you learn about yourself growing up?",
+    options: [
+      { text: "That your anger wasn't safe. Too disruptive. Too much to handle.", key: "R" },
+      { text: "That your sensitivity was a problem. Too emotional. Too soft.", key: "G" },
+      { text: "That love had to be earned - through being good, helpful, perfect.", key: "S" },
+      { text: "That you couldn't always count on people to stay.", key: "A" },
+      { text: "That being big, bold, or loud made things harder.", key: "W" }
+    ]
+  },
+  {
+    text: "When you sit with the hidden parts of yourself, what feels truest?",
+    options: [
+      { text: "There are things I have never let myself say out loud.", key: "R" },
+      { text: "There are losses I have never properly sat with and grieved.", key: "G" },
+      { text: "There are parts of me no one has ever actually seen.", key: "S" },
+      { text: "There are needs I have learned to pretend I don't have.", key: "A" },
+      { text: "There is a version of me I have spent years learning to contain.", key: "W" }
+    ]
+  },
+  {
+    text: "The part of you that feels hardest to accept right now is...",
+    options: [
+      { text: "The one who is angry. The one who is done.", key: "R" },
+      { text: "The one who grieves. Who still isn't over it.", key: "G" },
+      { text: "The one who isn't together. Who is still a mess underneath.", key: "S" },
+      { text: "The one who needs people. Who wants to be held.", key: "A" },
+      { text: "The one who is untamed. Who doesn't fit anywhere.", key: "W" }
+    ]
+  },
+  {
+    text: "What does your body do when you're in that shadow place?",
+    options: [
+      { text: "Tightens. Everything gets locked down and held in.", key: "R" },
+      { text: "Gets heavy. Sinks. Exhaustion that isn't about sleep.", key: "G" },
+      { text: "Shrinks. Goes small. Tries to take up less space.", key: "S" },
+      { text: "Braces. Holds its breath. Waits for the loss.", key: "A" },
+      { text: "Vibrates. Wants to escape. Can't sit still.", key: "W" }
+    ]
+  }
+];
+
+const archetypes = {
+  R: {
+    name: "The Rage Carrier",
+    tagline: "You are not too angry. You are someone whose fire never got permission to burn.",
+    reading: `Your shadow holds a fire that was never allowed to breathe. You learned early - maybe very young - that your anger wasn't safe. Too disruptive. Too much for the room. So you became the one who keeps the peace, who swallows it down, who finds a way to be okay even when you are not.
+
+But that fire did not disappear. It lives in your body as tension, as the things you never said, as the energy you use to hold yourself back instead of move forward.
+
+<strong>Here is what I want you to hear:</strong> your anger is not the problem. It is the most honest, powerful part of you. It knows exactly where your boundaries are. It knows what matters. It knows what you won't stand for anymore.
+
+When you stop suppressing it and start listening to it, it stops being something that escapes sideways - and becomes the thing that guides you. <em>Your anger is your compass.</em> It has been waiting for you to stop running from it and start trusting it.`,
+    prompts: [
+      "What is the thing you most needed to say - to someone, in some moment - but didn't? What would it feel like to finally say it?",
+      "Where in your body do you feel your anger living? When did it arrive there?",
+      "If your anger had a message for you right now, what would it be trying to say?",
+      "What would your life look like if you stopped spending energy managing your anger - and started letting it show you what you actually want?"
+    ],
+    integration: `Integration for you starts with permission. Permission to feel it without immediately trying to fix, suppress, or apologise for it. Your anger has something important to say - and the work is learning to hear it before it has to get loud.
+
+<strong>One practice:</strong> when you feel that familiar tightening, pause before you manage it away. Put one hand on your chest and ask: what is this actually about? What do I know right now that I'm not letting myself say?
+
+The fire in your shadow is not the enemy. It is the part of you that still believes you deserve better. And it is right.`
+  },
+  G: {
+    name: "The Grief Keeper",
+    tagline: "You have carried losses that never got their grief. That ends here.",
+    reading: `Your shadow holds sorrow that was never given space to move. Not just deaths - but the relationships that ended without ceremony, the versions of yourself you had to leave behind, the life you pictured and did not get. You feel things more deeply than most people around you, and somewhere along the way you started to be apologetic about that.
+
+But your grief is not a flaw. It is a measure of how deeply you loved, how fully you were present, how real things were for you. You haven't been weakened by what you've carried - <em>you've been deepened by it.</em>
+
+<strong>The invitation now is this:</strong> stop holding grief in your body like a secret. Stop telling yourself you should be over it, that it's too long ago, that others have it worse. That grief is real. Those losses were real. And they deserve to be witnessed - especially by you.
+
+What is waiting on the other side of actually grieving is not emptiness. It is spaciousness. A kind of aliveness you forgot was possible.`,
+    prompts: [
+      "What is the loss you have never fully let yourself grieve? (It doesn't have to be a death.)",
+      "What version of yourself did you have to leave behind - and was she ever properly honoured?",
+      "If you gave yourself full permission to feel the sadness you've been managing, what would you say to it?",
+      "What would change in your life if you were no longer using energy to hold grief at arm's length?"
+    ],
+    integration: `Integration for you is about creating space for grief to move through rather than staying lodged in the body. Grief that can't move becomes weight. Grief that is witnessed becomes wisdom.
+
+<strong>One practice:</strong> find 10 minutes alone and write a letter to something you've never fully mourned - a person, a relationship, a version of yourself. Don't edit it. Don't make it make sense. Just let it be real on the page.
+
+You are allowed to grieve. You are allowed to take as long as it takes. Your sensitivity is not the problem - it is the very thing that makes you capable of love this deep.`
+  },
+  S: {
+    name: "The Shame Bearer",
+    tagline: "The parts of you that are still hiding got there through shame. It is time to bring them home.",
+    reading: `Your shadow is shaped by shame. You learned - through feedback, through experience, through watching what happened when you showed up as too much or not enough - that certain parts of you needed to be hidden. So you built a version of yourself that was acceptable. Polished. Good. Together.
+
+But under that version lives someone who has never been fully seen. And being unseen has its own particular ache - the longing to be known, really known, alongside the fear that if anyone truly saw all of you, they would leave.
+
+<strong>Here is what I want you to hear:</strong> what lives in your shadow is not something wrong with you. It is something real about you that was never given a safe welcome. Those parts didn't go wrong - they went underground, because that was the only way to stay loved.
+
+<em>Integration is not about fixing those parts.</em> It is about learning to receive them. To sit with them without flinching. To look at the unpolished, unfiltered, unguarded you - and find out she is someone worth knowing.`,
+    prompts: [
+      "What is the part of yourself you work hardest to hide? What do you believe it says about you?",
+      "Where did you learn that this part wasn't acceptable? Whose voice taught you that?",
+      "If you knew you couldn't be rejected for it - if the love was guaranteed - what would you finally show?",
+      "What would it feel like to take up the space you've been quietly apologising for?"
+    ],
+    integration: `Integration for you starts with self-disclosure - first to yourself, then slowly to people who have earned it. The antidote to shame is not fixing what's there. It is being witnessed in it without catastrophe following.
+
+<strong>One practice:</strong> name one thing about yourself you've been keeping in the shadow - just to yourself, in writing - and sit with it without trying to change it. Notice what happens in your body when you stop pretending it isn't there.
+
+You are allowed to take up space. You are allowed to be seen as you actually are. The version of you underneath the performance is not less loveable - she is more.`
+  },
+  A: {
+    name: "The Abandoned One",
+    tagline: "There is a self in your shadow who was left behind. She has been waiting for you to come back for her.",
+    reading: `Your shadow carries the parts of you that got left behind - by people, by circumstances, sometimes by yourself. The needs that were minimised. The self who wasn't chosen. The tender places you stopped showing because showing them felt too risky.
+
+You became very good at not needing things. At being low-maintenance. At being okay, always. At making sure no one had to worry about you. Because needing and not being met is one of the most painful things a person can feel - and somewhere in you, you decided it was safer to stop needing at all.
+
+<strong>But that self who needs - who still needs - did not go anywhere.</strong> She is in your shadow, quiet now, but present. She carries the longing for belonging, for being chosen, for someone to say: I see you and I'm staying.
+
+The work is not about finding someone else to finally do that. <em>The work is about becoming that person for yourself.</em> Going back for the parts of you that got left. Choosing them. Staying.`,
+    prompts: [
+      "What is the need you have learned to pretend you don't have? What happens in you when you admit it's there?",
+      "Where did you first learn that needing people wasn't safe? What happened then?",
+      "What would it look like to be truly chosen - by your own self, in your own life?",
+      "If you could go back and be there for the version of you who felt most alone, what would you say to her?"
+    ],
+    integration: `Integration for you is about reparenting - learning to give yourself the consistency, the presence, and the choosing that you may not have received enough of. This is slow, tender work. It is not dramatic. It is a hundred small moments of showing up for yourself.
+
+<strong>One practice:</strong> at the end of each day, ask yourself: where did I abandon myself today? Where did I dismiss a need, override a feeling, or make myself small so someone else could be comfortable? Just notice. Without judgment. Noticing is the beginning of coming home.
+
+You are allowed to need things. You are allowed to be loved without having to earn it first. And that starts with you.`
+  },
+  W: {
+    name: "The Wild One",
+    tagline: "What you've been calling 'too much' is not a flaw. It is your essence trying to breathe.",
+    reading: `Your shadow holds something untamed. You learned to contain it - to make yourself smaller, quieter, safer - because being wild, being instinctual, being fully and fiercely alive created problems. "Too much." "Too intense." "Too much to handle." You got the message, and you pulled yourself in.
+
+But that wildness didn't disappear. It went underground. It shows up as restlessness you can't explain, as longing for something you can't name, as the feeling that you are living smaller than you are built for.
+
+<strong>The part of you that is untamed is not the part that needs to be fixed.</strong> It is the most alive part of you. The most creative, most magnetic, most real. You have been trying to be acceptable when what the world actually needs is you - uncensored, uncontained, in your full aliveness.
+
+<em>Your wildness is not a liability.</em> It is power you have been sitting on. And the work now is not about learning to manage it better - it is about learning to trust it.`,
+    prompts: [
+      "Where in your life are you living smaller than you are built for? What would it look like to take up more space there?",
+      "What is the version of you that you've been taught is 'too much'? What would she do if you let her?",
+      "When did you last feel fully, unapologetically alive? What were you doing?",
+      "If you stopped trying to be acceptable - to anyone - what would you do first?"
+    ],
+    integration: `Integration for you is about reclamation. Slowly, deliberately, giving the wild parts of you permission to breathe - in your work, your relationships, your creative life, the way you move through the world.
+
+<strong>One practice:</strong> find one space in your week where you let yourself be unfiltered. A journal, a movement practice, a conversation with someone safe. Let yourself be big there. Let yourself be a lot. Notice that the world does not end. Notice that it might actually begin.
+
+The world does not need another well-behaved woman who has learned to manage herself. It needs what's inside you - all of it.`
+  }
+};
+
+/* ──────────────────────────────────────────────
+   STATE
+────────────────────────────────────────────── */
+let current = 0;
+let scores = { R: 0, G: 0, S: 0, A: 0, W: 0 };
+let topArchetype = null;
+
+/* ──────────────────────────────────────────────
+   HELPERS
+────────────────────────────────────────────── */
+function showScreen(id) {
+  const all = document.querySelectorAll('.screen');
+  const target = document.getElementById(id);
+
+  all.forEach(s => {
+    if (s.id !== id && s.classList.contains('active')) {
+      s.classList.add('fade-out');
+      setTimeout(() => {
+        s.classList.remove('active', 'fade-out');
+      }, 320);
+    }
+  });
+
+  setTimeout(() => {
+    target.style.display = 'flex';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.classList.add('active');
+      });
+    });
+  }, 280);
+}
+
+function updateProgress() {
+  const fill = document.getElementById('progressFill');
+  const count = document.getElementById('progressCount');
+  const pct = Math.round((current / questions.length) * 100);
+  fill.style.width = pct + '%';
+  count.textContent = (current + 1) + ' of ' + questions.length;
+}
+
+/* ──────────────────────────────────────────────
+   FLOW
+────────────────────────────────────────────── */
+function startQuiz() {
+  current = 0;
+  scores = { R: 0, G: 0, S: 0, A: 0, W: 0 };
+  document.getElementById('progressWrap').classList.add('visible');
+  updateProgress();
+  renderQuestion();
+  showScreen('screenQuestion');
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  document.getElementById('questionLabel').textContent = 'Question ' + (current + 1);
+  document.getElementById('questionText').textContent = q.text;
+
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-dot"></span>${opt.text}`;
+    btn.addEventListener('click', () => chooseOption(btn, opt.key));
+    grid.appendChild(btn);
+  });
+}
+
+function chooseOption(btn, key) {
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  scores[key]++;
+
+  setTimeout(() => {
+    current++;
+    if (current < questions.length) {
+      updateProgress();
+      renderQuestion();
+    } else {
+      // Quiz done - go to gate
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('progressCount').textContent = 'Complete';
+      calcResult();
+      setTimeout(() => showScreen('screenGate'), 420);
+    }
+  }, 480);
+}
+
+function calcResult() {
+  let max = 0;
+  for (const k in scores) {
+    if (scores[k] > max) { max = scores[k]; topArchetype = k; }
+  }
+}
+
+/* ──────────────────────────────────────────────
+   GATE FORM
+────────────────────────────────────────────── */
+document.getElementById('gateForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const name = document.getElementById('gateName').value.trim();
+  const email = document.getElementById('gateEmail').value.trim();
+
+  if (email) {
+    // Submit to Formspree
+    const data = new FormData();
+    data.append('name', name || 'Guest');
+    data.append('email', email);
+    data.append('archetype', archetypes[topArchetype]?.name || '');
+    data.append('_subject', 'Shadow Archetype Result - Energy with Jess');
+    data.append('form_type', 'Shadow Archetype Quiz');
+    data.append('_replyto', email);
+
+    try {
+      await fetch('https://formspree.io/f/xgorpdpd', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' }
+      });
+    } catch (err) {
+      // Silent fail - still show result
+    }
+  }
+
+  showResult(true);
+});
+
+function showResult(emailCaptured) {
+  buildResult(emailCaptured);
+  showScreen('screenResult');
+  document.getElementById('progressWrap').classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ──────────────────────────────────────────────
+   BUILD RESULT
+────────────────────────────────────────────── */
+function buildResult(emailCaptured) {
+  const a = archetypes[topArchetype];
+  const wrap = document.getElementById('resultWrap');
+
+  const promptsHTML = a.prompts.map(p => `<li>${p}</li>`).join('');
+
+  wrap.innerHTML = `
+    <div class="result-top fade-in">
+      <span class="result-archetype-label">Your Shadow Archetype</span>
+      <h2 class="result-name"><em>${a.name}</em></h2>
+      <p class="result-tagline">${a.tagline}</p>
+    </div>
+
+    <div class="result-divider">
+      <div class="result-divider-line"></div>
+      <div class="result-divider-dot"></div>
+      <div class="result-divider-line"></div>
+    </div>
+
+    <div class="result-card fade-in">
+      <span class="result-card-label">Your Reading</span>
+      <p class="result-card-text">${a.reading.replace(/\n\n/g, '</p><p class="result-card-text" style="margin-top:18px;">')}</p>
+    </div>
+
+    <div class="result-prompts fade-in">
+      <h3 class="result-prompts-title">Shadow Work Prompts</h3>
+      <ul class="prompt-list">${promptsHTML}</ul>
+    </div>
+
+    <div class="result-integration fade-in">
+      <h3 class="result-integration-title">Beginning the Integration</h3>
+      <p>${a.integration.replace(/\n\n/g, '</p><p>')}</p>
+    </div>
+
+    <div class="result-cta fade-in">
+      <span class="result-cta-label">Go Deeper</span>
+      <h3>Ready to embrace your<br><em>full darkness?</em></h3>
+      <p>Into the Dark: Becoming Dark and Divine is an 18-week group cohort with Jess - going to the edges of who you are and learning to integrate every part. Opening 2027.</p>
+      <a href="into-the-dark.html#waitlist" class="btn-waitlist">Join the Waitlist</a>
+    </div>
+
+    <div class="result-retake">
+      <button class="btn-retake" onclick="retake()">Retake the quiz</button>
+    </div>
+  `;
+}
+
+function retake() {
+  current = 0;
+  scores = { R: 0, G: 0, S: 0, A: 0, W: 0 };
+  topArchetype = null;
+  document.getElementById('resultWrap').innerHTML = '';
+  document.getElementById('progressWrap').classList.add('visible');
+  updateProgress();
+  renderQuestion();
+  showScreen('screenQuestion');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

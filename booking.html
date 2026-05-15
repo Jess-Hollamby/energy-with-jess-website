@@ -1,0 +1,2431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book with Jess - Energy with Jess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FAF6F1;
+      --cream-2:  #F0E8DF;
+      --rose:     #B08B8B;
+      --rose-light: #D4B5B5;
+      --rose-dark:  #8A6565;
+      --lavender: #9B8DB8;
+      --lavender-light: #C4BAD8;
+      --gold:     #C8A96E;
+      --gold-light: #E0CBА0;
+      --sage:     #8FA68E;
+      --sage-light: #C2D1C1;
+      --brown:    #3A2E2E;
+      --brown-mid:#6B5757;
+      --border:   #E0D3C8;
+      --white:    #FFFFFF;
+      --shadow:   rgba(58,46,46,0.08);
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      min-height: 100vh;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      text-align: center;
+      padding: 56px 24px 40px;
+    }
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 12px;
+    }
+    .site-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      color: var(--brown);
+      line-height: 1.15;
+    }
+    .site-header h1 em { font-style: italic; color: var(--lavender); }
+    .site-header p {
+      max-width: 480px;
+      margin: 14px auto 0;
+      color: var(--brown-mid);
+      font-size: 0.9rem;
+    }
+
+    /* ── TABS ── */
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      border-bottom: 1.5px solid var(--border);
+      margin: 0 24px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      padding: 14px 28px;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -1.5px; left: 0; right: 0;
+      height: 2px;
+      background: var(--rose);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+    }
+    .tab-btn.active { color: var(--brown); }
+    .tab-btn.active::after { transform: scaleX(1); }
+
+    /* ── WRAP ── */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 44px 24px 88px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .section-title em { font-style: italic; color: var(--lavender); }
+    .section-sub {
+      font-size: 0.85rem;
+      color: var(--brown-mid);
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1.5px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* ── STEP INDICATOR ── */
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .step-wrap { display: flex; flex-direction: column; align-items: center; }
+    .step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem;
+      color: var(--brown-mid);
+      background: var(--white);
+      transition: all 0.25s;
+    }
+    .step-dot.active { background: var(--rose); border-color: var(--rose); color: var(--white); }
+    .step-dot.done   { background: var(--sage); border-color: var(--sage); color: var(--white); }
+    .step-label {
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--brown-mid);
+      margin-top: 5px;
+      text-align: center;
+    }
+    .step-line {
+      width: 56px; height: 1.5px;
+      background: var(--border);
+      margin-bottom: 18px;
+      transition: background 0.25s;
+    }
+    .step-line.done { background: var(--sage); }
+
+    /* ── FILTER TOGGLE ── */
+    .filter-toggle {
+      display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 50px; padding: 8px 18px;
+      font-family: 'Jost', sans-serif; font-size: 0.72rem;
+      font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--brown-mid); cursor: pointer; transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--rose-light); color: var(--brown); }
+    .filter-btn.active { background: var(--rose); border-color: var(--rose); color: var(--white); }
+    .filter-group-label {
+      font-size: 0.65rem; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--rose); margin: 20px 0 10px;
+    }
+    .filter-group-label:first-of-type { margin-top: 0; }
+
+    /* ── SERVICE CARDS ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .svc-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .svc-card:hover {
+      border-color: var(--rose-light);
+      box-shadow: 0 6px 22px var(--shadow);
+      transform: translateY(-2px);
+    }
+    .svc-card.selected { border-color: var(--rose); background: #FBF4F4; }
+    .svc-card .icon { font-size: 1.4rem; margin-bottom: 8px; display: block; }
+    .svc-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--brown);
+      margin-bottom: 5px;
+    }
+    .svc-card p { font-size: 0.78rem; color: var(--brown-mid); line-height: 1.5; }
+    .svc-card .pill {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.67rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .pill-rose { background: #F9EFEF; color: var(--rose-dark); }
+    .pill-gold { background: #FBF4E6; color: #9A7A3A; }
+    .svc-card .check {
+      position: absolute; top: 10px; right: 10px;
+      width: 18px; height: 18px;
+      background: var(--rose); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .svc-card.selected .check { opacity: 1; }
+    .check svg { width: 10px; height: 10px; }
+
+    /* ── CALENDAR ── */
+    .datetime-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 560px) { .datetime-grid { grid-template-columns: 1fr; } }
+    .cal-box, .times-box {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .cal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .cal-header span { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+    .cal-nav {
+      background: none; border: none; cursor: pointer;
+      color: var(--brown-mid); font-size: 1.1rem;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; transition: background 0.15s;
+    }
+    .cal-nav:hover { background: var(--cream-2); }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7,1fr);
+      gap: 2px; text-align: center;
+    }
+    .cal-dn {
+      font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--brown-mid); padding: 3px 0;
+    }
+    .cal-day {
+      width: 100%; aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; border-radius: 50%;
+      cursor: pointer; border: none; background: none; color: var(--brown);
+      transition: all 0.15s;
+    }
+    .cal-day:hover:not(:disabled) { background: var(--cream-2); }
+    .cal-day.selected { background: var(--rose); color: var(--white); }
+    .cal-day.today { font-weight: 500; color: var(--lavender); }
+    .cal-day:disabled { opacity: 0.3; cursor: default; }
+
+    .times-box h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; margin-bottom: 14px; }
+    .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .time-slot {
+      border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 9px 6px; text-align: center; font-size: 0.8rem;
+      cursor: pointer; background: none; color: var(--brown);
+      transition: all 0.15s;
+    }
+    .time-slot:hover { border-color: var(--rose-light); background: #FBF4F4; }
+    .time-slot.selected { border-color: var(--rose); background: var(--rose); color: var(--white); }
+    .time-slot:disabled { opacity: 0.35; cursor: default; }
+
+    /* ── FORM ── */
+    .form-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-bottom: 22px;
+    }
+    @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+    .fg { display: flex; flex-direction: column; gap: 6px; }
+    .fg.full { grid-column: 1 / -1; }
+    .fg label {
+      font-size: 0.68rem; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--brown-mid);
+    }
+    .fg input, .fg textarea, .fg select {
+      border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 11px 13px;
+      font-family: 'Jost', sans-serif; font-size: 0.86rem;
+      font-weight: 300; color: var(--brown); background: var(--white);
+      transition: border-color 0.15s; outline: none; width: 100%;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: var(--rose); }
+    .fg textarea { resize: vertical; min-height: 88px; }
+
+    /* ── SUMMARY ── */
+    .summary-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-bottom: 22px;
+    }
+    .summary-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; margin-bottom: 12px;
+    }
+    .sum-row {
+      display: flex; gap: 10px; padding: 7px 0;
+      border-bottom: 1px solid var(--cream-2); font-size: 0.82rem;
+    }
+    .sum-row:last-child { border-bottom: none; }
+    .sum-lbl { color: var(--brown-mid); min-width: 80px; }
+    .sum-val { color: var(--brown); font-weight: 400; }
+
+    /* ── NOTICE ── */
+    .notice {
+      background: #F2EEF9; border: 1px solid var(--lavender-light);
+      border-radius: 10px; padding: 13px 15px; font-size: 0.8rem;
+      color: var(--brown-mid); margin-bottom: 22px; line-height: 1.5;
+    }
+    .notice strong { color: var(--lavender); }
+    .notice-gold {
+      background: #FBF6EA; border-color: #DFD0A0;
+    }
+    .notice-gold strong { color: var(--gold); }
+    .checkbox-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.82rem; color: var(--brown-mid); line-height: 1.5;
+      margin-bottom: 22px; cursor: pointer;
+    }
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 2px; accent-color: var(--lavender);
+      width: 16px; height: 16px; flex-shrink: 0; cursor: pointer;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 12px 26px; border-radius: 50px; border: none;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary { background: var(--rose); color: var(--white); }
+    .btn-primary:hover { background: var(--rose-dark); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(176,139,139,0.35); }
+    .btn-ghost { background: transparent; color: var(--brown-mid); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--rose-light); color: var(--brown); }
+    .btn-gold { background: var(--gold); color: var(--white); }
+    .btn-gold:hover { background: #B8943A; transform: translateY(-1px); }
+    .btn:disabled { opacity: 0.42; cursor: default; transform: none; box-shadow: none; }
+    .btn-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .btn-row-end { justify-content: flex-end; }
+
+    /* ── SUCCESS ── */
+    .success-screen { text-align: center; padding: 52px 24px; }
+    .success-icon {
+      width: 68px; height: 68px;
+      background: linear-gradient(135deg, var(--rose-light), var(--lavender-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 1.8rem;
+    }
+    .success-screen h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 400; margin-bottom: 10px;
+    }
+    .success-screen p { max-width: 400px; margin: 0 auto 26px; color: var(--brown-mid); font-size: 0.88rem; }
+
+    /* ── PROGRAMS TAB ── */
+    .prog-section { margin-bottom: 48px; }
+    .prog-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 16px; overflow: hidden; margin-bottom: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .prog-card:hover { border-color: var(--rose-light); box-shadow: 0 6px 22px var(--shadow); }
+    .prog-card-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 22px 22px 18px; flex-wrap: wrap;
+    }
+    .prog-card-header .icon { font-size: 1.5rem; flex-shrink: 0; }
+    .prog-card-info { flex: 1; min-width: 180px; }
+    .prog-card-info .label-small {
+      font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--rose); margin-bottom: 3px;
+    }
+    .prog-card-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 500; color: var(--brown); margin-bottom: 3px;
+    }
+    .prog-card-info p { font-size: 0.8rem; color: var(--brown-mid); }
+    .prog-price-block { text-align: right; flex-shrink: 0; }
+    .prog-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 300; color: var(--gold); line-height: 1;
+    }
+    .prog-price-sub {
+      font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--brown-mid); margin-top: 2px;
+    }
+    .prog-card-body {
+      padding: 0 22px 20px; font-size: 0.82rem; color: var(--brown-mid);
+      border-top: 1px solid var(--cream-2);
+    }
+    .prog-card-body p { margin: 14px 0 12px; line-height: 1.6; }
+    .prog-includes {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 16px;
+    }
+    .incl-chip {
+      font-size: 0.68rem; letter-spacing: 1px; text-transform: uppercase;
+      background: var(--cream-2); color: var(--brown-mid);
+      padding: 4px 10px; border-radius: 20px;
+    }
+    .prog-card-body .btn-row { margin-top: 14px; justify-content: flex-start; gap: 10px; }
+
+    /* Accordion toggle */
+    .prog-card-toggle {
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; padding: 22px;
+      font-family: inherit;
+    }
+    .prog-card-body.collapsed { display: none; }
+    .toggle-arrow { font-size: 0.75rem; color: var(--brown-mid); transition: transform 0.2s; }
+    .prog-card-toggle.open .toggle-arrow { transform: rotate(180deg); }
+
+    /* Sub-options grid */
+    .sub-options {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin: 14px 0;
+    }
+    @media (max-width: 560px) { .sub-options { grid-template-columns: 1fr; } }
+    .sub-opt {
+      background: var(--cream); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 16px 14px;
+    }
+    .sub-opt .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 300; color: var(--gold);
+      line-height: 1; margin-bottom: 2px;
+    }
+    .sub-opt .sessions-lbl {
+      font-size: 0.62rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--brown-mid); margin-bottom: 8px;
+    }
+    .sub-opt h4 { font-family: 'Cormorant Garamond', serif; font-size: 1rem; margin-bottom: 4px; }
+    .sub-opt p { font-size: 0.75rem; color: var(--brown-mid); line-height: 1.5; }
+
+    /* Program payment sections */
+    .prog-pay-box {
+      margin-top: 12px; padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .prog-pay-label {
+      font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--brown-mid); display: block; margin-bottom: 8px;
+    }
+    .prog-pay-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+    .prog-pay-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: 'Jost', sans-serif; font-size: 0.71rem; font-weight: 400;
+      padding: 7px 12px; border-radius: 8px; text-decoration: none;
+      transition: opacity 0.2s; white-space: nowrap; cursor: pointer;
+      border: none; line-height: 1;
+    }
+    .prog-pay-btn:hover { opacity: 0.82; }
+    .prog-pay-stripe-dep  { background: var(--lavender); color: #fff; }
+    .prog-pay-stripe-full { background: var(--sage);     color: #fff; }
+    .prog-pay-paypal-full { background: #0070BA;         color: #fff; }
+    .prog-pay-coupon {
+      font-size: 0.71rem; color: var(--brown-mid);
+      background: #FBF6EA; border: 1px solid #DFD0A0;
+      padding: 6px 10px; border-radius: 6px; margin-top: 6px;
+      display: block; line-height: 1.45;
+    }
+    .prog-pay-divider { border: none; border-top: 1px solid var(--cream-2); margin: 10px 0 8px; }
+
+    /* Coming soon badge */
+    .coming-soon-badge {
+      display: inline-block; font-size: 0.62rem; letter-spacing: 1.5px;
+      text-transform: uppercase; background: #FBF6EA; color: var(--gold);
+      border: 1px solid #DFD0A0; padding: 3px 10px; border-radius: 20px;
+      margin-left: 8px; vertical-align: middle;
+    }
+
+    /* ── EVENTS ── */
+    .event-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 22px; display: flex; gap: 18px;
+      margin-bottom: 14px; transition: all 0.2s;
+    }
+    .event-card:hover { border-color: var(--lavender-light); box-shadow: 0 6px 22px var(--shadow); }
+    .event-date {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; min-width: 54px; height: 54px;
+      background: linear-gradient(135deg, var(--lavender-light), var(--rose-light));
+      border-radius: 12px; flex-shrink: 0;
+    }
+    .event-date .day {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      font-weight: 500; color: var(--brown); line-height: 1;
+    }
+    .event-date .mon {
+      font-size: 0.6rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--brown-mid);
+    }
+    .event-info { flex: 1; }
+    .event-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 500; margin-bottom: 4px;
+    }
+    .event-meta {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      font-size: 0.75rem; color: var(--brown-mid); margin-bottom: 7px;
+    }
+    .event-info p { font-size: 0.82rem; color: var(--brown-mid); line-height: 1.5; }
+    .event-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+    .tag {
+      font-size: 0.62rem; letter-spacing: 1px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 20px;
+    }
+    .tag-lav { background: #EDE9F5; color: var(--lavender); }
+    .tag-rose { background: #F9EFEF; color: var(--rose-dark); }
+    .tag-sage { background: #EAF0EA; color: var(--sage); }
+    .event-action { display: flex; align-items: center; flex-shrink: 0; }
+    @media (max-width: 560px) {
+      .event-card { flex-direction: column; gap: 12px; }
+      .event-action { justify-content: flex-start; }
+    }
+
+    /* ── MODAL ── */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(58,46,46,0.4); backdrop-filter: blur(4px);
+      z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .modal-backdrop.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--cream); border-radius: 20px;
+      max-width: 540px; width: 100%; max-height: 92vh; overflow-y: auto;
+      padding: 36px;
+      transform: translateY(20px); transition: transform 0.25s;
+    }
+    .modal-backdrop.open .modal { transform: translateY(0); }
+    .modal-head {
+      display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px;
+    }
+    .modal-head h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; }
+    .modal-close { background: none; border: none; cursor: pointer; color: var(--brown-mid); font-size: 1.3rem; padding: 2px 5px; }
+    @media (max-width: 560px) { .modal { padding: 24px; } }
+
+    /* ── DURATION PILLS ── */
+    .dur-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .dur-pill {
+      background: transparent; border: 1.5px solid var(--border); border-radius: 20px;
+      padding: 5px 13px; font-family: 'Jost', sans-serif; font-size: 0.75rem;
+      font-weight: 400; color: var(--brown-mid); cursor: pointer; transition: all 0.2s;
+    }
+    .dur-pill:hover { border-color: var(--rose-light); color: var(--brown); }
+    .dur-pill.dur-selected { background: var(--rose); border-color: var(--rose); color: #fff; }
+    .svc-card.svc-multi { cursor: default; }
+
+    /* ── PAY DROPDOWNS ── */
+    .pay-dropdown { position: relative; }
+    .pay-dropdown-toggle { width: 100%; justify-content: space-between; }
+    .pay-dropdown-toggle::after { content: '▾'; font-size: 0.75rem; margin-left: 4px; }
+    .pay-dropdown-menu {
+      display: none; position: absolute; right: 0; top: calc(100% + 6px);
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 10px; min-width: 180px; z-index: 100;
+      overflow: hidden; box-shadow: 0 4px 16px var(--shadow);
+    }
+    .pay-dropdown-menu a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 11px 16px; font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 400; color: var(--brown);
+      text-decoration: none; transition: background 0.15s;
+      border-bottom: 1px solid var(--border);
+    }
+    .pay-dropdown-menu a:last-child { border-bottom: none; }
+    .pay-dropdown-menu a:hover { background: var(--cream); }
+    .pay-dropdown.open .pay-dropdown-menu { display: block; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <p class="eyebrow">Energy with Jess</p>
+  <h1>Ready when <em>you are.</em></h1>
+  <p>Book a session, explore a program, or register for an event. Everything here is held with full presence and care.</p>
+</header>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('sessions', this)">Book a Session</button>
+  <button class="tab-btn" onclick="switchTab('programs', this)">Programs &amp; Packs</button>
+  <button class="tab-btn" onclick="switchTab('events', this)">Events</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ════════════════════════════════
+       TAB 1: BOOK A SESSION
+  ════════════════════════════════ -->
+  <div class="tab-panel active" id="panel-sessions">
+
+    <!-- Step indicator -->
+    <div class="steps">
+      <div class="step-wrap"><div class="step-dot active" id="dot-1">1</div><div class="step-label">Session</div></div>
+      <div class="step-line" id="line-1"></div>
+      <div class="step-wrap"><div class="step-dot" id="dot-2">2</div><div class="step-label">Date &amp; Time</div></div>
+      <div class="step-line" id="line-2"></div>
+      <div class="step-wrap"><div class="step-dot" id="dot-3">3</div><div class="step-label">Your Details</div></div>
+      <div class="step-line" id="line-3"></div>
+      <div class="step-wrap"><div class="step-dot" id="dot-4">4</div><div class="step-label">Confirm</div></div>
+    </div>
+
+    <!-- ── STEP 1: Choose session ── -->
+    <div id="step-1">
+      <p class="section-label">Book a session</p>
+      <p class="section-title">What are you <em>drawn to?</em></p>
+      <p class="section-sub">Online sessions are available Australia-wide. In-person sessions are held in Adelaide, SA.</p>
+
+      <!-- Filter toggle -->
+      <div class="filter-toggle">
+        <button class="filter-btn active" onclick="filterSessions('all', this)">All</button>
+        <button class="filter-btn" onclick="filterSessions('clarity', this)">Clarity &amp; Healing</button>
+        <button class="filter-btn" onclick="filterSessions('discovery', this)">Discovery Calls</button>
+        <button class="filter-btn" onclick="filterSessions('alignflow', this)">Align + Flow</button>
+        <button class="filter-btn" onclick="filterSessions('inperson', this)">In Person - Adelaide</button>
+        <button class="filter-btn" onclick="filterSessions('artofyou', this)">Art of You - Port Elliot</button>
+      </div>
+
+      <!-- Online group label -->
+      <div class="filter-group-label svc-group-clarity">Clarity &amp; Healing &middot; Online</div>
+      <div class="cards-grid">
+
+        <div class="svc-card svc-clarity svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🃏</span>
+          <h3>Tarot Reading</h3>
+          <p>Straight-up insight and guidance. Choose how much space you need.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - 3 Card','15 min','$40')">3 Card · 15 min · $40</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading','30 min','$60')">30 min · $60</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading','45 min','$75')">45 min · $75</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-clarity" onclick="selectService(this,'Akashic Record Reading','60 min','$120')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">📖</span>
+          <h3>Akashic Record Reading</h3>
+          <p>Soul-level insight into your patterns, purpose, and what's ready to shift at a deeper level.</p>
+          <span class="pill pill-rose">60 min · $120</span>
+        </div>
+
+        <div class="svc-card svc-clarity svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌿</span>
+          <h3>Reiki - Online</h3>
+          <p>Distance Reiki to restore flow, release what's stuck, and bring you back to yourself.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Online','60 min','$120')">60 min · $120</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Online','90 min','$150')">90 min · $150</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Align + Flow group label -->
+      <div class="filter-group-label svc-group-alignflow">Align + Flow &middot; Single Session</div>
+      <div class="cards-grid">
+
+        <div class="svc-card svc-alignflow" onclick="selectService(this,'Align + Flow - Break the Cycle','90 min','$150')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🔓</span>
+          <h3>Break the Cycle</h3>
+          <p>Release a pattern, shift what's holding you in place, and create space for something new to move in.</p>
+          <span class="pill pill-lavender">90 min · $150</span>
+        </div>
+
+        <div class="svc-card svc-alignflow" onclick="selectService(this,'Align + Flow - Map it Out','90 min','$150')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🗺️</span>
+          <h3>Map it Out</h3>
+          <p>Map out your ideas and leave with a clear, actionable plan for what's next.</p>
+          <span class="pill pill-lavender">90 min · $150</span>
+        </div>
+
+        <div class="svc-card svc-alignflow" onclick="selectService(this,'Align + Flow - Start Moving','90 min','$150')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">⚡</span>
+          <h3>Start Moving</h3>
+          <p>Address the blocks and procrastination keeping you stuck, and leave ready to execute.</p>
+          <span class="pill pill-lavender">90 min · $150</span>
+        </div>
+
+      </div>
+
+
+      <!-- Align + Flow packs note -->
+      <div class="notice notice-gold" id="alignflow-packs-note">
+        <strong>Align + Flow packs</strong> &mdash; 5 and 10 session bundles are in the Programs &amp; Packs tab. Packs start with a discovery call so Jess can make sure it's the right fit.
+      </div>
+
+      <!-- Discovery Calls group label -->
+      <div class="filter-group-label svc-group-discovery">Discovery Calls &middot; Complimentary 30 min</div>
+      <div class="cards-grid">
+
+        <div class="svc-card svc-discovery" onclick="selectService(this,'Soul-Led Business Discovery Call','30 min','Complimentary')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌱</span>
+          <h3>Soul-Led Business</h3>
+          <p>Building something that's genuinely yours. A 30-min call to explore if soul-led business mentoring is the right next step.</p>
+          <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
+        </div>
+
+        <div class="svc-card svc-discovery" onclick="selectService(this,'Soul Support Discovery Call','30 min','Complimentary')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">✨</span>
+          <h3>Soul Support</h3>
+          <p>Ongoing 1:1 support &mdash; Reiki mentoring and Soul Expansion pathways. A call to feel into what fits.</p>
+          <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
+        </div>
+
+        <div class="svc-card svc-discovery" onclick="selectService(this,'Align + Flow Packs Discovery Call','30 min','Complimentary')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">⚡</span>
+          <h3>Align + Flow Packs</h3>
+          <p>5 or 10 session packs for flexible, ongoing support. This call makes sure it's the right container before you commit.</p>
+          <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
+        </div>
+
+        <div class="svc-card svc-discovery" onclick="selectService(this,'The Unbecoming Discovery Call','30 min','Complimentary')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌙</span>
+          <h3>The Unbecoming</h3>
+          <p>12 months of 1:1 collaboration. A significant investment &mdash; this call makes sure it lands in the right place.</p>
+          <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
+        </div>
+
+      </div>
+
+      <!-- In Person group label -->
+      <div class="filter-group-label svc-group-inperson">In Person &middot; Adelaide</div>
+      <div class="cards-grid">
+
+        <div class="svc-card svc-inperson svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌿</span>
+          <h3>Reiki</h3>
+          <p>Hands-on Reiki in a calm, held space. Gentle, powerful, and deeply grounding.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - In Person','75 min','$125')">75 min · $125</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - In Person','90 min','$160')">90 min · $160</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-inperson svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">💫</span>
+          <h3>Intuitive Healing</h3>
+          <p>Intuitive energy work tailored to what your body and soul need right now.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - In Person','75 min','$125')">75 min · $125</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - In Person','90 min','$160')">90 min · $160</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-inperson svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">💆</span>
+          <h3>Myotherapy / Massage</h3>
+          <p>Therapeutic bodywork targeting tension, pain, and postural patterns in the body.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Myotherapy / Massage','75 min','$125')">75 min · $125</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Myotherapy / Massage','90 min','$160')">90 min · $160</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-inperson svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌊</span>
+          <h3>Relaxation Massage</h3>
+          <p>Full-body relaxation massage. For when your nervous system just needs a proper rest.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Relaxation Massage','90 min','$160')">90 min · $160</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Relaxation Massage','120 min','$210')">120 min · $210</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Art of You group label -->
+      <div class="filter-group-label svc-group-artofyou">Art of You &middot; Port Elliot &middot; Fortnightly Wednesdays</div>
+      <div class="cards-grid">
+
+        <div class="svc-card svc-artofyou svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🃏</span>
+          <h3>Tarot Reading</h3>
+          <p>A focused tarot session in the beautiful Art of You space at Port Elliot.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - Port Elliot','30 min','$60')">30 min · $60</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - Port Elliot','45 min','$75')">45 min · $75</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-artofyou svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">💫</span>
+          <h3>Intuitive Healing</h3>
+          <p>Intuitive energy work in the Art of You space. Grounded, present, and held.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - Port Elliot','60 min','$120')">60 min · $120</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - Port Elliot','90 min','$150')">90 min · $150</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-artofyou svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌿</span>
+          <h3>Reiki</h3>
+          <p>In-person Reiki at the beautiful Art of You space. Gentle, grounding, restorative.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Port Elliot','60 min','$120')">60 min · $120</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Port Elliot','90 min','$150')">90 min · $150</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="btn-row btn-row-end">
+        <button class="btn btn-primary" id="next-1" disabled onclick="goToStep(2)">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: Date & Time ── -->
+    <div id="step-2" style="display:none;">
+      <p class="section-label">Date &amp; Time</p>
+      <p class="section-title">Choose your <em>preferred time</em></p>
+      <p class="section-sub">All times are ACST (Adelaide time). Greyed-out dates are unavailable for your selected session type.</p>
+      <div id="avail-hint" class="notice notice-gold" style="display:none;"></div>
+      <div class="datetime-grid">
+        <div class="cal-box">
+          <div class="cal-header">
+            <button class="cal-nav" onclick="changeMonth(-1)">&#8249;</button>
+            <span id="cal-label"></span>
+            <button class="cal-nav" onclick="changeMonth(1)">&#8250;</button>
+          </div>
+          <div class="cal-grid">
+            <div class="cal-dn">Su</div><div class="cal-dn">Mo</div><div class="cal-dn">Tu</div>
+            <div class="cal-dn">We</div><div class="cal-dn">Th</div><div class="cal-dn">Fr</div><div class="cal-dn">Sa</div>
+            <div id="cal-days" style="display:contents;"></div>
+          </div>
+        </div>
+        <div class="times-box">
+          <h4>Available times</h4>
+          <p id="times-prompt" style="font-size:0.8rem;color:var(--brown-mid);">Select a date to see available times.</p>
+          <div class="time-grid" id="time-slots" style="display:none;"></div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(1)">&larr; Back</button>
+        <button class="btn btn-primary" id="next-2" disabled onclick="goToStep(3)">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: Details ── -->
+    <div id="step-3" style="display:none;">
+      <p class="section-label">Your Details</p>
+      <p class="section-title">Tell me about <em>yourself</em></p>
+      <p class="section-sub">Just the basics so Jess can hold space for exactly what you need.</p>
+      <div class="form-grid">
+        <div class="fg"><label>First name</label><input type="text" id="fname" placeholder="Your first name" oninput="checkForm3()"/></div>
+        <div class="fg"><label>Last name</label><input type="text" id="lname" placeholder="Your last name" oninput="checkForm3()"/></div>
+        <div class="fg"><label>Email</label><input type="email" id="email" placeholder="your@email.com" oninput="checkForm3()"/></div>
+        <div class="fg"><label>Phone (optional)</label><input type="tel" id="phone" placeholder="+61 4xx xxx xxx"/></div>
+        <div class="fg full">
+          <label>What's bringing you here? (optional)</label>
+          <textarea id="notes" placeholder="Any intentions, things you're carrying, questions for Jess - share as little or as much as feels right..."></textarea>
+        </div>
+        <div class="fg">
+          <label>Session format</label>
+          <select id="sformat">
+            <option value="">Select...</option>
+            <option value="in-person">In-person (Adelaide)</option>
+            <option value="port-elliot">In-person (Port Elliot)</option>
+            <option value="online">Online (Zoom)</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>How did you find Jess?</label>
+          <select id="referral">
+            <option value="">Select...</option>
+            <option>Instagram</option>
+            <option>Word of mouth</option>
+            <option>Google</option>
+            <option>Returning client</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="notice">
+        <strong>Privacy:</strong> Everything you share stays between you and Jess. Your details will never be sold or shared with third parties.
+      </div>
+      <label class="checkbox-row">
+        <input type="checkbox" id="email-optin"/>
+        <span>Yes, keep me in the loop - energy updates, new offerings, and gentle nudges from Jess.</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="age-confirm" onchange="checkForm3()"/>
+        <span>I confirm I am 18 years of age or older. (Under 18s require written parental consent - please <a href="mailto:energywjess@gmail.com" style="color:var(--lavender);">contact Jess</a> directly.)</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="tcs-confirm" onchange="checkForm3()"/>
+        <span>I have read and agree to the <a href="mailto:energywjess@gmail.com?subject=Please send me your T%26Cs" style="color:var(--lavender);">Terms &amp; Conditions</a>, Privacy Policy, and Refund Policy. I understand deposits are non-refundable within 48 hours of my session.</span>
+      </label>
+      <div class="btn-row">
+        <button class="btn btn-ghost" onclick="goToStep(2)">&larr; Back</button>
+        <button class="btn btn-primary" id="next-3" disabled onclick="goToStep(4)">Review booking &rarr;</button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: Confirm + Pay ── -->
+    <div id="step-4" style="display:none;">
+      <p class="section-label">Confirmation</p>
+      <p class="section-title">Review &amp; <em>secure your spot</em></p>
+      <p class="section-sub" id="step4-sub">Check the details below, then choose how you'd like to pay.</p>
+      <div class="summary-card">
+        <h4>Booking summary</h4>
+        <div class="sum-row"><span class="sum-lbl">Session</span><span class="sum-val" id="sum-session"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Date</span><span class="sum-val" id="sum-date"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Time</span><span class="sum-val" id="sum-time"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Format</span><span class="sum-val" id="sum-format"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Name</span><span class="sum-val" id="sum-name"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Email</span><span class="sum-val" id="sum-email"></span></div>
+        <div class="sum-row" style="border-top:1px solid var(--rose);margin-top:10px;padding-top:12px;">
+          <span class="sum-lbl" style="font-weight:600;">Total</span>
+          <span class="sum-val" id="sum-total" style="font-weight:600;"></span>
+        </div>
+        <div class="sum-row" id="deposit-row" style="background:rgba(200,169,110,0.1);border-radius:8px;padding:10px 0;margin-top:6px;">
+          <span class="sum-lbl" style="color:var(--gold);font-weight:700;">Deposit due today (50%)</span>
+          <span class="sum-val" id="sum-deposit" style="color:var(--gold);font-weight:700;font-size:1.15rem;"></span>
+        </div>
+      </div>
+      <!-- Discovery call confirm (no payment needed) -->
+      <div id="discovery-confirm-section" style="display:none;">
+        <div class="notice notice-gold">
+          <strong>This call is complimentary &mdash; no payment needed.</strong> Once confirmed, Jess will receive your booking and you'll get an email with your pre-discovery call form to complete before the call. Your email sequence will kick in from there.
+        </div>
+        <div class="notice" style="margin-top:-10px;">
+          <strong>Cancellation:</strong> Need to reschedule? No problem &mdash; just <a id="reschedule-link-dc" href="mailto:energywjess@gmail.com?subject=Discovery%20call%20reschedule" style="color:var(--lavender);">email Jess</a> as soon as you know.
+        </div>
+        <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;margin-top:8px;">
+          <button class="btn btn-primary" onclick="submitSession()" style="justify-content:center;">Confirm my discovery call</button>
+          <button class="btn btn-ghost" onclick="goToStep(3)" style="justify-content:center;">&larr; Back</button>
+        </div>
+      </div>
+
+      <!-- Standard payment section (hidden for discovery calls) -->
+      <div id="payment-section">
+      <div class="notice" id="payment-policy-notice">
+        <strong>Payment:</strong> Pay a 50% deposit to secure your booking and Jess will be in touch to organise the remaining balance - or pay in full now and you're all done.
+      </div>
+      <div class="notice" style="margin-top:-10px;">
+        <strong>Cancellation:</strong> Reschedule or cancel free of charge up to 48 hours before your session. Cancellations within 48 hours forfeit the deposit. To reschedule or cancel, <a id="reschedule-link" href="mailto:energywjess@gmail.com?subject=Reschedule%20request" style="color:var(--lavender);">email Jess</a>.
+      </div>
+      <p style="font-size:0.78rem;color:var(--brown-mid);text-align:center;margin-bottom:6px;">Pay your 50% deposit to secure your booking:</p>
+      <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;margin-bottom:16px;">
+        <a id="stripe-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:var(--lavender);justify-content:center;" onclick="submitSession()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+          Pay deposit with Stripe
+        </a>
+        <a id="paypal-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:#0070BA;justify-content:center;" onclick="submitSession()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 4.643-5.813 4.643h-2.189c-.988 0-1.829.722-1.984 1.698L9.47 19.57a.641.641 0 0 0 .633.74h3.894c.524 0 .968-.382 1.05-.9l.453-2.872a1.07 1.07 0 0 1 1.05-.9h.666c3.77 0 6.024-1.85 6.806-5.512.33-1.55.158-2.844-.8-3.81z"/></svg>
+          Pay deposit with PayPal
+        </a>
+      </div>
+
+      <p style="font-size:0.78rem;color:var(--brown-mid);text-align:center;margin-bottom:6px;">Or pay the full amount now and you're all done:</p>
+      <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;">
+        <a id="stripe-full-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:var(--sage);justify-content:center;" onclick="submitSession()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+          Pay in full with Stripe
+        </a>
+        <a id="paypal-full-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:#0070BA;justify-content:center;" onclick="submitSession()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.082-8.558 6.082h-2.19c-1.717 0-3.187 1.255-3.451 2.952l-1.12 7.106a.641.641 0 0 0 .633.74h4.606c.524 0 .968-.382 1.05-.9l.867-5.488c.19-1.204 1.216-2.088 2.434-2.088h.522c3.878 0 6.91-1.576 7.794-6.133.36-1.867.11-3.374-.94-4.084z"/></svg>
+          Pay in full with PayPal
+        </a>
+        <button class="btn btn-ghost" onclick="goToStep(3)" style="justify-content:center;">&larr; Back</button>
+      </div>
+      </div><!-- end payment-section -->
+    </div>
+
+    <!-- Success -->
+    <div id="step-success" style="display:none;">
+      <div class="success-screen">
+        <div class="success-icon">✦</div>
+        <h2>You're booked in.</h2>
+        <p class="success-body-msg">Your deposit has been received. Jess will be in touch within 24 hours with your confirmation and any preparation notes.</p>
+        <p style="font-size:0.8rem;color:#a08080;margin-top:6px;">Need to reschedule or cancel? <a id="success-reschedule-link" href="mailto:energywjess@gmail.com?subject=Reschedule%20request" style="color:var(--lavender);">Email Jess</a> at least 48 hours before your session.</p>
+        <button class="btn btn-primary" onclick="resetSession()" style="margin-top:20px;">Book another session</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════
+       TAB 2: PROGRAMS & PACKS
+  ════════════════════════════════ -->
+  <div class="tab-panel" id="panel-programs">
+
+    <p class="section-label">Ongoing Support</p>
+    <p class="section-title">Programs, packs &amp; <em>longer containers</em></p>
+    <p class="section-sub">These offerings go deeper. Most start with a discovery call so Jess can understand where you are and make sure it's the right fit before you commit.</p>
+
+    <!-- SESSION PACKS -->
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Align + Flow</p>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">📦</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Session Packs</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Ongoing Support That Moves with You</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $666 · 5 or 10 sessions · use within 12 months</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>Fully interchangeable across Break the Cycle, Map it Out, and Start Moving sessions. Follow what's actually needed each time. Healing one session, planning the next, shifting a block after that.</p>
+          <div class="sub-options">
+            <div class="sub-opt">
+              <div class="price">$666</div>
+              <div class="sessions-lbl">5 x 90-min sessions</div>
+              <h4>Session Pack · 5</h4>
+              <p>Flexibility to show up for whatever is alive right now. Mix and match session types freely.</p>
+              <div class="prog-pay-wrapper" data-prog="session-pack-5"></div>
+            </div>
+            <div class="sub-opt">
+              <div class="price">$1,111</div>
+              <div class="sessions-lbl">10 x 90-min sessions</div>
+              <h4>Session Pack · 10</h4>
+              <p>The depth and continuity that comes from longer-term support. Real change takes time - this gives it the room it needs.</p>
+              <div class="prog-pay-wrapper" data-prog="session-pack-10"></div>
+            </div>
+          </div>
+          <div class="prog-includes">
+            <span class="incl-chip">All session types</span>
+            <span class="incl-chip">Telegram access</span>
+            <span class="incl-chip">12-month validity</span>
+            <span class="incl-chip">Payment plans available</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="openEnquiry('Session Pack (5 or 10 sessions)')">Enquire</button>
+            <button class="btn btn-ghost" onclick="window.location.hash='discovery'">Book a Discovery Call</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🌱</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Soul-Led Business</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Building Something That's Truly Yours</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $777 · 6 or 10 sessions</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>For the woman starting her own business, finishing a service-based degree and wondering what comes next, or ready to weave energetics into what she already does. We'll build an actionable plan, help you understand your business energetically, and grow something genuinely in alignment with your gifts.</p>
+          <div class="sub-options">
+            <div class="sub-opt">
+              <div class="price">$777</div>
+              <div class="sessions-lbl">6 x 90-min sessions</div>
+              <h4>Build or Begin</h4>
+              <p>Starting a soul-led or spiritual business, or pivoting your existing work into better alignment with who you are now.</p>
+              <div class="prog-pay-wrapper" data-prog="soul-led-begin"></div>
+            </div>
+            <div class="sub-opt">
+              <div class="price">$1,111</div>
+              <div class="sessions-lbl">10 x 90-min sessions</div>
+              <h4>Deepen &amp; Evolve</h4>
+              <p>Integrating energetics into existing services, more complex pivots, or building something that needs more space to unfold.</p>
+              <div class="prog-pay-wrapper" data-prog="soul-led-evolve"></div>
+            </div>
+          </div>
+          <div class="prog-includes">
+            <span class="incl-chip">Aligned business plan</span>
+            <span class="incl-chip">Business energy check-ins</span>
+            <span class="incl-chip">Telegram access</span>
+            <span class="incl-chip">Payment plans available</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="openEnquiry('Soul-Led Business Pack')">Enquire</button>
+            <button class="btn btn-ghost" onclick="window.location.hash='discovery'">Book a Discovery Call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOUL EXPANSION -->
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Soul Expansion</p>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">✨</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Reiki Mentoring</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Reiki Practice &amp; Integration Support</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $1,555 · 3, 6, or 9-month containers</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>You've done (or you're doing) the training - but you want more than just the basics. Real integration support, energetic development, and someone in your corner as you put it all into practice.</p>
+          <div class="sub-options">
+            <div class="sub-opt">
+              <div class="price">$1,555</div>
+              <div class="sessions-lbl">Reiki 1 · 3 months · 7 sessions</div>
+              <h4>Reiki 1 Mentoring</h4>
+              <p>Fortnightly sessions. Energy practices, base level protections, and foundations for daily practice. Payment plan up to 6 months.</p>
+              <div class="prog-pay-wrapper" data-prog="reiki-1"></div>
+            </div>
+            <div class="sub-opt">
+              <div class="price">$3,333</div>
+              <div class="sessions-lbl">Reiki 2 · 6 months · 13 sessions</div>
+              <h4>Reiki 2 Mentoring</h4>
+              <p>Fortnightly sessions. Business setup, increased protections, deepening practice - or for deepening your personal Reiki practice. Payment plan up to 12 months.</p>
+              <div class="prog-pay-wrapper" data-prog="reiki-2"></div>
+            </div>
+            <div class="sub-opt" style="grid-column:1/-1;">
+              <div class="price">$6,666</div>
+              <div class="sessions-lbl">Reiki 1 &amp; 2 · 9 months · 26 sessions</div>
+              <h4>Reiki 1 &amp; 2 Combined</h4>
+              <p>The full path - for those wanting to see clients or add Reiki into their current business or practices. Payment plan up to 18 months.</p>
+              <div class="prog-pay-wrapper" data-prog="reiki-combined"></div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="openEnquiry('Reiki Mentoring')">Enquire</button>
+            <button class="btn btn-ghost" onclick="window.location.hash='discovery'">Book a Discovery Call</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SELF-PACED -->
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Self-Paced</p>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🌸</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Empowered Empath</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Becoming an Empowered Empath</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">$333 · Self-Paced · Available 17 Aug</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>If being an empath has ever felt more like a curse than a gift, you're not alone. Feeling everything all the time with no way to turn it down is exhausting. Go back to basics on what it actually means to be an empowered empath - through education, meditations, and practical tasks. You'll learn to reclaim your energy, your time, and your power.</p>
+          <div class="prog-includes">
+            <span class="incl-chip">Education + meditations</span>
+            <span class="incl-chip">Practical tasks</span>
+            <span class="incl-chip">Lifetime access</span>
+            <span class="incl-chip">Payment plan available</span>
+          </div>
+          <div class="btn-row">
+            <a href="empowered-empath.html" class="btn btn-primary">Learn More &amp; Enrol</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🌊</span>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);">Regulation Mentoring</div>
+                <span class="coming-soon-badge">Coming Soon</span>
+              </div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);margin-top:3px;">Emotional &amp; Nervous System Regulation</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $333 · Self-Paced · 6, 12, or 18-week containers</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>For the woman who's tired of being at war with her own inner world. Ready to feel settled in her body, process what comes up without being swept away, and build tools that are genuinely built around her.</p>
+          <div class="sub-options">
+            <div class="sub-opt">
+              <div class="price">$333</div>
+              <div class="sessions-lbl">Emotional Regulation · 6 weeks · Self-paced</div>
+              <h4>Emotional Regulation</h4>
+              <p>Personalised tools and skills to process, release, and integrate. Reconnecting mind to body. Payment plan available.</p>
+            </div>
+            <div class="sub-opt">
+              <div class="price">$777</div>
+              <div class="sessions-lbl">Nervous System · 12 weeks · Self-paced</div>
+              <h4>Nervous System Regulation</h4>
+              <p>Emphasis on somatic release. Recommended after Emotional Regulation. Payment plan available.</p>
+            </div>
+            <div class="sub-opt" style="grid-column:1/-1;">
+              <div class="price">$999</div>
+              <div class="sessions-lbl">Full Regulation · 18 weeks · Self-paced</div>
+              <h4>Full Regulation</h4>
+              <p>Emotional and Nervous System combined. The full path in one container. Payment plan available.</p>
+            </div>
+          </div>
+          <div class="btn-row">
+            <a href="regulation-waitlist.html" class="btn btn-primary">Join the Waitlist</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGNATURE PROGRAMS -->
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Signature Programs</p>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🌙</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Signature Program</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">The Unbecoming</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">$8,888 · 12 months · 1:1</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>Putting down everything that was never yours. Empowerment. Discernment. Sovereignty of self. This is the purpose of reclaiming your life - and finally living it.</p>
+          <p>Covers Reiki 1 and 2, energy basics, emotion and nervous system, the brain, learning about yourself, and reconnecting with play, joy, and fun.</p>
+          <div class="prog-includes">
+            <span class="incl-chip">12 months 1:1</span>
+            <span class="incl-chip">Reiki 1 &amp; 2 included</span>
+            <span class="incl-chip">Payment plan up to 24 months</span>
+            <span class="incl-chip">Fortnightly or monthly · no surcharge</span>
+          </div>
+          <div class="prog-pay-wrapper" data-prog="the-unbecoming"></div>
+          <div class="btn-row">
+            <button class="btn btn-gold" onclick="openEnquiry('The Unbecoming')">Enquire</button>
+            <button class="btn btn-ghost" onclick="window.location.hash='discovery'">Book a Discovery Call</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-card" style="opacity:0.78;">
+        <div class="prog-card-header">
+          <span class="icon">🌑</span>
+          <div class="prog-card-info">
+            <div class="label-small">Cohort Program</div>
+            <h3>Into the Dark: Becoming Dark and Divine <span class="coming-soon-badge">Opening 2027</span></h3>
+            <p>An 18-week path into the shadows, soul, and integration. For women holding Reiki Level 2 or higher who are ready to stop running from their edges and start living from their whole self.</p>
+          </div>
+        </div>
+        <div style="padding: 0 22px 20px;">
+          <button class="btn btn-ghost" onclick="openEnquiry('Into the Dark (Waitlist)')">Join the waitlist</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ════════════════════════════════
+       TAB 3: EVENTS
+  ════════════════════════════════ -->
+  <div class="tab-panel" id="panel-events">
+    <p class="section-label">Upcoming</p>
+    <p class="section-title">Events &amp; <em>workshops</em></p>
+    <p class="section-sub">Group sessions, circles, and training intensives. All held with care and community in mind.</p>
+
+    <!-- Learn Reiki training dates -->
+    <div class="event-card">
+      <div class="event-date"><span class="day">6</span><span class="mon">Jun</span></div>
+      <div class="event-info">
+        <h3>Learn Reiki - Level 1</h3>
+        <div class="event-meta"><span>📅 6th &amp; 7th June</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
+        <p>Receive your Reiki Level 1 attunement and leave with a living practice to carry with you every day. Step into your Reiki practice.</p>
+        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Beginner Friendly</span></div>
+      </div>
+      <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
+        <div class="pay-dropdown">
+          <button class="btn btn-primary pay-dropdown-toggle">Pay Deposit - $111</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/fZu28rexaflO5PU9r8cZa0I" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/FFK29EF7S936N" target="_blank">PayPal</a>
+          </div>
+        </div>
+        <div class="pay-dropdown">
+          <button class="btn btn-ghost pay-dropdown-toggle">Pay in Full - $333</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/14A4gz3Swc9C3HMgTAcZa0G" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/SX6VZEBTMRDTN" target="_blank">PayPal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-date"><span class="day">14</span><span class="mon">Jun</span></div>
+      <div class="event-info">
+        <h3>Learn Reiki - Level 2</h3>
+        <div class="event-meta"><span>📅 14th &amp; 21st June</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
+        <p>Step into Level 2 symbols, distance healing, and a deeper capacity to work with energy intentionally. Reiki Level 1 required.</p>
+        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Level 1 Required</span></div>
+      </div>
+      <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
+        <div class="pay-dropdown">
+          <button class="btn btn-primary pay-dropdown-toggle">Pay Deposit - $155</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/8x200jfBe6Picei1YGcZa0J" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/FASLN429BFW5S" target="_blank">PayPal</a>
+          </div>
+        </div>
+        <div class="pay-dropdown">
+          <button class="btn btn-ghost pay-dropdown-toggle">Pay in Full - $555</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/6oU9ATfBe5Leemq46OcZa0H" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/GPR6E83TQT6W8" target="_blank">PayPal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-date"><span class="day">19</span><span class="mon">Sep</span></div>
+      <div class="event-info">
+        <h3>Learn Reiki - Level 1</h3>
+        <div class="event-meta"><span>📅 19th &amp; 20th September</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
+        <p>Receive your Reiki Level 1 attunement and leave with a living practice to carry with you every day. Step into your Reiki practice.</p>
+        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Beginner Friendly</span></div>
+      </div>
+      <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
+        <div class="pay-dropdown">
+          <button class="btn btn-primary pay-dropdown-toggle">Pay Deposit - $111</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/fZu28rexaflO5PU9r8cZa0I" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/FFK29EF7S936N" target="_blank">PayPal</a>
+          </div>
+        </div>
+        <div class="pay-dropdown">
+          <button class="btn btn-ghost pay-dropdown-toggle">Pay in Full - $333</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/14A4gz3Swc9C3HMgTAcZa0G" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/SX6VZEBTMRDTN" target="_blank">PayPal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-date"><span class="day">4</span><span class="mon">Oct</span></div>
+      <div class="event-info">
+        <h3>Learn Reiki - Level 2</h3>
+        <div class="event-meta"><span>📅 4th &amp; 10th October</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
+        <p>Step into Level 2 symbols, distance healing, and a deeper capacity to work with energy intentionally. Reiki Level 1 required.</p>
+        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Level 1 Required</span></div>
+      </div>
+      <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
+        <div class="pay-dropdown">
+          <button class="btn btn-primary pay-dropdown-toggle">Pay Deposit - $155</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/8x200jfBe6Picei1YGcZa0J" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/FASLN429BFW5S" target="_blank">PayPal</a>
+          </div>
+        </div>
+        <div class="pay-dropdown">
+          <button class="btn btn-ghost pay-dropdown-toggle">Pay in Full - $555</button>
+          <div class="pay-dropdown-menu">
+            <a href="https://buy.stripe.com/6oU9ATfBe5Leemq46OcZa0H" target="_blank">Stripe</a>
+            <a href="https://www.paypal.com/ncp/payment/GPR6E83TQT6W8" target="_blank">PayPal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(250,247,242,0.04);border:1px solid rgba(250,247,242,0.1);border-radius:12px;padding:24px;margin-top:32px;text-align:center;">
+      <p style="font-size:0.85rem;color:var(--cream);margin:0 0 12px;">Want in-person Reiki training?</p>
+      <p style="font-size:0.78rem;color:var(--brown-mid);margin:0 0 16px;">Register your interest and Jess will be in touch to organise dates.</p>
+      <a href="reiki-eoi.html" class="btn btn-ghost" style="font-size:13px;padding:10px 24px;">Register Your Interest</a>
+    </div>
+
+    <p style="text-align:center;font-size:0.75rem;color:var(--brown-mid);margin-top:32px;">More events added regularly. Follow <a href="https://instagram.com/energywjess" target="_blank" style="color:var(--rose);text-decoration:none;">@energywjess</a> on Instagram to stay in the loop.</p>
+  </div>
+
+</div>
+
+<!-- ── ENQUIRY MODAL ── -->
+<div class="modal-backdrop" id="enquiry-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <p style="font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);margin-bottom:4px;">Enquiry</p>
+        <h2>Let's find your path</h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('enquiry-modal')">&#10005;</button>
+    </div>
+    <div id="enq-form-wrap">
+      <p style="font-size:0.85rem;color:var(--brown-mid);margin-bottom:20px;line-height:1.6;">Fill in your details below and Jess will be in touch to talk through what feels right for you.</p>
+      <div class="form-grid">
+        <div class="fg"><label>First name</label><input type="text" id="enq-fname" placeholder="Your first name" oninput="checkEnqForm()"/></div>
+        <div class="fg"><label>Last name</label><input type="text" id="enq-lname" placeholder="Your last name" oninput="checkEnqForm()"/></div>
+        <div class="fg full"><label>Email</label><input type="email" id="enq-email" placeholder="your@email.com" oninput="checkEnqForm()"/></div>
+        <div class="fg full">
+          <label>I'm interested in...</label>
+          <select id="enq-interest">
+            <option value="">Select...</option>
+            <optgroup label="Align + Flow">
+              <option>Session Pack - 5 Sessions ($666)</option>
+              <option>Session Pack - 10 Sessions ($1,111)</option>
+              <option>Soul-Led Business Pack - 6 Sessions ($777)</option>
+              <option>Soul-Led Business Pack - 10 Sessions ($1,111)</option>
+            </optgroup>
+            <optgroup label="Soul Expansion">
+              <option>Reiki Mentoring - Reiki 1 (3 Months - $1,555)</option>
+              <option>Reiki Mentoring - Reiki 2 (6 Months - $3,333)</option>
+              <option>Reiki Mentoring - Reiki 1 &amp; 2 (9 Months - $6,666)</option>
+            </optgroup>
+            <optgroup label="Self-Paced">
+              <option>Empowered Empath - Self-Paced ($333)</option>
+              <option>Emotional Regulation - Self-Paced ($333)</option>
+              <option>Nervous System Regulation - Self-Paced ($777)</option>
+              <option>Full Regulation - Self-Paced ($999)</option>
+            </optgroup>
+            <optgroup label="Signature Programs">
+              <option>The Unbecoming (12 Months - $8,888)</option>
+              <option>Into the Dark - Waitlist</option>
+            </optgroup>
+            <optgroup label="Not sure yet">
+              <option>I'm not sure - I'd love a conversation</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="fg full">
+          <label>Anything to share? (optional)</label>
+          <textarea id="enq-notes" placeholder="Where you're at, what you're looking for, any questions..."></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary" id="enq-submit" style="width:100%;justify-content:center;" disabled onclick="submitEnquiry()">Send my enquiry ✦</button>
+      <p style="font-size:0.72rem;color:var(--brown-mid);margin-top:12px;text-align:center;">By submitting you're happy for Jess to reach out about the option you've selected.</p>
+    </div>
+    <div id="enq-success" style="display:none;">
+      <div class="success-screen" style="padding:28px 0;">
+        <div class="success-icon">✦</div>
+        <h2>Enquiry received.</h2>
+        <p>Jess will be in touch soon. You're in the right place.</p>
+        <button class="btn btn-ghost" onclick="closeModal('enquiry-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EVENT MODAL ── -->
+<div class="modal-backdrop" id="event-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <p style="font-size:0.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--rose);margin-bottom:4px;">Register for</p>
+        <h2 id="ev-name"></h2>
+      </div>
+      <button class="modal-close" onclick="closeModal('event-modal')">&#10005;</button>
+    </div>
+    <div id="ev-form-wrap">
+      <div class="summary-card" style="margin-bottom:18px;">
+        <div class="sum-row"><span class="sum-lbl">Date</span><span class="sum-val" id="ev-date"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Time</span><span class="sum-val" id="ev-time"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Location</span><span class="sum-val" id="ev-location"></span></div>
+        <div class="sum-row"><span class="sum-lbl">Investment</span><span class="sum-val" id="ev-price"></span></div>
+      </div>
+      <div class="form-grid">
+        <div class="fg"><label>First name</label><input type="text" id="ev-fname" placeholder="Your first name" oninput="checkEvForm()"/></div>
+        <div class="fg"><label>Last name</label><input type="text" id="ev-lname" placeholder="Your last name" oninput="checkEvForm()"/></div>
+        <div class="fg full"><label>Email</label><input type="email" id="ev-email" placeholder="your@email.com" oninput="checkEvForm()"/></div>
+        <div class="fg full"><label>Anything to share? (optional)</label><textarea id="ev-notes" placeholder="Let Jess know if there's anything she should be aware of before the event..."></textarea></div>
+      </div>
+      <div class="notice">
+        <strong>Payment:</strong> Once Jess confirms your spot, you'll receive a payment link to pay a deposit or pay in full. Your place isn't secured until payment is received.
+      </div>
+      <button class="btn btn-primary" id="ev-submit" style="width:100%;justify-content:center;" disabled onclick="submitEvent()">Reserve my spot ✦</button>
+    </div>
+    <div id="ev-success" style="display:none;">
+      <div class="success-screen" style="padding:24px 0;">
+        <div class="success-icon">✦</div>
+        <h2>You're on the list!</h2>
+        <p>Jess will be in touch within 24 hours with your payment link and all the details. See you there.</p>
+        <button class="btn btn-ghost" onclick="closeModal('event-modal')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ════════════════════════════════════════════════
+  // CONFIGURATION - fill in your details here
+  // ════════════════════════════════════════════════
+  // ── DISCOVERY CALL CONFIG ──────────────────────────────────────────────────
+  // Add your pre-discovery call form URLs here (Typeform, Google Form, etc.)
+  const DISCOVERY_FORMS = {
+    'Soul-Led Business Discovery Call':  'pre-discovery-soul-led-business.html',
+    'Soul Support Discovery Call':       'pre-discovery-soul-support.html',
+    'Align + Flow Packs Discovery Call': 'pre-discovery-align-flow.html',
+    'The Unbecoming Discovery Call':     'pre-discovery-unbecoming.html',
+  };
+  // Email sequence tags sent in the webhook payload (wire these up in your automation tool)
+  const DISCOVERY_SEQUENCE_TAGS = {
+    'Soul-Led Business Discovery Call':  'discovery-soul-led-business',
+    'Soul Support Discovery Call':       'discovery-soul-support',
+    'Align + Flow Packs Discovery Call': 'discovery-align-flow-packs',
+    'The Unbecoming Discovery Call':     'discovery-the-unbecoming',
+  };
+
+  const STRIPE_PAYMENT_LINK  = 'https://buy.stripe.com/8x28wP0Gk3D67Y246OcZa02'; // $60 deposit
+
+  // ── STRIPE DEPOSIT LINKS (per deposit amount) ──
+  const STRIPE_DEPOSIT_LINKS = {
+    20:  'https://buy.stripe.com/aFa4gz60Ea1uguy8n4cZa0b',  // 3 Card Tarot ($40 total)
+    30:  'https://buy.stripe.com/fZubJ1cp23D63HM32KcZa0c',  // 30min Tarot ($60 total)
+    38:  'https://buy.stripe.com/5kQ8wP3Sw2z20vAeLscZa0d',  // 45min Tarot ($75 total)
+    60:  'https://buy.stripe.com/8x28wP0Gk3D67Y246OcZa02',  // Akashic, Reiki 60min
+    63:  'https://buy.stripe.com/6oUdR9exa7Tmdim5aScZa0e',  // Reiki/Intuitive/Myotherapy 75min ($125 total)
+    75:  'https://buy.stripe.com/aFadR92Os8Xq6TYbzgcZa0g',  // Reiki 90min, Align+Flow, Port Elliot 90min ($150 total)
+    80:  'https://buy.stripe.com/28EfZhcp24Ha6TYeLscZa0f',  // Intuitive/Myotherapy/Relaxation 90min ($160 total)
+    105: 'https://buy.stripe.com/8x200j0GkddG1zEcDkcZa0h',  // Relaxation 120min ($210 total)
+  };
+
+  // ── STRIPE PAY IN FULL LINKS (per total price) ──
+  const STRIPE_FULL_LINKS = {
+    40:  'https://buy.stripe.com/5kQ5kD3Sw5Lecei32KcZa03',  // 3 Card Tarot
+    60:  'https://buy.stripe.com/28EcN54WA8Xq2DI8n4cZa04',  // 30min Tarot
+    75:  'https://buy.stripe.com/dRm3cv88M3D6fqu1YGcZa05',  // 45min Tarot
+    120: 'https://buy.stripe.com/cNifZhfBe2z27Y20UCcZa06',  // Akashic, Reiki 60min
+    125: 'https://buy.stripe.com/8x26oH9cQddGguy0UCcZa07',  // Reiki/Intuitive/Myotherapy 75min
+    150: 'https://buy.stripe.com/bJe28r60EddG4LQ5aScZa08',  // Reiki 90min, Align+Flow
+    160: 'https://buy.stripe.com/8x2cN59cQflO9261YGcZa09',  // Intuitive/Myotherapy/Relaxation 90min
+    210: 'https://buy.stripe.com/eVq00j3Swc9CfqugTAcZa0a',  // Relaxation 120min
+  };
+
+  // ── PAYPAL DEPOSIT LINKS (per deposit amount) ──
+  const PAYPAL_DEPOSIT_LINKS = {
+    20:  'https://www.paypal.com/ncp/payment/VLJC5DDQQBZQG',  // 3 Card Tarot ($40 total)
+    30:  'https://www.paypal.com/ncp/payment/7YA8BNSADSECQ',  // 30min Tarot ($60 total)
+    38:  'https://www.paypal.com/ncp/payment/U3ZYKEKV4ZZ9J',  // 45min Tarot ($75 total)
+    60:  'https://www.paypal.com/ncp/payment/P8CFRVWQQXPM6',  // Akashic, Reiki 60min ($120 total)
+    63:  'https://www.paypal.com/ncp/payment/2EFC4ZBTCRUN2',  // Reiki/Intuitive/Myotherapy 75min ($125 total)
+    75:  'https://www.paypal.com/ncp/payment/3UM87JANFD29C',  // Reiki 90min, Align+Flow, Port Elliot 90min ($150 total)
+    80:  'https://www.paypal.com/ncp/payment/E759WMPLACEPQ',  // Intuitive/Myotherapy/Relaxation 90min ($160 total)
+    105: 'https://www.paypal.com/ncp/payment/TC66EETSYW8XC',  // Relaxation 120min ($210 total)
+  };
+
+  // ── PAYPAL PAY IN FULL LINKS (per total price) ──
+  const PAYPAL_FULL_LINKS = {
+    40:  'https://www.paypal.com/ncp/payment/5D5MH3R6J5H5E',  // 3 Card Tarot
+    60:  'https://www.paypal.com/ncp/payment/A8PGTH7XZW866',  // 30min Tarot
+    75:  'https://www.paypal.com/ncp/payment/5VR3KFDHZE9U4',  // 45min Tarot
+    120: 'https://www.paypal.com/ncp/payment/V9P44RE3J6LFA',  // Akashic, Reiki 60min
+    125: 'https://www.paypal.com/ncp/payment/AMUWAVYP7Z5SA',  // Reiki/Intuitive/Myotherapy 75min
+    150: 'https://www.paypal.com/ncp/payment/S884KCBTU96N2',  // Reiki 90min, Align+Flow
+    160: 'https://www.paypal.com/ncp/payment/6RBBEQU2U475U',  // Intuitive/Myotherapy/Relaxation 90min
+    210: 'https://www.paypal.com/ncp/payment/8MZDCDA83YRYW',  // Relaxation 120min
+  };
+
+  // ── PROGRAM & PACK PAYMENT LINKS ──
+  // Stripe only for deposits · Stripe + PayPal for full payment
+  // Fill in links as you create them in Stripe / PayPal
+  const PROG_PAYMENTS = {
+    'session-pack-5': {
+      price: 666,   deposit: 222,
+      stripeDeposit: 'https://buy.stripe.com/00w8wPdt6ehKbaedHocZa0k',
+      stripeFull:    'https://buy.stripe.com/5kQfZhdt68XqbaedHocZa0l',
+      paypalFull:    'https://www.paypal.com/ncp/payment/3WP3TJ3SJKPQ4',
+    },
+    'soul-led-begin': {
+      price: 777,   deposit: 155,
+      stripeDeposit: 'https://buy.stripe.com/4gM3cv4WAa1u3HMbzgcZa0m',
+      stripeFull:    'https://buy.stripe.com/7sYdR9gFia1u7Y2avccZa0n',
+      paypalFull:    'https://www.paypal.com/ncp/payment/8EZ2RHB53D28L',
+    },
+    'session-pack-10': {
+      price: 1111,  deposit: 333,
+      stripeDeposit: 'https://buy.stripe.com/6oU00jexaa1ufqu32KcZa0o',
+      stripeFull:    'https://buy.stripe.com/9B64gz4WA8Xqa6a9r8cZa0p',
+      paypalFull:    'https://www.paypal.com/ncp/payment/59L5WXPM47MRQ',
+    },
+    'soul-led-evolve': {
+      price: 1111,  deposit: 333,
+      stripeDeposit: 'https://buy.stripe.com/14A8wP74I5Lebae0UCcZa0q',
+      stripeFull:    'https://buy.stripe.com/28E5kD4WA3D6emqbzgcZa0r',
+      paypalFull:    'https://www.paypal.com/ncp/payment/FAV2CLYYF67E8',
+    },
+    'reiki-1': {
+      price: 1555,  deposit: 555,
+      stripeDeposit: 'https://buy.stripe.com/dRmcN52Osa1u3HM7j0cZa0u',
+      stripeFull:    'https://buy.stripe.com/6oUaEXbkYddGdim9r8cZa0v',
+      paypalFull:    'https://www.paypal.com/ncp/payment/QQZPWDU4TWCWG',
+      coupon: 'REIKI1',  couponDeposit: 222,
+    },
+    'reiki-2': {
+      price: 3333,  deposit: 666,
+      stripeDeposit: 'https://buy.stripe.com/dRmdR9fBeb5y0vA46OcZa0A',
+      stripeFull:    'https://buy.stripe.com/dRm5kDdt65Le6TY6eWcZa0B',
+      paypalFull:    'https://www.paypal.com/ncp/payment/55E35NSPV4KKL',
+      coupon: 'REIKI2',  couponDeposit: 333,
+    },
+    'reiki-combined': {
+      price: 6666,  deposit: 888,
+      stripeDeposit: 'https://buy.stripe.com/5kQfZhbkY1uYfqubzgcZa0C',
+      stripeFull:    'https://buy.stripe.com/5kQ3cvcp24Ha4LQbzgcZa0D',
+      paypalFull:    'https://www.paypal.com/ncp/payment/2RUCQXVG9GLEE',
+    },
+    'the-unbecoming': {
+      price: 8888,  deposit: 1111,
+      stripeDeposit: 'https://buy.stripe.com/6oU14n2Os2z24LQeLscZa0E',
+      stripeFull:    'https://buy.stripe.com/3cIaEX4WA4Ha7Y2avccZa0F',
+      paypalFull:    'https://www.paypal.com/ncp/payment/3YDN8VNF48YYQ',
+    },
+  };
+
+  const CALENDAR_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+  // ── GOOGLE CALENDAR - BLOCKED DATES ──
+  // Paste your Calendar ID and API key here once you have them.
+  // Leave blank to disable (manual BLOCKED_DATES array is used instead).
+  const GCAL_BLOCKED_CALENDAR_ID = 'd6c52250d57ffa6e936d4406696d5f63baa61403d38e4d82910aaaf61cf6ee97@group.calendar.google.com';
+  const GCAL_API_KEY             = 'AIzaSyC5ykidPyBYkIkxo0mGAy1XdS4GwqBLF6c';
+  // ════════════════════════════════════════════════
+
+  // ── STATE ──
+  let selService = null, selDuration = '', selPrice = '';
+  let selDate = null, selTime = null;
+  let calMonth = new Date().getMonth(), calYear = new Date().getFullYear();
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  // ── AVAILABILITY CONFIG ──
+
+  // ── DAYS OFF / BLOCKED DATES ──
+  // Option A: Add dates manually below (format: 'YYYY-MM-DD')
+  // Option B: Connect your Google Calendar above - events there block dates automatically
+  const BLOCKED_DATES = [
+    // '2026-06-09',  // example - Queen's Birthday
+    // '2026-12-25',  // example - Christmas Day
+  ];
+
+  // ── ONLINE-ONLY BLOCKED DATES (Reiki teaching days) ──
+  // Online bookings are unavailable on these dates - all other session types unaffected
+  const ONLINE_BLOCKED_DATES = [
+    '2026-06-06', '2026-06-07',  // Reiki Level 1 (June)
+    '2026-06-14', '2026-06-21',  // Reiki Level 2 (June)
+    '2026-09-19', '2026-09-20',  // Reiki Level 1 (September)
+    '2026-10-04', '2026-10-10',  // Reiki Level 2 (October)
+  ];
+
+  function isOnlineBlocked(date) {
+    return ONLINE_BLOCKED_DATES.includes(toIso(date));
+  }
+
+  // Dates fetched live from your Google Calendar (populated automatically)
+  let gcalBlockedDates = [];
+
+  function toIso(date) {
+    return date.getFullYear() + '-' +
+      String(date.getMonth() + 1).padStart(2, '0') + '-' +
+      String(date.getDate()).padStart(2, '0');
+  }
+
+  function isBlocked(date) {
+    const iso = toIso(date);
+    return BLOCKED_DATES.includes(iso) || gcalBlockedDates.includes(iso);
+  }
+
+  // Fetch blocked dates from Google Calendar for the next 90 days
+  function fetchGcalBlockedDates() {
+    if (!GCAL_BLOCKED_CALENDAR_ID || !GCAL_API_KEY) return;
+    const now   = new Date();
+    const later = new Date(now.getTime() + 90 * 24 * 60 * 60 * 1000);
+    const timeMin = now.toISOString();
+    const timeMax = later.toISOString();
+    const url = 'https://www.googleapis.com/calendar/v3/calendars/' +
+      encodeURIComponent(GCAL_BLOCKED_CALENDAR_ID) +
+      '/events?key=' + GCAL_API_KEY +
+      '&timeMin=' + encodeURIComponent(timeMin) +
+      '&timeMax=' + encodeURIComponent(timeMax) +
+      '&singleEvents=true&maxResults=100';
+
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        gcalBlockedDates = [];
+        (data.items || []).forEach(function(event) {
+          // All-day events have date only; timed events have dateTime
+          const start = event.start.date || event.start.dateTime;
+          const end   = event.end.date   || event.end.dateTime;
+          if (!start) return;
+
+          // Walk through each day the event covers and block it
+          const startD = new Date(start.substring(0, 10) + 'T00:00:00');
+          const endD   = new Date((end || start).substring(0, 10) + 'T00:00:00');
+          for (let d = new Date(startD); d < endD; d.setDate(d.getDate() + 1)) {
+            gcalBlockedDates.push(toIso(d));
+          }
+        });
+        renderCal(); // re-render with updated blocked dates
+      })
+      .catch(function() {}); // silently fail - manual blocks still work
+  }
+
+  // In Person - Adelaide: Mon(1), Tue(2) · 1 appointment per day at 3:00 PM
+  // When a booking is confirmed, add that date to BLOCKED_DATES to prevent double-booking
+  const INPERSON_DAYS   = [1, 2];
+  const INPERSON_TIMES  = ['3:00 PM'];
+  const INPERSON_BOOKED = [];
+
+  // Online - Clarity + Healing
+  // Until June 30 2026: Fri(5) 10am-8pm · Sat(6) 10am-3pm
+  // From July 1 2026:   Thu(4) 12pm-8pm · Sat(6) 10am-3pm  (Fridays = acupuncture clinic)
+  const ONLINE_CHANGE_START = new Date(2026, 6, 1);  // July 1, 2026
+  const ONLINE_CHANGE_END   = new Date(2027, 0, 1);  // Jan 1, 2027
+  const ONLINE_DAYS_PRE     = [5, 6]; // Fri, Sat
+  const ONLINE_DAYS_POST    = [4, 6]; // Thu, Sat
+
+  function getOnlineDays(date) {
+    return (date >= ONLINE_CHANGE_START && date < ONLINE_CHANGE_END)
+      ? ONLINE_DAYS_POST : ONLINE_DAYS_PRE;
+  }
+
+  const ONLINE_TIMES_FRI = ['10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'];
+  const ONLINE_TIMES_THU = ['12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'];
+  const ONLINE_TIMES_SAT = ['10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM'];
+  const ONLINE_BOOKED_FRI = [2, 6];
+  const ONLINE_BOOKED_THU = [];
+  const ONLINE_BOOKED_SAT = [1, 3];
+
+  // Art of You - Port Elliot: fortnightly Wednesdays(3)
+  // Reference Wednesday = May 6 2026 = Week A (4pm-8pm)
+  // Alternates: A=4pm-8pm, B=1pm-5pm every fortnight
+  const AOY_REF = new Date(2026, 4, 6); // May 6, 2026
+  const AOY_TIMES_A = ['4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM'];
+  const AOY_TIMES_B = ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
+  const AOY_BOOKED  = [1, 4];
+
+  function getAoyType(date) {
+    if (date.getDay() !== 3) return null; // Not a Wednesday
+    const weeksDiff = Math.round((date - AOY_REF) / (7 * 24 * 3600 * 1000));
+    if (weeksDiff < 0 || weeksDiff % 2 !== 0) return null; // Not an AOY Wednesday
+    return (weeksDiff / 2) % 2 === 0 ? 'A' : 'B';
+  }
+
+  let selServiceType = null; // 'online' | 'inperson' | 'artofyou'
+
+  // ── TABS ──
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  // ── STEP NAV ──
+  function goToStep(n) {
+    [1,2,3,4].forEach(i => {
+      const el = document.getElementById('step-'+i);
+      if (el) el.style.display = i===n ? 'block' : 'none';
+    });
+    document.getElementById('step-success').style.display = 'none';
+    updateDots(n);
+    if (n===4) buildSummary();
+  }
+  function updateDots(cur) {
+    [1,2,3,4].forEach(i => {
+      const d = document.getElementById('dot-'+i);
+      d.classList.remove('active','done');
+      if (i < cur) { d.classList.add('done'); d.textContent = '✓'; }
+      else if (i === cur) { d.classList.add('active'); d.textContent = i; }
+      else d.textContent = i;
+    });
+    [1,2,3].forEach(i => {
+      const l = document.getElementById('line-'+i);
+      l.classList.toggle('done', i < cur);
+    });
+  }
+
+  // ── DURATION PILL SELECT ──
+  function selectDuration(e, pill, name, duration, price) {
+    e.stopPropagation();
+    const card = pill.closest('.svc-card');
+    card.querySelectorAll('.dur-pill').forEach(function(p) { p.classList.remove('dur-selected'); });
+    pill.classList.add('dur-selected');
+    selectService(card, name, duration, price);
+  }
+
+  // ── SERVICE SELECT ──
+  function selectService(el, name, dur, price) {
+    const prevType = selServiceType;
+    document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selService = name; selDuration = dur; selPrice = price;
+    const next1 = document.getElementById('next-1');
+    next1.disabled = false;
+    setTimeout(() => next1.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+
+    // Detect service type
+    if (el.classList.contains('svc-inperson'))    selServiceType = 'inperson';
+    else if (el.classList.contains('svc-artofyou')) selServiceType = 'artofyou';
+    else selServiceType = 'online';
+
+    // Pre-select format field
+    const fmt = document.getElementById('sformat');
+    if (fmt) {
+      if (selServiceType === 'online')       fmt.value = 'online';
+      else if (selServiceType === 'artofyou') fmt.value = 'port-elliot';
+      else                                   fmt.value = 'in-person';
+    }
+
+    // If service type changed, reset date/time and re-render calendar
+    if (prevType !== selServiceType) {
+      selDate = null; selTime = null;
+      document.getElementById('next-2').disabled = true;
+      document.getElementById('times-prompt').style.display = 'block';
+      document.getElementById('time-slots').style.display = 'none';
+      renderCal();
+    }
+
+    updateAvailHint();
+  }
+
+  function updateAvailHint() {
+    const hint = document.getElementById('avail-hint');
+    if (!hint || !selServiceType) return;
+    // Use the calendar month being viewed so hint updates as user browses forward
+    const viewDate = new Date(calYear, calMonth, 1);
+    const isPostJuly = viewDate >= ONLINE_CHANGE_START && viewDate < ONLINE_CHANGE_END;
+    const onlineHint = isPostJuly
+      ? '<strong>Online:</strong> Thursday 12:00 PM - 8:00 PM · Saturday 10:00 AM - 3:00 PM ACST'
+      : '<strong>Online:</strong> Friday 10:00 AM - 8:00 PM · Saturday 10:00 AM - 3:00 PM ACST';
+    const hints = {
+      inperson:  '<strong>In-person - Adelaide:</strong> Monday &amp; Tuesday · 3:00 PM ACST · One appointment per day',
+      online:    onlineHint,
+      artofyou:  '<strong>Art of You - Port Elliot:</strong> Fortnightly Wednesdays · alternating 4:00 PM - 8:00 PM &amp; 1:00 PM - 5:00 PM ACST'
+    };
+    hint.innerHTML = hints[selServiceType] || '';
+    hint.style.display = 'block';
+  }
+
+  // ── CALENDAR ──
+  function renderCal() {
+    document.getElementById('cal-label').textContent = MONTHS[calMonth] + ' ' + calYear;
+    const today = new Date();
+    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const firstDay = new Date(calYear, calMonth, 1).getDay();
+    const days = new Date(calYear, calMonth+1, 0).getDate();
+    let html = '';
+    for (let i = 0; i < firstDay; i++) html += '<button class="cal-day" disabled></button>';
+    for (let d = 1; d <= days; d++) {
+      const date = new Date(calYear, calMonth, d);
+      const past = date < todayMidnight;
+      const dow = date.getDay(); // 0=Sun,1=Mon,2=Tue,3=Wed,4=Thu,5=Fri,6=Sat
+
+      // Determine availability based on service type
+      let unavailable;
+      if (selServiceType === 'inperson') {
+        unavailable = past || !INPERSON_DAYS.includes(dow) || isBlocked(date);
+      } else if (selServiceType === 'artofyou') {
+        unavailable = past || getAoyType(date) === null || isBlocked(date);
+      } else {
+        // Online: date-aware (Fri+Sat until July, Thu+Sat from July) + Reiki teaching days blocked
+        unavailable = past || !getOnlineDays(date).includes(dow) || isBlocked(date) || isOnlineBlocked(date);
+      }
+
+      const isSel = selDate && selDate.getDate()===d && selDate.getMonth()===calMonth && selDate.getFullYear()===calYear;
+      const isToday = today.getDate()===d && today.getMonth()===calMonth && today.getFullYear()===calYear;
+      html += `<button class="cal-day${isSel?' selected':''}${isToday?' today':''}" ${unavailable?'disabled':''} onclick="pickDate(${d})">${d}</button>`;
+    }
+    document.getElementById('cal-days').innerHTML = html;
+  }
+  function changeMonth(d) {
+    calMonth += d;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0)  { calMonth = 11; calYear--; }
+    renderCal();
+    updateAvailHint();
+  }
+  function pickDate(d) {
+    selDate = new Date(calYear, calMonth, d);
+    selTime = null;
+    document.getElementById('next-2').disabled = true;
+    renderCal();
+    renderTimes();
+  }
+  function renderTimes() {
+    document.getElementById('times-prompt').style.display = 'none';
+    const grid = document.getElementById('time-slots');
+    grid.style.display = 'grid';
+
+    let times, booked;
+    if (selServiceType === 'inperson') {
+      times  = INPERSON_TIMES;
+      booked = INPERSON_BOOKED;
+    } else if (selServiceType === 'artofyou') {
+      const aoyType = selDate ? getAoyType(selDate) : null;
+      times  = aoyType === 'B' ? AOY_TIMES_B : AOY_TIMES_A;
+      booked = AOY_BOOKED;
+    } else {
+      // Online - day-specific slots (Thu from July, Fri before July, Sat year-round)
+      const dow = selDate ? selDate.getDay() : 5;
+      if (dow === 6) {
+        times  = ONLINE_TIMES_SAT;
+        booked = ONLINE_BOOKED_SAT;
+      } else if (dow === 4) {
+        times  = ONLINE_TIMES_THU;
+        booked = ONLINE_BOOKED_THU;
+      } else {
+        times  = ONLINE_TIMES_FRI;
+        booked = ONLINE_BOOKED_FRI;
+      }
+    }
+
+    grid.innerHTML = times.map((t,i) =>
+      `<button class="time-slot" ${booked.includes(i)?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`
+    ).join('');
+  }
+  function pickTime(el, t) {
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    selTime = t;
+    document.getElementById('next-2').disabled = false;
+  }
+
+  // ── FORM VALIDATION ──
+  function checkForm3() {
+    const ok = document.getElementById('fname').value.trim() &&
+               document.getElementById('lname').value.trim() &&
+               document.getElementById('email').value.includes('@') &&
+               document.getElementById('age-confirm').checked &&
+               document.getElementById('tcs-confirm').checked;
+    document.getElementById('next-3').disabled = !ok;
+  }
+
+  // ── SUMMARY ──
+  function buildSummary() {
+    const isDiscovery = !!(selService && selService.includes('Discovery Call'));
+    const fmt = document.getElementById('sformat').value;
+    const fmtLabel = fmt==='in-person' ? 'In-person (Adelaide)'
+                   : fmt==='port-elliot' ? 'In-person (Port Elliot)'
+                   : fmt==='online' ? 'Online (Zoom)' : 'TBC';
+    const dateStr = selDate ? selDate.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) : '-';
+
+    // Toggle discovery vs standard payment UI
+    const paySection       = document.getElementById('payment-section');
+    const discoverySection = document.getElementById('discovery-confirm-section');
+    const depositRow       = document.getElementById('deposit-row');
+    const step4Sub         = document.getElementById('step4-sub');
+    if (paySection)       paySection.style.display       = isDiscovery ? 'none' : '';
+    if (discoverySection) discoverySection.style.display = isDiscovery ? '' : 'none';
+    if (depositRow)       depositRow.style.display       = isDiscovery ? 'none' : '';
+    if (step4Sub) step4Sub.textContent = isDiscovery
+      ? 'Check the details below. Discovery calls are complimentary — no payment needed.'
+      : 'Check the details below. A 50% deposit is required to hold your booking.';
+
+    // Calculate deposit (50% of price)
+    const priceNum = selPrice ? parseFloat(selPrice.replace(/[^0-9.]/g,'')) : 0;
+    const depositNum = Math.ceil(priceNum * 0.5);
+    const depositStr = priceNum ? '$' + depositNum : 'Complimentary';
+
+    document.getElementById('sum-session').textContent = selService + ' - ' + selDuration + (isDiscovery ? ' - Complimentary' : ' - ' + selPrice);
+    document.getElementById('sum-date').textContent = dateStr;
+    document.getElementById('sum-time').textContent = selTime || '-';
+    document.getElementById('sum-format').textContent = fmtLabel;
+    document.getElementById('sum-name').textContent = document.getElementById('fname').value + ' ' + document.getElementById('lname').value;
+    document.getElementById('sum-email').textContent = document.getElementById('email').value;
+    document.getElementById('sum-total').textContent = selPrice || '-';
+    document.getElementById('sum-deposit').textContent = depositStr;
+
+    // Wire up payment buttons
+    const stripeBtn      = document.getElementById('stripe-btn');
+    const stripeFullBtn  = document.getElementById('stripe-full-btn');
+    const paypalBtn      = document.getElementById('paypal-btn');
+    const paypalFullBtn  = document.getElementById('paypal-full-btn');
+
+    // Deposit Stripe link - use per-amount links, fall back to legacy $60 link
+    if (stripeBtn) {
+      const depositLink = STRIPE_DEPOSIT_LINKS[depositNum] || (depositNum === 60 ? STRIPE_PAYMENT_LINK : '');
+      stripeBtn.style.display = depositLink ? '' : 'none';
+      if (depositLink) stripeBtn.href = depositLink;
+    }
+
+    // Pay in full Stripe link
+    if (stripeFullBtn) {
+      const fullLink = STRIPE_FULL_LINKS[priceNum] || '';
+      stripeFullBtn.style.display = fullLink ? '' : 'none';
+      if (fullLink) stripeFullBtn.href = fullLink;
+    }
+
+    // PayPal deposit link
+    if (paypalBtn) {
+      const ppDepositLink = PAYPAL_DEPOSIT_LINKS[depositNum] || '';
+      paypalBtn.style.display = ppDepositLink ? '' : 'none';
+      if (ppDepositLink) paypalBtn.href = ppDepositLink;
+    }
+
+    // PayPal pay-in-full link
+    if (paypalFullBtn) {
+      const ppFullLink = PAYPAL_FULL_LINKS[priceNum] || '';
+      paypalFullBtn.style.display = ppFullLink ? '' : 'none';
+      if (ppFullLink) paypalFullBtn.href = ppFullLink;
+    }
+
+    // Dynamic payment policy notice
+    const policyNotice = document.getElementById('payment-policy-notice');
+    if (policyNotice) {
+      if (fmt === 'online') {
+        policyNotice.innerHTML = '<strong>Payment:</strong> Online sessions require the full balance to be paid at least 24 hours before your session. You\'ll receive a reminder email the day before with a payment link.';
+      } else {
+        policyNotice.innerHTML = '<strong>Payment:</strong> A 50% deposit is required to secure your booking. The remaining balance is payable on the day by cash or card. You\'ll receive a reminder the day before your session.';
+      }
+    }
+
+    // Update reschedule link with session-specific subject
+    const rescheduleLink = document.getElementById('reschedule-link');
+    if (rescheduleLink) {
+      const subject = 'Reschedule request: ' + selService + ' on ' + dateStr;
+      rescheduleLink.href = 'mailto:energywjess@gmail.com?subject=' + encodeURIComponent(subject);
+    }
+  }
+
+  // ── SUBMIT SESSION ──
+  function submitSession() {
+    const isDiscovery = !!(selService && selService.includes('Discovery Call'));
+    const discoveryFormLink  = isDiscovery ? (DISCOVERY_FORMS[selService] || '') : '';
+    const discoveryTag       = isDiscovery ? (DISCOVERY_SEQUENCE_TAGS[selService] || '') : '';
+
+    // Build start/end ISO strings for calendar
+    let startISO = '', endISO = '';
+    if (selDate && selTime) {
+      const [timePart, meridiem] = selTime.split(' ');
+      let [h, m] = timePart.split(':').map(Number);
+      if (meridiem === 'PM' && h !== 12) h += 12;
+      if (meridiem === 'AM' && h === 12) h = 0;
+      const start = new Date(selDate.getFullYear(), selDate.getMonth(), selDate.getDate(), h, m, 0);
+      const durMins = parseInt(selDuration) || 60;
+      const end = new Date(start.getTime() + durMins * 60000);
+      startISO = start.toISOString();
+      endISO   = end.toISOString();
+    }
+
+    const fmt = document.getElementById('sformat') ? document.getElementById('sformat').value : '';
+    const priceNum = selPrice ? parseFloat(selPrice.replace(/[^0-9.]/g,'')) : 0;
+    const depositNum = Math.ceil(priceNum * 0.5);
+
+    const depositLink    = STRIPE_DEPOSIT_LINKS[depositNum] || (depositNum === 60 ? STRIPE_PAYMENT_LINK : null);
+    const fullLink       = STRIPE_FULL_LINKS[priceNum] || null;
+    const paypalLink     = PAYPAL_DEPOSIT_LINKS[depositNum] || null;
+    const paypalFullLink = PAYPAL_FULL_LINKS[priceNum] || null;
+
+    const payload = {
+      service:      selService,
+      duration:     selDuration,
+      price:        selPrice,
+      deposit:      isDiscovery ? 'Complimentary' : '$' + depositNum,
+      depositNum:   isDiscovery ? 0 : depositNum,
+      isDiscovery:  isDiscovery,
+      discoveryFormLink: discoveryFormLink,
+      discoverySequenceTag: discoveryTag,
+      format:       fmt,
+      startISO:     startISO,
+      endISO:       endISO,
+      clientName:   (document.getElementById('fname')?.value || '') + ' ' + (document.getElementById('lname')?.value || ''),
+      email:        document.getElementById('email')?.value || '',
+      phone:        document.getElementById('phone')?.value || '',
+      notes:        document.getElementById('notes')?.value || '',
+      emailOptin:   document.getElementById('email-optin')?.checked || false,
+      stripeLink:   depositLink,
+      stripeFullLink: fullLink,
+      paypalLink:   paypalLink,
+      paypalFullLink: paypalFullLink
+    };
+
+    // Save booking details so booking-confirmed.html can send deposit confirmation email after Stripe redirect
+    try { localStorage.setItem('ewj_pending_booking', JSON.stringify({ ...payload, webhookUrl: CALENDAR_WEBHOOK_URL })); } catch(e) {}
+
+    // POST to Google Calendar webhook (Google Apps Script)
+    if (CALENDAR_WEBHOOK_URL && CALENDAR_WEBHOOK_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+      fetch(CALENDAR_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {}); // fire and forget - don't block UX
+    }
+
+    [1,2,3,4].forEach(i => { const el = document.getElementById('step-'+i); if(el) el.style.display='none'; });
+    document.getElementById('step-success').style.display = 'block';
+    updateDots(0);
+
+    // Update success screen for discovery vs regular bookings
+    const successTitle = document.querySelector('#step-success h2');
+    const successMsg   = document.querySelector('#step-success .success-body-msg');
+    if (isDiscovery) {
+      if (successTitle) successTitle.textContent = 'Your call is booked.';
+      if (successMsg)   successMsg.innerHTML = 'Your discovery call is confirmed. Check your inbox — your pre-discovery call form will arrive within 24 hours. Jess looks forward to connecting with you.';
+    } else {
+      if (successTitle) successTitle.textContent = "You're booked in.";
+      if (successMsg)   successMsg.innerHTML = 'Your deposit has been received. Jess will be in touch within 24 hours with your confirmation and any preparation notes.';
+    }
+
+    // Update success screen reschedule link with session-specific subject
+    const successReschedule = document.getElementById('success-reschedule-link');
+    if (successReschedule && selService && selDate) {
+      const dateStr = selDate.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+      const subject = (isDiscovery ? 'Discovery call reschedule: ' : 'Reschedule request: ') + selService + ' on ' + dateStr;
+      successReschedule.href = 'mailto:energywjess@gmail.com?subject=' + encodeURIComponent(subject);
+    }
+  }
+  function resetSession() {
+    selService=null; selDate=null; selTime=null; selServiceType=null;
+    const hint = document.getElementById('avail-hint');
+    if (hint) hint.style.display = 'none';
+    document.querySelectorAll('.svc-card').forEach(c=>c.classList.remove('selected'));
+    document.getElementById('next-1').disabled=true;
+    document.getElementById('next-2').disabled=true;
+    document.getElementById('next-3').disabled=true;
+    ['fname','lname','email','phone','notes'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    const optin = document.getElementById('email-optin'); if(optin) optin.checked = false;
+    const age = document.getElementById('age-confirm'); if(age) age.checked = false;
+    const tcs = document.getElementById('tcs-confirm'); if(tcs) tcs.checked = false;
+    document.getElementById('sformat').value='';
+    document.getElementById('step-success').style.display='none';
+    document.getElementById('step-1').style.display='block';
+    updateDots(1);
+    renderCal();
+    document.getElementById('times-prompt').style.display='block';
+    document.getElementById('time-slots').style.display='none';
+  }
+
+  // ── ACCORDION ──
+  function toggleCard(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = !body.classList.contains('collapsed');
+    body.classList.toggle('collapsed', isOpen);
+    btn.classList.toggle('open', !isOpen);
+  }
+
+  // ── ENQUIRY MODAL ──
+  function openEnquiry(preset) {
+    const sel = document.getElementById('enq-interest');
+    if (preset) {
+      for (let i=0;i<sel.options.length;i++) {
+        if (sel.options[i].text.includes(preset) || preset.includes(sel.options[i].text)) {
+          sel.selectedIndex=i; break;
+        }
+      }
+    }
+    document.getElementById('enq-form-wrap').style.display='block';
+    document.getElementById('enq-success').style.display='none';
+    document.getElementById('enq-submit').disabled=true;
+    ['enq-fname','enq-lname','enq-email','enq-notes'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    openModal('enquiry-modal');
+  }
+  function checkEnqForm() {
+    const ok = document.getElementById('enq-fname').value.trim() &&
+               document.getElementById('enq-lname').value.trim() &&
+               document.getElementById('enq-email').value.includes('@');
+    document.getElementById('enq-submit').disabled = !ok;
+  }
+  function submitEnquiry() {
+    document.getElementById('enq-form-wrap').style.display='none';
+    document.getElementById('enq-success').style.display='block';
+  }
+
+  // ── PAY DROPDOWNS ──
+  document.addEventListener('click', function(e) {
+    const toggle = e.target.closest('.pay-dropdown-toggle');
+    document.querySelectorAll('.pay-dropdown').forEach(function(d) {
+      if (toggle && d.contains(toggle)) {
+        d.classList.toggle('open');
+      } else {
+        d.classList.remove('open');
+      }
+    });
+  });
+
+  // ── EVENT MODAL ──
+  function openEventModal(name, date, time, price, loc) {
+    document.getElementById('ev-name').innerHTML = name;
+    document.getElementById('ev-date').textContent = date;
+    document.getElementById('ev-time').textContent = time;
+    document.getElementById('ev-price').textContent = price;
+    document.getElementById('ev-location').textContent = loc;
+    document.getElementById('ev-form-wrap').style.display='block';
+    document.getElementById('ev-success').style.display='none';
+    document.getElementById('ev-submit').disabled=true;
+    ['ev-fname','ev-lname','ev-email','ev-notes'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+    openModal('event-modal');
+  }
+  function checkEvForm() {
+    const ok = document.getElementById('ev-fname').value.trim() &&
+               document.getElementById('ev-lname').value.trim() &&
+               document.getElementById('ev-email').value.includes('@');
+    document.getElementById('ev-submit').disabled = !ok;
+  }
+  function submitEvent() {
+    document.getElementById('ev-form-wrap').style.display='none';
+    document.getElementById('ev-success').style.display='block';
+  }
+
+  // ── MODAL HELPERS ──
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow='';
+  }
+  ['enquiry-modal','event-modal'].forEach(id => {
+    document.getElementById(id).addEventListener('click', e => { if(e.target===document.getElementById(id)) closeModal(id); });
+  });
+  document.addEventListener('keydown', e => { if(e.key==='Escape') { closeModal('enquiry-modal'); closeModal('event-modal'); } });
+
+  // ── SESSION FILTER ──
+  // Maps filter type → calendar service type (for availability pre-loading)
+  const FILTER_SERVICE_TYPE = {
+    clarity:   'online',
+    discovery: 'online',
+    alignflow: 'online',
+    inperson:  'inperson',
+    artofyou:  'artofyou',
+    all:       null,
+  };
+
+  function filterSessions(type, btn, skipHash) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Push hash so this filter state is deep-linkable
+    if (!skipHash) {
+      const newHash = type === 'all' ? 'sessions' : type;
+      history.replaceState(null, '', '#' + newHash);
+    }
+
+    // Pre-set selServiceType for the calendar so availability loads correctly
+    const mapped = FILTER_SERVICE_TYPE[type] ?? null;
+    if (!selService) {
+      // Only pre-set if no card is already selected (don't override user's pick)
+      selServiceType = mapped;
+      renderCal();
+      updateAvailHint();
+    }
+
+    const clarityCards    = document.querySelectorAll('.svc-clarity');
+    const discoveryCards  = document.querySelectorAll('.svc-discovery');
+    const alignflowCards  = document.querySelectorAll('.svc-alignflow');
+    const inpersonCards   = document.querySelectorAll('.svc-inperson');
+    const artofyouCards   = document.querySelectorAll('.svc-artofyou');
+    const clarityLabels   = document.querySelectorAll('.svc-group-clarity');
+    const discoveryLabels = document.querySelectorAll('.svc-group-discovery');
+    const alignflowLabels = document.querySelectorAll('.svc-group-alignflow');
+    const inpersonLabel   = document.querySelector('.svc-group-inperson');
+    const artofyouLabel   = document.querySelector('.svc-group-artofyou');
+    const packsNote       = document.getElementById('alignflow-packs-note');
+
+    const showClarity   = type === 'all' || type === 'clarity';
+    const showDiscovery = type === 'all' || type === 'discovery';
+    const showAlignflow = type === 'all' || type === 'alignflow';
+    const showInperson  = type === 'all' || type === 'inperson';
+    const showArtofyou  = type === 'all' || type === 'artofyou';
+
+    clarityCards.forEach(c   => c.style.display = showClarity   ? '' : 'none');
+    discoveryCards.forEach(c => c.style.display = showDiscovery ? '' : 'none');
+    alignflowCards.forEach(c => c.style.display = showAlignflow ? '' : 'none');
+    inpersonCards.forEach(c  => c.style.display = showInperson  ? '' : 'none');
+    artofyouCards.forEach(c  => c.style.display = showArtofyou  ? '' : 'none');
+    clarityLabels.forEach(l  => l.style.display = showClarity   ? '' : 'none');
+    discoveryLabels.forEach(l => l.style.display = showDiscovery ? '' : 'none');
+    alignflowLabels.forEach(l => l.style.display = showAlignflow ? '' : 'none');
+    if (inpersonLabel) inpersonLabel.style.display = showInperson ? '' : 'none';
+    if (artofyouLabel) artofyouLabel.style.display = showArtofyou ? '' : 'none';
+    if (packsNote) packsNote.style.display = showAlignflow ? '' : 'none';
+
+    // Deselect if hidden card was selected
+    if (selService) {
+      const selCard = document.querySelector('.svc-card.selected');
+      if (selCard && selCard.style.display === 'none') {
+        selCard.classList.remove('selected');
+        selService = null;
+        selServiceType = mapped;
+        document.getElementById('next-1').disabled = true;
+        renderCal();
+        updateAvailHint();
+      }
+    }
+  }
+
+  // ── PROGRAM PAYMENT BUTTONS ──
+  function renderProgPayments() {
+    const fmt = (n) => '$' + n.toLocaleString('en-AU');
+    document.querySelectorAll('.prog-pay-wrapper').forEach(wrapper => {
+      const key = wrapper.dataset.prog;
+      const p   = PROG_PAYMENTS[key];
+      if (!p) return;
+
+      const hasDeposit = !!p.stripeDeposit;
+      const hasFull    = !!(p.stripeFull || p.paypalFull);
+      if (!hasDeposit && !hasFull) return; // no links yet - stay empty
+
+      let html = '<div class="prog-pay-box">';
+
+      // Deposit row - Stripe only
+      if (hasDeposit) {
+        html += '<span class="prog-pay-label">Secure your spot</span>';
+        html += '<div class="prog-pay-row">';
+        html += `<a href="${p.stripeDeposit}" target="_blank" class="prog-pay-btn prog-pay-stripe-dep">`;
+        html += `<svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0"><rect x=".5" y="2" width="10" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M.5 4.5h10" stroke="currentColor" stroke-width="1.1"/></svg>`;
+        html += ` Pay Deposit · ${fmt(p.deposit)} via Stripe</a>`;
+        html += '</div>';
+        if (p.coupon) {
+          html += `<div class="prog-pay-coupon">Have a discount code? Enter <strong>${p.coupon}</strong> at checkout to reduce your deposit to ${fmt(p.couponDeposit)}.</div>`;
+        }
+      }
+
+      // Full payment row - Stripe + PayPal
+      if (hasFull) {
+        if (hasDeposit) html += '<hr class="prog-pay-divider">';
+        html += `<span class="prog-pay-label">Pay in full · ${fmt(p.price)}</span>`;
+        html += '<div class="prog-pay-row">';
+        if (p.stripeFull) {
+          html += `<a href="${p.stripeFull}" target="_blank" class="prog-pay-btn prog-pay-stripe-full">`;
+          html += `<svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0"><rect x=".5" y="2" width="10" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.1"/><path d="M.5 4.5h10" stroke="currentColor" stroke-width="1.1"/></svg>`;
+          html += ` ${fmt(p.price)} via Stripe</a>`;
+        }
+        if (p.paypalFull) {
+          html += `<a href="${p.paypalFull}" target="_blank" class="prog-pay-btn prog-pay-paypal-full">`;
+          html += `<svg width="11" height="11" viewBox="0 0 11 11" fill="none" style="flex-shrink:0"><circle cx="5.5" cy="5.5" r="4.8" stroke="currentColor" stroke-width="1.1"/></svg>`;
+          html += ` ${fmt(p.price)} via PayPal</a>`;
+        }
+        html += '</div>';
+      }
+
+      html += '</div>';
+      wrapper.innerHTML = html;
+    });
+  }
+
+  // ── INIT ──
+  renderCal();
+  renderProgPayments();
+  fetchGcalBlockedDates();
+
+  // ── HASH-BASED ROUTING (tabs + session filters) ──
+  const FILTER_HASHES = new Set(['clarity','discovery','alignflow','inperson','artofyou']);
+
+  function openTabByHash() {
+    const hash = window.location.hash.replace('#','');
+
+    // Tab-level hashes
+    const tabMap = { programs: 'programs', events: 'events', sessions: 'sessions' };
+    if (tabMap[hash]) {
+      const btn = [...document.querySelectorAll('.tab-btn')].find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+tabMap[hash]+"'"));
+      if (btn) { switchTab(tabMap[hash], btn); }
+      return;
+    }
+
+    // Session filter hashes (e.g. #clarity, #discovery, #inperson, #artofyou, #alignflow)
+    if (FILTER_HASHES.has(hash)) {
+      // Make sure we're on the sessions tab
+      const sessBtn = [...document.querySelectorAll('.tab-btn')].find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes("'sessions'"));
+      if (sessBtn) switchTab('sessions', sessBtn);
+
+      // Activate the matching filter button
+      const filterBtn = [...document.querySelectorAll('.filter-btn')].find(b => {
+        const oc = b.getAttribute('onclick') || '';
+        return oc.includes("'" + hash + "'");
+      });
+      if (filterBtn) filterSessions(hash, filterBtn, true); // skipHash=true to avoid loop
+    }
+  }
+  openTabByHash();
+  window.addEventListener('hashchange', openTabByHash);
+  // load blocked dates from Google Calendar (if configured)
+</script>
+</body>
+</html>

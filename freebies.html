@@ -1,0 +1,331 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Resources - Energy with Jess</title>
+<meta name="description" content="Free downloads from Jess Hollamby - practical cheat sheets for working with your chakras and nervous system. Gifts from me to you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─── FREEBIES PAGE SPECIFIC ─── */
+
+.freebies-intro {
+  padding: 110px 0 80px;
+  text-align: center;
+}
+.freebies-intro p {
+  font-size: 16px;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.9;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.freebies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  padding-bottom: 110px;
+}
+
+.freebie-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.08);
+  border-radius: 20px;
+  padding: 48px 40px;
+  text-align: center;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.freebie-card:hover {
+  border-color: rgba(191,66,136,0.25);
+  transform: translateY(-4px);
+}
+
+.freebie-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(191,66,136,0.08);
+  border: 1px solid rgba(191,66,136,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 24px;
+}
+
+.freebie-card h3 {
+  font-family: var(--h);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.freebie-card p {
+  font-size: 15px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.85;
+  margin-bottom: 32px;
+  flex-grow: 1;
+}
+
+.freebie-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(242,193,78,0.25);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 20px;
+}
+
+/* ─── OPT-IN FORM ─── */
+.freebie-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+.freebie-form input {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(250,247,242,0.05);
+  border: 1px solid rgba(250,247,242,0.12);
+  border-radius: 10px;
+  color: var(--cream);
+  font-family: var(--b);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+.freebie-form input::placeholder { color: rgba(250,247,242,0.3); }
+.freebie-form input:focus { border-color: rgba(191,66,136,0.5); }
+.freebie-form button {
+  width: 100%;
+  margin-top: 4px;
+}
+.freebie-success {
+  display: none;
+  text-align: center;
+  padding: 18px 0 6px;
+}
+.freebie-success p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.7);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.freebie-success strong {
+  display: block;
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+
+/* note below grid */
+.freebies-note {
+  padding: 0 0 100px;
+  text-align: center;
+}
+.freebies-note p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.35);
+  line-height: 1.8;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.cta-bg::after { background: rgba(21,37,42,0.68) !important; }
+
+@media (max-width: 680px) {
+  .freebies-intro { padding: 80px 0 60px; }
+  .freebies-grid { grid-template-columns: 1fr; padding-bottom: 80px; }
+  .freebie-card { padding: 40px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"     onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html"   onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="vibe-crystals.jpg" alt="Free Resources" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <h1>Free <em>Resources</em></h1>
+    <p class="page-hero-sub">Little gifts to support you. Download, save, and come back to them whenever you need.</p>
+  </div>
+</section>
+
+<!-- ─── INTRO ─── -->
+<section class="freebies-intro">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">From Me to You</span>
+      <h2 class="section-title">Tools you can <em>actually use</em></h2>
+      <p>These cheat sheets are designed to be simple, practical, and something you reach for in the moment - not something that lives in a folder you never open.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FREEBIES GRID ─── -->
+<section style="background: var(--mid); padding-top: 20px;">
+  <div class="container">
+    <div class="freebies-grid">
+
+      <div class="freebie-card reveal d1">
+        <div class="freebie-icon">✦</div>
+        <span class="freebie-tag">Free Download</span>
+        <h3>Chakra Cheat Sheet</h3>
+        <p>A practical, at-a-glance guide to all seven chakras - what they govern, how to know when they're off balance, and simple ways to work with each one.</p>
+        <form class="freebie-form" id="form-chakra">
+          <input type="text" name="firstName" placeholder="First name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <button type="submit" class="btn btn-primary">Send it to me</button>
+        </form>
+        <div class="freebie-success" id="success-chakra">
+          <strong>On its way ✦</strong>
+          <p>Check your inbox - your Chakra Cheat Sheet is heading to you now.</p>
+        </div>
+      </div>
+
+      <div class="freebie-card reveal d2">
+        <div class="freebie-icon">🌿</div>
+        <span class="freebie-tag">Free Download</span>
+        <h3>Nervous System Cheat Sheet</h3>
+        <p>A clear, grounded guide to understanding your nervous system - the states, the signs, and gentle tools to support regulation when things feel like too much.</p>
+        <form class="freebie-form" id="form-ns">
+          <input type="text" name="firstName" placeholder="First name" required />
+          <input type="email" name="email" placeholder="Email address" required />
+          <button type="submit" class="btn btn-primary">Send it to me</button>
+        </form>
+        <div class="freebie-success" id="success-ns">
+          <strong>On its way 🌿</strong>
+          <p>Check your inbox - your Nervous System Cheat Sheet is heading to you now.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="freebies-note reveal">
+      <p>More resources on the way. If there's something specific you'd love to see, <a href="connect.html" style="color: var(--rose); text-decoration: none;">send me a message.</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="hero.jpg" alt="Jess Hollamby" />
+  </div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Ready to go deeper? <em>I'm here.</em></h2>
+    <p>The cheat sheets are a starting point. When you're ready for the real work, let's do it together.</p>
+    <a href="booking.html#clarity" class="btn btn-primary">Book a Session</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── FREEBIE OPT-IN FORMS ───
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+function handleFreebieSubmit(formId, successId, typeCode, pdfPath) {
+  const form      = document.getElementById(formId);
+  const btn       = form.querySelector('button');
+  const firstName = form.querySelector('[name="firstName"]').value.trim();
+  const email     = form.querySelector('[name="email"]').value.trim();
+
+  btn.textContent = 'Sending...';
+  btn.disabled    = true;
+
+  // Fire CRM webhook (no-cors - can't read response, that's fine)
+  fetch(WEBHOOK_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ formType: 'freebie-optin', firstName, email, typeCode }),
+  }).catch(() => {});
+
+  // Show success
+  form.style.display = 'none';
+  document.getElementById(successId).style.display = 'block';
+}
+
+document.getElementById('form-chakra').addEventListener('submit', e => {
+  e.preventDefault();
+  handleFreebieSubmit('form-chakra', 'success-chakra', 'CC', 'Chakra Cheatsheet.pdf');
+});
+
+document.getElementById('form-ns').addEventListener('submit', e => {
+  e.preventDefault();
+  handleFreebieSubmit('form-ns', 'success-ns', 'NS', 'Nervous System Cheatsheet.pdf');
+});
+</script>
+</body>
+</html>

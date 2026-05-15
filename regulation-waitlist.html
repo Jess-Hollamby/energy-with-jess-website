@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulation Bundle Waitlist - Energy with Jess</title>
+<meta name="description" content="Join the waitlist for the Regulation Bundle - Emotional Regulation and Nervous System Regulation programs. Waitlist members get 48-hour early access when the doors open in November 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+.waitlist-hero {
+  padding: 120px 0 80px;
+  text-align: center;
+}
+
+.waitlist-hero .eyebrow {
+  font-family: 'Belleza', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #bf4288;
+  margin-bottom: 20px;
+}
+
+.waitlist-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 300;
+  color: #FAF7F2;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.waitlist-hero h1 em {
+  font-style: italic;
+  color: #bf4288;
+}
+
+.waitlist-hero .lead {
+  font-family: 'Belleza', sans-serif;
+  font-size: 17px;
+  color: rgba(250,247,242,0.7);
+  line-height: 1.85;
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+
+/* Programs row */
+.programs-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.program-pill {
+  background: rgba(250,247,242,0.04);
+  border: 1px solid rgba(250,247,242,0.1);
+  border-radius: 12px;
+  padding: 18px 28px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.program-pill .program-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #FAF7F2;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.program-pill .program-detail {
+  font-family: 'Belleza', sans-serif;
+  font-size: 12px;
+  color: rgba(250,247,242,0.5);
+  display: block;
+}
+
+.program-pill .program-price {
+  font-family: 'Belleza', sans-serif;
+  font-size: 14px;
+  color: #bf4288;
+  display: block;
+  margin-top: 6px;
+}
+
+/* Opt-in form card */
+.waitlist-card {
+  max-width: 520px;
+  margin: 0 auto;
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.08);
+  border-radius: 20px;
+  padding: 52px 48px;
+  text-align: center;
+}
+
+.waitlist-card h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #FAF7F2;
+  margin-bottom: 10px;
+}
+
+.waitlist-card .card-sub {
+  font-family: 'Belleza', sans-serif;
+  font-size: 14px;
+  color: rgba(250,247,242,0.55);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.form-field {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-field label {
+  display: block;
+  font-family: 'Belleza', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.5);
+  margin-bottom: 8px;
+}
+
+.form-field input {
+  width: 100%;
+  background: rgba(250,247,242,0.05);
+  border: 1px solid rgba(250,247,242,0.12);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 15px;
+  color: #FAF7F2;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-field input::placeholder {
+  color: rgba(250,247,242,0.25);
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: rgba(191,66,136,0.45);
+}
+
+.form-field select {
+  width: 100%;
+  background: rgba(250,247,242,0.05);
+  border: 1px solid rgba(250,247,242,0.12);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 15px;
+  color: #FAF7F2;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  appearance: none;
+  cursor: pointer;
+}
+
+.form-field select:focus {
+  outline: none;
+  border-color: rgba(191,66,136,0.45);
+}
+
+.form-field select option {
+  background: #1E2E32;
+  color: #FAF7F2;
+}
+
+.waitlist-submit {
+  width: 100%;
+  background: #bf4288;
+  color: #FAF7F2;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 28px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.waitlist-submit:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.waitlist-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.consent-note {
+  font-family: 'Belleza', sans-serif;
+  font-size: 12px;
+  color: rgba(250,247,242,0.35);
+  margin-top: 18px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Success state */
+.success-message {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-message .tick {
+  font-size: 36px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.success-message h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: #FAF7F2;
+  margin-bottom: 12px;
+}
+
+.success-message p {
+  font-family: 'Belleza', sans-serif;
+  font-size: 15px;
+  color: rgba(250,247,242,0.65);
+  line-height: 1.8;
+}
+
+/* What waitlist gets */
+.waitlist-perks {
+  padding: 80px 0 100px;
+  text-align: center;
+}
+
+.waitlist-perks h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 300;
+  color: #FAF7F2;
+  margin-bottom: 48px;
+}
+
+.perks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.perk-item {
+  display: flex;
+  gap: 20px;
+  text-align: left;
+  align-items: flex-start;
+}
+
+.perk-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #bf4288;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.perk-text {
+  font-family: 'Belleza', sans-serif;
+  font-size: 16px;
+  color: rgba(250,247,242,0.75);
+  line-height: 1.7;
+}
+
+/* Error message */
+.form-error {
+  display: none;
+  font-family: 'Belleza', sans-serif;
+  font-size: 13px;
+  color: #bf4288;
+  margin-top: 12px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .waitlist-card {
+    padding: 40px 28px;
+  }
+  .programs-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .program-pill {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="freebies.html">Free Resources</a>
+      <a href="energy-with-jess-booking.html" class="nav-cta">Book a Session</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="waitlist-hero">
+  <div class="container">
+    <p class="eyebrow">Opening November 2026</p>
+    <h1>Your body is<br><em>already speaking.</em><br>Are you listening?</h1>
+    <p class="lead">Two self-paced programs designed to work together. One to understand your emotions. One to work with the body that holds them.</p>
+
+    <div class="programs-row">
+      <div class="program-pill">
+        <span class="program-name">Emotional Regulation</span>
+        <span class="program-detail">6 weeks · Self-paced</span>
+        <span class="program-price">$333</span>
+      </div>
+      <div class="program-pill">
+        <span class="program-name">Nervous System Regulation</span>
+        <span class="program-detail">12 weeks · Self-paced</span>
+        <span class="program-price">$777</span>
+      </div>
+      <div class="program-pill">
+        <span class="program-name">Full Regulation</span>
+        <span class="program-detail">18 weeks · Both programs</span>
+        <span class="program-price">$999</span>
+      </div>
+    </div>
+
+    <div class="waitlist-card">
+      <!-- Form state -->
+      <div id="formState">
+        <h2>Join the waitlist</h2>
+        <p class="card-sub">Waitlist members get early access 48 hours before the public doors open.</p>
+
+        <form id="waitlistForm" novalidate>
+          <div class="form-field">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-field">
+            <label for="programInterest">Which program interests you?</label>
+            <select id="programInterest" name="programInterest">
+              <option value="" disabled selected>Choose one...</option>
+              <option value="Emotional Regulation">Emotional Regulation - $333</option>
+              <option value="Nervous System Regulation">Nervous System Regulation - $777</option>
+              <option value="Regulation Bundle">Full Regulation Bundle - $999</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </div>
+          <button type="submit" class="waitlist-submit" id="submitBtn">Join the waitlist</button>
+          <p class="form-error" id="formError">Something went wrong. Please try again or email energywjess@gmail.com</p>
+          <p class="consent-note">By joining you agree to receive emails about the Regulation programs. No spam, ever. Unsubscribe any time.</p>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-message" id="successState">
+        <span class="tick">✦</span>
+        <h3>You're on the list.</h3>
+        <p>Check your inbox - there's a note from me waiting for you.<br>I'll be in touch with some teaching before the doors open.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET ON THE WAITLIST -->
+<section class="waitlist-perks">
+  <div class="container">
+    <h2>What being on the waitlist means</h2>
+    <ul class="perks-list">
+      <li class="perk-item">
+        <span class="perk-dot"></span>
+        <span class="perk-text">You'll get 48-hour early access before the public doors open - first to decide, no rushing.</span>
+      </li>
+      <li class="perk-item">
+        <span class="perk-dot"></span>
+        <span class="perk-text">You'll hear from me a couple of times before launch with teaching and context about the work inside these programs.</span>
+      </li>
+      <li class="perk-item">
+        <span class="perk-dot"></span>
+        <span class="perk-text">I'll send you the link directly when the doors open. No hunting, no missing it.</span>
+      </li>
+      <li class="perk-item">
+        <span class="perk-dot"></span>
+        <span class="perk-text">You can reply to any email and I read every one.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p class="footer-name">Energy with Jess</p>
+    <p class="footer-tagline">Where your sensitivity IS your superpower</p>
+    <p class="footer-contact"><a href="mailto:energywjess@gmail.com">energywjess@gmail.com</a></p>
+    <p class="footer-legal">Adelaide, South Australia &nbsp;·&nbsp; © 2026 Energy with Jess</p>
+  </div>
+</footer>
+
+<script>
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+const form      = document.getElementById('waitlistForm');
+const submitBtn = document.getElementById('submitBtn');
+const formError = document.getElementById('formError');
+const formState = document.getElementById('formState');
+const successState = document.getElementById('successState');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  formError.style.display = 'none';
+
+  const firstName       = document.getElementById('firstName').value.trim();
+  const email           = document.getElementById('email').value.trim();
+  const programInterest = document.getElementById('programInterest').value;
+
+  if (!firstName || !email) {
+    formError.textContent = 'Please fill in both fields.';
+    formError.style.display = 'block';
+    return;
+  }
+
+  submitBtn.disabled    = true;
+  submitBtn.textContent = 'Joining...';
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formType:        'regulation-waitlist-signup',
+        firstName:       firstName,
+        lastName:        '',
+        email:           email,
+        programInterest: programInterest,
+      })
+    });
+
+    // no-cors means we can't read the response, so assume success
+    formState.style.display    = 'none';
+    successState.style.display = 'block';
+
+  } catch (err) {
+    submitBtn.disabled    = false;
+    submitBtn.textContent = 'Join the waitlist';
+    formError.textContent = 'Something went wrong. Please try again or email energywjess@gmail.com';
+    formError.style.display = 'block';
+  }
+});
+
+// Nav scroll behaviour
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile nav toggle
+const hamburger = document.getElementById('navHamburger');
+const navLinks  = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  hamburger.classList.toggle('open');
+});
+</script>
+</body>
+</html>

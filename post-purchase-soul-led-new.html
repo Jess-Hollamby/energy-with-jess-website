@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post-Purchase Intake — Soul-Led Business | Energy with Jess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:   #FAF6F1;
+      --accent:  #9B8DB8;
+      --accent-l:#C4BAD8;
+      --accent-d:#7A6D9A;
+      --brown:   #3A2E2E;
+      --mid:     #6B5757;
+      --border:  #E0D3C8;
+      --white:   #FFFFFF;
+      --shadow:  rgba(58,46,46,0.08);
+    }
+    body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--brown); min-height:100vh; font-weight:300; line-height:1.7; }
+    .page-wrap { max-width:620px; margin:0 auto; padding:0 24px 80px; }
+    .form-header { text-align:center; padding:64px 0 48px; }
+    .eyebrow { font-size:10px; letter-spacing:3.5px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .form-header h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,5vw,2.8rem); font-weight:300; line-height:1.15; color:var(--brown); margin-bottom:12px; }
+    .form-header h1 em { font-style:italic; color:var(--accent); }
+    .service-tag { display:inline-block; font-size:0.68rem; letter-spacing:2.5px; text-transform:uppercase; color:var(--mid); border:1px solid var(--border); padding:5px 16px; border-radius:20px; margin-bottom:22px; }
+    .intro-text { max-width:460px; margin:0 auto; font-size:0.9rem; color:var(--mid); line-height:1.85; }
+    .form-card { background:var(--white); border:1.5px solid var(--border); border-radius:16px; padding:48px 40px; box-shadow:0 4px 24px var(--shadow); }
+    @media(max-width:480px){ .form-card { padding:32px 20px; } }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+    @media(max-width:480px){ .field-row { grid-template-columns:1fr; } }
+    .field { display:flex; flex-direction:column; gap:8px; margin-bottom:28px; }
+    .field:last-of-type { margin-bottom:0; }
+    label.field-label { font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--mid); font-weight:400; }
+    .field-note { font-size:0.78rem; color:var(--mid); opacity:0.75; font-style:italic; margin-top:-2px; }
+    input[type="text"], input[type="email"], textarea { font-family:'Jost',sans-serif; font-weight:300; font-size:0.93rem; color:var(--brown); background:var(--cream); border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; width:100%; outline:none; transition:border-color 0.2s; resize:vertical; }
+    input:focus, textarea:focus { border-color:var(--accent); }
+    textarea { min-height:96px; }
+    .divider { height:1px; background:var(--border); margin:32px 0; }
+    .section-head { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+    .btn-submit { width:100%; margin-top:36px; padding:16px 32px; background:var(--accent); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:400; letter-spacing:2.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, opacity 0.2s; }
+    .btn-submit:hover { background:var(--accent-d); }
+    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
+    .ty-wrap { text-align:center; padding:80px 24px; display:none; }
+    .ty-icon { font-size:2.8rem; margin-bottom:24px; }
+    .ty-wrap h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,4vw,2.5rem); font-weight:300; color:var(--brown); margin-bottom:16px; line-height:1.2; }
+    .ty-wrap h2 em { font-style:italic; color:var(--accent); }
+    .ty-wrap p { font-size:0.92rem; color:var(--mid); max-width:400px; margin:0 auto 10px; line-height:1.85; }
+    .ty-sig { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--accent); margin-top:20px; }
+    .page-footer { text-align:center; padding:40px 0 0; font-size:0.72rem; color:var(--mid); letter-spacing:1px; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="form-header">
+    <p class="eyebrow">Energy with Jess</p>
+    <h1>Welcome, <em>let's begin</em></h1>
+    <p class="service-tag">Soul-Led Business - Building from Scratch</p>
+    <p class="intro-text">You're in. This intake helps me understand the vision you're carrying and where we're building from. Take your time - the more you share here, the more aligned our work will be from the start.</p>
+  </header>
+
+  <div id="form-section">
+    <div class="form-card">
+      <form id="ppForm" novalidate>
+
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="firstName">First name</label>
+            <input type="text" id="firstName" placeholder="Your first name" required />
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- The Vision -->
+        <p class="section-head">The Vision</p>
+
+        <div class="field">
+          <label class="field-label">What do you want to create?</label>
+          <p class="field-note">Describe your business idea in as much detail as you have right now - what it is, what it does, what it feels like to be in it</p>
+          <textarea id="q1" rows="5"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Who is this for?</label>
+          <p class="field-note">Who is your ideal client or customer - who are you most called to serve and why</p>
+          <textarea id="q2" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What problem does your business solve - or what transformation does it create?</label>
+          <textarea id="q3" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What does success look like for you in this business - in 12 months, and in 5 years?</label>
+          <p class="field-note">Think beyond revenue - how do you spend your time, what does your life look like around it, how does it feel</p>
+          <textarea id="q4" rows="5"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Feel and Philosophy -->
+        <p class="section-head">The Feel and Philosophy</p>
+
+        <div class="field">
+          <label class="field-label">What is the energy or feeling you want your business to carry?</label>
+          <p class="field-note">When someone lands on your page or reads your words - what do you want them to feel</p>
+          <textarea id="q5" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Where does your business sit on the spectrum from mainstream to spiritual?</label>
+          <p class="field-note">Conventional with a heart-led approach, openly spiritual, somewhere in between - and how important is that distinction to you</p>
+          <textarea id="q6" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What is your philosophy on what you do and how you do it?</label>
+          <p class="field-note">What you believe about your work, your clients, and the way change happens - what principles will guide every decision you make</p>
+          <textarea id="q7" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Do you have a vision statement - or can you describe what one might look like for you?</label>
+          <p class="field-note">The future you're building toward - the world as it looks when your work is doing what it's meant to do</p>
+          <textarea id="q8" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Do you have a mission statement - or can you describe what one might look like for you?</label>
+          <p class="field-note">What you do, who you do it for, and why - the day to day purpose that drives the vision</p>
+          <textarea id="q9" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What are your core values - personally and for the business?</label>
+          <p class="field-note">List as many as feel true. These become the filter for every decision - who you work with, how you price, what you say yes and no to</p>
+          <textarea id="q10" rows="4"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Sustainability and the Plan -->
+        <p class="section-head">Sustainability and the Plan</p>
+
+        <div class="field">
+          <label class="field-label">What does a sustainable business look like for you?</label>
+          <p class="field-note">Revenue targets, hours worked, type of work, number of clients - what does thriving actually look like day to day</p>
+          <textarea id="q11" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What offers, products or services do you think you want to create?</label>
+          <p class="field-note">Even rough ideas are useful - we can shape them together</p>
+          <textarea id="q12" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Do you have a sense of how you want to be paid for your work?</label>
+          <p class="field-note">1:1 sessions, packages, group offerings, digital products, a mix - and do you have any sense of pricing yet</p>
+          <textarea id="q13" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Are there any financial, personal or logistical constraints I should be aware of?</label>
+          <p class="field-note">Budget, time available, family or life commitments, how long you can sustain building before you need revenue - anything that shapes what's realistic right now</p>
+          <textarea id="q14" rows="4"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Brand and Aesthetic -->
+        <p class="section-head">Brand and Aesthetic</p>
+
+        <div class="field">
+          <label class="field-label">Do you have any colours in mind for your brand - or colours that feel like you?</label>
+          <p class="field-note">Hex codes if you have them, or just descriptions - warm, cool, earthy, bold, soft, dark</p>
+          <textarea id="q15" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Do you have any fonts in mind - or a sense of the typography feel you want?</label>
+          <p class="field-note">Elegant and serif, modern and clean, handwritten and organic - or share examples of fonts you love</p>
+          <textarea id="q16" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Are there any businesses, brands or people whose aesthetic or energy you admire?</label>
+          <p class="field-note">Not to copy - but as a reference point for what resonates with you visually and energetically</p>
+          <textarea id="q17" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Do you have a business name in mind - or is that something we're figuring out together?</label>
+          <textarea id="q18" rows="2"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Further Training and Qualifications -->
+        <p class="section-head">Further Training and Qualifications</p>
+
+        <div class="field">
+          <label class="field-label">What qualifications, skills or experience do you currently bring to this?</label>
+          <p class="field-note">Formal or informal - anything that's relevant to what you're building</p>
+          <textarea id="q19" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Are there areas where you feel you need further training or education?</label>
+          <p class="field-note">Or are you building from what you already have</p>
+          <textarea id="q20" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Anything else you want me to know before we begin?</label>
+          <textarea id="q21" placeholder="No pressure - anything at all..." rows="3"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Client Profile -->
+        <p class="section-head">Client Profile</p>
+
+        <div class="field">
+          <label class="field-label">What is your why?</label>
+          <p class="field-note">The deeper reason behind what you do - what drives you, what gets you out of bed, what would make all of this worth it</p>
+          <textarea id="cp1" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Tell me about you</label>
+          <p class="field-note">Age, family situation, what you do for work, hobbies and interests, how you socialise, how you use social media - as much or as little as you want to share</p>
+          <textarea id="cp2" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What are your biggest pain points right now?</label>
+          <p class="field-note">The problems, frustrations or struggles that brought you here - in business and in life if both feel relevant</p>
+          <textarea id="cp3" rows="4"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">How did you find me or hear about what I do?</label>
+          <p class="field-note">Word of mouth, social media, website, a specific post - as specific as you can remember</p>
+          <textarea id="cp4" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What words, phrases or language do you connect with and use yourself?</label>
+          <p class="field-note">The words that feel like you - these help me communicate with you in a way that actually lands</p>
+          <textarea id="cp5" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What words, phrases or language do you dislike or want me to avoid?</label>
+          <p class="field-note">Anything that feels off, cringey, overused or just not you</p>
+          <textarea id="cp6" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Send to Jess</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ty-wrap" id="thankyou">
+    <div class="ty-icon">🌱</div>
+    <h2>Thank you, <em id="ty-name">lovely</em>.</h2>
+    <p>I'll read this carefully before we begin.</p>
+    <p>I'm so glad you're here.</p>
+    <p class="ty-sig">Jess x</p>
+  </div>
+
+  <footer class="page-footer"><p>energywithjess.com.au</p></footer>
+</div>
+
+<script>
+  const CRM_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+  document.getElementById('ppForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const firstName = document.getElementById('firstName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    if (!firstName || !email) { alert('Please add your name and email so I know who this is from.'); return; }
+
+    const data = {
+      formType:      'post-purchase-intake',
+      service:       'Soul-Led Business (Building from Scratch)',
+      firstName,     email,
+      vision:        document.getElementById('q1').value.trim(),
+      whoFor:        document.getElementById('q2').value.trim(),
+      problem:       document.getElementById('q3').value.trim(),
+      success:       document.getElementById('q4').value.trim(),
+      energy:        document.getElementById('q5').value.trim(),
+      spectrum:      document.getElementById('q6').value.trim(),
+      philosophy:    document.getElementById('q7').value.trim(),
+      visionStmt:    document.getElementById('q8').value.trim(),
+      missionStmt:   document.getElementById('q9').value.trim(),
+      values:        document.getElementById('q10').value.trim(),
+      sustainable:   document.getElementById('q11').value.trim(),
+      offers:        document.getElementById('q12').value.trim(),
+      payment:       document.getElementById('q13').value.trim(),
+      constraints:   document.getElementById('q14').value.trim(),
+      colours:       document.getElementById('q15').value.trim(),
+      fonts:         document.getElementById('q16').value.trim(),
+      inspiration:   document.getElementById('q17').value.trim(),
+      bizName:       document.getElementById('q18').value.trim(),
+      qualifications:document.getElementById('q19').value.trim(),
+      training:      document.getElementById('q20').value.trim(),
+      anythingelse:  document.getElementById('q21').value.trim(),
+      why:           document.getElementById('cp1').value.trim(),
+      aboutyou:      document.getElementById('cp2').value.trim(),
+      painpoints:    document.getElementById('cp3').value.trim(),
+      howfound:      document.getElementById('cp4').value.trim(),
+      languagelikes: document.getElementById('cp5').value.trim(),
+      languageavoid: document.getElementById('cp6').value.trim(),
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    fetch(CRM_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }).catch(()=>{});
+
+    setTimeout(() => {
+      document.getElementById('form-section').style.display = 'none';
+      const ty = document.getElementById('thankyou');
+      ty.style.display = 'block';
+      document.getElementById('ty-name').textContent = firstName;
+    }, 600);
+  });
+</script>
+</body>
+</html>

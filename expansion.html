@@ -1,0 +1,873 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expansion - Energy with Jess</title>
+<meta name="description" content="Align + Flow sessions, soul-led business packs, and Soul Support mentoring with Jess Hollamby. Goal setting, business planning, emotional regulation and long-term 1:1 support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── AUDIENCE SWITCHER ── */
+.audience-bar {
+  background: var(--mid);
+  border-bottom: 1px solid rgba(250,247,242,0.06);
+  position: sticky;
+  top: 72px;
+  z-index: 80;
+}
+.audience-bar-inner {
+  display: flex;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.audience-tab {
+  padding: 18px 32px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(250,247,242,0.38);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+  white-space: nowrap;
+}
+.audience-tab:hover { color: rgba(250,247,242,0.7); }
+.audience-tab.active { color: var(--rose); border-bottom-color: var(--rose); }
+
+/* ── SECTION INTRO ── */
+.exp-intro { padding: 100px 0 60px; }
+.exp-intro p { font-size: 15.5px; color: rgba(250,247,242,0.68); line-height: 1.88; margin-bottom: 18px; max-width: 680px; }
+.exp-intro p strong { color: var(--cream); }
+.exp-divider { border: none; height: 1px; background: rgba(250,247,242,0.06); margin: 80px 0 0; }
+
+/* ── SECTION LABEL BAND ── */
+.section-band { padding: 60px 0 0; }
+.section-band-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(250,247,242,0.06);
+  flex-wrap: wrap;
+}
+.section-band-inner h2 { margin: 0; }
+.section-band-sub { font-size: 14.5px; color: rgba(250,247,242,0.45); max-width: 360px; line-height: 1.7; }
+
+/* ── SESSIONS COMBINED CARD ── */
+.sessions-combined {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 20px;
+  padding: 44px 48px;
+  margin-top: 48px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+.sessions-combined::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.sessions-combined:hover { border-color: rgba(191,66,136,0.18); }
+.sessions-combined:hover::after { transform: scaleX(1); }
+.sessions-combined-price { font-family: var(--h); font-size: 36px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.sessions-combined-dur { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 22px; }
+.sessions-combined h3 { font-family: var(--h); font-size: 32px; font-weight: 400; color: var(--cream); margin-bottom: 16px; }
+.sessions-combined p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.82; margin-bottom: 28px; }
+.sessions-combined-note { font-size: 13px; color: rgba(250,247,242,0.35); margin-top: 16px; }
+.session-type-pills { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 40px; }
+.session-type-pill {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.session-type-pill:hover { border-color: rgba(191,66,136,0.2); background: rgba(191,66,136,0.03); }
+.session-type-pill-num { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 12px; }
+.session-type-pill-name { font-family: var(--h); font-size: 24px; font-weight: 400; color: var(--cream); margin-bottom: 8px; line-height: 1.1; }
+.session-type-pill-desc { font-size: 13.5px; color: rgba(250,247,242,0.55); line-height: 1.68; margin-bottom: 16px; }
+.session-type-pill-resonates { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 20px; flex: 1; }
+.session-type-pill-resonates li { font-size: 12.5px; color: rgba(250,247,242,0.38); line-height: 1.55; display: flex; gap: 8px; align-items: flex-start; }
+.session-type-pill-resonates li::before { content: '—'; color: var(--rose); opacity: 0.6; flex-shrink: 0; }
+
+/* ── PACKS ── */
+.packs-section { padding: 80px 0 80px; }
+.packs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+.pack-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 18px;
+  padding: 44px 36px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+.pack-card:hover { border-color: rgba(242,193,78,0.2); transform: translateY(-4px); }
+.pack-card.featured { border-color: rgba(242,193,78,0.15); background: rgba(242,193,78,0.03); }
+.pack-price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+.pack-price { font-family: var(--h); font-size: 38px; font-weight: 300; color: var(--gold); line-height: 1; }
+.pack-price-alt { font-family: var(--h); font-size: 22px; font-weight: 300; color: rgba(242,193,78,0.6); }
+.pack-sessions { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 20px; }
+.pack-card h3 { font-family: var(--h); font-size: 26px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.pack-hooks { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+.pack-hooks li { font-size: 13.5px; color: rgba(250,247,242,0.5); line-height: 1.6; display: flex; gap: 8px; align-items: flex-start; }
+.pack-hooks li::before { content: ''; width: 5px; height: 5px; background: var(--rose); transform: rotate(45deg); flex-shrink: 0; margin-top: 6px; }
+.pack-desc { font-size: 14.5px; color: rgba(250,247,242,0.62); line-height: 1.82; margin-bottom: 18px; flex: 1; }
+.pack-includes { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; padding-top: 18px; border-top: 1px solid rgba(250,247,242,0.06); }
+.pack-includes li { font-size: 13.5px; color: rgba(250,247,242,0.5); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
+.pack-includes li::before { content: ''; width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; margin-top: 6px; }
+
+/* Soul-Led Business - single full-width card with 2 options */
+.slb-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(242,193,78,0.15);
+  background: rgba(242,193,78,0.02);
+  border-radius: 20px;
+  padding: 52px 48px;
+  margin-top: 48px;
+  margin-bottom: 80px;
+}
+.slb-card h3 { font-family: var(--h); font-size: 30px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.slb-card > p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.82; margin-bottom: 32px; max-width: 700px; }
+.slb-options { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+.slb-option {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.08);
+  border-radius: 14px;
+  padding: 28px 28px;
+  transition: border-color 0.3s ease;
+}
+.slb-option:hover { border-color: rgba(242,193,78,0.25); }
+.slb-option-price { font-family: var(--h); font-size: 36px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.slb-option-sessions { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 14px; }
+.slb-option h4 { font-family: var(--h); font-size: 20px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+.slb-option p { font-size: 13.5px; color: rgba(250,247,242,0.5); line-height: 1.65; }
+.slb-includes { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.slb-includes li { font-size: 13px; color: rgba(250,247,242,0.5); display: flex; gap: 8px; align-items: center; }
+.slb-includes li::before { content: ''; width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+/* ── MENTORING PATHS ── */
+.mentoring-section { padding: 60px 0 100px; }
+.mentoring-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 48px;
+}
+.mentoring-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 16px;
+  padding: 38px 32px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+.mentoring-card:hover { border-color: rgba(196,176,212,0.25); transform: translateY(-4px); }
+.mentoring-duration { font-family: var(--h); font-size: 20px; font-weight: 300; color: var(--lavender); margin-bottom: 4px; }
+.mentoring-card h3 { font-family: var(--h); font-size: 26px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.mentoring-card p { font-size: 14.5px; color: rgba(250,247,242,0.6); line-height: 1.82; margin-bottom: 14px; flex: 1; }
+.mentoring-tracks { display: flex; flex-direction: column; gap: 10px; margin: 10px 0 20px; }
+.mentoring-track { background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 10px; padding: 14px 18px; }
+.mentoring-track-title { font-family: var(--h); font-size: 16px; font-weight: 400; color: var(--cream); margin-bottom: 4px; }
+.mentoring-track-desc { font-size: 13px; color: rgba(250,247,242,0.45); line-height: 1.6; }
+
+/* ── SIGNATURE PROGRAMS ── */
+.signature-section { padding: 80px 0; background: var(--mid); }
+.signature-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
+.sig-card { border-radius: 18px; padding: 48px 40px; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+.sig-card.ub { background: rgba(191,66,136,0.06); border: 1px solid rgba(191,66,136,0.15); }
+.sig-card.dark { background: rgba(250,247,242,0.02); border: 1px solid rgba(250,247,242,0.06); opacity: 0.75; }
+.sig-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 12px; }
+.sig-card h3 { font-family: var(--h); font-size: 30px; font-weight: 300; color: var(--cream); line-height: 1.2; margin-bottom: 14px; }
+.sig-card h3 em { font-style: italic; color: var(--rose); }
+.sig-card p { font-size: 14.5px; color: rgba(250,247,242,0.6); line-height: 1.82; margin-bottom: 24px; flex: 1; }
+.sig-coming { display: inline-block; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,247,242,0.35); background: rgba(250,247,242,0.04); border: 1px solid rgba(250,247,242,0.08); padding: 6px 14px; border-radius: 50px; margin-bottom: 24px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,31,35,0.88);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #14282e;
+  border: 1px solid rgba(250,247,242,0.1);
+  border-radius: 20px;
+  padding: 48px 44px;
+  max-width: 560px;
+  width: 100%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: none;
+  border: none;
+  color: rgba(250,247,242,0.4);
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--cream); }
+.modal-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.modal-title { font-family: var(--h); font-size: 28px; font-weight: 300; color: var(--cream); margin-bottom: 8px; }
+.modal-sub { font-size: 14px; color: rgba(250,247,242,0.45); margin-bottom: 32px; line-height: 1.7; }
+.mfield { margin-bottom: 20px; }
+.mfield label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(250,247,242,0.5); margin-bottom: 8px; }
+.mfield input,
+.mfield select,
+.mfield textarea {
+  width: 100%;
+  background: rgba(250,247,242,0.05);
+  border: 1px solid rgba(250,247,242,0.1);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-family: var(--b);
+  font-size: 14px;
+  color: var(--cream);
+  transition: border-color 0.25s;
+  box-sizing: border-box;
+  appearance: none;
+}
+.mfield input:focus,
+.mfield select:focus,
+.mfield textarea:focus { outline: none; border-color: rgba(242,193,78,0.4); }
+.mfield select option { background: #14282e; color: var(--cream); }
+.mfield textarea { min-height: 100px; resize: vertical; }
+.modal-submit {
+  width: 100%;
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 24px;
+  font-family: var(--b);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.25s;
+  letter-spacing: 0.04em;
+}
+.modal-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+.modal-success { display: none; text-align: center; padding: 24px 0; }
+.modal-success p { font-family: var(--h); font-size: 22px; color: var(--cream); margin-bottom: 8px; }
+.modal-success span { font-size: 14px; color: rgba(250,247,242,0.5); }
+.modal-consent { font-size: 12px; color: rgba(250,247,242,0.35); line-height: 1.6; margin-top: 16px; }
+
+.cta-bg::after { background: rgba(21,37,42,0.55) !important; }
+
+@media (max-width: 900px) {
+  .session-type-pills { grid-template-columns: 1fr; }
+  .slb-options { grid-template-columns: 1fr; }
+  .packs-grid { grid-template-columns: 1fr; }
+  .mentoring-grid { grid-template-columns: 1fr; }
+  .signature-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .exp-intro { padding: 72px 0 40px; }
+  .audience-bar-inner { padding: 0 16px; overflow-x: auto; }
+  .section-band-inner { flex-direction: column; align-items: flex-start; }
+  .signature-section { padding: 72px 0; }
+  .packs-section { padding: 60px 0 0; }
+  .sessions-combined { padding: 36px 28px; }
+  .slb-card { padding: 36px 28px; }
+  .modal-box { padding: 36px 28px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="jess-shadow-light.jpg" alt="Expansion with Jess Hollamby" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Sessions &middot; Packs &middot; Mentoring</span>
+    <h1><em>Expansion</em></h1>
+    <p class="page-hero-sub">Whether you're chasing a goal, building something, or ready for someone to hold space as you grow - you're in the right place.</p>
+  </div>
+</section>
+
+<!-- AUDIENCE NAV BAR -->
+<div class="audience-bar">
+  <div class="audience-bar-inner">
+    <a href="#align-flow" class="audience-tab active" id="tab-af">Align + Flow</a>
+    <a href="#soul-led-business" class="audience-tab" id="tab-slb">Soul-Led Business</a>
+    <a href="#soul-support" class="audience-tab" id="tab-ss">Soul Expansion</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     ALIGN + FLOW
+══════════════════════════════════════════ -->
+<section id="align-flow">
+
+  <div class="container">
+    <div class="exp-intro reveal">
+      <span class="label">Align + Flow</span>
+      <h2 class="section-title">You're not stuck. You're just <em>ready for something new.</em></h2>
+      <p>Maybe things in your business have felt hard for a while - like you're pushing through mud, spinning your wheels, or watching the same cycle repeat no matter how much effort you put in. Or maybe you can feel a shift coming and you're ready to map out what's next before you lose the thread of it.</p>
+      <p>This is for the woman who's done tolerating what isn't working - and is ready to break the cycle, get clear on the path forward, or finally start moving on something new.</p>
+      <p><strong>This is where we figure it out together.</strong></p>
+    </div>
+  </div>
+
+  <!-- INDIVIDUAL SESSIONS -->
+  <div class="container" style="padding-bottom: 80px;">
+    <div class="section-band reveal">
+      <div class="section-band-inner">
+        <div>
+          <span class="label">Individual Sessions</span>
+          <h2 class="section-title">90-Minute <em>Sessions</em></h2>
+        </div>
+        <p class="section-band-sub">$150 per session &middot; recorded and available via email for 30 days &middot; 30-minute catch-ups available at $60</p>
+      </div>
+    </div>
+
+    <div class="sessions-combined reveal">
+      <div>
+        <div class="sessions-combined-price">$150</div>
+        <div class="sessions-combined-dur">90 minutes per session</div>
+        <h3>Three sessions. One purpose.</h3>
+        <p>Each designed to meet you exactly where you are right now - whether you need to release something, get clear on something, or finally start moving on something. Sessions are recorded and available via email for 30 days.</p>
+        <p style="font-size: 14px; color: rgba(250,247,242,0.45); margin-bottom: 24px;">30-minute catch-up sessions also available &middot; $60</p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="booking.html#discovery" class="btn btn-ghost" style="font-size: 13px;">Book a Discovery Call</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-type-pills reveal">
+      <div class="session-type-pill">
+        <div class="session-type-pill-num">01</div>
+        <div class="session-type-pill-name">Break the Cycle</div>
+        <div class="session-type-pill-desc">You know the pattern. You can see it. And yet you keep ending up in the exact same place. There's something in your energy holding you there - and this session is where we find it and release it.</div>
+        <ul class="session-type-pill-resonates">
+          <li>You're walking the same path and landing in the same place, no matter what you try</li>
+          <li>You want to break a habit or release a pattern that's kept you stuck</li>
+          <li>You can feel something holding you in place and you can't shift it alone</li>
+        </ul>
+        <a href="booking.html#alignflow" class="btn btn-primary" style="font-size: 13px; width: fit-content;">Book Now</a>
+      </div>
+      <div class="session-type-pill">
+        <div class="session-type-pill-num">02</div>
+        <div class="session-type-pill-name">Map it Out</div>
+        <div class="session-type-pill-desc">You've got something forming - an idea, a direction, maybe even a half-plan. But every time you try to move on it, you stall. This session shapes it into something clear and actionable you can actually feel into.</div>
+        <ul class="session-type-pill-resonates">
+          <li>You've got an idea but every time you try to move on it, you stall</li>
+          <li>You need someone to help expand it into something with real shape</li>
+          <li>You want to leave with a plan - not just a feeling of possibility</li>
+        </ul>
+        <a href="booking.html#alignflow" class="btn btn-primary" style="font-size: 13px; width: fit-content;">Book Now</a>
+      </div>
+      <div class="session-type-pill">
+        <div class="session-type-pill-num">03</div>
+        <div class="session-type-pill-name">Start Moving</div>
+        <div class="session-type-pill-desc">The plan exists. The tasks are written. And the list still isn't getting shorter. This isn't a discipline problem - something is in the way. This session goes into the energy underneath the avoidance and shifts it.</div>
+        <ul class="session-type-pill-resonates">
+          <li>You know exactly what needs to happen, but you can't seem to do it</li>
+          <li>Procrastination or avoidance keeps getting between knowing and doing</li>
+          <li>You suspect something energetic is pulling the brakes</li>
+        </ul>
+        <a href="booking.html#alignflow" class="btn btn-primary" style="font-size: 13px; width: fit-content;">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION PACKS -->
+  <div class="container packs-section">
+    <div class="section-band reveal">
+      <div class="section-band-inner">
+        <div>
+          <span class="label">Session Packs</span>
+          <h2 class="section-title">Ongoing support <em>that moves with you</em></h2>
+        </div>
+        <p class="section-band-sub">All packs include ongoing Telegram access and are to be used within a 12-month period. Payment plans available.</p>
+      </div>
+    </div>
+
+    <div class="packs-grid">
+
+      <div class="pack-card reveal d1">
+        <div class="pack-price-row">
+          <div class="pack-price">$666</div>
+        </div>
+        <div class="pack-sessions">5 Sessions</div>
+        <h3>Session Pack &middot; 5</h3>
+        <ul class="pack-hooks">
+          <li>You want to keep moving - not just show up once and hope something shifts.</li>
+          <li>You need the flexibility to show up for whatever is alive right now.</li>
+        </ul>
+        <p class="pack-desc">Fully interchangeable across Break the Cycle, Map it Out, and Start Moving sessions. Follow what's actually needed each time - healing one session, planning the next, moving through a block after that.</p>
+        <ul class="pack-includes">
+          <li>5 x 90-minute sessions (any combination)</li>
+          <li>Ongoing access via Telegram</li>
+          <li>To be used within 12-month period</li>
+          <li>Payment plans available</li>
+        </ul>
+        <a href="booking.html#alignflow" class="btn btn-primary" style="font-size: 13px; width: fit-content;">Book Now</a>
+      </div>
+
+      <div class="pack-card featured reveal d2">
+        <div class="pack-price-row">
+          <div class="pack-price">$1,111</div>
+        </div>
+        <div class="pack-sessions">10 Sessions</div>
+        <h3>Session Pack &middot; 10</h3>
+        <ul class="pack-hooks">
+          <li>You're committed to real, sustained momentum.</li>
+          <li>You want the space to go deep and keep going - not start over each time.</li>
+        </ul>
+        <p class="pack-desc">The same flexibility as the 5-session pack, with the depth and continuity that comes from longer-term support. Real change takes time - this gives it the room it needs.</p>
+        <ul class="pack-includes">
+          <li>10 x 90-minute sessions (any combination)</li>
+          <li>Ongoing access via Telegram</li>
+          <li>To be used within 12-month period</li>
+          <li>Payment plans available</li>
+        </ul>
+        <a href="booking.html#alignflow" class="btn btn-primary" style="font-size: 13px; width: fit-content;">Book Now</a>
+      </div>
+
+    </div>
+
+    <!-- SOUL-LED BUSINESS -->
+  </div>
+</section>
+
+<!-- SOUL-LED BUSINESS TITLE DIVIDER -->
+<div id="soul-led-business" style="background: rgba(242,193,78,0.05); border-top: 1px solid rgba(242,193,78,0.12); border-bottom: 1px solid rgba(242,193,78,0.12); padding: 36px 0; text-align: center;">
+  <div class="container">
+    <span class="label" style="display: block; margin-bottom: 8px;">Section Three</span>
+    <h2 style="font-family: var(--h); font-size: clamp(32px, 5vw, 56px); font-weight: 300; color: var(--gold); line-height: 1.1; margin: 0;">Soul-Led <em style="font-style: italic; color: var(--cream);">Business</em></h2>
+  </div>
+</div>
+
+<section style="background: var(--dark);">
+
+  <div class="container">
+
+    <div class="section-band reveal" style="margin-top: 64px;">
+      <div class="section-band-inner">
+        <div>
+          <span class="label">Soul-Led Business</span>
+          <h2 class="section-title">Building something <em>that's truly yours</em></h2>
+        </div>
+        <p class="section-band-sub">For the woman starting her own business, or ready to add energetics into what she already does - especially students finishing service-based degrees, or those who've been drawn to the energetic world and want to turn that into something real.</p>
+      </div>
+    </div>
+
+    <div class="slb-card reveal">
+      <h3>Soul-Led Business Pack</h3>
+      <p>You're stepping into something new - whether that's starting your own business from scratch, finishing a degree in a service-based field and wondering what comes next, or you've been sitting with the knowing that energetics belongs in your work and you're finally ready to do something about it. Maybe you're a practitioner who wants to weave energy work into what you already offer. This is the container for all of it. We'll build an actionable plan, help you understand your business energetically, and grow something that's genuinely in alignment with your gifts and the life you want.</p>
+
+      <div class="slb-options">
+        <div class="slb-option">
+          <div class="slb-option-price">$777</div>
+          <div class="slb-option-sessions">6 x 90-Minute Sessions</div>
+          <h4>Build or Begin</h4>
+          <p>Starting a soul-led, energetic or spiritual business - or pivoting your existing business into better alignment with who you are now.</p>
+        </div>
+        <div class="slb-option">
+          <div class="slb-option-price">$1,111</div>
+          <div class="slb-option-sessions">10 x 90-Minute Sessions</div>
+          <h4>Deepen &amp; Evolve</h4>
+          <p>For the deeper work - integrating energetics into existing services, more complex pivots, or building something that needs more space to unfold.</p>
+        </div>
+      </div>
+
+      <ul class="slb-includes">
+        <li>Actionable, aligned business plan</li>
+        <li>Learn to check in with your business energetically</li>
+        <li>Ongoing access via Telegram</li>
+        <li>Payment plans available</li>
+      </ul>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="btn btn-primary" style="font-size: 13px; border: none; cursor: pointer;" onclick="openEnquiry('Soul-Led Business Pack')">Enquire</button>
+        <a href="booking.html#discovery" class="btn btn-ghost" style="font-size: 13px;">Book a Discovery Call</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SOUL EXPANSION
+══════════════════════════════════════════ -->
+<section id="soul-support" style="background: var(--mid); padding-top: 1px;">
+
+  <div class="container">
+    <div class="exp-intro reveal" style="padding-top: 100px;">
+      <span class="label">Soul Expansion</span>
+      <h2 class="section-title">You're not looking for a <em>one-off.</em></h2>
+      <p>You want someone genuinely in your corner - for real, for a while. Someone who gets to know your energy, understands where you're growing, and can hold space as you actually get there.</p>
+      <p>3 months, 6, 12 - or something specific you want to expand on deeply. These pathways are fully tailored to you. The container shapes itself around what you actually need, not a rigid curriculum you have to fit yourself into.</p>
+      <div style="margin-top:24px;background:rgba(250,247,242,0.03);border:1px solid rgba(250,247,242,0.07);border-radius:14px;padding:20px 24px;max-width:640px;">
+        <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Payment Plans</div>
+        <p style="font-size:13.5px;color:rgba(250,247,242,0.55);line-height:1.75;margin:0;">All mentoring and signature programs offer payment plans. Pay fortnightly or monthly over a period of up to twice the length of your container - with no surcharge, ever.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENTORING PATHWAYS -->
+  <div class="container mentoring-section">
+
+    <div class="section-band reveal">
+      <div class="section-band-inner">
+        <div>
+          <span class="label">Pathways</span>
+          <h2 class="section-title">Choose your <em>focus</em></h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="mentoring-grid">
+
+      <div class="mentoring-card reveal d1" style="grid-column: 1 / -1;">
+        <span class="tag tag-lavender" style="margin-bottom: 16px; display: inline-block;">Reiki &amp; Energy Work</span>
+        <h3>Reiki Mentoring</h3>
+        <p>You've done (or you're doing) the training - but you want more than just the basics. These pathways pair your Reiki learning with real integration support, energetic development, and someone in your corner as you put it all into practice.</p>
+        <div class="mentoring-tracks">
+          <div class="mentoring-track">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;">
+              <div class="mentoring-track-title">Reiki 1 &middot; 3 Months</div>
+              <div style="font-family:var(--h);font-size:20px;font-weight:300;color:var(--gold);">$1,555</div>
+            </div>
+            <div class="mentoring-track-desc">7 fortnightly sessions &middot; Setting up your energy practices, base level protections, and foundations for daily practice. Payment plan available up to 6 months.</div>
+          </div>
+          <div class="mentoring-track">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;">
+              <div class="mentoring-track-title">Reiki 2 &middot; 6 Months</div>
+              <div style="font-family:var(--h);font-size:20px;font-weight:300;color:var(--gold);">$3,333</div>
+            </div>
+            <div class="mentoring-track-desc">13 fortnightly sessions &middot; Stepping your practices up, setting up business, increasing protections, and building on the learnings from Reiki 1. Also suitable if you want to deepen your own Reiki practice. Payment plan available up to 12 months.</div>
+          </div>
+          <div class="mentoring-track">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px;">
+              <div class="mentoring-track-title">Reiki 1 &amp; 2 &middot; 9 Months</div>
+              <div style="font-family:var(--h);font-size:20px;font-weight:300;color:var(--gold);">$6,666</div>
+            </div>
+            <div class="mentoring-track-desc">26 sessions &middot; Wanting to do both - knowing that seeing clients or adding Reiki into your current business or practices is the aim. Payment plan available up to 18 months.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-ghost" style="font-size: 13px; border: 1px solid rgba(250,247,242,0.18); cursor: pointer;" onclick="openEnquiry('Reiki Mentoring')">Enquire</button>
+          <a href="booking.html" class="btn btn-ghost" style="font-size: 13px; border: 1px solid rgba(250,247,242,0.18);">Book a Discovery Call</a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</section>
+
+<!-- SIGNATURE PROGRAMS -->
+<section class="signature-section">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">Signature Programs</span>
+      <h2 class="section-title">Ready to <em>go deeper?</em></h2>
+      <p style="font-size: 15px; color: rgba(250,247,242,0.45); max-width: 520px; margin: 0 auto;">These are the deep-dive, long-form containers. For the woman who's ready to do the real thing - properly, and with full support.</p>
+    </div>
+    <div class="signature-cards">
+
+      <div class="sig-card ub reveal d1">
+        <div class="sig-eyebrow">Signature Program</div>
+        <h3>The <em>Unbecoming</em></h3>
+        <p>Putting down everything that was never yours. Empowerment. Discernment. Sovereignty of Self. This is the purpose of reclaiming your life - and finally living it.</p>
+        <p>Covers Reiki 1 &amp; 2, energy basics, emotion &amp; nervous system, the brain, learning about yourself, and reconnecting with play, joy and fun.</p>
+        <div style="margin-bottom: 24px;">
+          <div style="font-family:var(--h);font-size:36px;font-weight:300;color:var(--gold);line-height:1;margin-bottom:4px;">$8,888</div>
+          <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,247,242,0.35);margin-bottom:6px;">12 Months &middot; 1:1</div>
+          <div style="font-size:12px;color:rgba(250,247,242,0.35);">Payment plan available up to 24 months &middot; fortnightly or monthly &middot; no surcharge</div>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="the-unbecoming.html" class="btn btn-primary" style="font-size: 13px;">Learn More</a>
+          <a href="booking.html#discovery" class="btn btn-ghost" style="font-size: 13px;">Book a Discovery Call</a>
+        </div>
+      </div>
+
+      <div class="sig-card dark reveal d2">
+        <div class="sig-eyebrow">Cohort Program &middot; Opening 2027</div>
+        <h3>Into the Dark: <em>Becoming Dark and Divine</em></h3>
+        <p>An 18-week path into the shadows, soul, and integration. For women holding Reiki Level 2 or higher who are ready to stop running from their edges and start living from their whole self.</p>
+        <a href="into-the-dark.html" class="btn btn-ghost" style="font-size: 13px; width: fit-content; border: 1px solid rgba(250,247,242,0.18);">Find Out More</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-bg"><img src="hero.jpg" alt="Jess Hollamby" /></div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Not sure which path <em>feels right?</em></h2>
+    <p>If your body responded reading any of this, that's worth paying attention to. Reach out and we'll have a conversation - no pressure, just clarity.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-primary" style="border: none; cursor: pointer;" onclick="openEnquiry('')">Enquire Now</button>
+      <a href="connect.html" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ── ENQUIRY MODAL ── -->
+<div class="modal-overlay" id="enquiryModal" onclick="closeModalOnBg(event, 'enquiryModal')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('enquiryModal')">&times;</button>
+    <p class="modal-eyebrow">Get in Touch</p>
+    <h2 class="modal-title">Let's find your path</h2>
+    <p class="modal-sub">Fill in your details below and Jess will be in touch to talk through what feels right for you.</p>
+    <div class="modal-success" id="enquirySuccess">
+      <p>You're on your way. &#10024;</p>
+      <span>Jess will be in touch soon.</span>
+    </div>
+    <form id="enquiryForm" action="https://formspree.io/f/xgorpdpd" method="POST">
+      <input type="hidden" name="_replyto" value="energywjess@gmail.com">
+      <input type="hidden" name="_subject" value="Expansion Enquiry - Energy with Jess">
+      <input type="hidden" name="form_type" value="Expansion Enquiry">
+      <div class="mfield">
+        <label for="enq-name">Your Name</label>
+        <input type="text" id="enq-name" name="name" required placeholder="First name">
+      </div>
+      <div class="mfield">
+        <label for="enq-email">Email Address</label>
+        <input type="email" id="enq-email" name="email" required placeholder="your@email.com">
+      </div>
+      <div class="mfield">
+        <label for="enq-option">I'm interested in...</label>
+        <select id="enq-option" name="interested_in" required>
+          <option value="" disabled selected>Select an option</option>
+          <optgroup label="Align + Flow - Sessions">
+            <option>90-Minute Sessions (Break the Cycle, Map it Out or Start Moving)</option>
+            <option>Session Pack - 5 Sessions ($666)</option>
+            <option>Session Pack - 10 Sessions ($1,111)</option>
+          </optgroup>
+          <optgroup label="Align + Flow - Soul-Led Business">
+            <option>Soul-Led Business Pack - 6 Sessions ($777)</option>
+            <option>Soul-Led Business Pack - 10 Sessions ($1,111)</option>
+          </optgroup>
+          <optgroup label="Soul Expansion - Reiki Mentoring">
+            <option>Reiki Mentoring - Reiki 1 (3 Months)</option>
+            <option>Reiki Mentoring - Reiki 2 (6 Months)</option>
+            <option>Reiki Mentoring - Reiki 1 &amp; 2 (9 Months)</option>
+          </optgroup>
+          <optgroup label="Soul Expansion - Regulation">
+            <option>Emotional Regulation (6 Weeks)</option>
+            <option>Nervous System Regulation (12 Weeks)</option>
+          <option>Full Regulation (18 Weeks - $999)</option>
+          </optgroup>
+          <optgroup label="Soul Expansion - Programs">
+            <option>Becoming an Empowered Empath (Self-Paced - $333)</option>
+            <option>The Unbecoming</option>
+          </optgroup>
+          <optgroup label="Not sure yet">
+            <option>I'm not sure - I'd love a conversation</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="mfield">
+        <label for="enq-msg">Anything you'd like to share? (optional)</label>
+        <textarea id="enq-msg" name="message" placeholder="Where you're at, what you're looking for, any questions..."></textarea>
+      </div>
+      <button type="submit" class="modal-submit">Send My Enquiry</button>
+      <p class="modal-consent">By submitting this form you're happy for Jess to reach out about the option you've selected.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ── WAITLIST MODAL ── -->
+<div class="modal-overlay" id="waitlistModal" onclick="closeModalOnBg(event, 'waitlistModal')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('waitlistModal')">&times;</button>
+    <p class="modal-eyebrow">Coming Soon</p>
+    <h2 class="modal-title">Join the waitlist</h2>
+    <p class="modal-sub">Be the first to know when this opens. Jess will reach out directly with details.</p>
+    <div class="modal-success" id="waitlistSuccess">
+      <p>You're on the list. &#10024;</p>
+      <span>Jess will be in touch when the time is right.</span>
+    </div>
+    <form id="waitlistForm" action="https://formspree.io/f/xgorpdpd" method="POST">
+      <input type="hidden" name="_replyto" value="energywjess@gmail.com">
+      <input type="hidden" name="_subject" value="Expansion Waitlist - Energy with Jess">
+      <input type="hidden" name="form_type" value="Expansion Waitlist">
+      <div class="mfield">
+        <label for="wl-name">Your Name</label>
+        <input type="text" id="wl-name" name="name" required placeholder="First name">
+      </div>
+      <div class="mfield">
+        <label for="wl-email">Email Address</label>
+        <input type="email" id="wl-email" name="email" required placeholder="your@email.com">
+      </div>
+      <div class="mfield">
+        <label for="wl-option">I'm interested in joining the waitlist for...</label>
+        <select id="wl-option" name="waitlist_for" required>
+          <option value="" disabled selected>Select an option</option>
+          <option>Into the Dark</option>
+          <option>Reiki Master/Teacher Training (Coming Soon)</option>
+          <option>Both - keep me posted on everything</option>
+        </select>
+      </div>
+      <div class="mfield">
+        <label for="wl-msg">Anything you'd like Jess to know? (optional)</label>
+        <textarea id="wl-msg" name="message" placeholder="Where you're at, why this feels right for you..."></textarea>
+      </div>
+      <button type="submit" class="modal-submit">Join the Waitlist</button>
+      <p class="modal-consent">By submitting this form you're happy for Jess to reach out about the program you've selected.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Audience tab scroll highlight
+const afSection = document.getElementById('align-flow');
+const ssSection = document.getElementById('soul-support');
+const tabAf = document.getElementById('tab-af');
+const tabSs = document.getElementById('tab-ss');
+const scrollObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      if (e.target.id === 'align-flow') { tabAf.classList.add('active'); tabSs.classList.remove('active'); }
+      if (e.target.id === 'soul-support') { tabSs.classList.add('active'); tabAf.classList.remove('active'); }
+    }
+  });
+}, { threshold: 0.2 });
+scrollObs.observe(afSection);
+scrollObs.observe(ssSection);
+
+// Modal functions
+function openEnquiry(preset) {
+  const modal = document.getElementById('enquiryModal');
+  const sel = document.getElementById('enq-option');
+  if (preset) {
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === preset || sel.options[i].value === preset) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+  }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function openWaitlist(preset) {
+  const modal = document.getElementById('waitlistModal');
+  const sel = document.getElementById('wl-option');
+  if (preset) {
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].text === preset || sel.options[i].value === preset) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+  }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOnBg(e, id) {
+  if (e.target === document.getElementById(id)) closeModal(id);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal('enquiryModal'); closeModal('waitlistModal'); } });
+
+// Formspree AJAX
+function setupForm(formId, successId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('.modal-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      } else {
+        btn.textContent = 'Something went wrong - try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Something went wrong - try again';
+      btn.disabled = false;
+    }
+  });
+}
+setupForm('enquiryForm', 'enquirySuccess');
+setupForm('waitlistForm', 'waitlistSuccess');
+</script>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post-Purchase Intake | Energy with Jess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:   #FAF6F1;
+      --accent:  #9B8DB8;
+      --accent-l:#C4BAD8;
+      --accent-d:#7A6D9A;
+      --brown:   #3A2E2E;
+      --mid:     #6B5757;
+      --border:  #E0D3C8;
+      --white:   #FFFFFF;
+      --shadow:  rgba(58,46,46,0.08);
+    }
+    body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--brown); min-height:100vh; font-weight:300; line-height:1.7; }
+    .page-wrap { max-width:620px; margin:0 auto; padding:0 24px 80px; }
+    .form-header { text-align:center; padding:64px 0 48px; }
+    .eyebrow { font-size:10px; letter-spacing:3.5px; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .form-header h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,5vw,2.8rem); font-weight:300; line-height:1.15; color:var(--brown); margin-bottom:12px; }
+    .form-header h1 em { font-style:italic; color:var(--accent); }
+    .intro-text { max-width:460px; margin:0 auto; font-size:0.9rem; color:var(--mid); line-height:1.85; }
+    .form-card { background:var(--white); border:1.5px solid var(--border); border-radius:16px; padding:48px 40px; box-shadow:0 4px 24px var(--shadow); }
+    @media(max-width:480px){ .form-card { padding:32px 20px; } }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+    @media(max-width:480px){ .field-row { grid-template-columns:1fr; } }
+    .field { display:flex; flex-direction:column; gap:8px; margin-bottom:28px; }
+    .field:last-of-type { margin-bottom:0; }
+    label.field-label { font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--mid); font-weight:400; }
+    .field-note { font-size:0.78rem; color:var(--mid); opacity:0.75; font-style:italic; margin-top:-2px; }
+    input[type="text"], input[type="email"], input[type="date"], textarea, select { font-family:'Jost',sans-serif; font-weight:300; font-size:0.93rem; color:var(--brown); background:var(--cream); border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; width:100%; outline:none; transition:border-color 0.2s; resize:vertical; }
+    select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B5757' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 16px center; padding-right:40px; cursor:pointer; }
+    input:focus, textarea:focus, select:focus { border-color:var(--accent); }
+    textarea { min-height:96px; }
+    .divider { height:1px; background:var(--border); margin:32px 0; }
+    .section-head { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+    .options-list { display:flex; flex-direction:column; gap:10px; }
+    .opt { display:flex; align-items:flex-start; gap:12px; cursor:pointer; padding:12px 16px; border:1.5px solid var(--border); border-radius:8px; background:var(--cream); transition:border-color 0.18s, background 0.18s; }
+    .opt:hover { border-color:var(--accent-l); }
+    .opt.selected { border-color:var(--accent); background:rgba(155,141,184,0.06); }
+    .opt input[type="radio"] { appearance:none; width:18px; height:18px; min-width:18px; border:1.5px solid var(--border); border-radius:50%; background:white; cursor:pointer; transition:all 0.18s; position:relative; margin-top:2px; flex-shrink:0; }
+    .opt input[type="radio"]:checked { background:var(--accent); border-color:var(--accent); }
+    .opt input[type="radio"]:checked::after { content:''; position:absolute; width:6px; height:6px; background:white; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); }
+    .opt input[type="checkbox"] { appearance:none; width:18px; height:18px; min-width:18px; border:1.5px solid var(--border); border-radius:4px; background:white; cursor:pointer; transition:all 0.18s; position:relative; margin-top:2px; flex-shrink:0; }
+    .opt input[type="checkbox"]:checked { background:var(--accent); border-color:var(--accent); }
+    .opt input[type="checkbox"]:checked::after { content:''; position:absolute; width:10px; height:6px; border-left:2px solid white; border-bottom:2px solid white; top:4px; left:3px; transform:rotate(-45deg); }
+    .opt-body { flex:1; }
+    .opt-label { font-size:0.9rem; color:var(--brown); }
+    .opt-sub { font-size:0.78rem; color:var(--mid); margin-top:2px; }
+    .conditional { display:none; }
+    .conditional.visible { display:flex; }
+    .section-conditional { display:none; }
+    .section-conditional.visible { display:block; }
+    .btn-submit { width:100%; margin-top:36px; padding:16px 32px; background:var(--accent); color:white; border:none; border-radius:8px; font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:400; letter-spacing:2.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s, opacity 0.2s; }
+    .btn-submit:hover { background:var(--accent-d); }
+    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
+    .ty-wrap { text-align:center; padding:80px 24px; display:none; }
+    .ty-icon { font-size:2.8rem; margin-bottom:24px; }
+    .ty-wrap h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,4vw,2.5rem); font-weight:300; color:var(--brown); margin-bottom:16px; line-height:1.2; }
+    .ty-wrap h2 em { font-style:italic; color:var(--accent); }
+    .ty-wrap p { font-size:0.92rem; color:var(--mid); max-width:400px; margin:0 auto 10px; line-height:1.85; }
+    .ty-sig { font-family:'Cormorant Garamond',serif; font-size:1.25rem; font-style:italic; color:var(--accent); margin-top:20px; }
+    .page-footer { text-align:center; padding:40px 0 0; font-size:0.72rem; color:var(--mid); letter-spacing:1px; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="form-header">
+    <p class="eyebrow">Energy with Jess</p>
+    <h1>Welcome, <em>let's begin</em></h1>
+    <p class="intro-text">You're in. This form helps me show up fully prepared for our work together. Take your time with it - there are no wrong answers, only honest ones.</p>
+  </header>
+
+  <div id="form-section">
+    <div class="form-card">
+      <form id="ppForm" novalidate>
+
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="firstName">First name</label>
+            <input type="text" id="firstName" placeholder="Your first name" required />
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="email">Email</label>
+            <input type="email" id="email" placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="field">
+          <label class="field-label" for="service">Which offer did you purchase?</label>
+          <select id="service" required>
+            <option value="" disabled selected>Select your offer...</option>
+            <option value="Soul Support">Soul Support</option>
+            <option value="Align + Flow Packs">Align + Flow Packs</option>
+            <option value="The Unbecoming">The Unbecoming</option>
+          </select>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Personal -->
+        <p class="section-head">Personal</p>
+
+        <div class="field">
+          <label class="field-label" for="dob">Date of birth</label>
+          <input type="date" id="dob" />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="q_identifiers">Identifiers and pronouns</label>
+          <p class="field-note">And anything else you'd like to include</p>
+          <input type="text" id="q_identifiers" placeholder="e.g. she/her, they/them..." />
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Astrology and Human Design -->
+        <p class="section-head">Astrology and Human Design</p>
+
+        <div class="field">
+          <label class="field-label" for="knowSigns">Do you know your sun, moon and rising signs?</label>
+          <select id="knowSigns">
+            <option value="" disabled selected>Select...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="field conditional" id="field_signs">
+          <label class="field-label" for="q_signs">What are they?</label>
+          <input type="text" id="q_signs" placeholder="Sun in __, Moon in __, Rising in __..." />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="knowHD">Do you know your Human Design?</label>
+          <select id="knowHD">
+            <option value="" disabled selected>Select...</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+
+        <div class="field conditional" id="field_hd">
+          <label class="field-label" for="q_hd">What is your type, strategy, authority and profile?</label>
+          <input type="text" id="q_hd" placeholder="e.g. Generator, Respond, Sacral, 2/4..." />
+        </div>
+
+        <div class="field conditional" id="field_birth">
+          <label class="field-label" for="q_birth">Time and location of birth</label>
+          <p class="field-note">So I can look these up for you before we begin</p>
+          <input type="text" id="q_birth" placeholder="e.g. 3:42am, Adelaide, South Australia..." />
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Health and Wellbeing -->
+        <p class="section-head">Health and Wellbeing</p>
+
+        <div class="field">
+          <label class="field-label" for="q_health">Any medical or health considerations I should know about?</label>
+          <p class="field-note">Includes past, present and mental health - anything that could impact you or your ability to participate, and how</p>
+          <textarea id="q_health" placeholder="As much or as little as you feel comfortable sharing..." rows="3"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Availability -->
+        <p class="section-head">Availability</p>
+
+        <div class="field">
+          <label class="field-label" for="q_days">What days generally work best for you?</label>
+          <input type="text" id="q_days" placeholder="e.g. Tuesdays and Thursdays, weekdays only..." />
+        </div>
+
+        <div class="field">
+          <label class="field-label">What time of day do you tend to be most available?</label>
+          <p class="field-note">Select all that apply</p>
+          <div class="options-list">
+            <label class="opt">
+              <input type="checkbox" name="timeofday" value="Morning" />
+              <div class="opt-body"><div class="opt-label">Morning</div></div>
+            </label>
+            <label class="opt">
+              <input type="checkbox" name="timeofday" value="Midday" />
+              <div class="opt-body"><div class="opt-label">Midday</div></div>
+            </label>
+            <label class="opt">
+              <input type="checkbox" name="timeofday" value="Afternoon" />
+              <div class="opt-body"><div class="opt-label">Afternoon</div></div>
+            </label>
+            <label class="opt">
+              <input type="checkbox" name="timeofday" value="Evening" />
+              <div class="opt-body"><div class="opt-label">Evening</div></div>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="q_offlimits">Any days or times that are completely off limits?</label>
+          <input type="text" id="q_offlimits" placeholder="e.g. school pick-up Fridays, never before 9am..." />
+        </div>
+
+        <!-- Mentoring Specific - conditional for Soul Support and Align+Flow only -->
+        <div class="section-conditional" id="section_mentoring">
+          <div class="divider"></div>
+          <p class="section-head">A Little More</p>
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="q_focusmore">For each focus area you selected in your pre-discovery form - what further information can you provide?</label>
+            <p class="field-note">The more specific you are here, the more I can tailor our sessions to what you actually need</p>
+            <textarea id="q_focusmore" placeholder="Take your time with this one..." rows="5"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Send to Jess</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ty-wrap" id="thankyou">
+    <div class="ty-icon">🌸</div>
+    <h2>Thank you, <em id="ty-name">lovely</em>.</h2>
+    <p>I'll read this carefully before we begin.</p>
+    <p>I'm so glad you're here.</p>
+    <p class="ty-sig">Jess x</p>
+  </div>
+
+  <footer class="page-footer"><p>energywithjess.com.au</p></footer>
+</div>
+
+<script>
+  const CRM_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+  document.querySelectorAll('.opt input').forEach(input => {
+    input.addEventListener('change', () => {
+      if (input.type === 'radio') document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => r.closest('.opt').classList.remove('selected'));
+      input.closest('.opt').classList.toggle('selected', input.checked);
+    });
+  });
+
+  const knowSigns = document.getElementById('knowSigns');
+  const knowHD    = document.getElementById('knowHD');
+
+  function updateConditionals() {
+    const signsYes = knowSigns.value === 'Yes';
+    const hdYes    = knowHD.value === 'Yes';
+    const bothNo   = knowSigns.value === 'No' && knowHD.value === 'No';
+    document.getElementById('field_signs').classList.toggle('visible', signsYes);
+    document.getElementById('field_hd').classList.toggle('visible', hdYes);
+    document.getElementById('field_birth').classList.toggle('visible', bothNo);
+  }
+
+  knowSigns.addEventListener('change', updateConditionals);
+  knowHD.addEventListener('change', updateConditionals);
+
+  document.getElementById('service').addEventListener('change', function() {
+    const isMentoring = this.value === 'Soul Support' || this.value === 'Align + Flow Packs';
+    document.getElementById('section_mentoring').classList.toggle('visible', isMentoring);
+  });
+
+  document.getElementById('ppForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const firstName = document.getElementById('firstName').value.trim();
+    const email     = document.getElementById('email').value.trim();
+    const service   = document.getElementById('service').value;
+    if (!firstName || !email) { alert('Please add your name and email so I know who this is from.'); return; }
+    if (!service) { alert('Please select which offer you purchased.'); return; }
+
+    const timeOfDay = [...document.querySelectorAll('input[name="timeofday"]:checked')].map(c => c.value).join(', ');
+
+    const data = {
+      formType:    'post-purchase-intake',
+      service,
+      firstName,   email,
+      dob:         document.getElementById('dob').value,
+      identifiers: document.getElementById('q_identifiers').value.trim(),
+      knowSigns:   knowSigns.value,
+      signs:       document.getElementById('q_signs').value.trim(),
+      knowHD:      knowHD.value,
+      hd:          document.getElementById('q_hd').value.trim(),
+      birth:       document.getElementById('q_birth').value.trim(),
+      health:      document.getElementById('q_health').value.trim(),
+      days:        document.getElementById('q_days').value.trim(),
+      timeofday:   timeOfDay,
+      offlimits:   document.getElementById('q_offlimits').value.trim(),
+      focusmore:   document.getElementById('q_focusmore').value.trim(),
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    fetch(CRM_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }).catch(()=>{});
+
+    setTimeout(() => {
+      document.getElementById('form-section').style.display = 'none';
+      const ty = document.getElementById('thankyou');
+      ty.style.display = 'block';
+      document.getElementById('ty-name').textContent = firstName;
+    }, 600);
+  });
+</script>
+</body>
+</html>

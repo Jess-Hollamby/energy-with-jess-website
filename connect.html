@@ -1,0 +1,559 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connect - Energy with Jess</title>
+<meta name="description" content="Get in touch with Jess Hollamby - book a session, ask a question, or find out what working together looks like. Adelaide, Port Elliot & online worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─── CONNECT PAGE SPECIFIC ─── */
+
+/* main contact area */
+.contact-main {
+  padding: 110px 0;
+}
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.contact-main p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.65);
+  line-height: 1.88;
+  margin-bottom: 20px;
+}
+
+/* booking block */
+.booking-block {
+  background: rgba(191,66,136,0.06);
+  border: 1px solid rgba(191,66,136,0.15);
+  border-radius: 16px;
+  padding: 40px 36px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+.booking-block h3 {
+  font-family: var(--h);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.booking-block p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+/* contact items */
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.contact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(250,247,242,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.contact-item a,
+.contact-item span {
+  font-size: 15px;
+  color: rgba(250,247,242,0.78);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.contact-item a:hover { color: var(--gold); }
+
+/* social */
+.social-section { margin-top: 32px; }
+.social-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(250,247,242,0.35);
+  margin-bottom: 14px;
+}
+.social-row { display: flex; gap: 12px; }
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 40px;
+  border: 1px solid rgba(250,247,242,0.1);
+  color: rgba(250,247,242,0.6);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition: all 0.3s ease;
+}
+.social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.social-icon { font-size: 16px; }
+
+/* info cards */
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.info-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 14px;
+  padding: 28px 30px;
+  transition: border-color 0.3s ease;
+}
+.info-card:hover { border-color: rgba(242,193,78,0.18); }
+.info-card h4 {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.info-card p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.52);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+.info-card a {
+  color: var(--rose);
+  text-decoration: none;
+  font-weight: 600;
+}
+.info-card a:hover { text-decoration: underline; }
+
+/* find me section */
+.find-me {
+  padding: 80px 0 100px;
+  background: var(--mid);
+}
+.find-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-top: 60px;
+}
+.find-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 16px;
+  padding: 38px 28px;
+  text-align: center;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.find-card:hover { transform: translateY(-5px); border-color: rgba(191,66,136,0.2); }
+.find-icon {
+  font-size: 36px;
+  margin-bottom: 16px;
+  display: block;
+}
+.find-card h3 {
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.find-card p {
+  font-size: 14px;
+  color: rgba(250,247,242,0.52);
+  line-height: 1.75;
+}
+
+/* before you book */
+.before-book {
+  padding: 100px 0;
+}
+.before-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 60px;
+}
+.before-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 14px;
+  padding: 34px 30px;
+}
+.before-card h4 {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.before-card p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.52);
+  line-height: 1.78;
+}
+
+/* follow section */
+.follow {
+  padding: 80px 0;
+  background: var(--mid);
+  text-align: center;
+}
+.follow-social-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+.follow-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  border: 1px solid rgba(250,247,242,0.1);
+  color: rgba(250,247,242,0.7);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+}
+.follow-link:hover { border-color: var(--rose); color: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(191,66,136,0.2); }
+.follow-link-icon { font-size: 20px; }
+
+@media (max-width: 760px) {
+  .contact-main { padding: 80px 0; }
+  .contact-main-grid { grid-template-columns: 1fr; gap: 52px; }
+  .find-me { padding: 80px 0; }
+  .find-grid { grid-template-columns: 1fr; }
+  .before-book { padding: 80px 0; }
+  .before-grid { grid-template-columns: 1fr; }
+  .social-row { flex-direction: column; }
+}
+.cta-bg::after { background: rgba(21,37,42,0.68) !important; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html">Offerings</a>
+      <a href="connect.html" class="active">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"     onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html"   onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <!-- PHOTO: gallery-2.jpg or ambient.jpg -->
+    <img src="vibe-smudge-tarot.jpg" alt="Connect with Jess" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <h1>Let's <em>Connect</em></h1>
+    <p class="page-hero-sub">Whether you're ready to book, have questions, or just need to feel into it a little longer - I'm here.</p>
+  </div>
+</section>
+
+<!-- ─── MAIN CONTACT ─── -->
+<section class="contact-main">
+  <div class="container">
+    <div class="contact-main-grid">
+
+      <div class="reveal left">
+        <span class="label">Get in Touch</span>
+        <h2 class="section-title">There's no wrong reason to <em>reach out</em></h2>
+
+        <p>Whether you have a specific question, want to chat about which offering is right for you, or you're already ready to begin - I'd love to hear from you.</p>
+        <p>I read every message personally. You'll always hear back from me, not an assistant.</p>
+
+        <div class="booking-block">
+          <h3>Ready to book?</h3>
+          <p>Head straight to my booking page to choose your session type and find a time that works for you.</p>
+          <a href="booking.html#clarity" class="btn btn-primary">Book a Session</a>
+        </div>
+
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <a href="mailto:energywjess@gmail.com">energywjess@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <span>Adelaide &amp; Port Elliot, South Australia</span>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌏</div>
+            <span>Online sessions available worldwide</span>
+          </div>
+        </div>
+
+        <div class="social-section">
+          <p class="social-label">Find me on socials</p>
+          <div class="social-row">
+            <a href="https://www.instagram.com/energywithjess" target="_blank" rel="noopener noreferrer" class="social-link">
+              <span class="social-icon">📷</span> Instagram
+            </a>
+            <a href="https://www.tiktok.com/@energywithjess" target="_blank" rel="noopener noreferrer" class="social-link">
+              <span class="social-icon">🎵</span> TikTok
+            </a>
+            <a href="https://www.facebook.com/share/18r6CPt1T4/" target="_blank" rel="noopener noreferrer" class="social-link">
+              <span class="social-icon">💙</span> Facebook
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-cards reveal right">
+        <div class="info-card">
+          <h4>First Time?</h4>
+          <p>Not sure where to start? Book a <strong style="color: var(--cream);">Clarity &amp; Healing</strong> session. No preparation needed - just come as you are and let the session meet you there.</p>
+        </div>
+        <div class="info-card">
+          <h4>In-Person Sessions</h4>
+          <p>Located in <strong style="color: var(--cream);">Adelaide and Port Elliot</strong>, South Australia. In-person is available for Reiki sessions and select one-on-one offerings.</p>
+          <div style="display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;">
+            <a href="booking.html#inperson" class="btn btn-ghost" style="padding: 8px 16px; font-size: 12px;">Book - Adelaide</a>
+            <a href="booking.html#artofyou" class="btn btn-ghost" style="padding: 8px 16px; font-size: 12px;">Book - Port Elliot</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <h4>Online Sessions</h4>
+          <p>All psychic readings, Clarity &amp; Healing sessions, and mentoring are available <strong style="color: var(--cream);">fully online</strong> - so wherever you are in the world, we can work together.</p>
+        </div>
+        <div class="info-card">
+          <h4>For Practitioners</h4>
+          <p>Already in the healing space and ready to go deeper? <a href="offerings.html#expansion">Expansion sessions</a> are designed specifically for you. Reach out and we'll find the right fit.</p>
+        </div>
+        <div class="info-card">
+          <h4>Learn Reiki</h4>
+          <p>Interested in learning Reiki? All levels are available - from Level 1 through to Master/Teacher. <a href="offerings.html#reiki">Learn more about Reiki training.</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FIND ME ─── -->
+<section class="find-me">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">Where to Find Me</span>
+      <h2 class="section-title">I show up in a few <em>different places</em></h2>
+    </div>
+
+    <div class="find-grid">
+      <div class="find-card reveal d1">
+        <span class="find-icon">📷</span>
+        <h3>Instagram</h3>
+        <p>Where I share insights, behind-the-scenes moments, and the kind of real talk that doesn't always fit anywhere else. Come say hi.</p>
+        <a href="https://www.instagram.com/energywithjess" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="margin-top: 20px; padding: 10px 22px; font-size: 12px;">@energywithjess</a>
+      </div>
+      <div class="find-card reveal d2">
+        <span class="find-icon">🎵</span>
+        <h3>TikTok</h3>
+        <p>Short-form energy - quick hits of wisdom, energy tips, and the occasional peek into the work. If you prefer your content in bite-size pieces, this one's for you.</p>
+        <a href="https://www.tiktok.com/@energywithjess" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="margin-top: 20px; padding: 10px 22px; font-size: 12px;">@energywithjess</a>
+      </div>
+      <div class="find-card reveal d3">
+        <span class="find-icon">💙</span>
+        <h3>Facebook</h3>
+        <p>Find me on Facebook for updates, shared content, and another way to stay in the loop with what's happening in the Energy with Jess world.</p>
+        <a href="https://www.facebook.com/share/18r6CPt1T4/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="margin-top: 20px; padding: 10px 22px; font-size: 12px;">Energy with Jess</a>
+      </div>
+      <div class="find-card reveal d4">
+        <span class="find-icon">📅</span>
+        <h3>Booking Page</h3>
+        <p>Ready to book? Head straight to my appointments page to choose your session type and lock in a time. Simple, easy, no back-and-forth needed.</p>
+        <a href="booking.html#clarity" class="btn btn-primary" style="margin-top: 20px; padding: 10px 22px; font-size: 12px;">Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BEFORE YOU BOOK ─── -->
+<section class="before-book">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">Good to Know</span>
+      <h2 class="section-title">A few things <em>before you book</em></h2>
+    </div>
+
+    <div class="before-grid">
+      <div class="before-card reveal d1">
+        <h4>You don't need to be prepared</h4>
+        <p>Seriously. You don't need a list of questions, a clear intention, or any particular frame of mind. Show up however you are. The session will do the rest.</p>
+      </div>
+      <div class="before-card reveal d2">
+        <h4>Everything stays between us</h4>
+        <p>What's shared in session stays in session. This is a confidential space and I take that seriously. You can say anything here.</p>
+      </div>
+      <div class="before-card reveal d3">
+        <h4>There's no pressure to continue</h4>
+        <p>One session can shift something on its own. I'll never push you toward more sessions than you need or are ready for.</p>
+      </div>
+      <div class="before-card reveal d4">
+        <h4>It's okay to be a sceptic</h4>
+        <p>An open mind is all you need. Many of my clients arrive uncertain and leave with something they didn't expect. Curiosity is enough.</p>
+      </div>
+      <div class="before-card reveal d1" style="grid-column: 1 / -1;">
+        <h4>I'm not a replacement for mental health support</h4>
+        <p>My work is energetic, intuitive, and spiritual in nature. If you're experiencing acute mental health challenges, please also seek support from a qualified mental health professional. I'm a complement to that care, not a replacement for it. If you're unsure whether working with me is appropriate for where you're at, send me an email and we'll have an honest conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOLLOW SECTION ─── -->
+<section class="follow">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Stay Connected</span>
+      <h2 class="section-title">Not ready to book yet? <em>That's okay.</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.52); max-width: 480px; margin: 0 auto 8px;">Come hang out on socials and get a feel for how I work. When the time is right, you'll know.</p>
+    </div>
+    <div class="follow-social-row reveal">
+      <a href="https://www.instagram.com/energywithjess" target="_blank" rel="noopener noreferrer" class="follow-link">
+        <span class="follow-link-icon">📷</span> Follow on Instagram
+      </a>
+      <a href="https://www.tiktok.com/@energywithjess" target="_blank" rel="noopener noreferrer" class="follow-link">
+        <span class="follow-link-icon">🎵</span> Follow on TikTok
+      </a>
+      <a href="https://www.facebook.com/share/18r6CPt1T4/" target="_blank" rel="noopener noreferrer" class="follow-link">
+        <span class="follow-link-icon">💙</span> Follow on Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MONTHLY EMAILS ─── -->
+<section style="background: var(--dark); padding: 80px 0 90px;">
+  <div class="container">
+    <div style="max-width: 520px; margin: 0 auto; text-align: center;" class="reveal">
+      <span class="label">Monthly Emails</span>
+      <h2 class="section-title">The slower kind of <em>magic.</em></h2>
+      <p style="font-size: 15px; color: rgba(250,247,242,0.5); line-height: 1.8; margin-bottom: 32px;">Once a month, straight to your inbox - what I'm working with energetically, things that are landing for me, and gentle invitations for you. No noise. No selling. Just presence.</p>
+      <div id="connectEmailSuccess" style="display:none; padding: 16px 0;">
+        <p style="font-family: var(--h); font-size: 26px; font-weight: 300; color: var(--cream); margin-bottom: 6px;">You're in. ✦</p>
+        <span style="font-size: 13px; color: rgba(250,247,242,0.45);">Watch for something quiet and good in your inbox.</span>
+      </div>
+      <form id="connectEmailForm" action="https://formspree.io/f/xgorpdpd" method="POST" style="display: flex; flex-direction: column; gap: 10px;">
+        <input type="hidden" name="_replyto" value="energywjess@gmail.com">
+        <input type="hidden" name="_subject" value="Monthly Email Signup - Energy with Jess">
+        <input type="hidden" name="form_type" value="Monthly Email List">
+        <input type="text" name="first_name" required placeholder="First name" autocomplete="given-name"
+          style="width:100%;background:rgba(250,247,242,0.05);border:1px solid rgba(250,247,242,0.1);border-radius:50px;padding:13px 20px;font-family:var(--b);font-size:14px;color:var(--cream);text-align:center;box-sizing:border-box;transition:border-color 0.25s;" />
+        <input type="text" name="last_name" placeholder="Surname (optional)" autocomplete="family-name"
+          style="width:100%;background:rgba(250,247,242,0.05);border:1px solid rgba(250,247,242,0.1);border-radius:50px;padding:13px 20px;font-family:var(--b);font-size:14px;color:var(--cream);text-align:center;box-sizing:border-box;transition:border-color 0.25s;" />
+        <input type="email" name="email" required placeholder="Your email address" autocomplete="email"
+          style="width:100%;background:rgba(250,247,242,0.05);border:1px solid rgba(250,247,242,0.1);border-radius:50px;padding:13px 20px;font-family:var(--b);font-size:14px;color:var(--cream);text-align:center;box-sizing:border-box;transition:border-color 0.25s;" />
+        <button type="submit"
+          style="width:100%;background:var(--rose);color:#fff;border:none;border-radius:50px;padding:15px 24px;font-family:var(--b);font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.04em;transition:opacity 0.25s,transform 0.2s;margin-top:4px;">
+          Yes, I'm in
+        </button>
+      </form>
+      <p style="font-size: 11px; color: rgba(250,247,242,0.22); margin-top: 14px; line-height: 1.5;">No spam, ever. Unsubscribe whenever you like.</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var form = document.getElementById('connectEmailForm');
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      var res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('connectEmailSuccess').style.display = 'block';
+      } else { btn.textContent = 'Something went wrong - try again'; btn.disabled = false; }
+    } catch { btn.textContent = 'Something went wrong - try again'; btn.disabled = false; }
+  });
+})();
+</script>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="hero.jpg" alt="Jess Hollamby" />
+  </div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>If your body responded reading this, <em>that's your sign.</em></h2>
+    <p>Here's your next step.</p>
+    <a href="booking.html#clarity" class="btn btn-primary">Book a Session</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

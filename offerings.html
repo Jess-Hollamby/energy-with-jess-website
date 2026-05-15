@@ -1,0 +1,668 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offerings - Energy with Jess</title>
+<meta name="description" content="Psychic readings, Reiki teaching, mentoring, and self-paced courses with Jess Hollamby. Adelaide, Port Elliot & online worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─── OFFERINGS PAGE SPECIFIC ─── */
+
+/* intro */
+.offerings-intro {
+  padding: 110px 0 60px;
+}
+.offerings-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.offerings-intro p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.68);
+  line-height: 1.88;
+  margin-bottom: 18px;
+}
+
+/* signature offering */
+.signature {
+  padding: 60px 0 100px;
+}
+.signature-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 20px;
+  overflow: hidden;
+  min-height: 520px;
+  border: 1px solid rgba(250,247,242,0.06);
+}
+.signature-photo {
+  background: linear-gradient(160deg, #2a4a52, #1d3540);
+}
+.signature-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.signature-body {
+  background: rgba(250,247,242,0.03);
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.signature-body h2 {
+  font-family: var(--h);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.signature-body h2 em { font-style: italic; color: var(--rose); }
+.signature-body p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.65);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.signature-includes {
+  list-style: none;
+  margin: 20px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.signature-includes li {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.65);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.6;
+}
+.signature-includes li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+/* individual offerings */
+.individual {
+  padding: 40px 0 100px;
+  background: var(--mid);
+}
+.individual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+.offering-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 16px;
+  padding: 42px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+.offering-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(191,66,136,0.2);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+}
+.offering-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rose), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.offering-card:hover::after { transform: scaleX(1); }
+.offering-num {
+  font-family: var(--h);
+  font-size: 72px;
+  font-weight: 300;
+  color: rgba(250,247,242,0.035);
+  position: absolute;
+  top: 12px; right: 20px;
+  line-height: 1;
+  pointer-events: none;
+}
+.offering-card h3 {
+  font-family: var(--h);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.offering-card > p {
+  font-size: 15px;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.82;
+  margin-bottom: 20px;
+}
+.offering-details {
+  list-style: none;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.offering-details li {
+  font-size: 13.5px;
+  color: rgba(250,247,242,0.45);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.6;
+}
+.offering-details li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.offering-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(250,247,242,0.06);
+}
+
+/* reiki levels */
+.reiki {
+  padding: 100px 0;
+}
+.reiki-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 60px;
+}
+.reiki-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 14px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.reiki-card:hover { transform: translateY(-5px); border-color: rgba(196,176,212,0.25); }
+.reiki-level {
+  font-family: var(--h);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.reiki-card h3 {
+  font-family: var(--h);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.reiki-card p {
+  font-size: 14px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+/* what to expect */
+.expect {
+  padding: 100px 0;
+  background: var(--mid);
+}
+.expect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  margin-top: 56px;
+}
+.expect-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.step-num {
+  font-family: var(--h);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--rose);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 36px;
+  padding-top: 2px;
+}
+.step-body h4 {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.step-body p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.75;
+}
+.expect-faqs {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(250,247,242,0.06);
+  padding: 18px 0;
+}
+.faq-q {
+  font-family: var(--h);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.faq-q::after {
+  content: '+';
+  font-family: var(--b);
+  font-size: 20px;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.55);
+  line-height: 1.78;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-bottom: 8px; }
+
+@media (max-width: 900px) {
+  .signature-card { grid-template-columns: 1fr; }
+  .signature-photo { min-height: 320px; }
+  .signature-body { padding: 40px 32px; }
+}
+@media (max-width: 760px) {
+  .offerings-intro { padding: 80px 0 40px; }
+  .offerings-intro-grid { grid-template-columns: 1fr; gap: 40px; }
+  .individual-grid { grid-template-columns: 1fr; }
+  .reiki { padding: 80px 0; }
+  .reiki-grid { grid-template-columns: 1fr; }
+  .expect { padding: 80px 0; }
+  .expect-grid { grid-template-columns: 1fr; gap: 52px; }
+}
+.cta-bg::after { background: rgba(21,37,42,0.55) !important; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html"     onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html"   onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ─── PAGE HERO ─── -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <!-- PHOTO: service-featured.jpg — teal tarot cards -->
+    <img src="service-featured.jpg" alt="Energy with Jess offerings" style="object-position: center 55%;" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <h1>Your Path <em>Forward</em></h1>
+    <p class="page-hero-sub">Whether you need clarity, healing, or a complete reinvention - there's a way in.</p>
+  </div>
+</section>
+
+<!-- ─── INTRO ─── -->
+<section class="offerings-intro">
+  <div class="container">
+    <div class="offerings-intro-grid">
+      <div class="reveal left">
+        <span class="label">How We Work Together</span>
+        <h2 class="section-title">There's no one-size-fits-all <em>path</em></h2>
+      </div>
+      <div class="reveal right">
+        <p>Some women come knowing exactly what they need. Others arrive with just a feeling - a quiet knowing that something has to shift. Both are the perfect place to start.</p>
+        <p>My offerings span from single sessions through to a full 12-month path. You can dip a toe in or dive all the way in. Either way, you'll be met with warmth, zero judgment, and a genuine commitment to your wellbeing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SIGNATURE OFFERING ─── -->
+<section class="signature">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom: 48px;">
+      <span class="label">Signature Offering</span>
+    </div>
+    <div class="signature-card reveal">
+      <div class="signature-photo photo">
+        <!-- PHOTO: gallery-1.jpg or jess-hero.webp -->
+        <img src="jess-shadow-light.jpg" alt="The Unbecoming - 12 Month Program with Jess Hollamby" />
+      </div>
+      <div class="signature-body">
+        <span class="tag">12 Month Path of Unbecoming</span>
+        <h2 style="margin-top: 14px;">The <em>Unbecoming</em></h2>
+        <p>A full year of putting down everything that was never yours. Gently shed what was never meant for you, find out who you actually are underneath it all, and build a life that finally feels like it fits.</p>
+        <p>This is for the woman who feels everything - and is exhausted by it. Who knows there's more for her, but can't find her way there alone.</p>
+        <ul class="signature-includes">
+          <li>12 months of personalised one-on-one sessions</li>
+          <li>Reiki Level 1 and Level 2 training included</li>
+          <li>Shadow work, inner child and nervous system healing</li>
+          <li>Ongoing access to Jess between sessions</li>
+          <li>A completely personalised path - no templates</li>
+          <li>Available fully online - from anywhere in the world</li>
+        </ul>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 4px;">
+          <a href="the-unbecoming.html" class="btn btn-primary">Learn More</a>
+          <a href="booking.html#discovery" class="btn btn-ghost" style="padding: 12px 24px; font-size: 12px;">Book a Discovery Call</a>
+        </div>
+        <p style="font-size: 13px; color: var(--gold); margin-top: 16px; font-weight: 600; letter-spacing: 0.06em;">Investment: $8,888</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INDIVIDUAL OFFERINGS ─── -->
+<section class="individual">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">Individual Sessions</span>
+      <h2 class="section-title">Where would you like to <em>begin?</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.52); max-width: 500px; margin: 0 auto;">Single sessions available online and in-person. No commitment needed - just come as you are.</p>
+    </div>
+
+    <div class="individual-grid">
+
+      <div class="offering-card reveal d1">
+        <span class="offering-num">01</span>
+        <span class="tag">Most Popular</span>
+        <h3>Clarity &amp; Healing</h3>
+        <p>For when you're looking for insight into where your energy is leading you. When life feels heavy, confusing, or stuck - and you need a gentle nudge back toward yourself.</p>
+        <ul class="offering-details">
+          <li>Psychic reading and energy insight</li>
+          <li>Tarot and oracle card guidance</li>
+          <li>Energetic clearing and support</li>
+          <li>A safe space to say what you can't say anywhere else</li>
+          <li>Available online worldwide</li>
+        </ul>
+        <div class="offering-footer">
+          <a href="clarity-healing.html" class="btn btn-ghost" style="padding: 10px 20px; font-size: 12px;">Learn More</a>
+          <a href="booking.html#clarity" class="btn btn-primary" style="padding: 10px 24px; font-size: 12px;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="offering-card reveal d2">
+        <span class="offering-num">02</span>
+        <span class="tag">For Practitioners</span>
+        <h3>Expansion</h3>
+        <p>Designed for practitioners, coaches, and business owners in the healing space who are ready to go deeper - not just in their work with clients, but in their own inner landscape.</p>
+        <ul class="offering-details">
+          <li>Deep-dive personal healing and processing</li>
+          <li>Energetic business and visibility support</li>
+          <li>Shadow work for the healer</li>
+          <li>Psychic and intuitive business guidance</li>
+          <li>Tailored to where you actually are right now</li>
+        </ul>
+        <div class="offering-footer">
+          <a href="expansion.html" class="btn btn-ghost" style="padding: 10px 20px; font-size: 12px;">Learn More</a>
+          <a href="booking.html#clarity" class="btn btn-primary" style="padding: 10px 24px; font-size: 12px;">Book Now</a>
+        </div>
+      </div>
+
+      <div class="offering-card reveal d3">
+        <span class="offering-num">03</span>
+        <span class="tag tag-lavender">Level 1 · Level 2 · Master/Teacher</span>
+        <h3>Learn Reiki</h3>
+        <p>Learn to work with energy - in your own life, and with others. Jess teaches all levels of Reiki from Level 1 through to Master/Teacher, in-person in Adelaide and Port Elliot.</p>
+        <ul class="offering-details">
+          <li>Reiki Level 1, Level 2 &amp; Master/Teacher available</li>
+          <li>In-person training in Adelaide &amp; Port Elliot</li>
+          <li>Small, intimate sessions - no big classroom energy</li>
+          <li>Includes manual, certificate &amp; attunement</li>
+          <li>No prior experience needed</li>
+        </ul>
+        <div class="offering-footer">
+          <a href="learn-reiki.html" class="btn btn-ghost" style="padding: 10px 20px; font-size: 12px;">Learn More</a>
+          <a href="reiki-eoi.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 12px;">Register Interest</a>
+        </div>
+      </div>
+
+      <div class="offering-card reveal d4">
+        <span class="offering-num">04</span>
+        <span class="tag tag-gold">Anytime, Anywhere</span>
+        <h3>Self-Paced Learning</h3>
+        <p>For the woman who learns best on her own timeline. Access course content whenever it suits you - no live sessions, no timezone issues, no pressure.</p>
+        <ul class="offering-details">
+          <li>Available to purchase and begin immediately</li>
+          <li>Learn at your own pace, in your own space</li>
+          <li>Topics include energy, empathy, Reiki, and self-development</li>
+          <li>Revisit content as many times as you need</li>
+          <li>No tech overwhelm - kept simple and accessible</li>
+        </ul>
+        <div class="offering-footer">
+          <a href="ask-question.html" class="btn btn-ghost" style="padding: 10px 20px; font-size: 12px;">Learn More</a>
+          <a href="self-paced.html" class="btn btn-primary" style="padding: 10px 24px; font-size: 12px;">Explore Courses</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── LEARN REIKI ─── -->
+<section class="reiki">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">Learn Reiki with Jess</span>
+      <h2 class="section-title">Reiki training at <em>every level</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.52); max-width: 520px; margin: 0 auto;">Whether you want to heal yourself, your family, or build a practice - Jess teaches all levels of Reiki at your pace.</p>
+    </div>
+
+    <div class="reiki-grid">
+      <div class="reiki-card reveal d1">
+        <div class="reiki-level">I</div>
+        <h3>Reiki Level 1</h3>
+        <p>Your entry point into energy healing. Learn the foundations of Reiki, receive your first attunement, and begin working with energy for yourself and those closest to you.</p>
+        <span class="tag tag-lavender">Beginner</span>
+      </div>
+      <div class="reiki-card reveal d2">
+        <div class="reiki-level">II</div>
+        <h3>Reiki Level 2</h3>
+        <p>Deepen your practice with symbols, distance healing, and more focused energy work. Suitable for those who want to use Reiki professionally or for ongoing personal development.</p>
+        <span class="tag tag-lavender">Intermediate</span>
+      </div>
+      <div class="reiki-card reveal d3">
+        <div class="reiki-level">III</div>
+        <h3>Reiki Master / Teacher</h3>
+        <p>The highest level of Reiki training. Receive your Master attunement, learn to attune others, and step into your role as a Reiki Teacher in your own right.</p>
+        <span class="tag tag-lavender">Advanced</span>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;" class="reveal">
+      <p style="font-size: 15px; color: rgba(250,247,242,0.5); margin-bottom: 24px;">Ready to begin with Reiki? Book a call and we'll find the right level for where you are.</p>
+      <a href="booking.html" class="btn btn-primary">Book a Reiki Training Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHAT TO EXPECT ─── -->
+<section class="expect">
+  <div class="container">
+    <div class="reveal" style="text-align: center;">
+      <span class="label">First Time?</span>
+      <h2 class="section-title">What to expect when you <em>work with me</em></h2>
+    </div>
+
+    <div class="expect-grid">
+      <div class="expect-steps reveal left">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Choose your session type</h4>
+            <p>Not sure which offering is right for you? Start with Clarity &amp; Healing - it's the most flexible entry point and gives us a chance to feel into what you actually need.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Book your time</h4>
+            <p>Head to the booking page and choose a time that works for you. Online sessions are available across all timezones. In-person sessions are in Adelaide and Port Elliot, SA.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Come as you are</h4>
+            <p>No preparation needed. No need to have your questions perfectly formed, or to know what you're looking for. Just show up. The session will meet you where you are.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>What happens next is yours</h4>
+            <p>After your session, you'll have insights, tools, and a sense of what's next. There's no pressure to book again - though most women do, because something shifts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expect-faqs reveal right">
+        <h3 style="font-family: var(--h); font-size: 22px; font-weight: 400; margin-bottom: 8px; color: var(--cream);">Common Questions</h3>
+        <p style="font-size: 14px; color: rgba(250,247,242,0.45); margin-bottom: 28px;">Click to expand.</p>
+
+        <div class="faq-item">
+          <div class="faq-q">Do I need to believe in psychics for this to work?</div>
+          <div class="faq-a">Not at all. An open mind is all that's needed. Many of my clients come in sceptical and leave surprised. You don't have to believe - just be willing to explore.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What if I cry or get emotional?</div>
+          <div class="faq-a">Then you're in the right place. This is a safe space for exactly that. Emotions are information - there's nothing to be embarrassed about here.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How long are sessions?</div>
+          <div class="faq-a">Session length varies depending on the offering. Check the booking page for specific details on each session type, or reach out and I'll help you find the right fit.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Can I have a session if I'm not spiritual?</div>
+          <div class="faq-a">Absolutely. You don't need a spiritual background or practice. I work with women from all walks of life - religious, spiritual, agnostic, and everything in between.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What's the difference between Clarity &amp; Healing and Expansion?</div>
+          <div class="faq-a">Clarity &amp; Healing is for anyone seeking insight and support. Expansion is specifically designed for practitioners and healers who want to go deeper in their own inner work alongside their professional development.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="cta-bg">
+    <img src="hero.jpg" alt="Jess Hollamby" />
+  </div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>Not sure where to <em>start?</em></h2>
+    <p>If your body responded reading any of this, that's your sign. Book a Clarity &amp; Healing session - we'll work out the rest from there.</p>
+    <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+      <a href="booking.html#clarity" class="btn btn-primary">Book a Session</a>
+      <a href="ask-question.html" class="btn btn-ghost">Ask a Question</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -28px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

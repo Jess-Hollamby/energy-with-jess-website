@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Pages — Energy with Jess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:  #FAF6F1;
+      --brown:  #3A2E2E;
+      --mid:    #6B5757;
+      --border: #E0D3C8;
+      --white:  #FFFFFF;
+      --shadow: rgba(58,46,46,0.07);
+
+      --rose:    #B08B8B;
+      --rose-l:  #D4B5B5;
+      --sage:    #8FA68E;
+      --sage-l:  #C2D1C1;
+      --lav:     #9B8DB8;
+      --lav-l:   #C4BAD8;
+      --gold:    #C8A96E;
+      --gold-l:  #E0CBA0;
+      --neutral: #9B8DB8;
+    }
+    body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--brown); min-height:100vh; font-weight:300; line-height:1.7; }
+    .page-wrap { max-width:680px; margin:0 auto; padding:0 24px 80px; }
+
+    .page-header { text-align:center; padding:64px 0 56px; }
+    .eyebrow { font-size:10px; letter-spacing:3.5px; text-transform:uppercase; color:var(--neutral); margin-bottom:14px; }
+    .page-header h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3rem); font-weight:300; line-height:1.15; color:var(--brown); margin-bottom:16px; }
+    .page-header h1 em { font-style:italic; color:var(--neutral); }
+    .page-header p { font-size:0.88rem; color:var(--mid); max-width:400px; margin:0 auto; line-height:1.85; }
+
+    .section { margin-bottom:48px; }
+    .section-title { font-size:0.65rem; letter-spacing:3.5px; text-transform:uppercase; color:var(--mid); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+
+    .card-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:520px){ .card-grid { grid-template-columns:1fr; } }
+
+    .form-card {
+      display:block; text-decoration:none;
+      background:var(--white); border:1.5px solid var(--border); border-radius:12px;
+      padding:20px 22px; box-shadow:0 2px 12px var(--shadow);
+      transition:border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .form-card:hover { box-shadow:0 6px 24px var(--shadow); transform:translateY(-2px); }
+
+    .form-card .card-tag { font-size:0.62rem; letter-spacing:2.5px; text-transform:uppercase; font-weight:400; margin-bottom:8px; }
+    .form-card .card-title { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:400; line-height:1.25; color:var(--brown); margin-bottom:4px; }
+    .form-card .card-sub { font-size:0.78rem; color:var(--mid); line-height:1.5; }
+    .form-card .card-arrow { font-size:0.75rem; margin-top:12px; display:inline-block; opacity:0.5; }
+
+    /* Colour variants */
+    .rose  { border-top:3px solid var(--rose); }
+    .rose  .card-tag { color:var(--rose); }
+    .rose:hover { border-color:var(--rose); }
+
+    .sage  { border-top:3px solid var(--sage); }
+    .sage  .card-tag { color:var(--sage); }
+    .sage:hover { border-color:var(--sage); }
+
+    .lav   { border-top:3px solid var(--lav); }
+    .lav   .card-tag { color:var(--lav); }
+    .lav:hover { border-color:var(--lav); }
+
+    .gold  { border-top:3px solid var(--gold); }
+    .gold  .card-tag { color:var(--gold); }
+    .gold:hover { border-color:var(--gold); }
+
+    .card-full { grid-column: 1 / -1; }
+
+    .page-footer { text-align:center; padding:40px 0 0; font-size:0.72rem; color:var(--mid); letter-spacing:1px; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="page-header">
+    <p class="eyebrow">Energy with Jess</p>
+    <h1>Client <em>Form Pages</em></h1>
+    <p>All form pages in one place. Click any card to open the form.</p>
+  </header>
+
+  <!-- PRE-DISCOVERY FORMS -->
+  <div class="section">
+    <p class="section-title">Pre-Discovery Forms — sent before the discovery call</p>
+    <div class="card-grid">
+
+      <a href="pre-discovery-soul-support.html" class="form-card rose">
+        <div class="card-tag">Pre-Discovery</div>
+        <div class="card-title">Soul Support</div>
+        <div class="card-sub">What do you want to be, do and achieve - plus areas of interest</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+      <a href="pre-discovery-align-flow.html" class="form-card sage">
+        <div class="card-tag">Pre-Discovery</div>
+        <div class="card-title">Align + Flow Packs</div>
+        <div class="card-sub">What do you want to be, do and achieve - plus pack interest</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+      <a href="pre-discovery-unbecoming.html" class="form-card gold">
+        <div class="card-tag">Pre-Discovery</div>
+        <div class="card-title">The Unbecoming</div>
+        <div class="card-sub">Goals, expectations, vision, financial readiness</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+      <a href="pre-discovery-soul-led-business.html" class="form-card lav">
+        <div class="card-tag">Pre-Discovery</div>
+        <div class="card-title">Soul-Led Business</div>
+        <div class="card-sub">Already in business or starting out - gaps, direction, expectations</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- POST-CALL FOLLOW-UP -->
+  <div class="section">
+    <p class="section-title">Post-Call Follow-Up — sent when no action is taken after the discovery call</p>
+    <div class="card-grid">
+
+      <a href="post-call-followup.html" class="form-card lav card-full">
+        <div class="card-tag">Follow-Up</div>
+        <div class="card-title">Post-Call Follow-Up</div>
+        <div class="card-sub">Soul Support · Align + Flow Packs · The Unbecoming · Soul-Led Business — a gentle check-in when no next step has been taken</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- POST-CALL FORMS -->
+  <div class="section">
+    <p class="section-title">Post-Call Form — sent after the discovery call</p>
+    <div class="card-grid">
+
+      <a href="post-call.html" class="form-card lav card-full">
+        <div class="card-tag">Post-Call</div>
+        <div class="card-title">Post-Call Form</div>
+        <div class="card-sub">Soul Support · Align + Flow Packs · The Unbecoming · Soul-Led Business — how they're feeling, where they're at and next steps</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- POST-PURCHASE INTAKE FORMS -->
+  <div class="section">
+    <p class="section-title">Post-Purchase Intake — sent after payment is confirmed</p>
+    <div class="card-grid">
+
+      <a href="post-purchase-master.html" class="form-card lav card-full">
+        <div class="card-tag">Post-Purchase Intake</div>
+        <div class="card-title">Master Intake Form</div>
+        <div class="card-sub">Soul Support · Align + Flow Packs · The Unbecoming — personal details, astrology and Human Design, health and wellbeing, availability</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+      <a href="post-purchase-soul-led-existing.html" class="form-card lav">
+        <div class="card-tag">Post-Purchase Intake</div>
+        <div class="card-title">Soul-Led Business</div>
+        <div class="card-sub">Already in business - the business now, the transition, operational, client profile</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+      <a href="post-purchase-soul-led-new.html" class="form-card lav">
+        <div class="card-tag">Post-Purchase Intake</div>
+        <div class="card-title">Soul-Led Business</div>
+        <div class="card-sub">Building from scratch - vision, philosophy, sustainability, brand, client profile</div>
+        <div class="card-arrow">Open &rarr;</div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer class="page-footer"><p>energywithjess.com.au</p></footer>
+</div>
+</body>
+</html>
