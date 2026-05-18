@@ -907,7 +907,7 @@
       <div class="form-grid">
         <div class="fg"><label>First name</label><input type="text" id="fname" placeholder="Your first name" oninput="checkForm3()"/></div>
         <div class="fg"><label>Last name</label><input type="text" id="lname" placeholder="Your last name" oninput="checkForm3()"/></div>
-        <div class="fg"><label>Email</label><input type="email" id="email" placeholder="your@email.com" oninput="checkForm3()"/></div>
+        <div class="fg"><label id="email-label">Email</label><input type="email" id="email" placeholder="your@email.com" oninput="checkForm3()"/></div>
         <div class="fg"><label>Phone (optional)</label><input type="tel" id="phone" placeholder="+61 4xx xxx xxx"/></div>
         <div class="fg full">
           <label>What's bringing you here? (optional)</label>
@@ -977,6 +977,29 @@
           <span class="sum-val" id="sum-deposit" style="color:var(--gold);font-weight:700;font-size:1.15rem;"></span>
         </div>
       </div>
+      <!-- Coupon code -->
+      <div id="coupon-section" style="margin:16px 0;">
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <div class="fg" style="flex:1;margin:0;">
+            <label style="font-size:0.78rem;">Coupon code</label>
+            <input type="text" id="coupon-input" placeholder="Enter code" style="text-transform:uppercase;letter-spacing:0.08em;" oninput="this.value=this.value.toUpperCase()"/>
+          </div>
+          <button class="btn btn-ghost" onclick="applyCoupon()" style="padding:10px 20px;white-space:nowrap;flex-shrink:0;">Apply</button>
+        </div>
+        <p id="coupon-msg" style="font-size:0.8rem;margin-top:6px;display:none;"></p>
+      </div>
+
+      <!-- Cash confirm button (shown when CASH coupon applied) -->
+      <div id="cash-confirm-section" style="display:none;">
+        <div class="notice notice-gold">
+          <strong>Cash payment confirmed.</strong> No online payment needed - Jess will collect payment at your session.
+        </div>
+        <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;margin-top:8px;">
+          <button class="btn btn-primary" onclick="submitSession()" style="justify-content:center;">Confirm booking</button>
+          <button class="btn btn-ghost" onclick="goToStep(3)" style="justify-content:center;">&larr; Back</button>
+        </div>
+      </div>
+
       <!-- Discovery call confirm (no payment needed) -->
       <div id="discovery-confirm-section" style="display:none;">
         <div class="notice notice-gold">
@@ -1976,13 +1999,40 @@
   }
 
   // ── FORM VALIDATION ──
+  let cashMode = false;
+
   function checkForm3() {
+    const emailOk = cashMode || document.getElementById('email').value.includes('@');
     const ok = document.getElementById('fname').value.trim() &&
                document.getElementById('lname').value.trim() &&
-               document.getElementById('email').value.includes('@') &&
+               emailOk &&
                document.getElementById('age-confirm').checked &&
                document.getElementById('tcs-confirm').checked;
     document.getElementById('next-3').disabled = !ok;
+  }
+
+  function applyCoupon() {
+    const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+    const msg  = document.getElementById('coupon-msg');
+    const isInPerson = selServiceType === 'inperson' || selServiceType === 'artofyou';
+    msg.style.display = 'block';
+    if (code === 'CASH') {
+      if (!isInPerson) {
+        msg.style.color = 'var(--rose)';
+        msg.textContent = 'This code is only valid for in-person bookings.';
+        return;
+      }
+      cashMode = true;
+      msg.style.color = 'green';
+      msg.textContent = 'Cash payment applied. No online payment needed.';
+      document.getElementById('email-label').textContent = 'Email (optional)';
+      document.getElementById('payment-section').style.display = 'none';
+      document.getElementById('discovery-confirm-section').style.display = 'none';
+      document.getElementById('cash-confirm-section').style.display = 'block';
+    } else {
+      msg.style.color = 'var(--rose)';
+      msg.textContent = 'Invalid code.';
+    }
   }
 
   // ── SUMMARY ──
@@ -2105,9 +2155,10 @@
       service:      selService,
       duration:     selDuration,
       price:        selPrice,
-      deposit:      isDiscovery ? 'Complimentary' : '$' + depositNum,
-      depositNum:   isDiscovery ? 0 : depositNum,
+      deposit:      isDiscovery ? 'Complimentary' : cashMode ? 'Cash' : '$' + depositNum,
+      depositNum:   isDiscovery ? 0 : cashMode ? 0 : depositNum,
       isDiscovery:  isDiscovery,
+      paymentMethod: cashMode ? 'Cash' : 'Online',
       discoveryFormLink: discoveryFormLink,
       discoverySequenceTag: discoveryTag,
       format:       fmt,
@@ -2147,6 +2198,10 @@
     if (isDiscovery) {
       if (successTitle) successTitle.textContent = 'Your call is booked.';
       if (successMsg)   successMsg.innerHTML = 'Your discovery call is confirmed. Check your inbox — your pre-discovery call form will arrive within 24 hours. Jess looks forward to connecting with you.';
+    } else if (cashMode) {
+      if (successTitle) successTitle.textContent = "You're booked in.";
+      if (successMsg)   successMsg.innerHTML = 'Your booking is confirmed. Cash payment will be collected at your session. Jess will be in touch within 24 hours with any preparation notes.';
+      cashMode = false;
     } else {
       if (successTitle) successTitle.textContent = "You're booked in.";
       if (successMsg)   successMsg.innerHTML = 'Your deposit has been received. Jess will be in touch within 24 hours with your confirmation and any preparation notes.';
