@@ -1959,7 +1959,45 @@
     renderCal();
     renderTimes();
   }
-  function renderTimes() {
+  // ── PORT ELLIOT SLOT BLOCKING ──
+  let aoyEventCache = {};
+
+  async function fetchPortElliotBooked(date) {
+    const key = date.toDateString();
+    if (aoyEventCache[key]) return aoyEventCache[key];
+    if (!GCAL_BLOCKED_CALENDAR_ID || !GCAL_API_KEY) return [];
+    const dayStart = new Date(date); dayStart.setHours(0,0,0,0);
+    const dayEnd   = new Date(date); dayEnd.setHours(23,59,59,999);
+    const url = 'https://www.googleapis.com/calendar/v3/calendars/'
+      + encodeURIComponent(GCAL_BLOCKED_CALENDAR_ID)
+      + '/events?key=' + GCAL_API_KEY
+      + '&timeMin=' + dayStart.toISOString()
+      + '&timeMax=' + dayEnd.toISOString()
+      + '&singleEvents=true';
+    try {
+      const res  = await fetch(url);
+      const data = await res.json();
+      const events = (data.items || [])
+        .filter(ev => ev.start && ev.start.dateTime)
+        .map(ev => ({ start: new Date(ev.start.dateTime), end: new Date(ev.end.dateTime) }));
+      aoyEventCache[key] = events;
+      return events;
+    } catch(e) { return []; }
+  }
+
+  function timeStrToDate(timeStr, refDate) {
+    const [time, mer] = timeStr.split(' ');
+    let [h, m] = time.split(':').map(Number);
+    if (mer === 'PM' && h !== 12) h += 12;
+    if (mer === 'AM' && h === 12) h = 0;
+    const d = new Date(refDate); d.setHours(h, m, 0, 0); return d;
+  }
+
+  function slotOverlaps(slotStart, slotEnd, events) {
+    return events.some(ev => slotStart < ev.end && slotEnd > ev.start);
+  }
+
+  async function renderTimes() {
     document.getElementById('times-prompt').style.display = 'none';
     const grid = document.getElementById('time-slots');
     grid.style.display = 'grid';
@@ -1972,6 +2010,17 @@
       const aoyType = selDate ? getAoyType(selDate) : null;
       times  = aoyType === 'B' ? AOY_TIMES_B : AOY_TIMES_A;
       booked = AOY_BOOKED;
+      grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
+      const calEvents  = await fetchPortElliotBooked(selDate);
+      const durMins    = selDuration ? (parseInt(selDuration) || 60) : 60;
+      grid.innerHTML   = times.map((t, i) => {
+        const slotStart  = timeStrToDate(t, selDate);
+        const slotEnd    = new Date(slotStart.getTime() + durMins * 60000);
+        const isTaken    = booked.includes(i) || slotOverlaps(slotStart, slotEnd, calEvents);
+        const isSel      = t === selTime;
+        return `<button class="time-slot${isSel?' selected':''}" ${isTaken?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`;
+      }).join('');
+      return;
     } else {
       // Online - day-specific slots (Thu from July, Fri before July, Sat year-round)
       const dow = selDate ? selDate.getDay() : 5;
