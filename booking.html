@@ -1856,9 +1856,18 @@
   function selectDuration(e, pill, name, duration, price) {
     e.stopPropagation();
     const card = pill.closest('.svc-card');
-    card.querySelectorAll('.dur-pill').forEach(function(p) { p.classList.remove('dur-selected'); });
-    pill.classList.add('dur-selected');
-    selectService(card, name, duration, price);
+    const isAlreadySelected = pill.classList.contains('dur-selected');
+
+    // Clear all selections first
+    document.querySelectorAll('.dur-pill').forEach(p => p.classList.remove('dur-selected'));
+    document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
+    selService = null; selDuration = ''; selPrice = '';
+    document.getElementById('next-1').disabled = true;
+
+    if (!isAlreadySelected) {
+      pill.classList.add('dur-selected');
+      selectService(card, name, duration, price);
+    }
   }
 
   // ── SERVICE SELECT ──
@@ -2013,10 +2022,12 @@
       grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
       const calEvents  = await fetchPortElliotBooked(selDate);
       const durMins    = selDuration ? (parseInt(selDuration) || 60) : 60;
+      const blockEndStr = aoyType === 'B' ? '5:00 PM' : '8:00 PM';
+      const blockEnd    = timeStrToDate(blockEndStr, selDate);
       grid.innerHTML   = times.map((t, i) => {
         const slotStart  = timeStrToDate(t, selDate);
         const slotEnd    = new Date(slotStart.getTime() + durMins * 60000);
-        const isTaken    = booked.includes(i) || slotOverlaps(slotStart, slotEnd, calEvents);
+        const isTaken    = booked.includes(i) || slotOverlaps(slotStart, slotEnd, calEvents) || slotEnd > blockEnd;
         const isSel      = t === selTime;
         return `<button class="time-slot${isSel?' selected':''}" ${isTaken?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`;
       }).join('');
@@ -2041,10 +2052,15 @@
     ).join('');
   }
   function pickTime(el, t) {
+    const isAlreadySelected = el.classList.contains('selected');
     document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
-    el.classList.add('selected');
-    selTime = t;
-    document.getElementById('next-2').disabled = false;
+    selTime = null;
+    document.getElementById('next-2').disabled = true;
+    if (!isAlreadySelected) {
+      el.classList.add('selected');
+      selTime = t;
+      document.getElementById('next-2').disabled = false;
+    }
   }
 
   // ── FORM VALIDATION ──
