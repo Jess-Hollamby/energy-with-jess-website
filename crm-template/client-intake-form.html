@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Setup - Client Intake Form</title>
+<style>
+  /* ---- Screen styles ---- */
+  @media screen {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f4f6f9;
+      color: #2d2d2d;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      background: #4a6fa5;
+      color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .intro h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .intro p {
+      font-size: 0.9rem;
+      opacity: 0.88;
+      line-height: 1.6;
+    }
+
+    .intro .steps {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      opacity: 0.9;
+      line-height: 1.8;
+    }
+
+    .section {
+      background: white;
+      border-radius: 10px;
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #4a6fa5;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #e8f0fb;
+    }
+
+    .field {
+      margin-bottom: 1.1rem;
+    }
+
+    .field:last-child { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 0.35rem;
+    }
+
+    label .optional {
+      font-weight: 400;
+      color: #999;
+      font-size: 0.8rem;
+    }
+
+    label .hint {
+      display: block;
+      font-weight: 400;
+      color: #888;
+      font-size: 0.78rem;
+      margin-top: 1px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    textarea {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border: 1.5px solid #ddd;
+      border-radius: 7px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: #2d2d2d;
+      background: #fafafa;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #4a6fa5;
+      background: white;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      line-height: 1.5;
+    }
+
+    .colour-entry {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .colour-entry:last-child { margin-bottom: 0; }
+
+    .colour-name-input {
+      width: 160px;
+      flex-shrink: 0;
+      font-size: 0.85rem !important;
+      padding: 0.45rem 0.6rem !important;
+    }
+
+    input[type="color"] {
+      width: 42px;
+      height: 38px;
+      border: 1.5px solid #ddd;
+      border-radius: 7px;
+      padding: 2px;
+      cursor: pointer;
+      background: white;
+      flex-shrink: 0;
+    }
+
+    .colour-hex {
+      flex: 1;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    .required-note {
+      font-size: 0.78rem;
+      color: #999;
+      margin-bottom: 1.25rem;
+    }
+
+    .required-note span { color: #e05252; }
+
+    .generate-btn {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      background: #4a6fa5;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.15s;
+    }
+
+    .generate-btn:hover { background: #3a5f95; }
+
+    .pdf-instructions {
+      background: #fffbe6;
+      border: 1px solid #f5d87a;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #7a6000;
+      display: none;
+      line-height: 1.6;
+    }
+
+    .pdf-instructions strong { color: #5a4500; }
+
+    .error-msg {
+      background: #fff0f0;
+      border: 1px solid #f5c6c6;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      color: #c0392b;
+      display: none;
+    }
+
+    input.invalid, textarea.invalid {
+      border-color: #e05252;
+    }
+  }
+
+  /* ---- Print / PDF styles ---- */
+  @media print {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #2d2d2d;
+      font-size: 10pt;
+      background: white;
+    }
+
+    .intro, .section, .generate-btn,
+    .pdf-instructions, .error-msg,
+    .required-note, label .hint { display: none !important; }
+
+    .print-only { display: block !important; }
+
+    .print-page {
+      padding: 0;
+    }
+
+    .print-header {
+      border-bottom: 3px solid #4a6fa5;
+      padding-bottom: 12pt;
+      margin-bottom: 18pt;
+    }
+
+    .print-header h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #4a6fa5;
+    }
+
+    .print-header p {
+      font-size: 9pt;
+      color: #888;
+      margin-top: 3pt;
+    }
+
+    .print-section {
+      margin-bottom: 16pt;
+      page-break-inside: avoid;
+    }
+
+    .print-section-title {
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #4a6fa5;
+      border-bottom: 1pt solid #c8d8f0;
+      padding-bottom: 4pt;
+      margin-bottom: 10pt;
+    }
+
+    .print-row {
+      display: flex;
+      gap: 12pt;
+      margin-bottom: 8pt;
+      align-items: flex-start;
+    }
+
+    .print-label {
+      font-size: 8pt;
+      font-weight: 700;
+      color: #666;
+      min-width: 110pt;
+      padding-top: 1pt;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .print-value {
+      font-size: 10pt;
+      color: #2d2d2d;
+      flex: 1;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .print-value.empty {
+      color: #bbb;
+      font-style: italic;
+    }
+
+    .colour-swatch {
+      display: inline-block;
+      width: 12pt;
+      height: 12pt;
+      border-radius: 3pt;
+      vertical-align: middle;
+      margin-right: 5pt;
+      border: 0.5pt solid #ccc;
+    }
+
+    .print-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-top: 1pt solid #e0e0e0;
+      padding-top: 6pt;
+      font-size: 8pt;
+      color: #bbb;
+      text-align: center;
+    }
+  }
+
+  .print-only { display: none; }
+</style>
+</head>
+<body>
+
+<!-- ===================== SCREEN VIEW ===================== -->
+<div class="page">
+
+  <div class="intro">
+    <h1>CRM Setup - Client Intake Form</h1>
+    <p>Fill in your details below so your CRM system can be personalised and ready to go. This should take about 5 minutes.</p>
+    <div class="steps">
+      1. Fill in the form &nbsp;&bull;&nbsp;
+      2. Click "Generate PDF" &nbsp;&bull;&nbsp;
+      3. Save as PDF and send it back
+    </div>
+  </div>
+
+  <p class="required-note"><span>*</span> Required fields</p>
+
+  <!-- Business Details -->
+  <div class="section">
+    <div class="section-title">Your Business Details</div>
+
+    <div class="field">
+      <label for="biz-name">Business name <span>*</span></label>
+      <input type="text" id="biz-name" placeholder="e.g. Sarah Jones Coaching">
+    </div>
+
+    <div class="field">
+      <label for="your-name">Your first name <span>*</span>
+        <span class="hint">Used in email sign-offs</span>
+      </label>
+      <input type="text" id="your-name" placeholder="e.g. Sarah">
+    </div>
+
+    <div class="field">
+      <label for="send-email">Email address you send from <span>*</span>
+        <span class="hint">This is what your clients will see in the "From" field</span>
+      </label>
+      <input type="email" id="send-email" placeholder="you@yourbusiness.com">
+    </div>
+
+    <div class="field">
+      <label for="reply-email">Reply-to email <span class="optional">(optional - leave blank if same as above)</span></label>
+      <input type="email" id="reply-email" placeholder="you@yourbusiness.com">
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="section">
+    <div class="section-title">Your Links</div>
+
+    <div class="field">
+      <label for="website">Website URL <span>*</span></label>
+      <input type="url" id="website" placeholder="https://yourwebsite.com">
+    </div>
+
+    <div class="field">
+      <label for="booking">Booking page URL <span class="optional">(optional)</span>
+        <span class="hint">Where clients go to book a session or call</span>
+      </label>
+      <input type="url" id="booking" placeholder="https://yourwebsite.com/book">
+    </div>
+  </div>
+
+  <!-- Services and Sources -->
+  <div class="section">
+    <div class="section-title">Your Services and Audience</div>
+
+    <div class="field">
+      <label for="services">What services do you offer? <span>*</span>
+        <span class="hint">List one per line - these become the options in your enquiry form</span>
+      </label>
+      <textarea id="services" placeholder="e.g.
+1:1 Coaching Session
+Group Program
+Discovery Call
+Online Course
+Speaking Enquiry"></textarea>
+    </div>
+
+    <div class="field">
+      <label for="sources">How do people typically find you?
+        <span class="hint">List one per line - these become the "How did you find us?" options</span>
+      </label>
+      <textarea id="sources" placeholder="e.g.
+Instagram
+Google
+Word of mouth
+Referral
+Facebook
+Podcast"></textarea>
+    </div>
+  </div>
+
+  <!-- Brand -->
+  <div class="section">
+    <div class="section-title">Brand Colours <span style="font-weight:400;text-transform:none;letter-spacing:0;font-size:0.8rem;color:#aaa;">(optional)</span></div>
+
+    <p style="font-size:0.82rem;color:#888;margin-bottom:1.1rem;line-height:1.5;">Pick your brand colours and give each one a name (e.g. Primary, Brand Pink, Dark, Cream, Accent). Don't worry if you're not sure - we can sort this separately.</p>
+
+    <div style="font-size:0.75rem;color:#aaa;display:flex;gap:0.6rem;margin-bottom:0.4rem;padding-left:1px;">
+      <span style="width:160px;flex-shrink:0;">Colour name</span>
+      <span style="width:42px;flex-shrink:0;"></span>
+      <span>Hex code</span>
+    </div>
+
+    <div class="colour-entry">
+      <input type="text" class="colour-name-input" id="name-c1" placeholder="e.g. Primary" value="Primary">
+      <input type="color" id="colour-c1" value="#4a6fa5" oninput="syncHex('colour-c1','hex-c1')">
+      <input type="text" id="hex-c1" class="colour-hex" value="#4a6fa5" placeholder="#000000" oninput="syncSwatch('hex-c1','colour-c1')" maxlength="7">
+    </div>
+    <div class="colour-entry">
+      <input type="text" class="colour-name-input" id="name-c2" placeholder="e.g. Secondary" value="Secondary">
+      <input type="color" id="colour-c2" value="#888888" oninput="syncHex('colour-c2','hex-c2')">
+      <input type="text" id="hex-c2" class="colour-hex" value="" placeholder="#000000" oninput="syncSwatch('hex-c2','colour-c2')" maxlength="7">
+    </div>
+    <div class="colour-entry">
+      <input type="text" class="colour-name-input" id="name-c3" placeholder="e.g. Dark" value="Dark">
+      <input type="color" id="colour-c3" value="#888888" oninput="syncHex('colour-c3','hex-c3')">
+      <input type="text" id="hex-c3" class="colour-hex" value="" placeholder="#000000" oninput="syncSwatch('hex-c3','colour-c3')" maxlength="7">
+    </div>
+    <div class="colour-entry">
+      <input type="text" class="colour-name-input" id="name-c4" placeholder="e.g. Light / Cream" value="Light">
+      <input type="color" id="colour-c4" value="#888888" oninput="syncHex('colour-c4','hex-c4')">
+      <input type="text" id="hex-c4" class="colour-hex" value="" placeholder="#000000" oninput="syncSwatch('hex-c4','colour-c4')" maxlength="7">
+    </div>
+    <div class="colour-entry">
+      <input type="text" class="colour-name-input" id="name-c5" placeholder="e.g. Accent" value="Accent">
+      <input type="color" id="colour-c5" value="#888888" oninput="syncHex('colour-c5','hex-c5')">
+      <input type="text" id="hex-c5" class="colour-hex" value="" placeholder="#000000" oninput="syncSwatch('hex-c5','colour-c5')" maxlength="7">
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div class="section">
+    <div class="section-title">Anything Else?</div>
+    <div class="field">
+      <label for="notes">Notes or questions <span class="optional">(optional)</span>
+        <span class="hint">Anything else that would be helpful to know before setup</span>
+      </label>
+      <textarea id="notes" placeholder="e.g. I use a different email for client communications, or I already have a freebie opt-in I'd like connected..."></textarea>
+    </div>
+  </div>
+
+  <button class="generate-btn" onclick="generatePDF()">Generate PDF to Send Back</button>
+
+  <div class="error-msg" id="error-msg">
+    Please fill in the required fields before generating your PDF.
+  </div>
+
+  <div class="pdf-instructions" id="pdf-instructions">
+    <strong>Almost done!</strong> Your details are ready.<br>
+    In the print window that just opened:<br>
+    - Look for <strong>"Save as PDF"</strong> or <strong>"PDF"</strong> in the destination/printer dropdown<br>
+    - Click Save, then email the PDF back
+  </div>
+
+</div><!-- end .page -->
+
+
+<!-- ===================== PRINT VIEW ===================== -->
+<div class="print-only" id="print-view">
+
+  <div class="print-header">
+    <h1>CRM Setup - Client Details</h1>
+    <p id="print-date"></p>
+  </div>
+
+  <div class="print-section">
+    <div class="print-section-title">Business Details</div>
+
+    <div class="print-row">
+      <div class="print-label">Business Name</div>
+      <div class="print-value" id="p-biz-name"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label">First Name</div>
+      <div class="print-value" id="p-your-name"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label">Sending Email</div>
+      <div class="print-value" id="p-send-email"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label">Reply-To Email</div>
+      <div class="print-value" id="p-reply-email"></div>
+    </div>
+  </div>
+
+  <div class="print-section">
+    <div class="print-section-title">Links</div>
+
+    <div class="print-row">
+      <div class="print-label">Website</div>
+      <div class="print-value" id="p-website"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label">Booking Page</div>
+      <div class="print-value" id="p-booking"></div>
+    </div>
+  </div>
+
+  <div class="print-section">
+    <div class="print-section-title">Services and Audience</div>
+
+    <div class="print-row">
+      <div class="print-label">Services Offered</div>
+      <div class="print-value" id="p-services"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label">How They Find You</div>
+      <div class="print-value" id="p-sources"></div>
+    </div>
+  </div>
+
+  <div class="print-section">
+    <div class="print-section-title">Brand Colours</div>
+
+    <div class="print-row">
+      <div class="print-label" id="p-name-c1">Colour 1</div>
+      <div class="print-value" id="p-colour-c1"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label" id="p-name-c2">Colour 2</div>
+      <div class="print-value" id="p-colour-c2"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label" id="p-name-c3">Colour 3</div>
+      <div class="print-value" id="p-colour-c3"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label" id="p-name-c4">Colour 4</div>
+      <div class="print-value" id="p-colour-c4"></div>
+    </div>
+    <div class="print-row">
+      <div class="print-label" id="p-name-c5">Colour 5</div>
+      <div class="print-value" id="p-colour-c5"></div>
+    </div>
+  </div>
+
+  <div class="print-section" id="p-notes-section">
+    <div class="print-section-title">Additional Notes</div>
+    <div class="print-row">
+      <div class="print-label">Notes</div>
+      <div class="print-value" id="p-notes"></div>
+    </div>
+  </div>
+
+  <div class="print-footer">
+    CRM Setup - Client Intake &nbsp;|&nbsp; Prepared for setup by your service provider
+  </div>
+
+</div><!-- end print-view -->
+
+
+<script>
+  function syncHex(colorId, hexId) {
+    document.getElementById(hexId).value = document.getElementById(colorId).value;
+  }
+
+  function syncSwatch(hexId, colorId) {
+    const val = document.getElementById(hexId).value;
+    if (/^#[0-9a-fA-F]{6}$/.test(val)) {
+      document.getElementById(colorId).value = val;
+    }
+  }
+
+  function val(id) {
+    return (document.getElementById(id).value || "").trim();
+  }
+
+  function setEmpty(el) {
+    el.textContent = "Not provided";
+    el.classList.add("empty");
+  }
+
+  function generatePDF() {
+    // Clear previous errors
+    document.querySelectorAll(".invalid").forEach(el => el.classList.remove("invalid"));
+    document.getElementById("error-msg").style.display = "none";
+
+    // Validate required fields
+    const required = ["biz-name", "your-name", "send-email", "website", "services"];
+    let valid = true;
+    required.forEach(id => {
+      if (!val(id)) {
+        document.getElementById(id).classList.add("invalid");
+        valid = false;
+      }
+    });
+
+    if (!valid) {
+      document.getElementById("error-msg").style.display = "block";
+      document.getElementById("error-msg").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    // Populate print view
+    document.getElementById("print-date").textContent =
+      "Submitted: " + new Date().toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
+
+    function fill(printId, value, fallback) {
+      const el = document.getElementById(printId);
+      if (value) {
+        el.textContent = value;
+        el.classList.remove("empty");
+      } else {
+        el.textContent = fallback || "Not provided";
+        el.classList.add("empty");
+      }
+    }
+
+    fill("p-biz-name",    val("biz-name"));
+    fill("p-your-name",   val("your-name"));
+    fill("p-send-email",  val("send-email"));
+    fill("p-reply-email", val("reply-email") || val("send-email") + " (same as sending email)");
+    fill("p-website",     val("website"));
+    fill("p-booking",     val("booking"));
+
+    // Services - format as numbered list
+    const services = val("services").split("\n").map(s => s.trim()).filter(Boolean);
+    const pServices = document.getElementById("p-services");
+    if (services.length) {
+      pServices.textContent = services.join("  |  ");
+      pServices.classList.remove("empty");
+    } else {
+      setEmpty(pServices);
+    }
+
+    // Sources
+    const sources = val("sources").split("\n").map(s => s.trim()).filter(Boolean);
+    const pSources = document.getElementById("p-sources");
+    if (sources.length) {
+      pSources.textContent = sources.join("  |  ");
+      pSources.classList.remove("empty");
+    } else {
+      setEmpty(pSources);
+    }
+
+    // Colours - all 5
+    [1, 2, 3, 4, 5].forEach(n => {
+      const hex      = val("hex-c" + n);
+      const name     = val("name-c" + n) || ("Colour " + n);
+      const printVal = document.getElementById("p-colour-c" + n);
+      const printLbl = document.getElementById("p-name-c" + n);
+      printLbl.textContent = name;
+      if (hex && /^#[0-9a-fA-F]{6}$/.test(hex)) {
+        printVal.innerHTML = `<span class="colour-swatch" style="background:${hex}"></span>${hex}`;
+        printVal.classList.remove("empty");
+      } else {
+        setEmpty(printVal);
+      }
+    });
+
+    // Notes
+    const notes = val("notes");
+    const notesSection = document.getElementById("p-notes-section");
+    if (notes) {
+      document.getElementById("p-notes").textContent = notes;
+      notesSection.style.display = "block";
+    } else {
+      notesSection.style.display = "none";
+    }
+
+    // Show print instructions then print
+    document.getElementById("pdf-instructions").style.display = "block";
+    setTimeout(() => window.print(), 300);
+  }
+</script>
+</body>
+</html>
