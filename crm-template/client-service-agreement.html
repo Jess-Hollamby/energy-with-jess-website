@@ -29,12 +29,27 @@
     padding: 12px 18px;
     font-size: 0.82rem;
     color: #7a6000;
-    margin-bottom: 28px;
+    margin-bottom: 12px;
     text-align: center;
     line-height: 1.6;
   }
 
   .plug-notice strong { color: #5a4500; }
+
+  .legal-notice {
+    background: #eaf1fb;
+    border: 1px solid #a8c8d8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.82rem;
+    color: #1e3a5f;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  .legal-notice strong { color: #1e3a5f; display: block; margin-bottom: 4px; }
+
+  .legal-notice a { color: #2d5a8e; }
 
   /* Header */
   .doc-header {
@@ -379,7 +394,7 @@
   /* Print */
   @media print {
     body { background: white; padding: 20px; }
-    .plug-notice, .sign-intro, .field, .agree-row, .sign-btn, .print-btn, .error-msg { display: none !important; }
+    .plug-notice, .legal-notice, .sign-intro, .field, .agree-row, .sign-btn, .print-btn, .error-msg { display: none !important; }
     .signed-view { display: block !important; }
     .clause { box-shadow: none; border: 1px solid #ddd; }
     .sign-section { box-shadow: none; border: 1px solid #ddd; }
@@ -398,6 +413,11 @@
 
   <div class="plug-notice">
     Replace everything in <strong>[BRACKETS]</strong> before sending to a client. Remove any clauses marked <strong>OPTIONAL</strong> if they don't apply.
+  </div>
+
+  <div class="legal-notice">
+    <strong>Important - get this checked before use</strong>
+    Contract law, consumer protection rules, and required disclosures vary significantly by state, territory, and country. This template is a starting point only - it is not legal advice. Before sending this agreement to a client, have it reviewed by a qualified legal professional in your jurisdiction to make sure it is compliant and enforceable where you operate.
   </div>
 
   <div class="doc-header">
