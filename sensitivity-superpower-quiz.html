@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Sensitivity Superpower | Energy with Jess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary:   #3B5E6E;
+            --secondary: #bf4288;
+            --accent:    #F2C14E;
+            --light:     #FAF7F2;
+            --dark:      #1E2E32;
+            --highlight: #C4B0D4;
+            --white:     #ffffff;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body:    'Nunito', sans-serif;
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 4px rgba(30,46,50,0.08);
+            --shadow-md: 0 4px 16px rgba(30,46,50,0.10);
+            --shadow-lg: 0 8px 40px rgba(30,46,50,0.12);
+            --shadow-glow: 0 0 32px rgba(191,66,136,0.25);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 40px 20px 80px;
+        }
+
+        .container {
+            max-width: 580px;
+            width: 100%;
+        }
+
+        /* ---- BRAND TAG ---- */
+        .brand {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .brand-name {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 15px;
+            color: var(--secondary);
+            letter-spacing: 1px;
+        }
+
+        /* ---- CARD ---- */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 52px 48px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--highlight), var(--secondary), var(--accent));
+        }
+
+        /* ---- SCREENS ---- */
+        .screen { display: none; }
+        .screen.active {
+            display: block;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---- INTRO ---- */
+        .intro-symbol {
+            font-size: 44px;
+            text-align: center;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .intro-title {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 38px;
+            color: var(--dark);
+            text-align: center;
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .intro-title em {
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        .intro-tagline {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-weight: 300;
+            font-size: 19px;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .divider {
+            width: 48px;
+            height: 1px;
+            background: var(--secondary);
+            margin: 0 auto 28px;
+            opacity: 0.4;
+        }
+
+        .intro-body {
+            font-size: 15px;
+            color: var(--primary);
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        /* ---- BUTTONS ---- */
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 18px 32px;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-glow);
+            letter-spacing: 0.2px;
+        }
+
+        .btn-primary:hover {
+            background: #a8387a;
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(191,66,136,0.35);
+        }
+
+        .btn-ghost {
+            display: block;
+            width: 100%;
+            padding: 14px 32px;
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid rgba(59,94,110,0.25);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            margin-top: 12px;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* ---- PROGRESS ---- */
+        .progress-wrap { margin-bottom: 32px; }
+
+        .progress-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-label {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .progress-count {
+            font-size: 12px;
+            color: rgba(59,94,110,0.5);
+        }
+
+        .progress-track {
+            height: 4px;
+            background: rgba(59,94,110,0.12);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--highlight), var(--secondary));
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        /* ---- QUESTION ---- */
+        .question-text {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 26px;
+            color: var(--dark);
+            line-height: 1.45;
+            margin-bottom: 28px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            background: var(--white);
+            border: 1.5px solid rgba(59,94,110,0.18);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 15px;
+            color: var(--primary);
+            line-height: 1.5;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-family: var(--font-body);
+        }
+
+        .option:hover {
+            border-color: var(--secondary);
+            color: var(--dark);
+            background: #fef6f7;
+            transform: translateX(4px);
+        }
+
+        .option.selected {
+            border-color: var(--secondary);
+            background: linear-gradient(135deg, #fef0f2, #fef8ed);
+            color: var(--dark);
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        /* ---- LOADING ---- */
+        .loading-wrap {
+            text-align: center;
+            padding: 48px 0;
+        }
+
+        .loading-symbol {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 20px;
+            animation: breathe 2s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50%       { transform: scale(1.08); opacity: 1; }
+        }
+
+        .loading-title {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 26px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .loading-sub {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 16px;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        /* ---- RESULT ---- */
+        .result-header { text-align: center; margin-bottom: 28px; }
+
+        .result-symbol {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 14px;
+            animation: floatIn 0.7s ease;
+        }
+
+        @keyframes floatIn {
+            from { opacity: 0; transform: scale(0.6); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        .result-eyebrow {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .result-name {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 40px;
+            color: var(--dark);
+            margin-bottom: 8px;
+            line-height: 1.15;
+        }
+
+        .result-tagline {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .result-desc {
+            font-size: 15px;
+            color: var(--primary);
+            line-height: 1.82;
+            margin-bottom: 24px;
+            padding: 20px 24px;
+            background: var(--light);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--secondary);
+        }
+
+        .result-section { margin-bottom: 18px; }
+
+        .result-section-label {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .chip-strength {
+            background: rgba(59,94,110,0.1);
+            color: var(--primary);
+        }
+
+        .chip-drain {
+            background: rgba(191,66,136,0.1);
+            color: var(--secondary);
+        }
+
+        .superpower-box {
+            padding: 24px 28px;
+            background: var(--primary);
+            border-radius: var(--radius-md);
+            margin: 24px 0 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .superpower-box::after {
+            content: '✦';
+            position: absolute;
+            right: 20px; top: -12px;
+            font-size: 80px;
+            opacity: 0.07;
+            color: var(--accent);
+            pointer-events: none;
+        }
+
+        .superpower-label {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .superpower-text {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-weight: 300;
+            font-size: 20px;
+            color: var(--light);
+            line-height: 1.65;
+        }
+
+        /* ---- CTA FORM ---- */
+        .cta-section {
+            padding-top: 28px;
+            border-top: 1px solid rgba(59,94,110,0.12);
+        }
+
+        .cta-title {
+            font-family: var(--font-heading);
+            font-weight: 300;
+            font-size: 26px;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .cta-sub {
+            font-size: 14px;
+            color: var(--primary);
+            opacity: 0.75;
+            text-align: center;
+            margin-bottom: 24px;
+            line-height: 1.65;
+        }
+
+        .form-field {
+            display: block;
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid rgba(59,94,110,0.2);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--dark);
+            background: var(--white);
+            transition: border-color 0.2s;
+            outline: none;
+            margin-bottom: 12px;
+        }
+
+        .form-field:focus { border-color: var(--secondary); }
+        .form-field::placeholder { color: rgba(59,94,110,0.4); }
+
+        .privacy-note {
+            font-size: 12px;
+            color: rgba(59,94,110,0.5);
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        /* ---- FOOTER ---- */
+        .page-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .page-footer p {
+            font-size: 12px;
+            color: rgba(59,94,110,0.4);
+        }
+
+        /* ---- MOBILE ---- */
+        @media (max-width: 500px) {
+            .card { padding: 36px 24px; }
+            .intro-title { font-size: 30px; }
+            .question-text { font-size: 22px; }
+            .result-name { font-size: 32px; }
+            .superpower-text { font-size: 17px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="brand">
+        <span class="brand-name">Energy with Jess</span>
+    </div>
+
+    <div class="card">
+
+        <!-- INTRO -->
+        <div class="screen active" id="screen-intro">
+            <span class="intro-symbol">✦</span>
+            <h1 class="intro-title">Feel everything.<br><em>Fear nothing.</em></h1>
+            <p class="intro-tagline">Where sensitive souls find their power.</p>
+            <div class="divider"></div>
+            <p class="intro-body">
+                This quiz reveals your unique Sensitivity Superpower type - the specific way your empathic gift flows into the world.<br><br>
+                8 questions. Trust your first answer. Let it unfold.
+            </p>
+            <button class="btn-primary" onclick="startQuiz()">Yes - show me my superpower ✦</button>
+        </div>
+
+        <!-- QUESTION -->
+        <div class="screen" id="screen-question">
+            <div class="progress-wrap">
+                <div class="progress-top">
+                    <span class="progress-label">Question</span>
+                    <span class="progress-count" id="progress-num">1 of 8</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width:12.5%"></div>
+                </div>
+            </div>
+            <h2 class="question-text" id="question-text"></h2>
+            <div class="options" id="options-list"></div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="screen" id="screen-loading">
+            <div class="loading-wrap">
+                <span class="loading-symbol">🔮</span>
+                <h2 class="loading-title">Reading your energy...</h2>
+                <p class="loading-sub">Tuning into your unique frequency</p>
+            </div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="screen" id="screen-result">
+            <div class="result-header">
+                <span class="result-symbol" id="result-symbol"></span>
+                <div class="result-eyebrow">Your Sensitivity Superpower</div>
+                <h2 class="result-name" id="result-name"></h2>
+                <p class="result-tagline" id="result-tagline"></p>
+            </div>
+
+            <p class="result-desc" id="result-description"></p>
+
+            <div class="result-section">
+                <div class="result-section-label">Your Strengths</div>
+                <div class="chips" id="result-strengths"></div>
+            </div>
+
+            <div class="result-section" style="margin-top:16px">
+                <div class="result-section-label">What drains you</div>
+                <div class="chips" id="result-drains"></div>
+            </div>
+
+            <div class="superpower-box">
+                <div class="superpower-label">Your Superpower</div>
+                <p class="superpower-text" id="result-superpower"></p>
+            </div>
+
+            <div class="cta-section">
+                <h3 class="cta-title">Want to go deeper?</h3>
+                <p class="cta-sub">Get your full sensitivity guide - plus a personal note from me on how to work with your specific type.</p>
+                <form id="email-form" onsubmit="submitForm(event)">
+                    <input type="hidden" id="result-type-field" name="sensitivity_type" value="">
+                    <input type="text"  class="form-field" id="field-name"  name="name"  placeholder="Your first name"    required>
+                    <input type="email" class="form-field" id="field-email" name="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn-primary" id="submit-btn">Yes, send it my way ✦</button>
+                    <p id="form-error" style="display:none; color:#bf4288; font-size:13px; margin-top:10px; text-align:center;"></p>
+                </form>
+                <p class="privacy-note">No spam. Unsubscribe any time. I take your energy seriously.</p>
+            </div>
+
+            <button class="btn-ghost" onclick="retakeQuiz()">Retake the quiz</button>
+        </div>
+
+    </div>
+
+    <div class="page-footer">
+        <p>Energy with Jess &nbsp;·&nbsp; energywithjess.com.au</p>
+    </div>
+
+</div>
+
+<script>
+    // ---- APPS SCRIPT WEB APP URL --------------------------------
+    // After deploying crm_agent.gs as a Web App, paste the URL here.
+    // Deploy > New deployment > Web app
+    // Execute as: Me | Who has access: Anyone
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqLB6vhVp8NX5tbekGjfXezLuyJBOhVeh4k76fQ-jZLol_vIap9ndkfPJUsVapTat0/exec';
+    // -------------------------------------------------------------
+
+    // ---- QUIZ DATA ----
+    const questions = [
+        {
+            q: "When you walk into a room full of people, what happens first?",
+            options: [
+                { text: "You immediately feel the mood of the room settle into your body", type: "F" },
+                { text: "Something feels 'off' before you can put words to it", type: "K" },
+                { text: "You instinctively scan for who might need a little support", type: "H" },
+                { text: "You start reading the dynamics and unspoken tension between people", type: "S" },
+                { text: "People naturally drift toward you - like you're the warmth in the room", type: "A" }
+            ]
+        },
+        {
+            q: "After a big social event, you usually feel...",
+            options: [
+                { text: "Emotionally saturated - like you lived everyone's feelings alongside your own", type: "F" },
+                { text: "Full of downloads and insights about the people you met", type: "K" },
+                { text: "Exhausted from holding so much space for others all day", type: "H" },
+                { text: "Mentally full - replaying what you observed beneath the surface", type: "S" },
+                { text: "Surprisingly okay - just a little quieter, like you processed it in real time", type: "A" }
+            ]
+        },
+        {
+            q: "Your closest friends would describe you as...",
+            options: [
+                { text: "\"You just get me like no one else does\"", type: "F" },
+                { text: "\"How did you know that was going to happen?\"", type: "K" },
+                { text: "The one they call when everything falls apart", type: "H" },
+                { text: "\"You see things no one else notices\"", type: "S" },
+                { text: "\"You're my safe place - the most grounded person I know\"", type: "A" }
+            ]
+        },
+        {
+            q: "When someone near you is upset but says nothing...",
+            options: [
+                { text: "You feel it in your own body before they say a word", type: "F" },
+                { text: "You just know - no explanation needed, it arrives as certainty", type: "K" },
+                { text: "You immediately want to do something to ease it", type: "H" },
+                { text: "You start piecing together what's really going on beneath the surface", type: "S" },
+                { text: "You become extra still - like your calm reaches toward theirs", type: "A" }
+            ]
+        },
+        {
+            q: "Your biggest sensitivity challenge is...",
+            options: [
+                { text: "Absorbing other people's emotions as if they were your own", type: "F" },
+                { text: "The thoughts and knowings don't stop - especially late at night", type: "K" },
+                { text: "You give so much there's not much left for you", type: "H" },
+                { text: "Seeing painful truths that others can't or won't face", type: "S" },
+                { text: "Being everyone's rock, with no one holding you up in return", type: "A" }
+            ]
+        },
+        {
+            q: "When something exciting unfolds in your life, your first instinct is to...",
+            options: [
+                { text: "Feel ALL the feelings about it before you do anything else", type: "F" },
+                { text: "Realise you had a quiet feeling it was coming all along", type: "K" },
+                { text: "Share it and celebrate with the people you love most", type: "H" },
+                { text: "Sit with it and feel into the deeper meaning behind it", type: "S" },
+                { text: "Let it quietly land and integrate before you say a word", type: "A" }
+            ]
+        },
+        {
+            q: "The environment that drains your energy most is...",
+            options: [
+                { text: "Anywhere with strong emotional tension - even the unexpressed kind", type: "F" },
+                { text: "Loud, chaotic, overstimulating spaces that just won't quiet down", type: "K" },
+                { text: "Watching someone struggle when they won't accept any support", type: "H" },
+                { text: "Shallow conversations with no real depth or meaning", type: "S" },
+                { text: "Being the only calm one in a room full of chaos - again and again", type: "A" }
+            ]
+        },
+        {
+            q: "Your sensitivity feels most like a sacred gift when...",
+            options: [
+                { text: "Someone says \"talking to you made me feel truly seen for the first time\"", type: "F" },
+                { text: "A gut feeling turns out to be exactly right", type: "K" },
+                { text: "You help someone finally turn a corner they've been stuck at", type: "H" },
+                { text: "You spotted something important before it became a problem", type: "S" },
+                { text: "Your presence alone shifted the energy in the room", type: "A" }
+            ]
+        }
+    ];
+
+    const results = {
+        F: {
+            symbol: "🌊",
+            name: "The Feeler",
+            tagline: "\"You feel everything - and that's your medicine\"",
+            description: "You're an emotional empath - the one who walks into a room and immediately absorbs the energy like a sponge. You feel other people's joy, grief, anxiety, and love as if it were your own. It used to feel like a burden. It's actually a profound gift. You create emotional safety without trying. People feel deeply understood in your presence in a way they rarely experience anywhere else.",
+            strengths: ["Deep empathy", "Emotional intelligence", "Instant soul connection", "Sacred space-holder", "Gifted creative"],
+            drains: ["Emotional tension around you", "Suppressed feelings in the room", "No solitude to discharge", "Carrying what isn't yours"],
+            superpower: "You can make someone feel less alone in their darkest moment. That's not small. That's sacred."
+        },
+        S: {
+            symbol: "👁️",
+            name: "The Seer",
+            tagline: "\"You see what others miss - trust it\"",
+            description: "You're an intuitive empath with a gift for reading beneath the surface. You notice patterns in people, relationships, and situations that most people walk right past. You see the truth - and sometimes that's a lonely place to stand. Your challenge is trusting what you see enough to act on it, even when others haven't caught up yet.",
+            strengths: ["Pattern recognition", "Strategic intuition", "Cuts through noise", "Reads people deeply", "Sees truth clearly"],
+            drains: ["Shallow conversations", "Being dismissed", "Carrying knowing alone", "Performative spaces"],
+            superpower: "Others navigate by your clarity. When you trust what you see and speak it - gently, clearly - you help people avoid pain they couldn't see coming."
+        },
+        H: {
+            symbol: "🌿",
+            name: "The Healer",
+            tagline: "\"Your presence is medicine - learn to offer it wisely\"",
+            description: "You're a service-oriented empath. Your instinct is to nurture, hold, and heal. People feel safe with you quickly. They open up without knowing why. You hold space like it's breathing - natural, effortless, generous. The challenge? You often give so much of yourself that you forget you need to receive too. Real transformation doesn't come from force. It comes from flow - and you embody that.",
+            strengths: ["Natural nurturer", "Incredible listener", "Non-judgmental presence", "People feel safe instantly", "Gifted space-holder"],
+            drains: ["Over-extending yourself", "One-sided giving", "Forgetting your own needs", "Watching others struggle"],
+            superpower: "People heal just by being near you. Your presence creates the conditions for transformation - not through doing, but through simply being."
+        },
+        K: {
+            symbol: "✨",
+            name: "The Knowing",
+            tagline: "\"You know things before you know how you know - honour it\"",
+            description: "You're a claircognizant empath. You receive direct knowing - ideas, insights, and answers that arrive fully formed, often out of nowhere. Your soul is always receiving. The challenge is learning to trust what comes through before logic has a chance to catch up. Your inner compass is one of your greatest gifts when you stop second-guessing it and let it unfold.",
+            strengths: ["Deep intuitive wisdom", "Big-picture clarity", "Receives direct guidance", "Ahead of the curve", "Natural visionary"],
+            drains: ["Overstimulation", "Chaotic environments", "Self-doubt spirals", "People who dismiss intuition"],
+            superpower: "You receive downloads from a source deeper than logic. Your knowing - when you trust and act on it - can change the direction of your life and the lives around you."
+        },
+        A: {
+            symbol: "🌳",
+            name: "The Anchor",
+            tagline: "\"You steady the room just by showing up - that's power\"",
+            description: "You're a grounding empath. Your sensitivity shows up not as overwhelm, but as an extraordinary ability to stay present, calm, and grounded when everything around you is uncertain. You're the one people feel into in chaos. That comes from a deeply rooted energetic presence - a frequency others feel before you've said a word.",
+            strengths: ["Emotional regulation", "Calm under pressure", "Natural grounding presence", "Creates safety effortlessly", "Steady in the storm"],
+            drains: ["Carrying everyone's weight", "Invisible emotional labour", "Nobody holding you", "Constant caretaking"],
+            superpower: "Your frequency literally shifts a room. Your presence is medicine - not because of what you do, but because of what you carry."
+        }
+    };
+
+    // ---- STATE ----
+    let currentQ = 0;
+    let scores = { F:0, S:0, H:0, K:0, A:0 };
+    let resultType = '';
+
+    // ---- HELPERS ----
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ---- FLOW ----
+    function startQuiz() {
+        currentQ = 0;
+        scores = { F:0, S:0, H:0, K:0, A:0 };
+        showScreen('screen-question');
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        const q = questions[currentQ];
+        document.getElementById('question-text').textContent = q.q;
+        document.getElementById('progress-num').textContent = `${currentQ + 1} of ${questions.length}`;
+        document.getElementById('progress-fill').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
+
+        const list = document.getElementById('options-list');
+        list.innerHTML = '';
+        q.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option';
+            btn.textContent = opt.text;
+            btn.onclick = () => selectAnswer(opt.type, btn);
+            list.appendChild(btn);
+        });
+    }
+
+    function selectAnswer(type, btn) {
+        document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        btn.classList.add('selected');
+        setTimeout(() => {
+            scores[type]++;
+            currentQ++;
+            if (currentQ < questions.length) {
+                renderQuestion();
+            } else {
+                revealResult();
+            }
+        }, 360);
+    }
+
+    function revealResult() {
+        showScreen('screen-loading');
+        setTimeout(() => {
+            resultType = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+            const r = results[resultType];
+
+            document.getElementById('result-symbol').textContent     = r.symbol;
+            document.getElementById('result-name').textContent       = r.name;
+            document.getElementById('result-tagline').textContent    = r.tagline;
+            document.getElementById('result-description').textContent = r.description;
+            document.getElementById('result-type-field').value       = r.name;
+            document.getElementById('result-superpower').textContent = r.superpower;
+
+            document.getElementById('result-strengths').innerHTML =
+                r.strengths.map(s => `<span class="chip chip-strength">${s}</span>`).join('');
+            document.getElementById('result-drains').innerHTML =
+                r.drains.map(d => `<span class="chip chip-drain">${d}</span>`).join('');
+
+            showScreen('screen-result');
+        }, 2200);
+    }
+
+    async function submitForm(e) {
+        e.preventDefault();
+        const name      = document.getElementById('field-name').value.trim();
+        const email     = document.getElementById('field-email').value.trim();
+        const firstName = name.split(' ')[0];
+
+        const btn = document.getElementById('submit-btn');
+        btn.textContent = 'Just a moment...';
+        btn.disabled = true;
+
+        // Send to Google Apps Script Web App using form-encoded data.
+        // mode: 'no-cors' avoids browser preflight issues with Apps Script.
+        // We always redirect to the thank you page - the data lands in the sheet.
+        try {
+            await fetch(APPS_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ firstName, email, typeCode: resultType }).toString()
+            });
+        } catch (err) {
+            // Non-blocking - the redirect happens regardless
+            console.log('Form note:', err.message);
+        }
+
+        window.location.href =
+            `nervous-system-cheatsheet-landing.html?name=${encodeURIComponent(firstName)}&type=${encodeURIComponent(resultType)}`;
+    }
+
+    function retakeQuiz() {
+        document.getElementById('email-form').reset();
+        startQuiz();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nervous System Cheatsheet — Free Guide | Energy with Jess</title>
+  <meta name="description" content="Learn to recognise Fight, Flight, Fawn and Freeze in your own body — and exactly what to do when you're there. Free guide from Jess Hollamby." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum-deep:   #130D1C;
+      --plum-mid:    #1F1430;
+      --plum-light:  #352350;
+      --cream:       #F4EFE6;
+      --cream-warm:  #E8E0D2;
+      --gold:        #C9A96A;
+      --gold-light:  #E2C98E;
+      --sage:        #7B9E78;
+      --rose:        #C48A8F;
+      --rose-light:  #DBA8AC;
+      --amber:       #C8814A;
+      --sky:         #6E9BB5;
+      --text-body:   #D4CCC1;
+      --text-muted:  #9A90A5;
+
+      /* Mode colours */
+      --fight: #C48A55;
+      --flight: #6E9BB5;
+      --fawn:  #A88DC4;
+      --freeze: #7FA89E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--plum-deep);
+      color: var(--text-body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: var(--gold-light); }
+
+    /* ===== UTILITY ===== */
+    .container      { max-width: 740px; margin: 0 auto; padding: 0 24px; }
+    .container--wide { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+    .text-center    { text-align: center; }
+    .text-cream     { color: var(--cream); }
+    .text-gold      { color: var(--gold); }
+    .text-muted     { color: var(--text-muted); }
+    .italic         { font-style: italic; }
+    .spacer-sm      { height: 20px; }
+    .spacer-md      { height: 48px; }
+
+    .divider {
+      width: 48px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto;
+      opacity: 0.45;
+    }
+
+    .stars {
+      font-size: 10px;
+      letter-spacing: 7px;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    .section-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      padding: 22px 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(201, 169, 106, 0.1);
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      padding: 88px 24px 100px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-orb-a {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(90px); opacity: 0.08;
+      background: #C48A55; width: 480px; height: 480px; top: -120px; right: -140px;
+    }
+    .hero-orb-b {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0.07;
+      background: #6E9BB5; width: 520px; height: 520px; bottom: -160px; left: -160px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 169, 106, 0.3);
+      padding: 7px 18px;
+      margin-bottom: 36px;
+    }
+
+    .hero h1 {
+      font-size: clamp(46px, 8vw, 82px);
+      font-weight: 300;
+      color: var(--cream);
+      margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--rose-light);
+    }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(19px, 3.2vw, 25px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 52px;
+      line-height: 1.6;
+    }
+
+    .hero-cta-btn {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      padding: 16px 44px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .hero-cta-btn:hover {
+      background: var(--gold);
+      color: var(--plum-deep);
+    }
+
+    .hero-meta {
+      margin-top: 56px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* ===== RECOGNITION SECTION ===== */
+    .section-recognition {
+      background: var(--plum-mid);
+      padding: 88px 24px;
+      border-top: 1px solid rgba(201, 169, 106, 0.1);
+      border-bottom: 1px solid rgba(201, 169, 106, 0.1);
+    }
+
+    .section-recognition h2 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .recognition-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 680px;
+      margin: 0 auto 44px;
+    }
+
+    .recognition-item {
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 2px solid;
+      padding: 18px 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-body);
+    }
+
+    .recognition-item.fight  { border-color: var(--fight); }
+    .recognition-item.flight { border-color: var(--flight); }
+    .recognition-item.fawn   { border-color: var(--fawn); }
+    .recognition-item.freeze { border-color: var(--freeze); }
+
+    .recognition-item .mode-tag {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .fight  .mode-tag  { color: var(--fight); }
+    .flight .mode-tag  { color: var(--flight); }
+    .fawn   .mode-tag  { color: var(--fawn); }
+    .freeze .mode-tag  { color: var(--freeze); }
+
+    .recognition-close {
+      max-width: 560px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(19px, 3vw, 25px);
+      font-style: italic;
+      color: var(--rose-light);
+      line-height: 1.55;
+    }
+
+    /* ===== SOLUTION ===== */
+    .section-solution {
+      padding: 88px 24px;
+      text-align: center;
+    }
+
+    .section-solution h2 {
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+
+    .section-solution h2 em { font-style: italic; color: var(--gold); }
+
+    .solution-body {
+      font-size: 17px;
+      line-height: 1.85;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ===== MODES SECTION ===== */
+    .section-modes {
+      background: var(--plum-mid);
+      padding: 88px 24px;
+      border-top: 1px solid rgba(201, 169, 106, 0.1);
+      border-bottom: 1px solid rgba(201, 169, 106, 0.1);
+    }
+
+    .section-modes h2 {
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 400;
+      color: var(--cream);
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .mode-card {
+      padding: 32px 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mode-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .mode-card.fight::before  { background: var(--fight); }
+    .mode-card.flight::before { background: var(--flight); }
+    .mode-card.fawn::before   { background: var(--fawn); }
+    .mode-card.freeze::before { background: var(--freeze); }
+
+    .mode-card:hover { transform: translateY(-3px); }
+    .mode-card.fight:hover  { border-color: rgba(196, 138, 85, 0.3); }
+    .mode-card.flight:hover { border-color: rgba(110, 155, 181, 0.3); }
+    .mode-card.fawn:hover   { border-color: rgba(168, 141, 196, 0.3); }
+    .mode-card.freeze:hover { border-color: rgba(127, 168, 158, 0.3); }
+
+    .mode-card-label {
+      font-size: 9px;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .mode-card.fight  .mode-card-label { color: var(--fight); }
+    .mode-card.flight .mode-card-label { color: var(--flight); }
+    .mode-card.fawn   .mode-card-label { color: var(--fawn); }
+    .mode-card.freeze .mode-card-label { color: var(--freeze); }
+
+    .mode-card h3 {
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .mode-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .mode-card .mode-hint {
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 14px;
+    }
+
+    .mode-card .mode-hint strong {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    /* ===== WHAT'S INSIDE ===== */
+    .section-inside {
+      padding: 88px 24px;
+      text-align: center;
+    }
+
+    .section-inside h2 {
+      font-size: clamp(30px, 5vw, 44px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 48px;
+    }
+
+    .inside-list {
+      list-style: none;
+      max-width: 520px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .inside-list li {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .inside-list .icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .inside-list .content h4 {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .inside-list .content p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ===== ABOUT ===== */
+    .section-about {
+      background: var(--plum-mid);
+      padding: 88px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(201, 169, 106, 0.1);
+      border-bottom: 1px solid rgba(201, 169, 106, 0.1);
+    }
+
+    .about-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .about-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
+      border: 1px solid rgba(123, 158, 120, 0.25);
+      padding: 6px 16px;
+      margin-bottom: 28px;
+    }
+
+    .about-inner h2 {
+      font-size: clamp(28px, 4.5vw, 40px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+
+    .about-inner p {
+      font-size: 16px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    /* ===== OPT-IN ===== */
+    .section-optin {
+      padding: 100px 24px 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .optin-orb {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(100px); opacity: 0.08;
+      background: #A88DC4; width: 600px; height: 600px;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+
+    #optin-form-block { position: relative; z-index: 1; }
+    #thank-you-block  { display: none; position: relative; z-index: 1; }
+
+    .section-optin h2 {
+      font-size: clamp(34px, 6vw, 58px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+
+    .section-optin h2 em {
+      font-style: italic;
+      color: var(--rose-light);
+    }
+
+    .optin-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 3vw, 23px);
+      font-style: italic;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto 44px;
+      line-height: 1.6;
+    }
+
+    .optin-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+      margin: 0 auto 18px;
+    }
+
+    .optin-form input {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201, 169, 106, 0.25);
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      padding: 16px 20px;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+
+    .optin-form input::placeholder { color: var(--text-muted); }
+    .optin-form input:focus { border-color: var(--gold); background: rgba(255,255,255,0.07); }
+
+    .optin-submit {
+      background: var(--gold);
+      border: none;
+      color: var(--plum-deep);
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      width: 100%;
+    }
+
+    .optin-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .optin-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .optin-disclaimer {
+      font-size: 11px;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    /* ===== THANK YOU ===== */
+    .thankyou-inner {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .thankyou-icon { font-size: 44px; display: block; margin-bottom: 20px; }
+
+    .thankyou-inner h2 {
+      font-size: clamp(30px, 5vw, 48px);
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+
+    .thankyou-inner p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--text-body);
+      margin-bottom: 12px;
+    }
+
+    .thankyou-inner .signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 36px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(201, 169, 106, 0.08);
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .footer-links { font-size: 12px; color: var(--text-muted); opacity: 0.45; }
+    .footer-links a { color: var(--text-muted); margin: 0 8px; }
+    .footer-links a:hover { color: var(--gold); opacity: 1; }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up           { opacity: 0; animation: fadeUp 0.8s ease forwards; }
+    .fade-up-1         { animation-delay: 0.1s; }
+    .fade-up-2         { animation-delay: 0.25s; }
+    .fade-up-3         { animation-delay: 0.4s; }
+    .fade-up-4         { animation-delay: 0.55s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .recognition-grid { grid-template-columns: 1fr; }
+      .modes-grid        { grid-template-columns: 1fr; }
+
+      .mode-card {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-brand">Energy with Jess</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-orb-a"></div>
+    <div class="hero-orb-b"></div>
+
+    <div class="container">
+      <span class="hero-eyebrow fade-up fade-up-1">What's your nervous system mode?</span>
+
+      <h1 class="fade-up fade-up-2">What if your reactions<br />are <em>trying to tell you something</em></h1>
+
+      <p class="hero-sub fade-up fade-up-3">
+        There are four states your nervous system moves through when it feels unsafe. Most people live in one - and have no idea. This guide shows you which one's yours.
+      </p>
+
+      <a href="#optin" class="hero-cta-btn fade-up fade-up-4">Show me the map</a>
+
+      <p class="hero-meta fade-up fade-up-4">Free &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; Fight · Flight · Fawn · Freeze</p>
+    </div>
+  </section>
+
+  <!-- RECOGNITION SECTION -->
+  <section class="section-recognition">
+    <div class="container">
+      <span class="section-label">I'm seeing a pattern with women and it's this</span>
+      <h2>Which one keeps showing up for you?</h2>
+
+      <div class="recognition-grid">
+        <div class="recognition-item fight">
+          <span class="mode-tag">Fight mode</span>
+          You snap at people you love over tiny things. You feel like you're constantly braced for an argument that hasn't happened yet.
+        </div>
+
+        <div class="recognition-item flight">
+          <span class="mode-tag">Flight mode</span>
+          You're always doing, always busy, never able to sit still - but underneath all the productivity, something feels like it's running away.
+        </div>
+
+        <div class="recognition-item fawn">
+          <span class="mode-tag">Fawn mode</span>
+          You say yes when you mean no. You read every room before you speak. You've lost track of where other people end and you begin.
+        </div>
+
+        <div class="recognition-item freeze">
+          <span class="mode-tag">Freeze mode</span>
+          You feel stuck. Numb. Like you're watching your life from the outside. You know something needs to shift but you can't find the door.
+        </div>
+      </div>
+
+      <p class="recognition-close">
+        None of that is a character flaw.<br />
+        It's a pattern - and once you can see it, you can work with it.
+      </p>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="section-solution">
+    <div class="container">
+      <span class="section-label">The Nervous System Cheatsheet</span>
+      <h2>The map you didn't know<br /><em>you were missing</em></h2>
+      <div class="spacer-sm"></div>
+      <div class="divider"></div>
+      <div class="spacer-sm"></div>
+      <p class="solution-body">
+        Most of us were never taught that the body has a logic - that snapping or shutting down or people-pleasing aren't random, they're responses. When you can name which mode you're in, you stop fighting yourself and start getting curious instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- THE 4 MODES -->
+  <section class="section-modes">
+    <div class="container--wide">
+      <span class="section-label">What's inside</span>
+      <h2>Four modes. One nervous system.<br />Which one do you recognise?</h2>
+
+      <div class="modes-grid">
+
+        <div class="mode-card fight">
+          <span class="mode-card-label">Fight mode</span>
+          <h3>Fight</h3>
+          <p>Anger, explosions, control, slamming doors - your body believes there's a threat and it's gearing up to face it.</p>
+          <div class="mode-hint">
+            <strong>Regulation tools include</strong>
+            Cold water therapy, high intensity movement, shaking, scream therapy, journaling the trigger
+          </div>
+        </div>
+
+        <div class="mode-card flight">
+          <span class="mode-card-label">Flight mode</span>
+          <h3>Flight</h3>
+          <p>Overthinking, perfectionism, workaholism, panic - your body believes the safest thing is to keep moving and never stop.</p>
+          <div class="mode-hint">
+            <strong>Regulation tools include</strong>
+            Deep belly breathing, power walking, grounding, yin yoga, hands on body
+          </div>
+        </div>
+
+        <div class="mode-card fawn">
+          <span class="mode-card-label">Fawn mode</span>
+          <h3>Fawn</h3>
+          <p>People-pleasing, no boundaries, self-critique, codependency - your body learned that keeping others happy kept you safe.</p>
+          <div class="mode-hint">
+            <strong>Regulation tools include</strong>
+            Setting and enforcing boundaries, shaking, checking in with your own emotions first
+          </div>
+        </div>
+
+        <div class="mode-card freeze">
+          <span class="mode-card-label">Freeze mode</span>
+          <h3>Freeze</h3>
+          <p>Numb, stuck, dissociated, exhausted, can't decide - your body has shut down because it ran out of other options.</p>
+          <div class="mode-hint">
+            <strong>Regulation tools include</strong>
+            Diaphragmatic breathing, full body check-in, singing and dancing, self massage, yin yoga
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INSIDE DETAIL -->
+  <section class="section-inside">
+    <div class="container">
+      <span class="section-label">Every page of the guide</span>
+      <h2>What most people have spent<br />years not knowing</h2>
+
+      <ul class="inside-list">
+        <li>
+          <span class="icon">🗺</span>
+          <div class="content">
+            <h4>Signs for each mode</h4>
+            <p>A full breakdown of what Fight, Flight, Fawn and Freeze actually look like in everyday life - so you can name what's happening the moment it starts.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🌿</span>
+          <div class="content">
+            <h4>Regulation tools that work</h4>
+            <p>Specific, practical techniques for each mode - because what brings you out of Fight is different from what brings you out of Freeze.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">📓</span>
+          <div class="content">
+            <h4>Journaling prompts per mode</h4>
+            <p>Grounding questions to help you process what happened, understand the trigger, and figure out what your body actually needs.</p>
+          </div>
+        </li>
+        <li>
+          <span class="icon">🤍</span>
+          <div class="content">
+            <h4>Inner child affirmations</h4>
+            <p>The words your nervous system has been waiting to hear - for the part of you that first learned to protect itself this way.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ABOUT JESS -->
+  <section class="section-about">
+    <div class="container">
+      <div class="about-inner">
+        <span class="about-badge">About Jess</span>
+
+        <h2>She knows what it's like to live in survival mode</h2>
+
+        <p>
+          I'm Jess - Reiki Master/Teacher and Intuitive Healer based in Adelaide. I spent most of my life cycling between rage I couldn't explain and a numbness I couldn't shake. No one ever taught me that my nervous system was just trying to keep me alive.
+        </p>
+
+        <p>
+          Years of energy work, breathwork and bodywork changed that. Once I learned to recognise which mode I was in - and stopped shaming myself for being there - everything shifted. My relationships, my energy, my ability to actually be present in my own life.
+        </p>
+
+        <p>
+          This cheatsheet is the resource I would have handed myself ten years ago.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPT-IN -->
+  <section class="section-optin" id="optin">
+    <div class="optin-orb"></div>
+
+    <!-- FORM -->
+    <div id="optin-form-block">
+      <div class="container">
+        <div class="stars">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <div class="spacer-sm"></div>
+
+        <h2>Ready to understand<br /><em>what's actually going on?</em></h2>
+        <p class="optin-sub">Drop your name and email and I'll send you the free cheatsheet.</p>
+
+        <form class="optin-form" onsubmit="handleOptinSubmit(event)" novalidate>
+          <input type="text"  name="first_name" placeholder="First name"     required autocomplete="given-name" />
+          <input type="email" name="email"       placeholder="Email address"  required autocomplete="email" />
+          <button type="submit" class="optin-submit">Send me the cheatsheet</button>
+        </form>
+
+        <p class="optin-disclaimer">No spam, ever. Unsubscribe any time.</p>
+      </div>
+    </div>
+
+    <!-- THANK YOU -->
+    <div id="thank-you-block">
+      <div class="container">
+        <div class="thankyou-inner">
+          <span class="thankyou-icon">🌿</span>
+          <h2>It's on its way.</h2>
+          <p>Check your inbox - your Nervous System Cheatsheet is heading to you now.</p>
+          <p>Take a breath. Notice where you feel it in your body. You just did something kind for yourself.</p>
+          <p class="signature">- Jess x</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-brand">Energy with Jess</p>
+    <p class="footer-links">
+      <a href="mailto:energywjess@gmail.com">energywjess@gmail.com</a>
+      &nbsp;·&nbsp;
+      <a href="https://instagram.com/energywithjess" target="_blank">@energywithjess</a>
+      &nbsp;·&nbsp;
+      <a href="https://energywithjess.com.au" target="_blank">energywithjess.com.au</a>
+    </p>
+  </footer>
+
+  <script>
+    // ── APPS SCRIPT ENDPOINT ─────────────────────────────────────
+    // Same web app URL used by the quiz.
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxqLB6vhVp8NX5tbekGjfXezLuyJBOhVeh4k76fQ-jZLol_vIap9ndkfPJUsVapTat0/exec';
+
+    // ── QUIZ REDIRECT DETECTION ───────────────────────────────────
+    // If someone arrives here from the quiz (?name=...&type=...),
+    // skip the opt-in form and go straight to the thank-you state.
+    // They've already been added to the CRM via the quiz submission.
+    (function checkQuizRedirect() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('name')) {
+        document.getElementById('optin-form-block').style.display = 'none';
+        document.getElementById('thank-you-block').style.display  = 'block';
+      }
+    })();
+
+    // ── STANDALONE OPT-IN FORM SUBMISSION ────────────────────────
+    async function handleOptinSubmit(e) {
+      e.preventDefault();
+      const form  = e.target;
+      const name  = form.first_name.value.trim();
+      const email = form.email.value.trim();
+      const btn   = form.querySelector('.optin-submit');
+
+      if (!name || !email) { alert('Please fill in both fields.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+
+      btn.textContent = 'Sending...';
+      btn.disabled    = true;
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode:   'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ firstName: name, email, typeCode: 'NS' }).toString()
+        });
+      } catch (err) {
+        // no-cors fetch always throws on response read - submission still lands
+        console.log('Submission note:', err.message);
+      }
+
+      document.getElementById('optin-form-block').style.display = 'none';
+      document.getElementById('thank-you-block').style.display  = 'block';
+    }
+
+    document.querySelector('.hero-cta-btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('optin').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // ── SCROLL FADE-IN ────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity   = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.mode-card, .recognition-item, .inside-list li, .about-inner p').forEach(el => {
+      el.style.opacity    = '0';
+      el.style.transform  = 'translateY(18px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
