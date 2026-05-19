@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Service Agreement</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #2d2d2d;
+    min-height: 100vh;
+    padding: 48px 20px 80px;
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* Plug notice */
+  .plug-notice {
+    background: #fffbe6;
+    border: 1px solid #f5d87a;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 0.82rem;
+    color: #7a6000;
+    margin-bottom: 28px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .plug-notice strong { color: #5a4500; }
+
+  /* Header */
+  .doc-header {
+    text-align: center;
+    padding-bottom: 32px;
+    border-bottom: 2px solid #e4eaec;
+    margin-bottom: 36px;
+  }
+
+  .doc-header .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #4a6fa5;
+    margin-bottom: 10px;
+  }
+
+  .doc-header h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 10px;
+  }
+
+  .doc-header .meta {
+    font-size: 0.82rem;
+    color: #888;
+    line-height: 1.8;
+  }
+
+  /* Intro */
+  .intro-block {
+    background: white;
+    border-radius: 12px;
+    padding: 22px 26px;
+    border-left: 4px solid #4a6fa5;
+    margin-bottom: 28px;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #2d2d2d;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+
+  /* Clauses */
+  .clause {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  }
+
+  .clause-header {
+    background: linear-gradient(135deg, #4a6fa5, #2d5a8e);
+    color: white;
+    padding: 12px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .clause-num {
+    font-size: 0.7rem;
+    opacity: 0.7;
+    font-style: italic;
+    min-width: 20px;
+  }
+
+  .clause-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .clause-optional {
+    font-size: 0.65rem;
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 8px;
+    letter-spacing: 0.06em;
+    margin-left: auto;
+  }
+
+  .clause-body {
+    padding: 16px 22px;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: #2d2d2d;
+  }
+
+  .clause-body p { margin-bottom: 10px; }
+  .clause-body p:last-child { margin-bottom: 0; }
+
+  .clause-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
+  }
+
+  .clause-body ul li {
+    padding: 3px 0 3px 18px;
+    position: relative;
+    color: #2d2d2d;
+  }
+
+  .clause-body ul li::before {
+    content: "-";
+    color: #4a6fa5;
+    position: absolute;
+    left: 4px;
+  }
+
+  .highlight-box {
+    background: #eaf1fb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: #2d5a8e;
+    font-style: italic;
+  }
+
+  .ph {
+    color: #4a6fa5;
+    font-weight: 600;
+    background: #eaf1fb;
+    border-radius: 3px;
+    padding: 0 3px;
+    font-size: 0.85em;
+  }
+
+  /* Sign section */
+  .sign-section {
+    margin-top: 40px;
+    background: white;
+    border-radius: 14px;
+    padding: 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-top: 4px solid #4a6fa5;
+  }
+
+  .sign-section h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 8px;
+  }
+
+  .sign-section .sign-intro {
+    font-size: 0.88rem;
+    color: #888;
+    margin-bottom: 26px;
+    line-height: 1.7;
+  }
+
+  .field { margin-bottom: 18px; }
+
+  .field label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4a6fa5;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="date"] {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #e4eaec;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.92rem;
+    color: #2d2d2d;
+    background: #f8f9fb;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .field input:focus {
+    border-color: #4a6fa5;
+    background: white;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media(max-width: 500px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
+
+  .signature-input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid #e4eaec;
+    border-radius: 8px;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #2d2d2d;
+    background: #f8f9fb;
+    outline: none;
+    transition: border-color 0.15s;
+    letter-spacing: 0.03em;
+  }
+
+  .signature-input:focus {
+    border-color: #4a6fa5;
+    background: white;
+  }
+
+  .signature-note {
+    font-size: 0.75rem;
+    color: #aaa;
+    margin-top: 5px;
+    font-style: italic;
+  }
+
+  .agree-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 22px 0;
+    padding: 14px 16px;
+    background: #f4f6f9;
+    border-radius: 8px;
+    border: 1.5px solid #e4eaec;
+  }
+
+  .agree-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+    accent-color: #4a6fa5;
+    cursor: pointer;
+  }
+
+  .agree-row label {
+    font-size: 0.86rem;
+    color: #2d2d2d;
+    line-height: 1.6;
+    cursor: pointer;
+  }
+
+  .agree-row label strong { color: #4a6fa5; }
+
+  .sign-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: #4a6fa5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  .sign-btn:hover { background: #2d5a8e; }
+
+  .error-msg {
+    background: #fff0f0;
+    border: 1px solid #f5c6c6;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.83rem;
+    color: #c0392b;
+    margin-top: 12px;
+    display: none;
+  }
+
+  /* Signed state */
+  .signed-view {
+    display: none;
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  .signed-view .signed-icon {
+    font-size: 2.2rem;
+    color: #2e6e3b;
+    margin-bottom: 14px;
+  }
+
+  .signed-view h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 10px;
+  }
+
+  .signed-view p {
+    font-size: 0.88rem;
+    color: #888;
+    margin-bottom: 6px;
+    line-height: 1.7;
+  }
+
+  .signed-summary {
+    margin: 22px 0;
+    background: #f4f6f9;
+    border-radius: 10px;
+    padding: 18px 22px;
+    text-align: left;
+    font-size: 0.86rem;
+    line-height: 2;
+  }
+
+  .signed-summary strong { color: #4a6fa5; }
+
+  .print-btn {
+    display: inline-block;
+    padding: 12px 32px;
+    background: #2e6e3b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-top: 8px;
+  }
+
+  .print-btn:hover { background: #245630; }
+
+  /* Print */
+  @media print {
+    body { background: white; padding: 20px; }
+    .plug-notice, .sign-intro, .field, .agree-row, .sign-btn, .print-btn, .error-msg { display: none !important; }
+    .signed-view { display: block !important; }
+    .clause { box-shadow: none; border: 1px solid #ddd; }
+    .sign-section { box-shadow: none; border: 1px solid #ddd; }
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #bbb;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="plug-notice">
+    Replace everything in <strong>[BRACKETS]</strong> before sending to a client. Remove any clauses marked <strong>OPTIONAL</strong> if they don't apply.
+  </div>
+
+  <div class="doc-header">
+    <p class="eyebrow">[BUSINESS NAME]</p>
+    <h1>Client Service Agreement</h1>
+    <p class="meta">
+      ABN [YOUR ABN] &nbsp;&bull;&nbsp; [YOUR WEBSITE]<br>
+      Governing law: [STATE/TERRITORY], [COUNTRY]
+    </p>
+  </div>
+
+  <div class="intro-block">
+    This agreement is between <strong>[BUSINESS NAME] ([YOUR NAME])</strong> and the client named below. It sets out what you can expect from working together, and what is expected of you. Please read it fully before signing.
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">1.</span><span class="clause-title">Services</span></div>
+    <div class="clause-body">
+      <p>[BUSINESS NAME] provides <span class="ph">[describe your type of services, e.g. coaching, healing, mentoring, consulting]</span> services for <span class="ph">[describe who you serve and the purpose, e.g. personal and professional development]</span>. The specific sessions and inclusions for your offer are outlined in the proposal sent to you prior to signing.</p>
+      <p>Services are not a substitute for medical, legal, financial, or psychological advice. No diagnosis, medical treatment, or guaranteed outcomes are provided or implied.</p>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">2.</span><span class="clause-title">Age Requirement</span></div>
+    <div class="clause-body">
+      <p>Services are available to those 18 years and over. Written parental or guardian consent is required for anyone under 18.</p>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">3.</span><span class="clause-title">Payment</span></div>
+    <div class="clause-body">
+      <ul>
+        <li>Pay in full - due before services commence</li>
+        <li>Payment plan - <span class="ph">[describe your payment plan terms, e.g. fortnightly or monthly, no surcharge]</span></li>
+        <li>All payments are made via <span class="ph">[YOUR PAYMENT METHODS, e.g. Stripe, PayPal, bank transfer]</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">4.</span><span class="clause-title">Missed Payments</span></div>
+    <div class="clause-body">
+      <ul>
+        <li>Services will pause and access will be removed until payment is received</li>
+        <li>[YOUR NAME] will make contact to discuss the situation</li>
+        <li>Three consecutive missed payments with no communication will result in contract cancellation, no exceptions</li>
+      </ul>
+      <div class="highlight-box">Communication is key. The sooner you reach out, the more options are available.</div>
+      <p style="margin-top:12px;">At [YOUR NAME]'s discretion, an extension of terms, adjusted payment frequency, or temporary pause may be considered where there is early communication, minimal default history, and genuine financial difficulty.</p>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">5.</span><span class="clause-title">Cancellation and Rescheduling</span></div>
+    <div class="clause-body">
+      <p><strong>By the client:</strong></p>
+      <ul>
+        <li><span class="ph">[X]</span> hours or more notice - reschedule at no charge, or deposit refunded or held as credit</li>
+        <li>Within <span class="ph">[X]</span> hours - deposit forfeited, session cannot be rescheduled</li>
+        <li>Three or more repeated cancellations or rescheduling - negotiation on credits or extensions is at [YOUR NAME]'s discretion</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>No-shows</strong> are treated as a within-[X]-hour cancellation. No refund or rescheduling.</p>
+      <p style="margin-top:6px;"><strong>Late arrivals:</strong> sessions end at the original scheduled time. Arriving <span class="ph">[X]</span> or more minutes late without notice may be treated as a no-show.</p>
+      <p style="margin-top:10px;"><strong>By [YOUR NAME]:</strong></p>
+      <ul>
+        <li>[YOUR NAME] will reach out personally as soon as possible</li>
+        <li>[YOUR NAME] will follow up to rebook</li>
+        <li>The session is not forfeited</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">6.</span><span class="clause-title">Session Expiry</span></div>
+    <div class="clause-body">
+      <ul>
+        <li>Set-session containers - all sessions are delivered within the container period, no expiry</li>
+        <li>Session packs - to be used within <span class="ph">[X months]</span> of purchase</li>
+        <li>Unused sessions at the end of a container or pack period - no refunds</li>
+        <li>Pack extensions are considered case by case at [YOUR NAME]'s discretion</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">7.</span><span class="clause-title">Communication</span></div>
+    <div class="clause-body">
+      <ul>
+        <li>Business hours: <span class="ph">[YOUR BUSINESS HOURS, e.g. Monday to Friday, 9am to 5pm AEST]</span></li>
+        <li>Responses within business hours or as soon as reasonably possible</li>
+        <li>Responses outside business hours are not guaranteed</li>
+        <li>If no response within 24 business hours, please resend - it may have been missed</li>
+        <li>Exceptions at [YOUR NAME]'s discretion</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header">
+      <span class="clause-num">8.</span>
+      <span class="clause-title">Online Sessions</span>
+      <span class="clause-optional">Optional - remove if in-person only</span>
+    </div>
+    <div class="clause-body">
+      <ul>
+        <li>You are responsible for a reliable internet connection and a private environment</li>
+        <li>[YOUR NAME] will not record sessions unless agreed to in writing in advance</li>
+        <li>You may not record sessions without prior written consent from [YOUR NAME]</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">9.</span><span class="clause-title">Refunds</span></div>
+    <div class="clause-body">
+      <ul>
+        <li>In accordance with <span class="ph">[applicable consumer law, e.g. Australian Consumer Law]</span> and the [BUSINESS NAME] Refund Policy</li>
+        <li>Change of mind - available within <span class="ph">[X days]</span> if the service has not yet commenced</li>
+        <li>Partial program withdrawal - considered case by case, refund reflects unused portion if approved</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">10.</span><span class="clause-title">Confidentiality</span></div>
+    <div class="clause-body">
+      <p>All sessions are confidential. Personal information will not be shared without your consent, except as required by law. Please refer to the [BUSINESS NAME] Privacy Policy for full details.</p>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">11.</span><span class="clause-title">Intellectual Property</span></div>
+    <div class="clause-body">
+      <p>All materials, resources, content, and tools shared during or as part of your offer remain the intellectual property of [BUSINESS NAME]. They are provided for your personal use only. Reproduction, sharing, or commercial use without written permission is not permitted.</p>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="clause-header"><span class="clause-num">12 - 13.</span><span class="clause-title">Disclaimer, Liability and Governing Law</span></div>
+    <div class="clause-body">
+      <ul>
+        <li>Liability is limited to the amount paid for the specific service</li>
+        <li>No liability for indirect, incidental, or consequential damages</li>
+        <li>Your rights under <span class="ph">[applicable consumer law]</span> are not excluded by this agreement</li>
+        <li>This agreement is governed by the laws of <span class="ph">[STATE/TERRITORY], [COUNTRY]</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Sign section -->
+  <div class="sign-section" id="sign-section">
+    <h2>Review and Sign</h2>
+    <p class="sign-intro">By signing below you confirm that you have read, understood, and agree to the terms of this Client Service Agreement with [BUSINESS NAME].</p>
+
+    <div id="sign-form">
+      <div class="field-row">
+        <div class="field">
+          <label for="sig-name">Full name</label>
+          <input type="text" id="sig-name" placeholder="Your full name">
+        </div>
+        <div class="field">
+          <label for="sig-email">Email address</label>
+          <input type="email" id="sig-email" placeholder="your@email.com">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="sig-date">Date</label>
+        <input type="date" id="sig-date">
+      </div>
+
+      <div class="field">
+        <label>Signature <span style="font-size:0.68rem;opacity:0.6;text-transform:none;letter-spacing:0">(type your full name)</span></label>
+        <input type="text" id="sig-signature" class="signature-input" placeholder="Your full name as signature">
+        <p class="signature-note">Typing your name here constitutes your electronic signature and agreement to these terms.</p>
+      </div>
+
+      <div class="agree-row">
+        <input type="checkbox" id="agree-check">
+        <label for="agree-check">I confirm I have read and understood the <strong>[BUSINESS NAME] Client Service Agreement</strong> and agree to be bound by its terms.</label>
+      </div>
+
+      <button class="sign-btn" id="sign-btn" onclick="signAgreement()">Sign Agreement</button>
+      <div class="error-msg" id="error-msg">Please complete all fields and check the agreement box before signing.</div>
+    </div>
+
+    <div class="signed-view" id="signed-view">
+      <div class="signed-icon">&#10003;</div>
+      <h3>Agreement Signed</h3>
+      <p>Thank you. A copy of this agreement is below.</p>
+      <p>Please save or print this page as a PDF and send a copy to <strong>[YOUR EMAIL]</strong></p>
+
+      <div class="signed-summary" id="signed-summary"></div>
+
+      <button class="print-btn" onclick="window.print()">Save as PDF</button>
+    </div>
+  </div>
+
+  <p class="footer-note">[BUSINESS NAME] &nbsp;&bull;&nbsp; ABN [YOUR ABN] &nbsp;&bull;&nbsp; [STATE/TERRITORY], [COUNTRY] &nbsp;&bull;&nbsp; [YOUR WEBSITE]</p>
+
+</div>
+
+<script>
+  document.getElementById('sig-date').valueAsDate = new Date();
+
+  function signAgreement() {
+    const name      = document.getElementById('sig-name').value.trim();
+    const email     = document.getElementById('sig-email').value.trim();
+    const date      = document.getElementById('sig-date').value;
+    const signature = document.getElementById('sig-signature').value.trim();
+    const agreed    = document.getElementById('agree-check').checked;
+
+    document.getElementById('error-msg').style.display = 'none';
+
+    if (!name || !email || !date || !signature || !agreed) {
+      document.getElementById('error-msg').style.display = 'block';
+      return;
+    }
+
+    const d = new Date(date + 'T00:00:00');
+    const formatted = d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    document.getElementById('signed-summary').innerHTML = `
+      <strong>Name:</strong> ${name}<br>
+      <strong>Email:</strong> ${email}<br>
+      <strong>Date signed:</strong> ${formatted}<br>
+      <strong>Signature:</strong> <span style="font-family:Georgia,serif;font-style:italic;font-size:1.1rem;">${signature}</span><br>
+      <strong>Agreement:</strong> Client Service Agreement - [BUSINESS NAME]
+    `;
+
+    document.getElementById('sign-form').style.display = 'none';
+    document.getElementById('signed-view').style.display = 'block';
+    document.getElementById('signed-view').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+</body>
+</html>
