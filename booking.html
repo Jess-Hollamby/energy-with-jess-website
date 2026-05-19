@@ -1762,6 +1762,16 @@
     }
   };
 
+  // ── REIKI CLASS LIMITS ──
+  const REIKI_LIMITS = { 'r1-jun': 6, 'r2-jun': 4, 'r1-sep': 6, 'r2-oct': 4, 'r1-dec': 6 };
+  const REIKI_NEXT = {
+    'r1-jun': '19 &amp; 20 September 2026',
+    'r1-sep': '5 &amp; 6 December 2026',
+    'r1-dec': null,
+    'r2-jun': '4 &amp; 10 October 2026',
+    'r2-oct': null
+  };
+
   // ── GOOGLE CALENDAR - BLOCKED DATES ──
   // Paste your Calendar ID and API key here once you have them.
   // Leave blank to disable (manual BLOCKED_DATES array is used instead).
@@ -2711,6 +2721,47 @@
         if (msg) msg.style.display = 'block';
       }
     });
+  })();
+
+  // ── REIKI ENROLLMENT CHECK ──
+  (function fetchReikiEnrollment() {
+    fetch(CALENDAR_WEBHOOK_URL + '?action=enrollment')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (!data || !data.success) return;
+        const counts = data.counts;
+        Object.keys(REIKI_LIMITS).forEach(function(key) {
+          const el = document.getElementById('reiki-action-' + key);
+          if (!el) return;
+          // Skip if already closed by cutoff
+          if (el.querySelector('.reiki-closed-msg') && el.querySelector('.reiki-closed-msg').style.display !== 'none') return;
+          const count = counts[key] || 0;
+          const limit = REIKI_LIMITS[key];
+          const spotsLeft = limit - count;
+          if (spotsLeft <= 0) {
+            // Full - hide booking buttons
+            el.querySelectorAll('.reiki-book-btn').forEach(function(b) { b.style.display = 'none'; });
+            const next = REIKI_NEXT[key];
+            const p = document.createElement('p');
+            p.style.cssText = 'font-size:0.82rem;color:var(--rose-dark);margin:0;line-height:1.6;';
+            if (next) {
+              p.innerHTML = 'This intake is full.<br><strong>Next intake:</strong> ' + next;
+            } else {
+              p.innerHTML = 'This intake is full.<br>Email <a href="mailto:energywjess@gmail.com" style="color:inherit;">energywjess@gmail.com</a> to join the 2027 waitlist.';
+            }
+            el.appendChild(p);
+          } else if (spotsLeft <= 2) {
+            // Low spots - show warning above buttons
+            const warn = document.createElement('p');
+            warn.style.cssText = 'font-size:0.75rem;color:var(--rose);margin:0 0 4px;font-style:italic;';
+            warn.textContent = spotsLeft === 1 ? 'Only 1 spot left' : 'Only ' + spotsLeft + ' spots left';
+            el.insertBefore(warn, el.firstChild);
+          }
+        });
+      })
+      .catch(function() {
+        // Silent fail - booking page still works without enrollment data
+      });
   })();
 
 </script>
