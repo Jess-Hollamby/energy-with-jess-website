@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Dashboard</title>
+<style>
+  /* ============================================================
+     PLUG IN: Change these colours to match your client's brand
+     ============================================================ */
+  :root {
+    --brand-primary:   #4a6fa5;   /* Main colour - header, buttons */
+    --brand-secondary: #e8f0fb;   /* Light accent */
+    --brand-text:      #2d2d2d;
+    --brand-bg:        #f5f6fa;
+    --brand-card:      #ffffff;
+
+    /* Pipeline stage colours */
+    --col-new:       #4a6fa5;
+    --col-contacted: #5b8db8;
+    --col-followup:  #e8a83d;
+    --col-booked:    #5ba85e;
+    --col-client:    #2d7a4f;
+    --col-cold:      #9e9e9e;
+  }
+  /* ============================================================ */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--brand-bg);
+    color: var(--brand-text);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    background: var(--brand-primary);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .header-left h1 { font-size: 1.25rem; font-weight: 600; }
+  .header-left p  { font-size: 0.78rem; opacity: 0.75; margin-top: 3px; }
+
+  .header-actions { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+
+  .btn {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: white;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: background 0.15s;
+  }
+  .btn:hover { background: rgba(255,255,255,0.3); }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    gap: 0;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    padding: 0.9rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid #e8e8e8;
+    min-width: 110px;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: #888;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Toolbar */
+  .toolbar {
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+    background: white;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 200px;
+    max-width: 340px;
+    padding: 0.45rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.875rem;
+  }
+
+  .filter-select {
+    padding: 0.45rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    background: white;
+  }
+
+  .lead-count { font-size: 0.82rem; color: #888; margin-left: auto; }
+
+  /* Board */
+  .board {
+    display: flex;
+    gap: 0.9rem;
+    padding: 1.1rem 1.5rem 2rem;
+    overflow-x: auto;
+    min-height: 60vh;
+  }
+
+  .column {
+    min-width: 230px;
+    max-width: 270px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column-header {
+    padding: 0.55rem 0.85rem;
+    border-radius: 7px 7px 0 0;
+    color: white;
+    font-weight: 600;
+    font-size: 0.82rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .col-count {
+    background: rgba(255,255,255,0.28);
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-size: 0.78rem;
+  }
+
+  .column-body {
+    background: #eceef2;
+    border-radius: 0 0 7px 7px;
+    padding: 0.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    min-height: 80px;
+  }
+
+  /* Stage column colours */
+  [data-stage="new"]       .column-header { background: var(--col-new); }
+  [data-stage="contacted"] .column-header { background: var(--col-contacted); }
+  [data-stage="followup"]  .column-header { background: var(--col-followup); }
+  [data-stage="booked"]    .column-header { background: var(--col-booked); }
+  [data-stage="client"]    .column-header { background: var(--col-client); }
+  [data-stage="cold"]      .column-header { background: var(--col-cold); }
+
+  /* Lead cards */
+  .card {
+    background: white;
+    border-radius: 6px;
+    padding: 0.6rem 0.7rem;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: box-shadow 0.15s, transform 0.1s;
+  }
+  .card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.11); transform: translateY(-1px); }
+
+  [data-stage="new"]       .card { border-left-color: var(--col-new); }
+  [data-stage="contacted"] .card { border-left-color: var(--col-contacted); }
+  [data-stage="followup"]  .card { border-left-color: var(--col-followup); }
+  [data-stage="booked"]    .card { border-left-color: var(--col-booked); }
+  [data-stage="client"]    .card { border-left-color: var(--col-client); }
+  [data-stage="cold"]      .card { border-left-color: var(--col-cold); }
+
+  .card-name     { font-weight: 600; font-size: 0.875rem; }
+  .card-interest { font-size: 0.73rem; color: #777; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-meta     { display: flex; justify-content: space-between; margin-top: 0.35rem; font-size: 0.68rem; color: #aaa; }
+  .card-note     { font-size: 0.72rem; color: #888; margin-top: 0.3rem; font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Empty column placeholder */
+  .empty-col { text-align: center; color: #bbb; font-size: 0.78rem; padding: 1rem 0.5rem; }
+
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.38);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 460px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.1rem;
+  }
+
+  .modal-name  { font-size: 1.15rem; font-weight: 700; }
+  .modal-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #aaa; }
+
+  .modal-field  { margin-bottom: 0.8rem; }
+  .modal-label  { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #999; margin-bottom: 2px; }
+  .modal-value  { font-size: 0.88rem; }
+  .modal-value a { color: var(--brand-primary); text-decoration: none; }
+
+  hr.divider { border: none; border-top: 1px solid #eee; margin: 1rem 0; }
+
+  .stage-badge {
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    border-radius: 10px;
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  /* Status / error messages */
+  .status-msg { text-align: center; padding: 3rem 1rem; color: #999; font-size: 0.9rem; }
+
+  .error-box {
+    margin: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: #fff4f4;
+    border: 1px solid #f5c6c6;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: #c0392b;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; }
+    .board  { padding: 0.75rem; }
+    .toolbar { padding: 0.6rem 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1 id="biz-name-header">YOUR BUSINESS NAME - Leads</h1>
+    <p id="last-updated">Loading...</p>
+  </div>
+  <div class="header-actions">
+    <button class="btn" onclick="loadData()">Refresh</button>
+    <button class="btn" onclick="exportCSV()">Export CSV</button>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-number" id="s-total">-</div><div class="stat-label">Total Leads</div></div>
+  <div class="stat"><div class="stat-number" id="s-week">-</div><div class="stat-label">New This Week</div></div>
+  <div class="stat"><div class="stat-number" id="s-booked">-</div><div class="stat-label">Booked</div></div>
+  <div class="stat"><div class="stat-number" id="s-clients">-</div><div class="stat-label">Clients</div></div>
+  <div class="stat"><div class="stat-number" id="s-rate">-</div><div class="stat-label">Conversion</div></div>
+</div>
+
+<div class="toolbar">
+  <input class="search-box" id="search" type="text" placeholder="Search name, email, or interest..." oninput="renderBoard()">
+  <select class="filter-select" id="filter-source" onchange="renderBoard()">
+    <option value="">All Sources</option>
+  </select>
+  <span class="lead-count" id="lead-count"></span>
+</div>
+
+<div id="board-container">
+  <div class="status-msg" id="status-msg">Loading leads...</div>
+</div>
+
+<!-- Detail modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="maybeClose(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-name" id="modal-name"></div>
+      <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ================================================================
+// PLUG IN SECTION - update these values before handing to client
+// ================================================================
+
+// 1. Business name (shows in header and export filename)
+const BUSINESS_NAME = "YOUR BUSINESS NAME";
+
+// 2. Google Sheet CSV URL
+//    How to get this:
+//    - Open Google Sheet > File > Share > Publish to web
+//    - Choose your sheet tab + CSV format > Publish
+//    - Copy the URL and paste it below
+const SHEET_CSV_URL = "YOUR_GOOGLE_SHEET_CSV_URL_HERE";
+
+// 3. Column positions (0 = Column A, 1 = Column B, etc.)
+//    These must match the column order in the Google Sheet
+const COLS = {
+  timestamp:        0,   // A
+  firstName:        1,   // B
+  lastName:         2,   // C
+  email:            3,   // D
+  phone:            4,   // E
+  source:           5,   // F - "How did you find us?"
+  interest:         6,   // G - "What are you enquiring about?"
+  message:          7,   // H - "Anything else?"
+  stage:            8,   // I - Pipeline Stage (updated manually in sheet)
+  notes:            9,   // J - Notes
+  lastContacted:   10,   // K - Last Contacted
+};
+
+// 4. Pipeline stages (key = what's typed in the sheet, label = display name)
+//    Add, remove, or rename stages to suit your client
+const STAGES = [
+  { key: "New Lead",    label: "New Lead",    css: "new"       },
+  { key: "Contacted",   label: "Contacted",   css: "contacted" },
+  { key: "Follow Up",   label: "Follow Up",   css: "followup"  },
+  { key: "Booked",      label: "Booked",      css: "booked"    },
+  { key: "Client",      label: "Client",      css: "client"    },
+  { key: "Cold",        label: "Cold",        css: "cold"      },
+];
+
+// ================================================================
+// CODE - no need to edit below this line
+// ================================================================
+
+let allLeads = [];
+
+document.getElementById("biz-name-header").textContent = BUSINESS_NAME + " - Leads";
+document.title = BUSINESS_NAME + " - CRM";
+
+async function loadData() {
+  if (SHEET_CSV_URL === "YOUR_GOOGLE_SHEET_CSV_URL_HERE") {
+    document.getElementById("board-container").innerHTML =
+      `<div class="error-box">
+        <strong>Setup needed:</strong> Open this file in a text editor, find <code>SHEET_CSV_URL</code> near the top,
+        and replace it with your published Google Sheet CSV link. See the setup guide for step-by-step instructions.
+      </div>`;
+    return;
+  }
+
+  document.getElementById("last-updated").textContent = "Refreshing...";
+
+  try {
+    const res = await fetch(SHEET_CSV_URL + "&cb=" + Date.now());
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const text = await res.text();
+    allLeads = parseCSV(text).slice(1).filter(r => r.length > 2 && r[COLS.email]);
+
+    document.getElementById("last-updated").textContent =
+      "Last updated: " + new Date().toLocaleTimeString();
+
+    const msg = document.getElementById("status-msg");
+    if (msg) msg.remove();
+
+    buildSourceFilter();
+    updateStats();
+    renderBoard();
+
+  } catch (err) {
+    document.getElementById("board-container").innerHTML =
+      `<div class="error-box">
+        <strong>Could not load data.</strong> Make sure your Google Sheet is published to the web
+        (File > Share > Publish to web) and the URL is correct.<br><br>Error: ${err.message}
+      </div>`;
+    document.getElementById("last-updated").textContent = "Error loading";
+  }
+}
+
+function parseCSV(text) {
+  const rows = [];
+  let cell = "", cells = [], inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '"') {
+      if (inQ && text[i+1] === '"') { cell += '"'; i++; }
+      else inQ = !inQ;
+    } else if (c === ',' && !inQ) {
+      cells.push(cell.trim()); cell = '';
+    } else if ((c === '\n' || c === '\r') && !inQ) {
+      if (c === '\r' && text[i+1] === '\n') i++;
+      cells.push(cell.trim()); cell = '';
+      if (cells.some(x => x)) rows.push(cells);
+      cells = [];
+    } else { cell += c; }
+  }
+  if (cell || cells.length) { cells.push(cell.trim()); if (cells.some(x=>x)) rows.push(cells); }
+  return rows;
+}
+
+function g(lead, col) { return (lead[col] || "").trim(); }
+
+function buildSourceFilter() {
+  const sources = [...new Set(allLeads.map(l => g(l, COLS.source)).filter(Boolean))].sort();
+  const sel = document.getElementById("filter-source");
+  while (sel.options.length > 1) sel.remove(1);
+  sources.forEach(s => { const o = document.createElement("option"); o.value = s; o.textContent = s; sel.appendChild(o); });
+}
+
+function filtered() {
+  const q   = document.getElementById("search").value.toLowerCase();
+  const src = document.getElementById("filter-source").value;
+  return allLeads.filter(l => {
+    const name = (g(l, COLS.firstName) + " " + g(l, COLS.lastName)).toLowerCase();
+    const ok1  = !q   || name.includes(q) || g(l, COLS.email).toLowerCase().includes(q) || g(l, COLS.interest).toLowerCase().includes(q);
+    const ok2  = !src || g(l, COLS.source) === src;
+    return ok1 && ok2;
+  });
+}
+
+function isThisWeek(str) {
+  if (!str) return false;
+  const d = new Date(str);
+  return !isNaN(d) && (Date.now() - d) < 7 * 864e5;
+}
+
+function updateStats() {
+  const t = allLeads.length;
+  const w = allLeads.filter(l => isThisWeek(g(l, COLS.timestamp))).length;
+  const b = allLeads.filter(l => g(l, COLS.stage) === "Booked").length;
+  const c = allLeads.filter(l => g(l, COLS.stage) === "Client").length;
+  document.getElementById("s-total").textContent   = t;
+  document.getElementById("s-week").textContent    = w;
+  document.getElementById("s-booked").textContent  = b;
+  document.getElementById("s-clients").textContent = c;
+  document.getElementById("s-rate").textContent    = t ? Math.round(c/t*100) + "%" : "0%";
+}
+
+function stageColor(key) {
+  const map = { "New Lead":"var(--col-new)", "Contacted":"var(--col-contacted)", "Follow Up":"var(--col-followup)", "Booked":"var(--col-booked)", "Client":"var(--col-client)", "Cold":"var(--col-cold)" };
+  return map[key] || "var(--col-new)";
+}
+
+function renderBoard() {
+  const leads = filtered();
+  document.getElementById("lead-count").textContent = leads.length + " of " + allLeads.length + " leads";
+
+  let html = '<div class="board">';
+  STAGES.forEach(stage => {
+    const stageLeads = leads.filter(l => {
+      const s = g(l, COLS.stage);
+      return s === stage.key || (!s && stage.key === "New Lead");
+    });
+    html += `<div class="column" data-stage="${stage.css}">`;
+    html += `<div class="column-header">${esc(stage.label)}<span class="col-count">${stageLeads.length}</span></div>`;
+    html += `<div class="column-body">`;
+    if (!stageLeads.length) {
+      html += `<div class="empty-col">No leads here</div>`;
+    } else {
+      stageLeads.forEach(lead => {
+        const idx  = allLeads.indexOf(lead);
+        const name = (g(lead, COLS.firstName) + " " + g(lead, COLS.lastName)).trim() || "(No name)";
+        const ts   = g(lead, COLS.timestamp);
+        const date = ts ? new Date(ts).toLocaleDateString("en-AU", {day:"numeric", month:"short"}) : "";
+        html += `<div class="card" onclick="openModal(${idx})">
+          <div class="card-name">${esc(name)}</div>
+          ${g(lead,COLS.interest) ? `<div class="card-interest">${esc(g(lead,COLS.interest))}</div>` : ""}
+          <div class="card-meta"><span>${esc(date)}</span><span>${esc(g(lead,COLS.source))}</span></div>
+          ${g(lead,COLS.notes) ? `<div class="card-note">${esc(g(lead,COLS.notes))}</div>` : ""}
+        </div>`;
+      });
+    }
+    html += `</div></div>`;
+  });
+  html += "</div>";
+  document.getElementById("board-container").innerHTML = html;
+}
+
+function openModal(idx) {
+  const l = allLeads[idx]; if (!l) return;
+  const name  = (g(l,COLS.firstName)+" "+g(l,COLS.lastName)).trim() || "(No name)";
+  const stage = g(l, COLS.stage) || "New Lead";
+  document.getElementById("modal-name").textContent = name;
+  const ts = g(l, COLS.timestamp);
+
+  const rows = [
+    { label: "Stage",          val: `<span class="stage-badge" style="background:${stageColor(stage)}">${esc(stage)}</span>` },
+    { label: "Email",          val: g(l,COLS.email)   ? `<a href="mailto:${esc(g(l,COLS.email))}">${esc(g(l,COLS.email))}</a>` : "-" },
+    { label: "Phone",          val: esc(g(l,COLS.phone))   || "-" },
+    { label: "Source",         val: esc(g(l,COLS.source))  || "-" },
+    { label: "Interested In",  val: esc(g(l,COLS.interest)) || "-" },
+    { label: "Message",        val: esc(g(l,COLS.message))  || "-" },
+    { label: "Notes",          val: esc(g(l,COLS.notes))    || "-" },
+    { label: "Last Contacted", val: esc(g(l,COLS.lastContacted)) || "-" },
+    { label: "Submitted",      val: ts ? new Date(ts).toLocaleString("en-AU") : "-" },
+  ];
+
+  let body = rows.map(r => `<div class="modal-field"><div class="modal-label">${r.label}</div><div class="modal-value">${r.val}</div></div>`).join("");
+  body += `<hr class="divider"><p style="font-size:0.75rem;color:#bbb;">To update stage or notes, edit the row directly in your Google Sheet, then click Refresh.</p>`;
+  document.getElementById("modal-body").innerHTML = body;
+  document.getElementById("modal-overlay").classList.add("open");
+}
+
+function maybeClose(e) { if (e.target === document.getElementById("modal-overlay")) closeModal(); }
+function closeModal()  { document.getElementById("modal-overlay").classList.remove("open"); }
+
+function exportCSV() {
+  const leads = filtered();
+  if (!leads.length) { alert("No leads to export."); return; }
+  const headers = ["First Name","Last Name","Email","Phone","Source","Interest","Message","Stage","Notes","Last Contacted","Submitted"];
+  const keys    = [COLS.firstName,COLS.lastName,COLS.email,COLS.phone,COLS.source,COLS.interest,COLS.message,COLS.stage,COLS.notes,COLS.lastContacted,COLS.timestamp];
+  let csv = headers.map(h=>`"${h}"`).join(",") + "\n";
+  leads.forEach(l => { csv += keys.map(k=>`"${g(l,k).replace(/"/g,'""')}"`).join(",") + "\n"; });
+  const a = Object.assign(document.createElement("a"), {
+    href: URL.createObjectURL(new Blob([csv], {type:"text/csv"})),
+    download: BUSINESS_NAME.replace(/\s+/g,"-") + "-leads-" + new Date().toISOString().slice(0,10) + ".csv"
+  });
+  a.click();
+}
+
+function esc(s) {
+  return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+loadData();
+setInterval(loadData, 5 * 60 * 1000); // auto-refresh every 5 minutes
+</script>
+</body>
+</html>
