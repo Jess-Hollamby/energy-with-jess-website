@@ -1,0 +1,3313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Energy with Jess - Learning Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet" />
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+  :root {
+    /* Brand tokens - Energy with Jess Design System 2026 */
+    --primary: #3B5E6E;       /* Deep Aqua */
+    --secondary: #bf4288;     /* Wild Rose */
+    --accent: #F2C14E;        /* Golden Light */
+    --light: #FAF7F2;         /* Cream Mist */
+    --dark: #1E2E32;          /* Midnight Ocean */
+    --highlight: #C4B0D4;     /* Amethyst Mist */
+
+    /* Tints for backgrounds and soft states */
+    --primary-soft: #EBF1F4;
+    --primary-mid: #6E8F9E;
+    --secondary-soft: #FCEDEF;
+    --accent-soft: #FEF6E0;
+    --highlight-soft: #F4F0F8;
+
+    /* Text */
+    --text-dark: #1E2E32;
+    --text-mid: #4A5E63;
+    --text-light: #8A9FA5;
+    --border: #E4EAEC;
+    --white: #FFFFFF;
+
+    /* Typography */
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Belleza', sans-serif;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 4px rgba(30,46,50,0.08);
+    --shadow-md: 0 4px 16px rgba(30,46,50,0.10);
+    --shadow-lg: 0 8px 40px rgba(30,46,50,0.12);
+    --shadow-glow: 0 0 32px rgba(232,99,122,0.18);
+    --shadow: 0 4px 16px rgba(30,46,50,0.08);
+    --shadow-hover: 0 8px 32px rgba(30,46,50,0.14);
+
+    /* Radius */
+    --radius: 20px;
+    --radius-sm: 12px;
+    --radius-full: 9999px;
+
+    --sidebar-width: 260px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--light);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-width);
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0; top: 0;
+    z-index: 100;
+    padding: 0 0 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .sidebar-brand {
+    padding: 28px 24px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-brand .logo-symbol {
+    font-size: 22px;
+    margin-bottom: 6px;
+    color: var(--secondary);
+  }
+
+  .sidebar-brand h1 {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--dark);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+
+  .sidebar-brand p {
+    font-size: 10px;
+    color: var(--text-light);
+    font-family: var(--font-body);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: 600;
+  }
+
+  .sidebar-user {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .user-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--highlight));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .user-info h3 {
+    font-size: 13px;
+    color: var(--dark);
+    font-weight: 600;
+    font-family: var(--font-body);
+  }
+
+  .user-info p {
+    font-size: 11px;
+    color: var(--text-light);
+    font-family: var(--font-body);
+  }
+
+  .sidebar-nav {
+    padding: 16px 12px;
+    flex: 1;
+  }
+
+  .nav-label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    padding: 8px 12px 6px;
+    font-weight: 700;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-decoration: none;
+    margin-bottom: 2px;
+  }
+
+  .nav-item:hover {
+    background: var(--primary-soft);
+    color: var(--primary);
+  }
+
+  .nav-item.active {
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .nav-item .nav-icon { font-size: 17px; width: 22px; text-align: center; }
+
+  .sidebar-bottom {
+    padding: 16px 12px 0;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  /* ── MAIN ── */
+  .main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .topbar-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--dark);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  .topbar-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 8px 18px;
+    width: 260px;
+  }
+
+  .topbar-search input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-dark);
+    width: 100%;
+  }
+
+  .content {
+    padding: 32px;
+    flex: 1;
+    background: var(--light);
+  }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── DASHBOARD ── */
+  .welcome-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, #4d7a8e 60%, var(--highlight) 100%);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    color: #fff;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .welcome-banner::before {
+    content: '✦';
+    position: absolute;
+    right: 30px; top: 20px;
+    font-size: 90px;
+    opacity: 0.07;
+    font-family: var(--font-heading);
+  }
+
+  .welcome-banner::after {
+    content: '◇';
+    position: absolute;
+    right: 110px; bottom: 10px;
+    font-size: 44px;
+    opacity: 0.09;
+  }
+
+  .welcome-banner h2 {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  .welcome-banner p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    opacity: 0.88;
+    max-width: 480px;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .welcome-banner .btn-start {
+    margin-top: 22px;
+    display: inline-block;
+    background: var(--secondary);
+    border: none;
+    color: #fff;
+    padding: 11px 28px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 16px rgba(232,99,122,0.3);
+  }
+
+  .welcome-banner .btn-start:hover {
+    background: #d94f67;
+    transform: translateY(-1px);
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .stat-icon.purple { background: var(--primary-soft); }
+  .stat-icon.gold { background: var(--accent-soft); }
+  .stat-icon.rose { background: var(--secondary-soft); }
+  .stat-icon.sage { background: var(--highlight-soft); }
+
+  .stat-info h3 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  .stat-info p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  .section-header h3 {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  .section-header a {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .section-header a:hover { text-decoration: underline; }
+
+  /* Course cards */
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .course-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+
+  .course-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+  }
+
+  .course-thumb {
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(30,46,50,0.08));
+  }
+
+  .course-body {
+    padding: 18px 20px;
+  }
+
+  .course-category {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+
+  .course-title {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .course-meta {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-light);
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .course-progress {
+    margin-top: 12px;
+  }
+
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: var(--radius-full);
+    height: 6px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--highlight));
+    border-radius: var(--radius-full);
+    transition: width 0.4s;
+  }
+
+  .progress-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-light);
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .badge-new { background: var(--accent-soft); color: #9a7020; }
+  .badge-enrolled { background: var(--primary-soft); color: var(--primary); }
+  .badge-complete { background: var(--highlight-soft); color: #7a5fa0; }
+
+  /* Featured Course */
+  .featured-course-wrap {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    background: linear-gradient(135deg, var(--highlight-soft) 0%, #ede8f8 100%);
+    border: 1.5px solid var(--highlight);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .featured-course-wrap:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .featured-thumb {
+    font-size: 64px;
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#f4f0f8,#c4b0d4);
+    border-radius: var(--radius);
+  }
+  .featured-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .featured-title {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .featured-desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin: 0 0 14px;
+  }
+  .featured-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .featured-meta span {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-mid);
+    background: var(--white);
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
+  }
+
+  /* Coming Soon */
+  .coming-soon-card {
+    position: relative;
+    opacity: 0.85;
+    cursor: default !important;
+    pointer-events: none;
+  }
+  .coming-soon-card:hover {
+    transform: none !important;
+    box-shadow: var(--shadow-sm) !important;
+  }
+  .coming-soon-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--secondary);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    z-index: 2;
+  }
+  .coming-soon-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 6px 14px;
+    cursor: not-allowed;
+  }
+
+  /* Activity */
+  .activity-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .activity-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .activity-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .activity-dot.purple { background: var(--primary); }
+  .activity-dot.gold { background: var(--accent); }
+  .activity-dot.sage { background: var(--highlight); }
+
+  .activity-text {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+
+  .activity-time {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--text-light);
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  /* ── CATALOG PAGE ── */
+  .filter-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+
+  .catalog-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.25s;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+
+  .catalog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+  }
+
+  .catalog-thumb {
+    height: 150px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 60px;
+    position: relative;
+  }
+
+  .catalog-body { padding: 20px; }
+
+  .catalog-title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  .catalog-desc {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .catalog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .price-tag {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    color: var(--primary);
+    font-weight: 400;
+  }
+
+  .price-tag span {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: normal;
+  }
+
+  .btn-enroll {
+    background: var(--secondary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 9px 22px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-enroll:hover { background: #d94f67; transform: translateY(-1px); }
+
+  .btn-enroll.enrolled {
+    background: var(--highlight-soft);
+    color: var(--primary);
+    cursor: default;
+  }
+
+  /* ── COURSE DETAIL ── */
+  .course-detail-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #4d7a8e 60%, var(--highlight) 100%);
+    border-radius: var(--radius);
+    padding: 36px;
+    color: #fff;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .hero-thumb {
+    width: 120px; height: 120px;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .hero-info h2 {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-weight: 300;
+    line-height: 1.3;
+  }
+
+  .hero-info p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    opacity: 0.88;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 16px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 20px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+  .course-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+
+  .module-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .module-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .module-header {
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .module-header:hover { background: var(--primary-soft); }
+
+  .module-num {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .module-num.done {
+    background: var(--accent-soft);
+    color: #9a7020;
+  }
+
+  .module-title-text {
+    flex: 1;
+  }
+
+  .module-title-text h4 {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    color: var(--dark);
+    font-weight: 400;
+    margin-bottom: 3px;
+  }
+
+  .module-title-text p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 500;
+  }
+
+  .module-lessons {
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+
+  .module-lessons.open { display: block; }
+
+  .lesson-item {
+    padding: 14px 22px 14px 70px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: var(--text-mid);
+    font-weight: 400;
+  }
+
+  .lesson-item:last-child { border-bottom: none; }
+
+  .lesson-item:hover { background: var(--primary-soft); color: var(--primary); }
+
+  .lesson-item.done { color: var(--text-light); }
+
+  .lesson-check {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .lesson-check.done {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--dark);
+  }
+
+  .lesson-type {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+  }
+
+  /* Sidebar course info */
+  .course-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .info-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .info-card h4 {
+    font-family: var(--font-heading);
+    font-size: 17px;
+    color: var(--dark);
+    margin-bottom: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-row:last-child { border-bottom: none; }
+
+  .info-row .label { color: var(--text-light); font-weight: 500; }
+  .info-row .value { color: var(--dark); font-weight: 700; font-size: 12px; }
+
+  .btn-continue {
+    width: 100%;
+    background: var(--secondary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 16px rgba(232,99,122,0.25);
+  }
+
+  .btn-continue:hover { background: #d94f67; transform: translateY(-1px); }
+
+  /* ── LESSON VIEW ── */
+  .lesson-viewer {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+  }
+
+  .lesson-main { display: flex; flex-direction: column; gap: 20px; }
+
+  /* In This Lesson */
+  .in-this-lesson {
+    margin-top: 20px;
+    padding: 20px 24px;
+    background: var(--primary-soft);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--primary);
+  }
+  .in-this-lesson-label {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 12px;
+  }
+  .topics-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .topics-list li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    padding-left: 18px;
+    position: relative;
+  }
+  .topics-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 10px;
+    top: 2px;
+  }
+
+  /* What Now */
+  .what-next-block {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: var(--secondary-soft);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--secondary);
+  }
+  .what-next-links { display: flex; flex-direction: column; gap: 8px; }
+  .what-next-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .what-next-link:hover { border-color: var(--secondary); color: var(--secondary); }
+  .what-next-note {
+    font-size: 11px;
+    background: var(--secondary);
+    color: var(--white);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* Downloads */
+  .downloads-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .download-btn.bonus {
+    background: var(--secondary-soft);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+  }
+  .download-btn.bonus:hover { background: var(--secondary); color: var(--white); }
+  .download-btn.slides {
+    background: var(--primary-soft);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+  }
+  .download-btn.slides:hover { background: var(--primary); color: var(--white); }
+
+  /* Audio files */
+  .audio-files { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+  .audio-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+
+  .audio-player-block {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-bottom: 8px;
+  }
+  .audio-player-label {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .audio-player-block audio {
+    width: 100%;
+    height: 40px;
+    accent-color: var(--primary);
+  }
+
+  /* Telegram community box */
+  .telegram-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--highlight-soft);
+    border: 1px solid var(--highlight);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-top: 20px;
+  }
+
+  /* Vimeo embed */
+  .vimeo-wrap {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 */
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #000;
+  }
+  .vimeo-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .vimeo-placeholder {
+    background: linear-gradient(135deg, var(--primary) 0%, #3a5a6a 60%, var(--highlight) 100%);
+  }
+  .vimeo-placeholder-inner {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--white);
+  }
+
+  .lesson-content-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lesson-content-block h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    color: var(--dark);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .lesson-content-block p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .lesson-content-block .highlight-box {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 20px;
+    margin: 18px 0;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    color: var(--text-mid);
+    font-style: italic;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .lesson-nav-btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn-nav {
+    padding: 11px 28px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--text-mid);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-nav:hover { border-color: var(--primary); color: var(--primary); }
+
+  .btn-nav.primary {
+    background: var(--secondary);
+    color: #fff;
+    border-color: var(--secondary);
+    font-weight: 600;
+  }
+
+  .btn-nav.primary:hover { background: #d94f67; transform: translateY(-1px); }
+
+  /* Lesson sidebar */
+  .lesson-outline {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .lesson-outline h4 {
+    padding: 16px 20px;
+    font-family: var(--font-heading);
+    font-size: 17px;
+    color: var(--dark);
+    font-weight: 400;
+    border-bottom: 1px solid var(--border);
+    background: var(--light);
+  }
+
+  .outline-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--text-mid);
+  }
+
+  .outline-item:last-child { border-bottom: none; }
+  .outline-item:hover { background: var(--primary-soft); }
+  .outline-item.current { background: var(--primary-soft); color: var(--primary); font-weight: 700; }
+
+  .outline-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+
+  .outline-check.done { background: var(--accent); border-color: var(--accent); color: var(--dark); }
+  .outline-check.current { border-color: var(--primary); }
+
+  /* ── QUIZ ── */
+  .quiz-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .quiz-header {
+    background: linear-gradient(135deg, var(--primary), #4d7a8e 60%, var(--highlight));
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: #fff;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .quiz-header h2 {
+    font-family: var(--font-heading);
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .quiz-header p {
+    font-family: var(--font-body);
+    font-size: 13px;
+    opacity: 0.85;
+    font-weight: 500;
+  }
+
+  .quiz-progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.2);
+    border-radius: var(--radius-full);
+    margin-top: 18px;
+    overflow: hidden;
+  }
+
+  .quiz-progress-fill {
+    height: 100%;
+    background: var(--secondary);
+    border-radius: var(--radius-full);
+    transition: width 0.4s;
+  }
+
+  .question-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .question-num {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .question-text {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    color: var(--dark);
+    line-height: 1.5;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .answer-options { display: flex; flex-direction: column; gap: 12px; }
+
+  .answer-option {
+    padding: 16px 20px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .answer-option:hover { border-color: var(--primary); background: var(--primary-soft); }
+
+  .answer-option.selected {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    color: var(--primary);
+  }
+
+  .answer-option.correct {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: #7a5f00;
+  }
+
+  .answer-option.wrong {
+    border-color: var(--secondary);
+    background: var(--secondary-soft);
+    color: var(--secondary);
+  }
+
+  .option-letter {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+
+  .answer-option.selected .option-letter { background: var(--primary); color: #fff; }
+  .answer-option.correct .option-letter { background: var(--accent); color: var(--dark); }
+  .answer-option.wrong .option-letter { background: var(--secondary); color: #fff; }
+
+  .quiz-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  /* Score screen */
+  .score-screen {
+    text-align: center;
+    padding: 48px 32px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .score-circle {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--highlight));
+    margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    color: #fff;
+  }
+
+  .score-circle .score-num { font-family: var(--font-heading); font-size: 40px; line-height: 1; font-weight: 300; }
+  .score-circle .score-label { font-family: var(--font-body); font-size: 11px; opacity: 0.85; font-weight: 600; }
+
+  .score-screen h2 {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    color: var(--dark);
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+
+  .score-screen p {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  /* ── PROFILE ── */
+  .profile-hero {
+    background: linear-gradient(135deg, var(--primary), #4d7a8e 50%, var(--highlight));
+    border-radius: var(--radius);
+    padding: 36px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .profile-avatar {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 40px;
+    flex-shrink: 0;
+  }
+
+  .profile-info h2 {
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .profile-info p {
+    font-family: var(--font-body);
+    font-size: 13px;
+    opacity: 0.8;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .profile-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .profile-badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: var(--radius-full);
+    padding: 5px 14px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+
+  .profile-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .profile-card h4 {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    color: var(--dark);
+    font-weight: 400;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .achievement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .achievement {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+  }
+
+  .achievement .ach-icon { font-size: 28px; margin-bottom: 6px; }
+
+  .achievement h5 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--dark);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .achievement p {
+    font-family: var(--font-body);
+    font-size: 10px;
+    color: var(--text-light);
+  }
+
+  /* Utilities */
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+
+  .back-btn:hover { color: var(--primary); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--dark);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 0.3s;
+    pointer-events: none;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── AUTH LOADING OVERLAY ── */
+  .auth-loading {
+    position: fixed;
+    inset: 0;
+    background: var(--light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    z-index: 9999;
+  }
+  .auth-loading .al-symbol {
+    font-size: 36px;
+    color: var(--secondary);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .auth-loading p {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.92); }
+  }
+
+  /* ── HAMBURGER BUTTON ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    margin-right: 14px;
+    flex-shrink: 0;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-dark);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── SIDEBAR OVERLAY ── */
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30,46,50,0.45);
+    z-index: 99;
+    backdrop-filter: blur(2px);
+  }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+
+    /* Sidebar hides off-screen */
+    .sidebar {
+      transform: translateX(-260px);
+      transition: transform 0.28s ease;
+      z-index: 110;
+    }
+
+    /* Sidebar open state */
+    body.sidebar-open .sidebar { transform: translateX(0); }
+    body.sidebar-open .sidebar-overlay { display: block; }
+
+    /* Main fills screen */
+    .main { margin-left: 0; }
+
+    /* Topbar */
+    .topbar { padding: 13px 18px; }
+    .topbar-search { display: none; }
+    .hamburger { display: flex; }
+
+    /* Content */
+    .content { padding: 16px; }
+
+    /* Welcome banner */
+    .welcome-banner { padding: 24px 22px; margin-bottom: 20px; }
+    .welcome-banner::before, .welcome-banner::after { display: none; }
+    .welcome-banner h2 { font-size: 22px; }
+    .welcome-banner p { font-size: 13px; }
+
+    /* Stats: 2 columns */
+    .stats-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* All grids: single column */
+    .courses-grid { grid-template-columns: 1fr; gap: 14px; }
+    .catalog-grid { grid-template-columns: 1fr; gap: 14px; }
+    .profile-grid { grid-template-columns: 1fr; gap: 14px; }
+
+    /* Course card thumb: shorter on mobile */
+    .course-thumb { height: 110px; }
+    .catalog-thumb { height: 120px; }
+
+    /* Lesson viewer: stack vertically, outline below content */
+    .lesson-viewer {
+      grid-template-columns: 1fr;
+    }
+
+    /* Lesson nav buttons */
+    .lesson-nav-btns { flex-wrap: wrap; gap: 10px; }
+    .btn-nav { padding: 10px 18px; font-size: 12px; flex: 1; text-align: center; }
+
+    /* Lesson content */
+    .lesson-content-block { padding: 20px 18px; }
+
+    /* Quiz */
+    .quiz-header { padding: 22px 20px; }
+    .quiz-container { padding: 0; }
+
+    /* Section header */
+    .section-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  }
+
+  @media (max-width: 480px) {
+
+    /* Stats: single column */
+    .stats-row { grid-template-columns: 1fr; }
+
+    /* Tighter content */
+    .content { padding: 12px; }
+    .topbar { padding: 11px 14px; }
+    .topbar-title { font-size: 18px; }
+
+    /* Welcome banner */
+    .welcome-banner { padding: 20px 16px; }
+    .welcome-banner h2 { font-size: 19px; }
+    .welcome-banner .btn-start { padding: 10px 20px; font-size: 13px; }
+
+    /* Stat cards */
+    .stat-card { padding: 16px 18px; }
+    .stat-info h3 { font-size: 22px; }
+
+    /* Lesson nav: stack buttons vertically */
+    .btn-nav { flex: unset; width: 100%; }
+  }
+
+  .profile-colour-swatch { width:30px; height:30px; border-radius:50%; cursor:pointer; border:3px solid transparent; transition:transform 0.15s, border-color 0.15s; }
+  .profile-colour-swatch.selected { border-color:var(--dark); transform:scale(1.2); }
+  .profile-colour-swatch:hover { transform:scale(1.1); }
+
+  /* ══ COMMUNITY ══ */
+  .community-layout { display:flex; height:calc(100vh - 60px); margin:-24px; }
+  .community-channels { width:210px; flex-shrink:0; border-right:1px solid var(--border); display:flex; flex-direction:column; background:var(--light); }
+  .community-channels-header { padding:14px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  .community-channels-header h3 { font-family:var(--font-heading); font-size:18px; color:var(--text-dark); font-weight:400; }
+  .btn-new-channel { background:var(--primary); color:#fff; border:none; border-radius:var(--radius-full); padding:4px 12px; font-size:11px; font-family:var(--font-body); font-weight:700; cursor:pointer; letter-spacing:0.5px; }
+  .channel-list { flex:1; overflow-y:auto; padding:8px 0; }
+  .channel-item { padding:10px 16px; cursor:pointer; font-family:var(--font-body); font-size:13px; color:var(--text-mid); display:flex; align-items:center; gap:8px; transition:background 0.15s; }
+  .channel-item:hover { background:rgba(59,94,110,0.08); }
+  .channel-item.active { background:rgba(59,94,110,0.12); color:var(--primary); font-weight:700; }
+  .community-main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
+  .community-header { padding:14px 20px; border-bottom:1px solid var(--border); font-family:var(--font-body); font-weight:700; color:var(--text-dark); font-size:14px; }
+  .posts-feed { flex:1; overflow-y:auto; padding:16px 20px; display:flex; flex-direction:column; gap:12px; }
+  .post-card { background:#fff; border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 16px; }
+  .post-card.pinned { border-color:var(--secondary); background:#fef5f9; }
+  .post-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+  .post-author { font-family:var(--font-body); font-size:13px; font-weight:700; color:var(--text-dark); }
+  .post-time { font-family:var(--font-body); font-size:11px; color:var(--text-light); margin-left:auto; }
+  .pin-badge { font-size:10px; background:var(--secondary); color:#fff; border-radius:20px; padding:2px 8px; font-family:var(--font-body); font-weight:700; }
+  .post-body { font-family:var(--font-body); font-size:14px; color:var(--text-dark); line-height:1.6; white-space:pre-wrap; word-break:break-word; }
+  .post-actions { display:flex; gap:12px; margin-top:10px; }
+  .post-action-btn { background:none; border:none; font-family:var(--font-body); font-size:12px; color:var(--text-light); cursor:pointer; padding:0; }
+  .post-action-btn:hover { color:var(--primary); }
+  .replies-section { margin-top:10px; padding-top:10px; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:10px; }
+  .reply-card { display:flex; gap:8px; }
+  .reply-bubble { background:var(--light); border-radius:var(--radius-sm); padding:8px 12px; flex:1; }
+  .reply-author { font-family:var(--font-body); font-size:11px; font-weight:700; color:var(--text-mid); margin-bottom:3px; }
+  .reply-body { font-family:var(--font-body); font-size:13px; color:var(--text-dark); line-height:1.5; white-space:pre-wrap; }
+  .reply-composer { display:flex; gap:8px; margin-top:8px; align-items:flex-start; }
+  .reply-composer textarea { flex:1; padding:7px 10px; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font-body); font-size:13px; resize:none; height:36px; outline:none; background:var(--light); }
+  .reply-composer textarea:focus { border-color:var(--primary); background:#fff; }
+  .btn-reply-send { background:var(--primary); color:#fff; border:none; border-radius:var(--radius-sm); padding:8px 14px; font-size:12px; font-family:var(--font-body); cursor:pointer; white-space:nowrap; }
+  .post-composer { padding:14px 20px; border-top:1px solid var(--border); display:flex; gap:10px; align-items:flex-start; background:#fff; }
+  .composer-wrap { flex:1; display:flex; flex-direction:column; gap:8px; }
+  .composer-wrap textarea { width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font-body); font-size:14px; resize:none; height:68px; outline:none; background:var(--light); }
+  .composer-wrap textarea:focus { border-color:var(--primary); background:#fff; }
+  .composer-actions { display:flex; gap:8px; justify-content:flex-end; align-items:center; }
+  .btn-post { background:var(--secondary); color:#fff; border:none; border-radius:var(--radius-full); padding:8px 22px; font-family:var(--font-body); font-size:13px; font-weight:700; cursor:pointer; }
+  .btn-post:hover { background:#d94f67; }
+  .btn-post:disabled { opacity:0.5; cursor:not-allowed; }
+  .pin-toggle-label { display:flex; align-items:center; gap:6px; font-family:var(--font-body); font-size:12px; color:var(--text-mid); cursor:pointer; }
+  .community-empty { text-align:center; padding:40px 20px; color:var(--text-light); font-family:var(--font-body); font-size:14px; line-height:1.7; }
+  .community-loading { text-align:center; padding:30px; color:var(--text-light); font-family:var(--font-body); font-size:14px; }
+  .channel-modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:1000; align-items:center; justify-content:center; }
+  .channel-modal-overlay.open { display:flex; }
+  .channel-modal { background:#fff; border-radius:var(--radius); padding:28px; width:320px; max-width:90%; }
+  .channel-modal h3 { font-family:var(--font-heading); font-size:20px; color:var(--text-dark); margin-bottom:16px; font-weight:400; }
+  .channel-modal input { width:100%; padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font-body); font-size:14px; outline:none; margin-top:6px; }
+  .channel-modal input:focus { border-color:var(--primary); }
+  .channel-modal-btns { display:flex; gap:8px; margin-top:16px; }
+  .channel-modal-btns button { flex:1; padding:10px; border-radius:var(--radius-full); font-family:var(--font-body); cursor:pointer; font-size:13px; }
+  .btn-modal-cancel { border:1px solid var(--border); background:none; color:var(--text-mid); }
+  .btn-modal-create { background:var(--primary); color:#fff; border:none; font-weight:700; }
+  @media (max-width:768px) {
+    .community-layout { flex-direction:column; height:auto; margin:-16px; }
+    .community-channels { width:100%; border-right:none; border-bottom:1px solid var(--border); }
+    .channel-list { display:flex; flex-direction:row; overflow-x:auto; overflow-y:hidden; padding:8px; gap:4px; }
+    .channel-item { white-space:nowrap; border-radius:var(--radius-full); padding:6px 14px; }
+    .community-main { min-height:60vh; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="auth-loading" id="auth-loading">
+  <div class="al-symbol">✦</div>
+  <p>Loading your space...</p>
+</div>
+
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo-symbol">✦</div>
+    <h1>Energy with Jess</h1>
+    <p>Learning Portal</p>
+  </div>
+
+  <div class="sidebar-user">
+    <div class="user-avatar">🌙</div>
+    <div class="user-info">
+      <h3>Welcome back</h3>
+      <p>Student</p>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Menu</div>
+    <div class="nav-item active" data-page="dashboard" onclick="navigate('dashboard', this)">
+      <span class="nav-icon">🏠</span> Dashboard
+    </div>
+    <div class="nav-item" data-page="catalog" onclick="navigate('catalog', this)">
+      <span class="nav-icon">✨</span> Courses
+    </div>
+    <div class="nav-item" data-page="my-learning" onclick="navigate('my-learning', this)">
+      <span class="nav-icon">📖</span> My Learning
+    </div>
+    <div class="nav-item" data-page="profile" onclick="navigate('profile', this)">
+      <span class="nav-icon">💜</span> My Profile
+    </div>
+
+    <div class="nav-label" style="margin-top:16px;">Resources</div>
+    <div class="nav-item" data-page="community" onclick="navigate('community', this)">
+      <span class="nav-icon">💬</span> Community
+    </div>
+    <div class="nav-item" onclick="window.open('https://www.energywithjess.com.au/booking','_blank')">
+      <span class="nav-icon">🌟</span> 1:1 Sessions
+    </div>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <div class="nav-item" onclick="logout()" style="color:var(--text-light);">
+      <span class="nav-icon">🚪</span> Sign Out
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <h2 class="topbar-title" id="page-title">Dashboard</h2>
+    <div class="topbar-search">
+      <span>🔍</span>
+      <input type="text" placeholder="Search courses..." oninput="searchCourses(this.value)" />
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ DASHBOARD ══ -->
+    <section class="page active" id="page-dashboard">
+      <div class="welcome-banner">
+        <h2>Welcome to Energy with Jess ✦</h2>
+        <p>This is your space to learn, grow, and come home to yourself. The Empowered Empath is live and waiting for you - start whenever you're ready.</p>
+        <button class="btn-start" onclick="openCourse(0)">Explore the Course →</button>
+      </div>
+
+      <!-- FEATURED COURSE -->
+      <div class="featured-course-wrap" onclick="openCourse(0)">
+        <div class="featured-thumb">✨</div>
+        <div class="featured-body">
+          <div class="featured-eyebrow">Now Available · Self-Paced Course</div>
+          <h3 class="featured-title">The Empowered Empath</h3>
+          <p class="featured-desc">You feel everything - and it's time to make that your greatest strength. Nine modules of deep, guided learning covering empath basics, inner child, emotions, nervous system, past lives, your aura, and more - plus guided meditations throughout and a bonus soul contract meditation.</p>
+          <div class="featured-meta">
+            <span>✨ 12 modules + bonus</span>
+            <span>📝 14 lessons</span>
+            <span>⏱ 9 hours</span>
+            <span>🌿 Self-paced</span>
+          </div>
+          <button class="btn-start" style="margin-top:20px;display:inline-block;" onclick="event.stopPropagation();openCourse(0)">Start Here →</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══ CATALOG ══ -->
+    <section class="page" id="page-catalog">
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterCatalog('all', this)">All Courses</button>
+        <button class="filter-btn" onclick="filterCatalog('reiki', this)">Reiki</button>
+        <button class="filter-btn" onclick="filterCatalog('psychic', this)">Psychic Development</button>
+        <button class="filter-btn" onclick="filterCatalog('empath', this)">Empath</button>
+        <button class="filter-btn" onclick="filterCatalog('regulation', this)">Regulation</button>
+        <button class="filter-btn" onclick="filterCatalog('ritual', this)">Ritual &amp; Self-Care</button>
+      </div>
+
+      <div class="catalog-grid" id="catalog-grid">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- ══ MY LEARNING ══ -->
+    <section class="page" id="page-my-learning">
+      <div class="section-header" style="margin-bottom:24px;">
+        <h3>Your enrolled courses</h3>
+        <a onclick="navigate('catalog', document.querySelector('[data-page=catalog]'))">Find more courses</a>
+      </div>
+      <div class="courses-grid" id="my-courses-grid">
+        <!-- populated by JS -->
+      </div>
+    </section>
+
+    <!-- ══ COURSE DETAIL ══ -->
+    <section class="page" id="page-course-detail">
+      <div class="back-btn" onclick="history.go(-1) || navigate('catalog', document.querySelector('[data-page=catalog]'))">← Back</div>
+      <div id="course-detail-content"></div>
+    </section>
+
+    <!-- ══ LESSON VIEW ══ -->
+    <section class="page" id="page-lesson">
+      <div class="back-btn" id="lesson-back-btn" onclick="backToCourse()">← Back to course</div>
+      <div id="lesson-content"></div>
+    </section>
+
+    <!-- ══ QUIZ ══ -->
+    <section class="page" id="page-quiz">
+      <div class="back-btn" onclick="backToCourse()">← Back to course</div>
+      <div id="quiz-content"></div>
+    </section>
+
+    <!-- ══ PROFILE ══ -->
+    <section class="page" id="page-profile">
+      <div class="profile-hero">
+        <div class="profile-avatar">🌙</div>
+        <div class="profile-info">
+          <h2>Your Learning</h2>
+          <p>energywjess@gmail.com</p>
+          <div class="profile-badges">
+            <div class="profile-badge">✨ Empowered Empath</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-grid">
+        <div class="profile-card">
+          <h4>Achievements</h4>
+          <div class="achievement-grid">
+            <div class="achievement">
+              <div class="ach-icon">🌟</div>
+              <h5>First Lesson</h5>
+              <p>Started your journey</p>
+            </div>
+            <div class="achievement">
+              <div class="ach-icon">🏆</div>
+              <h5>Quiz Master</h5>
+              <p>Scored 90%+ on a quiz</p>
+            </div>
+            <div class="achievement">
+              <div class="ach-icon">🔥</div>
+              <h5>7-Day Streak</h5>
+              <p>Learning every day</p>
+            </div>
+            <div class="achievement">
+              <div class="ach-icon">💫</div>
+              <h5>Half Way There</h5>
+              <p>50% of a course done</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h4>Learning Stats</h4>
+          <div class="info-row"><span class="label">Courses enrolled</span><span class="value">0</span></div>
+          <div class="info-row"><span class="label">Lessons completed</span><span class="value">0</span></div>
+          <div class="info-row"><span class="label">Meditations completed</span><span class="value">0</span></div>
+          <div class="info-row"><span class="label">Courses completed</span><span class="value">0</span></div>
+          <div class="info-row"><span class="label">Total study time</span><span class="value">0 hrs</span></div>
+        </div>
+
+        <div class="profile-card">
+          <h4>My Courses</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div class="activity-item">
+              <span style="font-size:24px;">✨</span>
+              <div>
+                <div style="font-size:14px;color:var(--text-dark);margin-bottom:4px;">The Empowered Empath</div>
+                <div style="font-family:var(--font-body);font-size:12px;color:var(--text-light);">In progress</div>
+              </div>
+              <button class="btn-nav" style="margin-left:auto;font-size:12px;padding:7px 16px;" onclick="openCourse(0)">Continue →</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h4>Account</h4>
+          <div class="info-row"><span class="label">Name</span><span class="value">Student</span></div>
+          <div class="info-row"><span class="label">Email</span><span class="value">energywjess@gmail.com</span></div>
+          <div class="info-row"><span class="label">Member since</span><span class="value">Jan 2026</span></div>
+          <div class="info-row"><span class="label">Plan</span><span class="value">Full Access</span></div>
+          <div style="margin-top:16px;">
+            <div style="font-family:var(--font-body);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);margin-bottom:10px;">Your Avatar Colour</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;" id="profile-colour-picker">
+              <div class="profile-colour-swatch" style="background:#3B5E6E;" data-colour="#3B5E6E" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#bf4288;" data-colour="#bf4288" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#7B5EA7;" data-colour="#7B5EA7" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#2D7A5C;" data-colour="#2D7A5C" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#2563A8;" data-colour="#2563A8" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#E07A30;" data-colour="#E07A30" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#C4383A;" data-colour="#C4383A" onclick="selectProfileColour(this)"></div>
+              <div class="profile-colour-swatch" style="background:#D4A820;" data-colour="#D4A820" onclick="selectProfileColour(this)"></div>
+            </div>
+          </div>
+          <button class="btn-continue" style="margin-top:18px;" onclick="saveProfileColour()">Save Changes</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ COMMUNITY ══ -->
+    <section class="page" id="page-community">
+      <div class="community-layout">
+
+        <div class="community-channels">
+          <div class="community-channels-header">
+            <h3>Channels</h3>
+            <button class="btn-new-channel" onclick="openChannelModal()">+ New</button>
+          </div>
+          <div class="channel-list" id="channel-list">
+            <div class="community-loading">Loading...</div>
+          </div>
+        </div>
+
+        <div class="community-main">
+          <div class="community-header" id="community-channel-name"># general</div>
+          <div class="posts-feed" id="posts-feed">
+            <div class="community-loading">Loading posts...</div>
+          </div>
+          <div class="post-composer">
+            <div id="composer-avatar" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;font-family:var(--font-body);background:var(--primary);"></div>
+            <div class="composer-wrap">
+              <textarea id="post-input" placeholder="Share something with the community..."></textarea>
+              <div class="composer-actions">
+                <label class="pin-toggle-label" id="pin-toggle-wrap" style="display:none;">
+                  <input type="checkbox" id="pin-post-check" /> Pin this post
+                </label>
+                <button class="btn-post" onclick="submitPost()">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="channel-modal-overlay" id="channel-modal">
+        <div class="channel-modal">
+          <h3>New Channel</h3>
+          <label style="font-family:var(--font-body);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-mid);">Channel Name</label>
+          <input type="text" id="new-channel-name" placeholder="e.g. module-3-wins" />
+          <div class="channel-modal-btns">
+            <button class="btn-modal-cancel" onclick="closeChannelModal()">Cancel</button>
+            <button class="btn-modal-create" onclick="createChannel()">Create</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══ VIDEO CONFIG - paste your updated config here ══
+const videoOverrides = {};
+// ══════════════════════════════════════════════════
+
+// ══ DATA ══
+const courses = [
+  {
+    id: 0,
+    title: 'The Empowered Empath',
+    category: 'empath',
+    categoryLabel: 'Empath',
+    emoji: '✨',
+    thumbBg: 'linear-gradient(135deg,#f4f0f8,#c4b0d4)',
+    desc: 'You feel everything - and it\'s time to make that your greatest strength. This self-paced course takes you through the core layers of empath life: your energy, your emotions, your nervous system, and the parts of you that have been here before. Guided meditations, deep teachings, and real tools to help you live fully expressed.',
+    price: 449,
+    stripeUrl: 'https://buy.stripe.com/3cI3cv2Osb5y5PU7j0cZa0O',
+    paypalUrl: 'https://www.paypal.com/ncp/payment/LZPMY3DYU8JM8',
+    duration: '9 hrs',
+    moduleCount: 12,
+    lessonCount: 14,
+    enrolled: false,
+    progress: 0,
+    modules: [
+      {
+        title: 'Welcome',
+        desc: '3 lessons · 20 min',
+        done: false,
+        lessons: [
+          { title: 'Welcome - I\'m So Glad You\'re Here', type: 'Audio', done: false, vimeoId: '',
+            body: 'Welcome, beautiful soul!\n\nI am so excited that you have chosen to take this time for yourself. You are so worthy of living a life where you are grounded and stable and not being influenced by everything and everyone around you.\n\nCome and join The Empowered Empath Telegram Channel to share your wins, your questions, your experiences and shifts with others going through similar, if not the same things.',
+            telegramUrl: 'https://t.me/+WXI4M8674W4zODFl',
+            audioFiles: [
+              { label: 'Introduction Audio', soundcloudId: '' },
+              { label: 'My Empath Story', audioUrl: 'audio/my-empath-story.mp3' },
+            ]
+          },
+          { title: 'How to Use This Course', type: 'Reading', done: false, vimeoId: '' },
+        ]
+      },
+      {
+        title: 'Module 1 - Empath Basics',
+        desc: '1 lesson · audio',
+        done: false,
+        lessons: [
+          { title: 'Empath Basics', type: 'Audio', done: false, vimeoId: '',
+            topics: ['The What, How & Why of being an Empath', 'Energy', 'The Aura', 'Basics & Boundaries'],
+            audioFiles: [{ label: 'Empath Audio', soundcloudId: '' }],
+            bonusDownload: { label: 'Empath Basics', url: 'pdfs/empath-basics.pdf' },
+            slidesUrl: 'pdfs/module-1-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 2 - Inner Child',
+        desc: '1 lesson · meditation',
+        done: false,
+        lessons: [
+          { title: 'Inner Child Meditation', type: 'Practice', done: false, vimeoId: '',
+            body: 'Connect with your inner child, to establish connection, release old connections and begin creating an inner calm.',
+            audioFiles: [{ label: 'Inner Child Empath Meditation', soundcloudId: '' }],
+            slidesUrl: 'pdfs/module-2-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 3 - Emotions',
+        desc: '1 lesson · audio',
+        done: false,
+        lessons: [
+          { title: 'Emotions', type: 'Audio', done: false, vimeoId: '',
+            topics: ['Emotional Regulation', 'Wheel of Emotion', 'The Emotional Body', 'Processing & Holding Space'],
+            audioFiles: [{ label: 'Emotions Audio', soundcloudId: '' }],
+            bonusDownload: { label: 'Module 3 Reference', url: 'pdfs/module-3-bonus.pdf' },
+            slidesUrl: 'pdfs/module-3-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 4 - Higher Self',
+        desc: '1 lesson · meditation',
+        done: false,
+        lessons: [
+          { title: 'Higher Self Meditation', type: 'Practice', done: false, vimeoId: '',
+            body: 'Connect with your Higher Self to receive information regarding your Empath skills, abilities and whats next.',
+            audioFiles: [{ label: 'Higher Self Meditation', soundcloudId: '' }],
+            slidesUrl: 'pdfs/module-4-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 5 - Nervous System',
+        desc: '1 lesson · audio',
+        done: false,
+        lessons: [
+          { title: 'Nervous System', type: 'Audio', done: false, vimeoId: '',
+            topics: ['The Nervous System', 'The 4 F\'s', 'Recognition & Regulation'],
+            audioFiles: [{ label: 'Nervous System Audio', soundcloudId: '' }],
+            bonusDownload: { label: 'Module 5 Reference', url: 'pdfs/module-5-bonus.pdf' },
+            slidesUrl: 'pdfs/module-5-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 6 - Past Lives',
+        desc: '1 lesson · audio',
+        done: false,
+        lessons: [
+          { title: 'Past Lives', type: 'Practice', done: false, vimeoId: '',
+            body: 'Connect with past versions of yourself - to talk with them, release old ties, and bring forward what is ready to help you in this life.',
+            audioFiles: [{ label: 'Past Lives Audio', soundcloudId: '' }],
+            slidesUrl: 'pdfs/module-6-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 7 - Inner World',
+        desc: '1 lesson · coming soon',
+        done: false,
+        lessons: [
+          { title: 'Inner World', type: 'Audio', done: false, vimeoId: '',
+            topics: ['Inner Narration & Self Talk', 'Influences', 'Separation', 'Reframe', 'Weekly Practices'],
+            audioFiles: [{ label: 'Inner World Audio', soundcloudId: '' }],
+            bonusDownload: { label: 'Your Inner World', url: 'pdfs/module-7-inner-world.pdf' },
+            slidesUrl: 'pdfs/module-7-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 8 - The Aura',
+        desc: '1 lesson · coming soon',
+        done: false,
+        lessons: [
+          { title: 'The Aura', type: 'Practice', done: false, vimeoId: '',
+            body: 'Explore your aura and learn how to work with it, then connect with your own energy field through a guided meditation.',
+            audioFiles: [{ label: 'The Aura Audio', soundcloudId: '' }],
+            slidesUrl: 'pdfs/module-8-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Module 9 - Patterns',
+        desc: '1 lesson · coming soon',
+        done: false,
+        lessons: [
+          { title: 'Patterns', type: 'Audio', done: false, vimeoId: '',
+            topics: ['Pattern Identification', 'Re-Wiring', 'Pattern Release', 'Integration', 'Weekly Practices'],
+            audioFiles: [{ label: 'Patterns Audio', soundcloudId: '' }],
+            bonusDownload: { label: 'Your Integration', url: 'pdfs/module-9-integration.pdf' },
+            bonusDownload2: { label: 'Triggers & Patterns', url: 'pdfs/module-9-triggers-patterns.pdf' },
+            slidesUrl: 'pdfs/module-9-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Bonus',
+        desc: '1 lesson · meditations + downloads',
+        done: false,
+        lessons: [
+          { title: 'Bonus Meditations', type: 'Practice', done: false, vimeoId: '',
+            body: 'Guided meditations to support your practice - including a Soul Contracts meditation to clear what is ready to be released, plus grounding, opening and closing meditations for those working with their energy centres.',
+            audioFiles: [
+              { label: 'Soul Contracts Meditation', soundcloudId: '' },
+              { label: 'Grounding Meditation', audioUrl: 'audio/grounding-meditation.mp3' },
+              { label: 'Opening Meditation', audioUrl: 'audio/opening-meditation.mp3' },
+              { label: 'Closing Meditation', audioUrl: 'audio/closing-meditation.mp3' },
+            ],
+            bonusDownload: { label: 'Chakra Cheatsheet', url: 'pdfs/chakra-cheatsheet.pdf' },
+            bonusDownload2: { label: 'Triggers + Patterns Tracker', url: 'triggers-patterns-tracker.html' },
+            bonusDownload3: { label: 'Emotion Reset Workbook', url: 'pdfs/emotion-reset-workbook.pdf' },
+            bonusDownload4: { label: 'Nervous System Cheatsheet', url: 'pdfs/nervous-system-cheatsheet.pdf' },
+            slidesUrl: 'pdfs/bonus-module-slides.pdf',
+          },
+        ]
+      },
+      {
+        title: 'Congratulations - What Now?',
+        desc: '1 lesson · audio',
+        done: false,
+        lessons: [
+          { title: 'Congratulations! What Now?', type: 'Audio', done: false, vimeoId: '',
+            body: 'You did it. You showed up for yourself, lesson after lesson, and that takes real courage. Take a moment to honour how far you\'ve come.',
+            audioFiles: [{ label: 'Congratulations Audio', soundcloudId: '' }],
+            whatNext: [
+              { label: 'Expansion - Align + Flow', url: 'https://www.energywithjess.com.au/energy-with-jess-booking', note: 'Book a discovery call' },
+              { label: 'Learn Reiki - Level 1', url: 'https://buy.stripe.com/14A4gz3Swc9C3HMgTAcZa0G', note: '$333' },
+              { label: 'Learn Reiki - Level 2', url: 'https://buy.stripe.com/6oU9ATfBe5Leemq46OcZa0H', note: '$555' },
+              { label: 'Energy Mentoring', url: 'https://www.energywithjess.com.au/energy-with-jess-booking', note: 'Book a discovery call' },
+              { label: 'The Unbecoming', url: 'https://www.energywithjess.com.au/energy-with-jess-booking', note: 'Book a discovery call' },
+            ],
+          },
+        ]
+      },
+    ]
+  },
+  {
+    id: 1,
+    title: 'Emotional Regulation',
+    category: 'regulation',
+    categoryLabel: 'Regulation',
+    emoji: '🌿',
+    thumbBg: 'linear-gradient(135deg,#f4f0f8,#bf4288,#C4B0D4)',
+    price: 333,
+    desc: '6 lessons · self-paced · Move through your emotional landscape, build literacy around what you feel, understand your protective responses, and build a toolkit that actually works for you.',
+    comingSoon: true,
+    enrolled: false,
+    modules: []
+  },
+  {
+    id: 2,
+    title: 'Nervous System Regulation',
+    category: 'regulation',
+    categoryLabel: 'Regulation',
+    emoji: '🌊',
+    thumbBg: 'linear-gradient(135deg,#EBF1F4,#3B5E6E,#1E2E32)',
+    price: 777,
+    desc: '12 lessons · self-paced · Four phases: build the foundation, develop awareness, release what is stored, and rewire toward a new baseline. Covers Polyvagal Theory, somatic work, breathwork, and co-regulation. Includes the Triggers + Patterns tracker, Inner World journal guide, and Pattern Mapping workbook.',
+    comingSoon: true,
+    enrolled: false,
+    modules: []
+  },
+  {
+    id: 3,
+    title: 'Full Regulation Bundle',
+    category: 'regulation',
+    categoryLabel: 'Regulation',
+    emoji: '✦',
+    thumbBg: 'linear-gradient(135deg,#C4B0D4,#3B5E6E,#bf4288)',
+    price: 999,
+    desc: '18 lessons · self-paced · Both Emotional Regulation and Nervous System Regulation in one continuous container. The complete pathway from emotional awareness through to a regulated nervous system baseline.',
+    comingSoon: true,
+    enrolled: false,
+    modules: []
+  },
+];
+
+const quizQuestions = [
+  {
+    q: 'What does the word "Reiki" mean?',
+    options: ['Universal life force energy', 'Healing through touch', 'Sacred light of the soul', 'The way of inner peace'],
+    answer: 0
+  },
+  {
+    q: 'Which of the following is NOT one of the four Clairs?',
+    options: ['Clairvoyance', 'Claircognizance', 'Clairsentience', 'Clairambience'],
+    answer: 3
+  },
+  {
+    q: 'What is the root chakra associated with?',
+    options: ['Intuition and vision', 'Love and compassion', 'Grounding and survival', 'Communication and truth'],
+    answer: 2
+  },
+  {
+    q: 'Which Reiki symbol is associated with emotional healing?',
+    options: ['Cho Ku Rei', 'Sei He Ki', 'Hon Sha Ze Sho Nen', 'Dai Ko Myo'],
+    answer: 1
+  },
+  {
+    q: 'True empaths are most likely to experience which of these?',
+    options: ['Strong boundaries naturally', 'Absorbing others\' emotions as their own', 'Difficulty feeling emotions', 'Increased extroversion in crowds'],
+    answer: 1
+  }
+];
+
+// ══ STATE ══
+let currentPage = 'dashboard';
+let currentCourseId = null;
+let currentModuleOpen = null;
+let currentQuizQ = 0;
+let quizAnswers = [];
+let quizSelected = null;
+let quizRevealed = false;
+
+// ══ NAVIGATION ══
+function navigate(page, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  if (el) el.classList.add('active');
+  currentPage = page;
+  const titles = {
+    dashboard: 'Dashboard',
+    catalog: 'Browse Courses',
+    'my-learning': 'My Learning',
+    'course-detail': 'Course',
+    lesson: 'Lesson',
+    quiz: 'Quiz',
+    profile: 'My Profile',
+    community: 'Community'
+  };
+  document.getElementById('page-title').textContent = titles[page] || page;
+  if (page === 'catalog') renderCatalog('all');
+  if (page === 'my-learning') renderMyLearning();
+  if (page === 'community' && !communityInitialized) { communityInitialized = true; initCommunity(); }
+  if (page === 'profile') initProfileColourPicker();
+  document.body.classList.remove('sidebar-open');
+  window.scrollTo(0, 0);
+}
+
+function toggleSidebar() {
+  document.body.classList.toggle('sidebar-open');
+}
+
+// ══ CATALOG ══
+function renderCatalog(filter) {
+  const grid = document.getElementById('catalog-grid');
+  const filtered = filter === 'all' ? courses : courses.filter(c => c.category === filter);
+  grid.innerHTML = filtered.map(c => `
+    <div class="catalog-card ${c.comingSoon ? 'coming-soon-card' : ''}" onclick="${c.comingSoon ? '' : 'openCourse(' + c.id + ')'}">
+      <div class="catalog-thumb" style="background:${c.thumbBg};${c.comingSoon ? 'opacity:0.6;' : ''}">${c.emoji}</div>
+      ${c.comingSoon ? '<div class="coming-soon-badge">Coming Soon</div>' : ''}
+      <div class="catalog-body">
+        <div class="course-category">${c.categoryLabel}</div>
+        <div class="catalog-title">${c.title}</div>
+        <div class="catalog-desc">${c.desc.substring(0, 100)}...</div>
+        <div class="catalog-footer">
+          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">$${c.price} <span>AUD</span></div>
+          ${c.comingSoon
+            ? '<span class="coming-soon-label">Notify Me</span>'
+            : c.enrolled
+              ? `<button class="btn-enroll enrolled" onclick="event.stopPropagation();">✓ Enrolled</button>`
+              : (c.stripeUrl && c.paypalUrl)
+                ? `<div style="display:flex;gap:6px;" onclick="event.stopPropagation()">
+                     <button class="btn-enroll" style="flex:1;font-size:11px;" onclick="window.open('${c.stripeUrl}','_blank')">Card</button>
+                     <button class="btn-enroll" style="flex:1;font-size:11px;background:#003087;" onclick="window.open('${c.paypalUrl}','_blank')">PayPal</button>
+                   </div>`
+                : `<button class="btn-enroll" onclick="event.stopPropagation();enrollCourse(${c.id})">Enrol Now</button>`
+          }
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCatalog(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalog(filter);
+}
+
+async function enrollCourse(id) {
+  if (courses[id].comingSoon) return;
+  if (courses[id].stripeUrl) {
+    window.open(courses[id].stripeUrl, '_blank');
+    return;
+  }
+  courses[id].enrolled = true;
+  // Save enrollment to Firestore so it persists across sessions
+  if (currentUser) {
+    try {
+      await db.collection('users').doc(currentUser.uid).set(
+        { enrolledCourses: firebase.firestore.FieldValue.arrayUnion(id) },
+        { merge: true }
+      );
+    } catch (e) { console.error('Error saving enrollment:', e); }
+  }
+  renderCatalog('all');
+  showToast('You\'re enrolled! Start whenever you\'re ready. ✨');
+}
+
+function searchCourses(val) {
+  if (!val) return;
+  navigate('catalog', document.querySelector('[data-page=catalog]'));
+  const grid = document.getElementById('catalog-grid');
+  const filtered = courses.filter(c => c.title.toLowerCase().includes(val.toLowerCase()) || c.desc.toLowerCase().includes(val.toLowerCase()));
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="font-family:Arial,sans-serif;color:var(--text-light);padding:24px;">No courses found. Try a different search.</p>';
+    return;
+  }
+  grid.innerHTML = filtered.map(c => `
+    <div class="catalog-card ${c.comingSoon ? 'coming-soon-card' : ''}" onclick="${c.comingSoon ? '' : 'openCourse(' + c.id + ')'}">
+      <div class="catalog-thumb" style="background:${c.thumbBg};${c.comingSoon ? 'opacity:0.6;' : ''}">${c.emoji}</div>
+      ${c.comingSoon ? '<div class="coming-soon-badge">Coming Soon</div>' : ''}
+      <div class="catalog-body">
+        <div class="course-category">${c.categoryLabel}</div>
+        <div class="catalog-title">${c.title}</div>
+        <div class="catalog-desc">${c.desc.substring(0, 100)}...</div>
+        <div class="catalog-footer">
+          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">$${c.price} <span>AUD</span></div>
+          ${c.comingSoon
+            ? '<span class="coming-soon-label">Notify Me</span>'
+            : c.enrolled
+              ? `<button class="btn-enroll enrolled" onclick="event.stopPropagation();">✓ Enrolled</button>`
+              : (c.stripeUrl && c.paypalUrl)
+                ? `<div style="display:flex;gap:6px;" onclick="event.stopPropagation()">
+                     <button class="btn-enroll" style="flex:1;font-size:11px;" onclick="window.open('${c.stripeUrl}','_blank')">Card</button>
+                     <button class="btn-enroll" style="flex:1;font-size:11px;background:#003087;" onclick="window.open('${c.paypalUrl}','_blank')">PayPal</button>
+                   </div>`
+                : `<button class="btn-enroll" onclick="event.stopPropagation();enrollCourse(${c.id})">Enrol Now</button>`
+          }
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══ MY LEARNING ══
+function renderMyLearning() {
+  const enrolled = courses.filter(c => c.enrolled);
+  const grid = document.getElementById('my-courses-grid');
+  if (enrolled.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:60px 24px;">
+        <div style="font-size:48px;margin-bottom:16px;">✨</div>
+        <h3 style="font-family:var(--font-heading);font-size:24px;color:var(--text-dark);margin-bottom:10px;font-weight:400;">This is your space</h3>
+        <p style="font-family:var(--font-body);color:var(--text-mid);margin-bottom:24px;">Enrol in The Empowered Empath to get started.</p>
+        <button class="btn-continue" onclick="openCourse(0)">Explore The Empowered Empath →</button>
+      </div>`;
+    return;
+  }
+  grid.innerHTML = enrolled.map(c => `
+    <div class="course-card" onclick="openCourse(${c.id})">
+      <div class="course-thumb" style="background:${c.thumbBg}">${c.emoji}</div>
+      <div class="course-body">
+        <div class="course-category">${c.categoryLabel}</div>
+        <div class="course-title">${c.title}</div>
+        <div class="course-meta"><span>${c.moduleCount} modules</span><span>${c.lessonCount} lessons</span><span>${c.duration}</span></div>
+        <div class="course-progress">
+          <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${c.progress}%"></div></div>
+          <div class="progress-label"><span>${c.progress}% complete</span></div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ══ COURSE DETAIL ══
+function openCourse(id) {
+  if (courses[id] && courses[id].comingSoon) {
+    showToast('This course is coming soon - stay tuned! ✨');
+    return;
+  }
+  currentCourseId = id;
+  currentModuleOpen = null;
+  const c = courses[id];
+  const el = document.getElementById('course-detail-content');
+  const completedLessons = c.modules.reduce((sum, m) => sum + m.lessons.filter(l => l.done).length, 0);
+
+  el.innerHTML = `
+    <div class="course-detail-hero">
+      <div class="hero-thumb" style="background:${c.thumbBg}">${c.emoji}</div>
+      <div class="hero-info">
+        <div class="course-category" style="color:rgba(255,255,255,0.75);margin-bottom:8px;font-family:var(--font-body);font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">${c.categoryLabel}</div>
+        <h2>${c.title}</h2>
+        <p>${c.desc}</p>
+        <div class="hero-meta">
+          <span>📚 ${c.moduleCount} modules</span>
+          <span>📝 ${c.lessonCount} lessons</span>
+          <span>⏱ ${c.duration}</span>
+          <span>✅ ${completedLessons} done</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-layout">
+      <div>
+        <div class="section-header" style="margin-bottom:16px;"><h3>Course Modules</h3></div>
+        <div class="module-list">
+          ${c.modules.map((m, mi) => `
+            <div class="module-block">
+              <div class="module-header" onclick="toggleModule(${mi})">
+                <div class="module-num ${m.done ? 'done' : ''}">${m.done ? '✓' : (mi + 1)}</div>
+                <div class="module-title-text">
+                  <h4>${m.title}</h4>
+                  <p>${m.desc}</p>
+                </div>
+                <span style="color:var(--text-light);font-size:18px;" id="toggle-${mi}">›</span>
+              </div>
+              <div class="module-lessons" id="module-${mi}">
+                ${m.lessons.map((l, li) => `
+                  <div class="lesson-item ${l.done ? 'done' : ''}" onclick="openLesson(${mi}, ${li})">
+                    <div class="lesson-check ${l.done ? 'done' : ''}">${l.done ? '✓' : ''}</div>
+                    ${l.title}
+                    <div class="lesson-type">${l.type === 'Quiz' ? '📝' : l.type === 'Practice' ? '🌿' : l.type === 'Reading' ? '📖' : '▶'} ${l.type}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="course-sidebar">
+        <div class="info-card">
+          <h4>Your Progress</h4>
+          <div style="margin:16px 0;">
+            <div class="progress-bar-wrap" style="height:10px;"><div class="progress-bar-fill" style="width:${c.progress}%"></div></div>
+            <div class="progress-label" style="margin-top:8px;font-size:13px;"><span>${c.progress}% complete</span><span>${completedLessons}/${c.lessonCount}</span></div>
+          </div>
+          <button class="btn-continue" onclick="openLesson(${getNextModule(id)}, ${getNextLesson(id)})">
+            ${c.progress > 0 ? 'Continue Learning' : 'Start Course'}
+          </button>
+        </div>
+        <div class="info-card">
+          <h4>Course Info</h4>
+          <div class="info-row"><span class="label">Modules</span><span class="value">${c.moduleCount}</span></div>
+          <div class="info-row"><span class="label">Lessons</span><span class="value">${c.lessonCount}</span></div>
+          <div class="info-row"><span class="label">Duration</span><span class="value">${c.duration}</span></div>
+          <div class="info-row"><span class="label">Level</span><span class="value">All levels</span></div>
+          <div class="info-row"><span class="label">Access</span><span class="value">Lifetime</span></div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  navigate('course-detail', null);
+}
+
+function getNextModule(id) {
+  const c = courses[id];
+  for (let mi = 0; mi < c.modules.length; mi++) {
+    for (let li = 0; li < c.modules[mi].lessons.length; li++) {
+      if (!c.modules[mi].lessons[li].done) return mi;
+    }
+  }
+  return 0;
+}
+
+function getNextLesson(id) {
+  const c = courses[id];
+  for (let mi = 0; mi < c.modules.length; mi++) {
+    for (let li = 0; li < c.modules[mi].lessons.length; li++) {
+      if (!c.modules[mi].lessons[li].done) return li;
+    }
+  }
+  return 0;
+}
+
+function toggleModule(mi) {
+  const lessons = document.getElementById('module-' + mi);
+  const toggle = document.getElementById('toggle-' + mi);
+  if (lessons.classList.contains('open')) {
+    lessons.classList.remove('open');
+    toggle.textContent = '›';
+  } else {
+    lessons.classList.add('open');
+    toggle.textContent = '⌄';
+  }
+}
+
+// ══ LESSON ══
+function openLesson(moduleIdx, lessonIdx) {
+  const c = courses[currentCourseId];
+  const module = c.modules[moduleIdx];
+  const lesson = module.lessons[lessonIdx];
+
+  if (lesson.type === 'Quiz') {
+    openQuiz(moduleIdx, lessonIdx);
+    return;
+  }
+
+  const el = document.getElementById('lesson-content');
+  const allLessons = [];
+  c.modules.forEach((m, mi) => m.lessons.forEach((l, li) => allLessons.push({mi, li, ...l})));
+  const currentIdx = allLessons.findIndex(l => l.mi === moduleIdx && l.li === lessonIdx);
+
+  const isVideoLesson = lesson.type === 'Video' || (lesson.type === 'Practice' && !lesson.audioFiles);
+  const isAudioLesson = lesson.type === 'Audio' || (lesson.type === 'Practice' && lesson.audioFiles);
+
+  // YouTube override check - then Vimeo fallback - then placeholder
+  const youtubeId = videoOverrides[`${moduleIdx}-${lessonIdx}`];
+  const vimeoHtml = youtubeId
+    ? `<div class="vimeo-wrap"><iframe src="https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
+    : isVideoLesson ? (lesson.vimeoId
+    ? `<div class="vimeo-wrap">
+        <iframe src="https://player.vimeo.com/video/${lesson.vimeoId}?autoplay=1&color=bf4288&title=0&byline=0&portrait=0"
+          frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>`
+    : `<div class="vimeo-wrap vimeo-placeholder">
+        <div class="vimeo-placeholder-inner">
+          <div style="font-size:40px;margin-bottom:12px;">${lesson.type === 'Practice' ? '🎧' : '▶'}</div>
+          <p style="font-family:var(--font-heading);font-size:20px;color:var(--white);margin:0 0 6px;">${lesson.title}</p>
+          <p style="font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,0.6);margin:0;">${lesson.type === 'Practice' ? 'Audio meditation' : 'Video'} · Coming soon</p>
+        </div>
+      </div>`)
+    : '';
+
+  // Audio files (native HTML5 player)
+  const audioHtml = isAudioLesson && lesson.audioFiles ? lesson.audioFiles.map(a => a.audioUrl
+    ? `<div class="audio-player-block">
+        <div class="audio-player-label"><span>🎧</span>${a.label}</div>
+        <audio controls preload="none">
+          <source src="${a.audioUrl}" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+      </div>`
+    : `<div class="audio-placeholder">
+        <span style="font-size:20px;">🎧</span>
+        <span>${a.label}</span>
+        <span style="margin-left:auto;font-size:12px;color:var(--text-light);">Coming soon</span>
+      </div>`
+  ).join('') : '';
+
+  // Telegram community box
+  const telegramHtml = lesson.telegramUrl !== undefined ? `
+    <div class="telegram-box">
+      <span style="font-size:22px;">💬</span>
+      <div>
+        <div style="font-family:var(--font-body);font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:3px;">Join The Empowered Empath Community</div>
+        <div style="font-family:var(--font-body);font-size:13px;color:var(--text-mid);">Share your wins, questions and breakthroughs with others on the same path.</div>
+      </div>
+      ${lesson.telegramUrl ? `<a href="${lesson.telegramUrl}" target="_blank" class="btn-nav primary" style="margin-left:auto;white-space:nowrap;">Join →</a>` : '<span style="margin-left:auto;font-size:12px;color:var(--text-light);font-family:var(--font-body);">Link coming soon</span>'}
+    </div>` : '';
+
+  // "In This Lesson" topics
+  const topicsHtml = lesson.topics && lesson.topics.length
+    ? `<div class="in-this-lesson">
+        <div class="in-this-lesson-label">In This Lesson</div>
+        <ul class="topics-list">
+          ${lesson.topics.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+        ${lesson.topicsExtra ? `
+          <div style="margin-top:14px;font-family:var(--font-body);font-size:12px;font-weight:700;color:var(--primary);letter-spacing:1px;margin-bottom:8px;">${lesson.topicsExtra.heading}</div>
+          <ul class="topics-list">
+            ${lesson.topicsExtra.items.map(t => `<li>${t}</li>`).join('')}
+          </ul>` : ''}
+      </div>`
+    : '';
+
+  // Downloads
+  const downloadsHtml = (lesson.bonusDownload?.label || lesson.slidesUrl)
+    ? `<div class="downloads-row">
+        ${lesson.bonusDownload?.label ? `
+          <a class="download-btn bonus" href="${lesson.bonusDownload.url || '#'}" ${lesson.bonusDownload.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
+            ⬇ Bonus: ${lesson.bonusDownload.label}
+          </a>` : ''}
+        ${lesson.bonusDownload2?.label ? `
+          <a class="download-btn bonus" href="${lesson.bonusDownload2.url || '#'}" ${lesson.bonusDownload2.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
+            ⬇ Bonus: ${lesson.bonusDownload2.label}
+          </a>` : ''}
+        ${lesson.bonusDownload3?.label ? `
+          <a class="download-btn bonus" href="${lesson.bonusDownload3.url || '#'}" ${lesson.bonusDownload3.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
+            ⬇ Bonus: ${lesson.bonusDownload3.label}
+          </a>` : ''}
+        ${lesson.bonusDownload4?.label ? `
+          <a class="download-btn bonus" href="${lesson.bonusDownload4.url || '#'}" ${lesson.bonusDownload4.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
+            ⬇ Bonus: ${lesson.bonusDownload4.label}
+          </a>` : ''}
+        ${lesson.slidesUrl
+          ? `<a class="download-btn slides" href="${lesson.slidesUrl}" target="_blank">⬇ Download Slides</a>`
+          : `<a class="download-btn slides" href="#" onclick="showToast('Slides coming soon ✨')">⬇ Download Slides</a>`}
+      </div>`
+    : '';
+
+  // What Now links
+  const whatNextHtml = lesson.whatNext && lesson.whatNext.length
+    ? `<div class="what-next-block">
+        <div class="in-this-lesson-label" style="color:var(--secondary);margin-bottom:14px;">What's Next</div>
+        <div class="what-next-links">
+          ${lesson.whatNext.map(w => `
+            <a class="what-next-link" href="${w.url || '#'}" ${w.url ? 'target="_blank"' : `onclick="showToast('Link coming soon ✨')"`}>
+              <span>${w.label}</span>
+              ${w.note ? `<span class="what-next-note">${w.note}</span>` : ''}
+              <span style="margin-left:auto;">→</span>
+            </a>`).join('')}
+        </div>
+      </div>`
+    : '';
+
+  // Body text
+  const bodyHtml = lesson.body
+    ? lesson.body.split('\n\n').map(p => `<p>${p}</p>`).join('')
+    : '';
+
+  el.innerHTML = `
+    <div class="lesson-viewer">
+      <div class="lesson-main">
+        ${vimeoHtml}
+
+        <div class="lesson-content-block" style="${isVideoLesson ? 'margin-top:24px;' : ''}">
+          <h3>${lesson.title}</h3>
+          ${audioHtml ? `<div class="audio-files">${audioHtml}</div>` : ''}
+          ${topicsHtml}
+          ${bodyHtml}
+          ${whatNextHtml}
+          ${telegramHtml}
+          ${downloadsHtml}
+        </div>
+
+        <div class="lesson-nav-btns">
+          <button class="btn-nav" onclick="openLesson(${currentIdx > 0 ? allLessons[currentIdx-1].mi : moduleIdx}, ${currentIdx > 0 ? allLessons[currentIdx-1].li : lessonIdx})" ${currentIdx === 0 ? 'disabled style="opacity:0.4;"' : ''}>← Previous</button>
+          <button class="btn-nav primary" onclick="markDone(${moduleIdx},${lessonIdx})">Mark Complete</button>
+          <button class="btn-nav" onclick="openLesson(${currentIdx < allLessons.length-1 ? allLessons[currentIdx+1].mi : moduleIdx}, ${currentIdx < allLessons.length-1 ? allLessons[currentIdx+1].li : lessonIdx})" ${currentIdx === allLessons.length-1 ? 'disabled style="opacity:0.4;"' : ''}>Next →</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="lesson-outline">
+          <h4>${module.title}</h4>
+          ${module.lessons.map((l, li) => `
+            <div class="outline-item ${li === lessonIdx ? 'current' : ''}" onclick="openLesson(${moduleIdx}, ${li})">
+              <div class="outline-check ${l.done ? 'done' : li === lessonIdx ? 'current' : ''}">${l.done ? '✓' : ''}</div>
+              ${l.title}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+
+  navigate('lesson', null);
+}
+
+function markDone(mi, li) {
+  courses[currentCourseId].modules[mi].lessons[li].done = true;
+  updateProgress();
+  saveProgressToFirestore(currentCourseId, mi, li);
+  showToast('✅ Lesson marked complete!');
+  openLesson(mi, li);
+}
+
+function updateProgress() {
+  const c = courses[currentCourseId];
+  const total = c.modules.reduce((s, m) => s + m.lessons.length, 0);
+  const done = c.modules.reduce((s, m) => s + m.lessons.filter(l => l.done).length, 0);
+  c.progress = Math.round((done / total) * 100);
+  c.modules.forEach(m => {
+    m.done = m.lessons.every(l => l.done);
+  });
+}
+
+function backToCourse() {
+  openCourse(currentCourseId);
+}
+
+// ══ QUIZ ══
+function openQuiz(moduleIdx, lessonIdx) {
+  currentQuizQ = 0;
+  quizAnswers = [];
+  quizSelected = null;
+  quizRevealed = false;
+  renderQuizQuestion(moduleIdx, lessonIdx);
+  navigate('quiz', null);
+}
+
+function renderQuizQuestion(moduleIdx, lessonIdx) {
+  const el = document.getElementById('quiz-content');
+  if (currentQuizQ >= quizQuestions.length) {
+    renderQuizScore(moduleIdx, lessonIdx);
+    return;
+  }
+  const q = quizQuestions[currentQuizQ];
+  const progress = ((currentQuizQ) / quizQuestions.length) * 100;
+  el.innerHTML = `
+    <div class="quiz-container">
+      <div class="quiz-header">
+        <h2>Knowledge Check ✦</h2>
+        <p>Question ${currentQuizQ + 1} of ${quizQuestions.length}</p>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${progress}%"></div></div>
+      </div>
+      <div class="question-block">
+        <div class="question-num">Question ${currentQuizQ + 1}</div>
+        <div class="question-text">${q.q}</div>
+        <div class="answer-options">
+          ${q.options.map((opt, i) => `
+            <div class="answer-option" id="opt-${i}" onclick="selectAnswer(${i}, ${q.answer}, ${moduleIdx}, ${lessonIdx})">
+              <div class="option-letter">${String.fromCharCode(65+i)}</div>
+              ${opt}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="quiz-actions">
+        <button class="btn-nav primary" id="next-btn" style="display:none;" onclick="nextQuestion(${moduleIdx}, ${lessonIdx})">
+          ${currentQuizQ < quizQuestions.length - 1 ? 'Next Question →' : 'See Results'}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function selectAnswer(selected, correct, mi, li) {
+  if (quizRevealed) return;
+  quizRevealed = true;
+  quizAnswers.push(selected === correct);
+  document.querySelectorAll('.answer-option').forEach((el, i) => {
+    if (i === correct) el.classList.add('correct');
+    else if (i === selected && selected !== correct) el.classList.add('wrong');
+  });
+  document.getElementById('opt-' + selected).classList.add('selected');
+  document.getElementById('next-btn').style.display = 'block';
+}
+
+function nextQuestion(mi, li) {
+  currentQuizQ++;
+  quizRevealed = false;
+  quizSelected = null;
+  renderQuizQuestion(mi, li);
+}
+
+function renderQuizScore(mi, li) {
+  const score = quizAnswers.filter(Boolean).length;
+  const pct = Math.round((score / quizAnswers.length) * 100);
+  const passed = pct >= 70;
+  const el = document.getElementById('quiz-content');
+  el.innerHTML = `
+    <div class="quiz-container">
+      <div class="score-screen">
+        <div class="score-circle">
+          <div class="score-num">${pct}%</div>
+          <div class="score-label">Score</div>
+        </div>
+        <h2>${passed ? 'Beautiful work. ✦' : 'Keep going, you\'ve got this.'}</h2>
+        <p>${passed
+          ? `You scored ${score} out of ${quizAnswers.length} - that\'s ${pct}%. You passed! Your understanding of this material is growing with every lesson.`
+          : `You scored ${score} out of ${quizAnswers.length}. That\'s ${pct}%. Revisit the lessons and try again when you feel ready - there\'s no rush here.`
+        }</p>
+        <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
+          <button class="btn-nav" onclick="openQuiz(${mi}, ${li})">Retake Quiz</button>
+          <button class="btn-nav primary" onclick="markDone(${mi}, ${li}); backToCourse();">
+            ${passed ? 'Continue Course →' : 'Back to Lessons'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ══ TOAST ══
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══ FIREBASE AUTH + FIRESTORE ══
+// Same config as auth.html - replace all values with your Firebase project config
+const firebaseConfig = {
+  apiKey:            "AIzaSyBErHDdakJYLGjAVADJM__mNxnNOy7cEa0",
+  authDomain:        "energy-with-jess-lms.firebaseapp.com",
+  projectId:         "energy-with-jess-lms",
+  storageBucket:     "energy-with-jess-lms.firebasestorage.app",
+  messagingSenderId: "974191871270",
+  appId:             "1:974191871270:web:9836a77d4cd403e6226de7"
+};
+
+if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db   = firebase.firestore();
+let currentUser = null;
+
+auth.onAuthStateChanged(async user => {
+  if (!user) {
+    window.location.href = 'auth.html';
+    return;
+  }
+  currentUser = user;
+
+  // Update sidebar user display
+  const displayName = user.displayName || user.email.split('@')[0];
+  document.querySelector('.user-info h3').textContent = 'Welcome, ' + displayName;
+  document.querySelector('.user-info p').textContent = user.email;
+
+  // Load progress from Firestore then render
+  await loadProgressFromFirestore();
+  renderCatalog('all');
+
+  // Hide loading overlay
+  document.getElementById('auth-loading').style.display = 'none';
+});
+
+async function loadProgressFromFirestore() {
+  if (!currentUser) return;
+  try {
+    const snap = await db.collection('users').doc(currentUser.uid).get();
+    if (!snap.exists) return;
+    const progress = snap.data().progress || {};
+    Object.keys(progress).forEach(key => {
+      const [cId, mi, li] = key.split('-').map(Number);
+      if (courses[cId]?.modules[mi]?.lessons[li]) {
+        courses[cId].modules[mi].lessons[li].done = true;
+      }
+    });
+    // Mark courses enrolled via Firestore (Stripe post-purchase or manual)
+    const enrolledCourses = snap.data().enrolledCourses || [];
+    enrolledCourses.forEach(id => {
+      if (courses[id]) courses[id].enrolled = true;
+    });
+    // Recalculate progress % and enrolled state
+    courses.forEach(c => {
+      if (!c.modules.length) return;
+      const total = c.modules.reduce((s, m) => s + m.lessons.length, 0);
+      const done  = c.modules.reduce((s, m) => s + m.lessons.filter(l => l.done).length, 0);
+      if (total > 0) c.progress = Math.round((done / total) * 100);
+      c.modules.forEach(m => { m.done = m.lessons.every(l => l.done); });
+      if (done > 0) c.enrolled = true;
+    });
+  } catch (err) {
+    console.error('Error loading progress:', err);
+  }
+}
+
+async function saveProgressToFirestore(courseId, mi, li) {
+  if (!currentUser) return;
+  try {
+    await db.collection('users').doc(currentUser.uid).set(
+      { progress: { [`${courseId}-${mi}-${li}`]: true } },
+      { merge: true }
+    );
+  } catch (err) {
+    console.error('Error saving progress:', err);
+  }
+}
+
+function logout() {
+  auth.signOut().then(() => {
+    window.location.href = 'auth.html';
+  });
+}
+
+// ══ PROFILE COLOUR PICKER ══
+function initProfileColourPicker() {
+  const swatches = document.querySelectorAll('.profile-colour-swatch');
+  swatches.forEach(s => s.classList.remove('selected'));
+  const current = document.querySelector(`.profile-colour-swatch[data-colour="${userColour}"]`);
+  if (current) current.classList.add('selected');
+}
+
+function selectProfileColour(el) {
+  document.querySelectorAll('.profile-colour-swatch').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+async function saveProfileColour() {
+  const selected = document.querySelector('.profile-colour-swatch.selected');
+  if (!selected || !currentUser) return;
+  const colour = selected.dataset.colour;
+  try {
+    await db.collection('users').doc(currentUser.uid).set({ colour }, { merge: true });
+    userColour = colour;
+    // Update composer avatar
+    const ca = document.getElementById('composer-avatar');
+    if (ca) { ca.style.background = colour; }
+    showToast('✅ Colour updated!');
+  } catch(e) {
+    showToast('Could not save - please try again');
+  }
+}
+
+// ══ COMMUNITY ══
+const ADMIN_EMAIL = 'energywjess@gmail.com';
+let communityInitialized = false;
+let currentChannelId = null;
+let postsUnsubscribe = null;
+let userColour = '#3B5E6E';
+
+function getInitials(name) {
+  if (!name) return '?';
+  const parts = name.trim().split(' ');
+  return (parts.length > 1 ? parts[0][0] + parts[parts.length - 1][0] : parts[0].slice(0, 2)).toUpperCase();
+}
+
+function formatRelTime(ts) {
+  if (!ts) return '';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  const diff = Date.now() - d;
+  if (diff < 60000) return 'just now';
+  if (diff < 3600000) return Math.floor(diff / 60000) + 'm ago';
+  if (diff < 86400000) return Math.floor(diff / 3600000) + 'h ago';
+  return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function avatarHtml(colour, initials, size) {
+  return `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${colour};display:flex;align-items:center;justify-content:center;font-size:${Math.round(size*0.38)}px;font-weight:700;color:#fff;flex-shrink:0;font-family:var(--font-body);">${initials}</div>`;
+}
+
+async function initCommunity() {
+  // Load user colour
+  try {
+    const doc = await db.collection('users').doc(currentUser.uid).get();
+    if (doc.exists && doc.data().colour) userColour = doc.data().colour;
+  } catch(e) {}
+
+  // Set composer avatar
+  const myInitials = getInitials(currentUser.displayName || currentUser.email.split('@')[0]);
+  const ca = document.getElementById('composer-avatar');
+  ca.style.background = userColour;
+  ca.textContent = myInitials;
+
+  // Show pin option for admin
+  if (currentUser.email === ADMIN_EMAIL) {
+    document.getElementById('pin-toggle-wrap').style.display = 'flex';
+  }
+
+  // Ensure General channel exists
+  const generalRef = db.collection('channels').doc('general');
+  const generalDoc = await generalRef.get();
+  if (!generalDoc.exists) {
+    await generalRef.set({
+      name: 'general',
+      createdBy: currentUser.uid,
+      createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      order: 0
+    });
+  }
+
+  // Listen for channels
+  db.collection('channels').orderBy('createdAt').onSnapshot(snap => {
+    const channels = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    renderChannelList(channels);
+    if (!currentChannelId) selectChannel('general', 'general');
+  });
+}
+
+function renderChannelList(channels) {
+  const list = document.getElementById('channel-list');
+  if (!list) return;
+  list.innerHTML = channels.map(c => `
+    <div class="channel-item ${c.id === currentChannelId ? 'active' : ''}" onclick="selectChannel('${c.id}','${escHtml(c.name)}')">
+      <span style="color:var(--text-light);">#</span> ${escHtml(c.name)}
+    </div>
+  `).join('');
+}
+
+function selectChannel(channelId, channelName) {
+  currentChannelId = channelId;
+  document.getElementById('community-channel-name').textContent = '# ' + channelName;
+  document.querySelectorAll('.channel-item').forEach(el => {
+    el.classList.toggle('active', el.textContent.trim() === '# ' + channelName);
+  });
+  if (postsUnsubscribe) postsUnsubscribe();
+  document.getElementById('posts-feed').innerHTML = '<div class="community-loading">Loading...</div>';
+  postsUnsubscribe = db.collection('channels').doc(channelId).collection('posts')
+    .orderBy('isPinned', 'desc')
+    .orderBy('createdAt', 'asc')
+    .onSnapshot(snap => {
+      renderPosts(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    });
+}
+
+function renderPosts(posts) {
+  const feed = document.getElementById('posts-feed');
+  if (!feed) return;
+  if (posts.length === 0) {
+    feed.innerHTML = '<div class="community-empty">No posts here yet.<br>Be the first to share something ✨</div>';
+    return;
+  }
+  feed.innerHTML = posts.map(renderPostCard).join('');
+  feed.scrollTop = feed.scrollHeight;
+}
+
+function renderPostCard(post) {
+  const colour = post.authorColour || '#3B5E6E';
+  const initials = getInitials(post.authorName);
+  const isAdmin = currentUser && currentUser.email === ADMIN_EMAIL;
+  const isOwn = currentUser && currentUser.uid === post.authorUid;
+  const myInitials = getInitials((currentUser?.displayName || currentUser?.email.split('@')[0] || '').split(' ')[0]);
+
+  const repliesHtml = (post.replies || []).map(r => `
+    <div class="reply-card">
+      ${avatarHtml(r.authorColour || '#3B5E6E', getInitials(r.authorName), 26)}
+      <div class="reply-bubble">
+        <div class="reply-author">${escHtml(r.authorName)} · <span style="font-weight:400;color:var(--text-light);">${formatRelTime(r.createdAt)}</span></div>
+        <div class="reply-body">${escHtml(r.content)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  return `
+    <div class="post-card ${post.isPinned ? 'pinned' : ''}">
+      <div class="post-header">
+        ${avatarHtml(colour, initials, 34)}
+        <span class="post-author">${escHtml(post.authorName)}</span>
+        ${post.isPinned ? '<span class="pin-badge">📌 Pinned</span>' : ''}
+        <span class="post-time">${formatRelTime(post.createdAt)}</span>
+      </div>
+      <div class="post-body">${escHtml(post.content)}</div>
+      <div class="post-actions">
+        <button class="post-action-btn" onclick="toggleReplyComposer('${post.id}')">💬 Reply</button>
+        ${isAdmin ? `<button class="post-action-btn" onclick="togglePin('${post.id}',${!post.isPinned})">${post.isPinned ? 'Unpin' : '📌 Pin'}</button>` : ''}
+        ${(isOwn || isAdmin) ? `<button class="post-action-btn" style="color:#f5a0a0;" onclick="deletePost('${post.id}')">Delete</button>` : ''}
+      </div>
+      ${repliesHtml ? `<div class="replies-section">${repliesHtml}</div>` : ''}
+      <div class="reply-composer" id="reply-composer-${post.id}" style="display:none;">
+        ${avatarHtml(userColour, myInitials, 26)}
+        <textarea id="reply-input-${post.id}" placeholder="Write a reply..."></textarea>
+        <button class="btn-reply-send" onclick="submitReply('${post.id}')">Send</button>
+      </div>
+    </div>`;
+}
+
+function toggleReplyComposer(postId) {
+  const el = document.getElementById('reply-composer-' + postId);
+  if (!el) return;
+  const show = el.style.display === 'none';
+  el.style.display = show ? 'flex' : 'none';
+  if (show) el.querySelector('textarea').focus();
+}
+
+async function submitPost() {
+  const input = document.getElementById('post-input');
+  const content = input.value.trim();
+  if (!content || !currentChannelId) return;
+  const btn = document.querySelector('.btn-post');
+  btn.disabled = true;
+  const isPinned = document.getElementById('pin-post-check')?.checked || false;
+  const firstName = (currentUser.displayName || currentUser.email.split('@')[0]).split(' ')[0];
+  try {
+    await db.collection('channels').doc(currentChannelId).collection('posts').add({
+      authorUid: currentUser.uid,
+      authorName: firstName,
+      authorColour: userColour,
+      content,
+      isPinned,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      replies: []
+    });
+    input.value = '';
+    if (document.getElementById('pin-post-check')) document.getElementById('pin-post-check').checked = false;
+  } catch(e) { showToast('Could not post - please try again'); }
+  btn.disabled = false;
+}
+
+async function submitReply(postId) {
+  const textarea = document.getElementById('reply-input-' + postId);
+  const content = textarea.value.trim();
+  if (!content) return;
+  const firstName = (currentUser.displayName || currentUser.email.split('@')[0]).split(' ')[0];
+  try {
+    await db.collection('channels').doc(currentChannelId).collection('posts').doc(postId).update({
+      replies: firebase.firestore.FieldValue.arrayUnion({
+        authorUid: currentUser.uid,
+        authorName: firstName,
+        authorColour: userColour,
+        content,
+        createdAt: new Date().toISOString()
+      })
+    });
+    textarea.value = '';
+    document.getElementById('reply-composer-' + postId).style.display = 'none';
+  } catch(e) { showToast('Could not send reply - please try again'); }
+}
+
+async function togglePin(postId, pin) {
+  try {
+    await db.collection('channels').doc(currentChannelId).collection('posts').doc(postId).update({ isPinned: pin });
+  } catch(e) { showToast('Could not update post'); }
+}
+
+async function deletePost(postId) {
+  if (!confirm('Delete this post?')) return;
+  try {
+    await db.collection('channels').doc(currentChannelId).collection('posts').doc(postId).delete();
+  } catch(e) { showToast('Could not delete post'); }
+}
+
+function openChannelModal() {
+  document.getElementById('channel-modal').classList.add('open');
+  document.getElementById('new-channel-name').value = '';
+  setTimeout(() => document.getElementById('new-channel-name').focus(), 50);
+}
+
+function closeChannelModal() {
+  document.getElementById('channel-modal').classList.remove('open');
+}
+
+async function createChannel() {
+  const raw = document.getElementById('new-channel-name').value.trim();
+  const name = raw.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g,'');
+  if (!name) return;
+  try {
+    const existing = await db.collection('channels').doc(name).get();
+    if (existing.exists) { showToast('A channel with that name already exists'); return; }
+    await db.collection('channels').doc(name).set({
+      name,
+      createdBy: currentUser.uid,
+      createdByName: (currentUser.displayName || 'Someone').split(' ')[0],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    closeChannelModal();
+    selectChannel(name, name);
+  } catch(e) { showToast('Could not create channel'); }
+}
+</script>
+</body>
+</html>
