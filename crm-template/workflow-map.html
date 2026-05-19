@@ -297,6 +297,205 @@
     font-style: italic;
     margin-top: 40px;
   }
+
+  /* ---- Overview diagram ---- */
+  .overview-diagram {
+    background: white;
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  }
+
+  .diagram-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #4a6fa5;
+    margin-bottom: 20px;
+  }
+
+  /* Entry paths */
+  .entry-paths {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .entry-path {
+    flex: 1;
+    min-width: 200px;
+    border: 2px solid #e8edf2;
+    border-radius: 10px;
+    padding: 14px 16px;
+    position: relative;
+  }
+
+  .entry-path.path-a { border-color: #C4B0D4; background: #fbf9fe; }
+  .entry-path.path-b { border-color: #a8c8d8; background: #f6fbfd; }
+
+  .entry-path-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .path-a .entry-path-label { color: #7B5EA7; }
+  .path-b .entry-path-label { color: #3B5E6E; }
+
+  .entry-path-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 3px;
+  }
+
+  .entry-path-desc {
+    font-size: 0.75rem;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  .entry-path-arrow {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ccc;
+    margin: 4px 0 0;
+  }
+
+  /* Converge line */
+  .converge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .converge-line {
+    flex: 1;
+    height: 2px;
+    background: #e8edf2;
+  }
+
+  .converge-label {
+    font-size: 0.72rem;
+    color: #aaa;
+    white-space: nowrap;
+    font-style: italic;
+  }
+
+  /* Email sequence */
+  .seq-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 12px;
+  }
+
+  .email-seq {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .email-node {
+    flex-shrink: 0;
+    width: 130px;
+    border-radius: 10px;
+    padding: 12px 10px;
+    position: relative;
+  }
+
+  .email-node.auto-node   { background: linear-gradient(160deg, #f4f0fb, #ede8f8); border: 1.5px solid #C4B0D4; }
+  .email-node.manual-node { background: linear-gradient(160deg, #eaf1fb, #e0eaf8); border: 1.5px solid #a8c8d8; }
+
+  .node-day {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .auto-node   .node-day { color: #7B5EA7; }
+  .manual-node .node-day { color: #3B5E6E; }
+
+  .node-badge {
+    display: inline-block;
+    font-size: 0.58rem;
+    padding: 2px 7px;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .auto-node   .node-badge { background: #7B5EA7; color: white; }
+  .manual-node .node-badge { background: #3B5E6E; color: white; }
+
+  .node-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .node-desc {
+    font-size: 0.7rem;
+    color: #888;
+    line-height: 1.4;
+  }
+
+  .seq-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    color: #ccc;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .pipeline-mini {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    align-items: center;
+  }
+
+  .pipeline-mini-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+    margin-right: 4px;
+  }
+
+  .pipeline-mini-stage {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+  }
+
+  .mini-arrow {
+    color: #ccc;
+    font-size: 0.8rem;
+  }
 </style>
 </head>
 <body>
@@ -306,6 +505,100 @@
     <h1>CRM Workflow Map</h1>
     <p>How leads move through your system - from first contact to client</p>
   </header>
+
+  <!-- VISUAL OVERVIEW -->
+  <div class="overview-diagram">
+    <div class="diagram-title">System at a Glance</div>
+
+    <!-- Two entry paths -->
+    <div class="entry-paths">
+      <div class="entry-path path-a">
+        <div class="entry-path-label">Path A</div>
+        <div class="entry-path-name">Lead submits form</div>
+        <div class="entry-path-desc">Freebie opt-in or enquiry via Google Form</div>
+        <div class="entry-path-arrow">↓</div>
+      </div>
+      <div class="entry-path path-b">
+        <div class="entry-path-label">Path B</div>
+        <div class="entry-path-name">Client books directly</div>
+        <div class="entry-path-desc">Books and pays via your booking page - no form needed</div>
+        <div class="entry-path-arrow">↓</div>
+      </div>
+    </div>
+
+    <!-- Converge -->
+    <div class="converge">
+      <div class="converge-line"></div>
+      <div class="converge-label">Path A triggers automated email sequence &nbsp;·&nbsp; Path B - add manually to sheet</div>
+      <div class="converge-line"></div>
+    </div>
+
+    <!-- Email sequence visual -->
+    <div class="seq-label">Path A - Email sequence (auto-triggered by form)</div>
+    <div class="email-seq">
+
+      <div class="email-node auto-node">
+        <div class="node-day">Day 0</div>
+        <div class="node-badge">Auto</div>
+        <div class="node-name">Email 1</div>
+        <div class="node-desc">Confirmation + freebie delivery</div>
+      </div>
+
+      <div class="seq-arrow">→</div>
+
+      <div class="email-node auto-node">
+        <div class="node-day">Day 3</div>
+        <div class="node-badge">Auto</div>
+        <div class="node-name">Email 2</div>
+        <div class="node-desc">Gentle follow-up check-in</div>
+      </div>
+
+      <div class="seq-arrow">→</div>
+
+      <div class="email-node auto-node">
+        <div class="node-day">Day 7</div>
+        <div class="node-badge">Auto</div>
+        <div class="node-name">Email 3</div>
+        <div class="node-desc">Value + soft offer or CTA</div>
+      </div>
+
+      <div class="seq-arrow">→</div>
+
+      <div class="email-node manual-node">
+        <div class="node-day">Day 14</div>
+        <div class="node-badge">Manual</div>
+        <div class="node-name">Email 4</div>
+        <div class="node-desc">Draft created - you personalise and send</div>
+      </div>
+
+      <div class="seq-arrow">→</div>
+
+      <div class="email-node manual-node">
+        <div class="node-day">Day 30</div>
+        <div class="node-badge">Manual</div>
+        <div class="node-name">Email 5</div>
+        <div class="node-desc">Final touchpoint - draft created for review</div>
+      </div>
+
+    </div>
+
+    <!-- Pipeline mini -->
+    <div class="pipeline-mini">
+      <span class="pipeline-mini-label">Pipeline</span>
+      <span class="pipeline-mini-stage" style="background:#4a6fa5">New Lead</span>
+      <span class="mini-arrow">→</span>
+      <span class="pipeline-mini-stage" style="background:#7B5EA7">Contacted</span>
+      <span class="mini-arrow">→</span>
+      <span class="pipeline-mini-stage" style="background:#e09b20">Follow Up</span>
+      <span class="mini-arrow">→</span>
+      <span class="pipeline-mini-stage" style="background:#2e6e3b">Booked</span>
+      <span class="mini-arrow">→</span>
+      <span class="pipeline-mini-stage" style="background:#bf4288">Client</span>
+      <span class="mini-arrow">→</span>
+      <span class="pipeline-mini-stage" style="background:#aaa">Cold</span>
+    </div>
+
+  </div>
 
   <div class="plug-notice">
     Replace <strong>[BUSINESS NAME]</strong> throughout this document before using with a client.
