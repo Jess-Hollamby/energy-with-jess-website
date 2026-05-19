@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Questions Reference</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #2d2d2d;
+    padding: 40px 20px 80px;
+  }
+
+  .container { max-width: 820px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 6px;
+  }
+
+  header p { font-size: 0.88rem; color: #888; }
+
+  .plug-notice {
+    background: #fffbe6;
+    border: 1px solid #f5d87a;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 0.82rem;
+    color: #7a6000;
+    margin-bottom: 28px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .plug-notice strong { color: #5a4500; }
+
+  /* How it connects */
+  .connect-block {
+    background: white;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    border-left: 4px solid #4a6fa5;
+  }
+
+  .connect-block h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 10px;
+  }
+
+  .connect-block p {
+    font-size: 0.83rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+
+  .connect-block p:last-child { margin-bottom: 0; }
+
+  .connect-block strong { color: #4a6fa5; }
+
+  /* Form section */
+  .form-section {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+
+  .section-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4a6fa5;
+    margin-bottom: 3px;
+  }
+
+  .section-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 3px;
+  }
+
+  .section-desc {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  /* Question table */
+  .q-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .q-table thead tr {
+    background: #f8f9fb;
+  }
+
+  .q-table th {
+    padding: 9px 16px;
+    text-align: left;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    border-bottom: 1px solid #eee;
+  }
+
+  .q-table td {
+    padding: 12px 16px;
+    font-size: 0.83rem;
+    color: #2d2d2d;
+    border-bottom: 1px solid #f4f4f4;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .q-table tr:last-child td { border-bottom: none; }
+
+  .q-table tr:hover td { background: #fafbfc; }
+
+  /* Column widths */
+  .col-q    { width: 34%; }
+  .col-type { width: 16%; }
+  .col-req  { width: 10%; }
+  .col-why  { width: 40%; }
+
+  /* Field type badges */
+  .type-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .type-text       { background: #eaf1fb; color: #2d5a8e; }
+  .type-email      { background: #f4f0fb; color: #6a3fa0; }
+  .type-dropdown   { background: #fdf5e0; color: #8e6a1e; }
+  .type-checkbox   { background: #e8f5ea; color: #2e6e3b; }
+  .type-paragraph  { background: #f0f0f0; color: #555; }
+  .type-date       { background: #fff0f8; color: #8e2060; }
+
+  /* Required badge */
+  .req-yes {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: #ffe8e8;
+    color: #c0392b;
+    font-weight: 700;
+  }
+
+  .req-rec {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: #fdf5e0;
+    color: #8e6a1e;
+    font-weight: 600;
+  }
+
+  .req-opt {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    color: #888;
+    font-weight: 600;
+  }
+
+  /* CRM connection callout */
+  .crm-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 5px;
+    background: #eaf1fb;
+    color: #4a6fa5;
+    font-weight: 600;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  .why-text { color: #555; }
+  .why-note { font-size: 0.76rem; color: #aaa; margin-top: 3px; font-style: italic; }
+
+  /* Tips block */
+  .tip-block {
+    margin: 0;
+    padding: 14px 20px;
+    background: #f8f9fb;
+    border-top: 1px solid #eee;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .tip-block strong { color: #4a6fa5; }
+
+  /* Optional section variant */
+  .form-section.optional .section-label { color: #888; }
+  .form-section.optional .section-header { background: #fafbfc; }
+
+  .opt-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    color: #888;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .legend {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .legend-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+    margin-right: 4px;
+  }
+
+  .last-updated {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #bbb;
+    font-style: italic;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Form Questions Reference</h1>
+    <p>[BUSINESS NAME] - CRM Setup</p>
+  </header>
+
+  <div class="plug-notice">
+    Replace <strong>[BRACKETS]</strong> with your actual services and wording before building your Google Forms.
+  </div>
+
+  <!-- How forms connect to the CRM -->
+  <div class="connect-block">
+    <h2>How your forms connect to the CRM</h2>
+    <p>Your <strong>Google Form</strong> is the entry point for Path A leads - anyone who opts in for a freebie or submits an enquiry. When they submit, their details are automatically added to your <strong>Google Sheet</strong>, which triggers the 5-email Apps Script sequence.</p>
+    <p>The questions below determine what data lands in your sheet. Every question in your form becomes a column. Keep it focused - only ask what you will actually use. More questions = more friction = fewer submissions.</p>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <span class="legend-label">Field types</span>
+    <span class="type-badge type-text">Short text</span>
+    <span class="type-badge type-email">Email</span>
+    <span class="type-badge type-dropdown">Dropdown</span>
+    <span class="type-badge type-checkbox">Checkboxes</span>
+    <span class="type-badge type-paragraph">Paragraph</span>
+    <span class="type-badge type-date">Date</span>
+    &nbsp;
+    <span class="legend-label">Status</span>
+    <span class="req-yes">Required</span>
+    <span class="req-rec">Recommended</span>
+    <span class="req-opt">Optional</span>
+  </div>
+
+  <!-- FORM 1: Lead capture / freebie opt-in -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-label">Form 1 - Primary</div>
+      <div class="section-name">Lead Capture / Freebie Opt-In</div>
+      <div class="section-desc">The main form linked from your website and social media. Submitting this triggers the automated email sequence. Keep it short - aim for under 5 questions.</div>
+    </div>
+
+    <table class="q-table">
+      <thead>
+        <tr>
+          <th class="col-q">Question</th>
+          <th class="col-type">Field type</th>
+          <th class="col-req">Status</th>
+          <th class="col-why">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First name</td>
+          <td><span class="type-badge type-text">Short text</span></td>
+          <td><span class="req-yes">Required</span></td>
+          <td>
+            <span class="why-text">Used to personalise all 5 emails in the sequence. Without this, emails go out as "Hi there" which feels cold.</span>
+            <span class="crm-tag">Sheet col A</span>
+            <div class="why-note">Ask for first name only - lower friction than full name</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Email address</td>
+          <td><span class="type-badge type-email">Email</span></td>
+          <td><span class="req-yes">Required</span></td>
+          <td>
+            <span class="why-text">The sequence cannot run without this. Google Forms validates email format automatically.</span>
+            <span class="crm-tag">Sheet col B</span>
+          </td>
+        </tr>
+        <tr>
+          <td>What are you enquiring about? <br><span style="font-size:0.78rem;color:#aaa;">or: Which freebie would you like?</span></td>
+          <td><span class="type-badge type-dropdown">Dropdown</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Use your actual service names or freebie options as the choices. Makes your sheet filterable and helps you personalise the manual emails (4 and 5).</span>
+            <span class="crm-tag">Sheet col C</span>
+            <div class="why-note">Update the dropdown list in Google Forms whenever you add or remove services</div>
+          </td>
+        </tr>
+        <tr>
+          <td>How did you find us?</td>
+          <td><span class="type-badge type-dropdown">Dropdown</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Tells you which platforms are actually driving leads. Worth keeping even if it feels like a small detail.</span>
+            <span class="crm-tag">Sheet col D</span>
+            <div class="why-note">Suggested options: Instagram, Facebook, Google, Word of mouth, Referral, Other</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Anything else you'd like to share?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Opens the door for people who want to say more. Not everyone will use it but those who do often give you useful context for the manual emails.</span>
+            <span class="crm-tag">Sheet col E</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-block">
+      <strong>Tip:</strong> This form should feel easy and fast to fill in. If you add more questions, you will lose submissions. Every extra field has a cost. When in doubt, leave it out.
+    </div>
+  </div>
+
+  <!-- FORM 2: Post-purchase intake -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-label">Form 2 - Post-Purchase</div>
+      <div class="section-name">New Client Intake</div>
+      <div class="section-desc">Sent after payment is confirmed - before the first session. This does not trigger the email sequence. It fills in the detail you need to work well with this person.</div>
+    </div>
+
+    <table class="q-table">
+      <thead>
+        <tr>
+          <th class="col-q">Question</th>
+          <th class="col-type">Field type</th>
+          <th class="col-req">Status</th>
+          <th class="col-why">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Date of birth</td>
+          <td><span class="type-badge type-date">Date</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Useful if your work draws on astrology, human design, or age-related considerations. Remove if not relevant to your practice.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Identifiers and pronouns</td>
+          <td><span class="type-badge type-text">Short text</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Shows care and avoids misgendering in written and verbal communication.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Any health or medical considerations that could affect our work together?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Important for practitioners offering bodywork, healing, or anything physically or emotionally intensive. Covers you and protects the client.</span>
+            <div class="why-note">Include past, present, and mental health in the question wording</div>
+          </td>
+        </tr>
+        <tr>
+          <td>What days generally work best for you?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Prevents scheduling back-and-forth. Useful for any ongoing work.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>What time of day are you most available?</td>
+          <td><span class="type-badge type-checkbox">Checkboxes</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Checkboxes work well here. Suggested options: Morning, Midday, Afternoon, Evening.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Any days or times that are completely off limits?</td>
+          <td><span class="type-badge type-text">Short text</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Catches edge cases that the availability question might miss - school pickups, recurring commitments, etc.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>What are you hoping to get from our work together?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Useful context before the first session. Helps you prepare and shows the client you're already thinking about them.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Anything else you'd like me to know?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Open-ended catch-all. Some clients will leave it blank; others will write the most important thing. Worth including.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-block">
+      <strong>Tip:</strong> Send this form as a link in the payment confirmation email or via a follow-up message. Don't include it in the booking flow itself - keep purchase friction low and collect details after the commitment is made.
+    </div>
+  </div>
+
+  <!-- FORM 3: Pre-discovery -->
+  <div class="form-section optional">
+    <div class="section-header">
+      <div class="section-label">Form 3 <span class="opt-badge">Optional</span></div>
+      <div class="section-name">Pre-Discovery Call</div>
+      <div class="section-desc">Sent to someone who has booked a discovery call - before the call takes place. Helps you arrive prepared. Skip this if your discovery calls are unstructured conversations.</div>
+    </div>
+
+    <table class="q-table">
+      <thead>
+        <tr>
+          <th class="col-q">Question</th>
+          <th class="col-type">Field type</th>
+          <th class="col-req">Status</th>
+          <th class="col-why">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>What are you looking for?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-rec">Recommended</span></td>
+          <td>
+            <span class="why-text">Gives you a sense of where they are and what they need before you speak. Saves time on the call and makes it feel more personal.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>What does life look like for you right now?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Opens them up before the call. People often share things here they wouldn't lead with in a conversation.</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Which of the following are you most interested in?</td>
+          <td><span class="type-badge type-checkbox">Checkboxes</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Use your actual service or offer names as options. Helps route the conversation and confirms which offer fits.</span>
+            <div class="why-note">Replace options with: <strong>[YOUR SERVICE 1], [YOUR SERVICE 2]</strong> etc.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>Is there anything specific you'd like to cover on the call?</td>
+          <td><span class="type-badge type-paragraph">Paragraph</span></td>
+          <td><span class="req-opt">Optional</span></td>
+          <td>
+            <span class="why-text">Lets them set the agenda alongside you. Reduces anxiety for people who feel unsure about what a discovery call involves.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="tip-block">
+      <strong>Tip:</strong> Keep this form to 3-4 questions maximum. They've already committed to a call - don't make them do homework first.
+    </div>
+  </div>
+
+  <!-- Notes section -->
+  <div class="form-section">
+    <div class="section-header">
+      <div class="section-label">Setup Notes</div>
+      <div class="section-name">Building Your Forms in Google Forms</div>
+      <div class="section-desc">Quick reminders for getting the forms working correctly with the rest of the CRM.</div>
+    </div>
+    <div style="padding: 20px 24px;">
+      <table class="q-table">
+        <tbody>
+          <tr>
+            <td style="width:36%;font-weight:600;color:#4a6fa5;">Link Form 1 to your Sheet</td>
+            <td>In Google Forms - go to Responses tab - click the Sheets icon. Link to your existing CRM sheet (don't create a new one). This is what triggers the Apps Script sequence.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#4a6fa5;">Column order matters</td>
+            <td>The Apps Script reads specific column positions (A = name, B = email etc). If you add questions to Form 1, add them after column E so they don't break the sequence trigger.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#4a6fa5;">Form 2 and 3 are standalone</td>
+            <td>These don't need to connect to the main CRM sheet. You can link them to a separate tab or a separate sheet - just somewhere you can refer back to before sessions.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#4a6fa5;">Update dropdowns when services change</td>
+            <td>Whenever you add, remove, or rename a service, update the dropdown in Form 1. Stale options in the sheet make filtering harder over time.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#4a6fa5;">Test before going live</td>
+            <td>Submit a test entry using your own email. Check the sheet row appeared correctly and that Email 1 arrived within a few minutes. If it didn't, check the Apps Script trigger is set to "On form submit".</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <p class="last-updated">CRM Template - [BUSINESS NAME] &nbsp;|&nbsp; Prepared: [Month Year]</p>
+
+</div>
+</body>
+</html>
