@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Sequence Templates</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #2d2d2d;
+    padding: 40px 20px 80px;
+  }
+
+  .container { max-width: 820px; margin: 0 auto; }
+
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 6px;
+  }
+
+  header p {
+    font-size: 0.88rem;
+    color: #888;
+  }
+
+  .plug-notice {
+    background: #fffbe6;
+    border: 1px solid #f5d87a;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 0.82rem;
+    color: #7a6000;
+    margin-bottom: 28px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .plug-notice strong { color: #5a4500; }
+
+  /* How to use */
+  .how-to {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+
+  .how-to-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4a6fa5;
+    margin-bottom: 4px;
+  }
+
+  .how-to h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 14px;
+  }
+
+  .how-to-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .how-to-item {
+    background: #f8f9fb;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.8rem;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  .how-to-item strong { color: #2d2d2d; display: block; margin-bottom: 3px; }
+
+  /* Email card */
+  .email-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    overflow: hidden;
+  }
+
+  .email-header {
+    padding: 18px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .email-header.auto   { background: linear-gradient(135deg, #f4f0fb, #ede8f8); }
+  .email-header.manual { background: linear-gradient(135deg, #eaf1fb, #e0eaf8); }
+
+  .email-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .auto   .email-num { background: linear-gradient(135deg, #C4B0D4, #7B5EA7); }
+  .manual .email-num { background: linear-gradient(135deg, #4a6fa5, #2d5a8e); }
+
+  .email-meta { flex: 1; }
+
+  .email-meta h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 3px;
+  }
+
+  .email-meta p {
+    font-size: 0.78rem;
+    color: #888;
+  }
+
+  .email-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 10px;
+  }
+
+  .auto   .email-badge { background: #7B5EA7; color: white; }
+  .manual .email-badge { background: #4a6fa5; color: white; }
+
+  .email-body { padding: 24px 28px; }
+
+  /* Subject lines */
+  .subject-section {
+    margin-bottom: 20px;
+  }
+
+  .field-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .subject-option {
+    background: #f8f9fb;
+    border: 1px solid #e4eaec;
+    border-radius: 7px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    color: #2d2d2d;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .subject-option:last-child { margin-bottom: 0; }
+
+  /* Email body template */
+  .body-section { margin-bottom: 20px; }
+
+  .email-template {
+    background: #fafbfc;
+    border: 1px solid #e4eaec;
+    border-radius: 8px;
+    padding: 20px 22px;
+    font-size: 0.88rem;
+    line-height: 1.9;
+    color: #2d2d2d;
+    white-space: pre-wrap;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  .ph {
+    color: #4a6fa5;
+    font-weight: 600;
+    font-style: normal;
+    background: #eaf1fb;
+    border-radius: 3px;
+    padding: 0 3px;
+    font-family: system-ui, sans-serif;
+    font-size: 0.82rem;
+  }
+
+  /* Tips */
+  .tip-block {
+    background: #f4f0fb;
+    border-left: 4px solid #7B5EA7;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    color: #2d2d2d;
+    line-height: 1.6;
+  }
+
+  .tip-block.manual-tip {
+    background: #eaf1fb;
+    border-left-color: #4a6fa5;
+  }
+
+  .tip-block strong { display: block; margin-bottom: 4px; color: #555; }
+
+  .tip-block ul {
+    padding-left: 16px;
+    margin-top: 4px;
+  }
+
+  .tip-block li {
+    margin-bottom: 3px;
+  }
+
+  .divider {
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+  }
+
+  /* Placeholders guide */
+  .ph-guide {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+
+  .ph-guide h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .ph-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+
+  .ph-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: #f8f9fb;
+    color: #555;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid #eee;
+  }
+
+  .ph-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #f4f4f4;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .ph-table tr:last-child td { border-bottom: none; }
+
+  .ph-table td:first-child {
+    font-family: system-ui, sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4a6fa5;
+    background: #eaf1fb;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .ph-table td:last-child { color: #666; }
+
+  .last-updated {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #bbb;
+    font-style: italic;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Email Sequence Templates</h1>
+    <p>[BUSINESS NAME] - CRM Setup</p>
+  </header>
+
+  <div class="plug-notice">
+    Replace everything in <strong>[BRACKETS]</strong> before pasting into Apps Script or Gmail.<br>
+    Emails 1-3 go into your Apps Script code. Emails 4-5 are drafted automatically - you personalise before sending.
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="how-to">
+    <div class="how-to-title">Before you start</div>
+    <h2>How this sequence works</h2>
+    <div class="how-to-grid">
+      <div class="how-to-item">
+        <strong>Emails 1, 2, 3 - Automated</strong>
+        Sent by Apps Script on Day 0, 3, and 7. Paste the final copy into the script where marked. These send without you doing anything.
+      </div>
+      <div class="how-to-item">
+        <strong>Emails 4, 5 - Manual drafts</strong>
+        Apps Script creates a draft in Gmail. You review, personalise for this specific person, and hit send when ready. Don't send these word for word - make them feel personal.
+      </div>
+      <div class="how-to-item">
+        <strong>Write in your voice</strong>
+        These templates are a starting point. Change any phrasing that doesn't sound like you. The structure matters more than the exact words.
+      </div>
+      <div class="how-to-item">
+        <strong>Keep it short</strong>
+        None of these emails need to be long. A warm, genuine 5-sentence email beats a formal 3-paragraph one every time.
+      </div>
+    </div>
+  </div>
+
+  <!-- EMAIL 1 -->
+  <div class="email-card">
+    <div class="email-header auto">
+      <div class="email-num">1</div>
+      <div class="email-meta">
+        <h2>Confirmation and Delivery</h2>
+        <p>Day 0 - sent immediately when someone submits your form</p>
+      </div>
+      <span class="email-badge">Auto</span>
+    </div>
+    <div class="email-body">
+
+      <div class="subject-section">
+        <div class="field-label">Subject line options - pick one</div>
+        <div class="subject-option">Here's your <span class="ph">[FREEBIE NAME]</span>, <span class="ph">[First Name]</span></div>
+        <div class="subject-option">Welcome - your <span class="ph">[FREEBIE NAME]</span> is here</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="body-section">
+        <div class="field-label">Email body</div>
+        <div class="email-template">Hi <span class="ph">[First Name]</span>,
+
+Welcome - I'm so glad you're here.
+
+Here's your <span class="ph">[FREEBIE NAME]</span>: <span class="ph">[LINK]</span>
+
+<span class="ph">[1-2 sentences about what's in it and how to use it. Keep it warm and practical, not salesy.]</span>
+
+I'm <span class="ph">[YOUR NAME]</span> - I'm a <span class="ph">[WHAT YOU DO, e.g. energy healer and mentor]</span> and I help <span class="ph">[WHO YOU HELP]</span> <span class="ph">[what you help them do/feel]</span>.
+
+Over the next little while I'll be sharing <span class="ph">[what kind of content they can expect - e.g. tips, insights, honest reflections]</span>. Nothing overwhelming - just things that might actually be useful.
+
+If you have any questions or want to reach out, just reply to this email.
+
+<span class="ph">[Warm sign-off]</span>,
+<span class="ph">[YOUR NAME]</span>
+<span class="ph">[BUSINESS NAME]</span>
+<span class="ph">[WEBSITE]</span></div>
+      </div>
+
+      <div class="tip-block">
+        <strong>Tips for this email</strong>
+        <ul>
+          <li>Deliver the freebie in the first few lines - don't make them scroll for it</li>
+          <li>Keep the intro short - they signed up for the freebie, not a bio</li>
+          <li>Set expectations gently - tell them you'll be in touch, so your next emails don't feel random</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMAIL 2 -->
+  <div class="email-card">
+    <div class="email-header auto">
+      <div class="email-num">2</div>
+      <div class="email-meta">
+        <h2>Gentle Follow-up</h2>
+        <p>Day 3 - a warm check-in, opens the door to a reply</p>
+      </div>
+      <span class="email-badge">Auto</span>
+    </div>
+    <div class="email-body">
+
+      <div class="subject-section">
+        <div class="field-label">Subject line options - pick one</div>
+        <div class="subject-option">Did you get a chance to look at it?</div>
+        <div class="subject-option">Checking in, <span class="ph">[First Name]</span></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="body-section">
+        <div class="field-label">Email body</div>
+        <div class="email-template">Hi <span class="ph">[First Name]</span>,
+
+Just checking in - did you get a chance to look at the <span class="ph">[FREEBIE NAME]</span>?
+
+<span class="ph">[1-2 sentences sharing something that connects to the freebie topic. A small insight, a reframe, or something you've noticed with the people you work with. Keep it honest and specific to you.]</span>
+
+If anything came up for you while reading it, I'd love to hear - just hit reply.
+
+<span class="ph">[Warm sign-off]</span>,
+<span class="ph">[YOUR NAME]</span></div>
+      </div>
+
+      <div class="tip-block">
+        <strong>Tips for this email</strong>
+        <ul>
+          <li>Short is better here - 4 to 6 sentences is plenty</li>
+          <li>Ask one question only - makes it easy to reply</li>
+          <li>No CTA or link needed - this one is purely relational</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMAIL 3 -->
+  <div class="email-card">
+    <div class="email-header auto">
+      <div class="email-num">3</div>
+      <div class="email-meta">
+        <h2>Value and Soft Offer</h2>
+        <p>Day 7 - give something useful, then gently introduce a next step</p>
+      </div>
+      <span class="email-badge">Auto</span>
+    </div>
+    <div class="email-body">
+
+      <div class="subject-section">
+        <div class="field-label">Subject line options - pick one</div>
+        <div class="subject-option">Something that might help</div>
+        <div class="subject-option">One thing I keep coming back to</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="body-section">
+        <div class="field-label">Email body</div>
+        <div class="email-template">Hi <span class="ph">[First Name]</span>,
+
+<span class="ph">[Open with a short piece of genuine value - a tip, a perspective shift, a common thing you see, or a question worth sitting with. 3-5 sentences. Make it useful on its own, not a lead-in to a pitch.]</span>
+
+<span class="ph">[Optional: one sentence that bridges from the value to the person reading - e.g. "If any of that resonates, it might be worth exploring further."]</span>
+
+If you're curious about working together, <span class="ph">[describe what the first step is - e.g. I offer a free 30-minute discovery call / you can book a session directly]</span> - <span class="ph">[LINK]</span>.
+
+No pressure at all - just here if it's the right time.
+
+<span class="ph">[Warm sign-off]</span>,
+<span class="ph">[YOUR NAME]</span></div>
+      </div>
+
+      <div class="tip-block">
+        <strong>Tips for this email</strong>
+        <ul>
+          <li>Lead with the value - the offer should feel like an afterthought, not the point</li>
+          <li>One link only - to a booking page, discovery call, or your main service</li>
+          <li>"No pressure" language works well here - it reduces resistance without being weak</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMAIL 4 -->
+  <div class="email-card">
+    <div class="email-header manual">
+      <div class="email-num">4</div>
+      <div class="email-meta">
+        <h2>Personal Check-in</h2>
+        <p>Day 14 - a draft is created in Gmail for you to review and personalise before sending</p>
+      </div>
+      <span class="email-badge">Manual</span>
+    </div>
+    <div class="email-body">
+
+      <div class="subject-section">
+        <div class="field-label">Subject line options - pick one</div>
+        <div class="subject-option">Hi <span class="ph">[First Name]</span> - just thinking of you</div>
+        <div class="subject-option">Still here if you need anything</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="body-section">
+        <div class="field-label">Draft structure - personalise this before sending</div>
+        <div class="email-template">Hi <span class="ph">[First Name]</span>,
+
+<span class="ph">[Open with something personal or specific to this person if you can - even a small detail from what you know about them, or something you've noticed about people in their situation. If you have nothing specific, a warm general opener is fine.]</span>
+
+<span class="ph">[1-2 sentences. A genuine question, a soft offer, or simply acknowledging where they might be right now. This email should feel like it was written just for them - because it should be.]</span>
+
+I'm here if anything's come up or if you have questions. You can always reply to this or <span class="ph">[mention another way to reach you if relevant - e.g. book a free call / message me directly]</span>.
+
+<span class="ph">[Warm sign-off]</span>,
+<span class="ph">[YOUR NAME]</span></div>
+      </div>
+
+      <div class="tip-block manual-tip">
+        <strong>Tips for this email</strong>
+        <ul>
+          <li>This one must feel personal - rewrite the draft before you send it, don't just swap the name</li>
+          <li>If you remember anything from their signup (e.g. what they selected), reference it</li>
+          <li>No hard sell - this is about keeping the relationship warm</li>
+          <li>If they've already replied or booked, you can skip this email for them</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMAIL 5 -->
+  <div class="email-card">
+    <div class="email-header manual">
+      <div class="email-num">5</div>
+      <div class="email-meta">
+        <h2>Final Touchpoint</h2>
+        <p>Day 30 - last email in the sequence, keep the door open without pressure</p>
+      </div>
+      <span class="email-badge">Manual</span>
+    </div>
+    <div class="email-body">
+
+      <div class="subject-section">
+        <div class="field-label">Subject line options - pick one</div>
+        <div class="subject-option">Before I go quiet...</div>
+        <div class="subject-option">Leaving the door open</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="body-section">
+        <div class="field-label">Draft structure - personalise this before sending</div>
+        <div class="email-template">Hi <span class="ph">[First Name]</span>,
+
+This is the last email in my welcome sequence - after this I won't be showing up in your inbox unless you reach out.
+
+<span class="ph">[1-2 sentences. Acknowledge that timing matters. Some people aren't ready now but will be later - this email is for them. Keep it genuinely warm, not salesy.]</span>
+
+If you ever want to <span class="ph">[describe what working together looks like at the simplest entry point - e.g. start with a reading / book a free call / explore what's possible]</span>, I'm here.
+
+<span class="ph">[LINK or contact details]</span>
+
+Wishing you well either way.
+
+<span class="ph">[Warm sign-off]</span>,
+<span class="ph">[YOUR NAME]</span></div>
+      </div>
+
+      <div class="tip-block manual-tip">
+        <strong>Tips for this email</strong>
+        <ul>
+          <li>Name the fact that it's the last email - it creates honesty and often prompts a reply</li>
+          <li>"Leaving the door open" is the entire job of this email - not converting, just staying warm</li>
+          <li>After this, they stay in your sheet - you can follow up manually any time you like</li>
+          <li>People who don't respond now often come back months later - this email plants that seed</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PLACEHOLDER GUIDE -->
+  <div class="ph-guide">
+    <h2>Placeholder Reference</h2>
+    <table class="ph-table">
+      <tr>
+        <th>Placeholder</th>
+        <th>What to replace it with</th>
+      </tr>
+      <tr>
+        <td>[First Name]</td>
+        <td>Pulled automatically from the form - this is a merge tag in Apps Script (do not replace manually)</td>
+      </tr>
+      <tr>
+        <td>[FREEBIE NAME]</td>
+        <td>The name of what they signed up for - e.g. "The Nervous System Cheat Sheet"</td>
+      </tr>
+      <tr>
+        <td>[LINK]</td>
+        <td>The URL for the freebie, your booking page, or your discovery call booking - depending on the email</td>
+      </tr>
+      <tr>
+        <td>[YOUR NAME]</td>
+        <td>Your first name, or first and last - whatever you sign off with</td>
+      </tr>
+      <tr>
+        <td>[BUSINESS NAME]</td>
+        <td>Your business name as it appears on your website</td>
+      </tr>
+      <tr>
+        <td>[WEBSITE]</td>
+        <td>Your website URL</td>
+      </tr>
+      <tr>
+        <td>[WHO YOU HELP]</td>
+        <td>A short description of your ideal client - e.g. "women who feel everything and are exhausted by it"</td>
+      </tr>
+      <tr>
+        <td>[WHAT YOU DO]</td>
+        <td>Your title or a short description of your work - e.g. "energy healer and mentor"</td>
+      </tr>
+      <tr>
+        <td>Italic placeholders in blue</td>
+        <td>These are structural prompts - rewrite them in your own words, don't paste them in directly</td>
+      </tr>
+    </table>
+  </div>
+
+  <p class="last-updated">CRM Template - [BUSINESS NAME] &nbsp;|&nbsp; Prepared: [Month Year]</p>
+
+</div>
+</body>
+</html>
