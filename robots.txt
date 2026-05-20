@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Keep internal/admin pages out of search results
+Disallow: /auth
+Disallow: /auth.html
+Disallow: /energy-with-jess-lms
+Disallow: /energy-with-jess-lms.html
+Disallow: /forms-index
+Disallow: /forms-index.html
+Disallow: /post-purchase-master
+Disallow: /post-purchase-soul-led-new
+Disallow: /post-purchase-soul-led-existing
+Disallow: /post-call
+Disallow: /post-call-followup
+Disallow: /pre-discovery-align-flow
+Disallow: /pre-discovery-soul-led-business
+Disallow: /pre-discovery-soul-support
+Disallow: /pre-discovery-unbecoming
+Disallow: /emotion-reset-download
+Disallow: /crm-template/
+
+Sitemap: https://www.energywithjess.com.au/sitemap.xml
