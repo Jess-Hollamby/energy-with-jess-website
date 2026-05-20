@@ -109,6 +109,18 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Blog -->
+  <url>
+    <loc>https://www.energywithjess.com.au/blog</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.energywithjess.com.au/what-is-an-empath</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Free resources & quizzes -->
   <url>
     <loc>https://www.energywithjess.com.au/freebies</loc>
