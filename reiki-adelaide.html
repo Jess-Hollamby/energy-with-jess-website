@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reiki Healing Adelaide - Jess Hollamby | Energy with Jess</title>
+<meta name="description" content="Reiki healing in Adelaide with Jess Hollamby - Reiki Master/Teacher. In-person in Adelaide and online Australia-wide. Sessions from $120. Book today.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.energywithjess.com.au/reiki-adelaide">
+<meta property="og:title" content="Reiki Healing Adelaide - Jess Hollamby | Energy with Jess">
+<meta property="og:description" content="Reiki healing in Adelaide with Jess Hollamby - Reiki Master/Teacher. In-person in Adelaide and online Australia-wide.">
+<meta property="og:image" content="https://www.energywithjess.com.au/jess-hero.webp">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Reiki Healing Adelaide",
+  "description": "Reiki healing sessions with Jess Hollamby, Reiki Master/Teacher. In-person in Adelaide and online Australia-wide.",
+  "provider": {
+    "@type": "Person",
+    "name": "Jess Hollamby",
+    "url": "https://www.energywithjess.com.au/about"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Adelaide"
+  },
+  "url": "https://www.energywithjess.com.au/reiki-adelaide",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Reiki Healing 60min",
+      "price": "120",
+      "priceCurrency": "AUD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Reiki Healing 90min",
+      "price": "150",
+      "priceCurrency": "AUD"
+    }
+  ],
+  "FAQ": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Reiki healing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Reiki is a gentle energy healing practice that works with your body's own energy field to release tension, clear blocks, and restore a sense of calm and balance. Sessions are deeply relaxing and non-invasive."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does a Reiki session feel like?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most people feel deeply relaxed, light, and calm after a session. Some experience warmth, tingling, or emotional release. Many report sleeping better that night."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Reiki available online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Distance Reiki is just as effective as in-person sessions. Jess offers online Reiki across Australia and worldwide."
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.offering-body { padding: 100px 0; }
+.offering-body-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.offering-body p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.68);
+  line-height: 1.88;
+  margin-bottom: 18px;
+}
+.offering-body p strong { color: var(--cream); }
+.body-quote {
+  font-family: var(--h);
+  font-size: 21px;
+  font-style: italic;
+  color: var(--lavender);
+  border-left: 3px solid var(--gold);
+  padding-left: 22px;
+  margin: 32px 0;
+  line-height: 1.6;
+}
+.includes-panel {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 16px;
+  padding: 38px 34px;
+  position: sticky;
+  top: 100px;
+}
+.includes-panel h3 {
+  font-family: var(--h);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+.dur-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(250,247,242,0.06);
+  font-size: 14px;
+  color: rgba(250,247,242,0.6);
+}
+.dur-row:last-of-type { border-bottom: none; }
+.dur-row strong { color: var(--cream); font-weight: 400; }
+.dur-price { color: var(--gold); font-family: var(--h); font-size: 18px; }
+.panel-divider { border: none; border-top: 1px solid rgba(250,247,242,0.07); margin: 24px 0; }
+.panel-note {
+  font-size: 12px;
+  color: rgba(250,247,242,0.35);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* What to expect */
+.expect-section { padding: 90px 0; background: rgba(250,247,242,0.015); }
+.expect-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 52px;
+}
+.expect-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 14px;
+  padding: 32px 28px;
+}
+.expect-num {
+  font-family: var(--h);
+  font-size: 38px;
+  font-weight: 300;
+  color: rgba(196,176,212,0.3);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.expect-card h3 {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.expect-card p {
+  font-size: 14.5px;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.8;
+}
+
+/* Testimonials */
+.testi-section { padding: 90px 0; }
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 52px;
+}
+.testi-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 14px;
+  padding: 32px 28px;
+}
+.testi-text {
+  font-family: var(--h);
+  font-size: 17px;
+  font-style: italic;
+  color: rgba(250,247,242,0.8);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.testi-name {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.testi-service {
+  font-size: 12px;
+  color: rgba(250,247,242,0.3);
+  margin-top: 4px;
+}
+
+/* FAQ */
+.faq-section { padding: 90px 0; background: rgba(250,247,242,0.015); }
+.faq-list { max-width: 720px; margin: 52px auto 0; }
+.faq-item {
+  border-bottom: 1px solid rgba(250,247,242,0.07);
+  padding: 28px 0;
+}
+.faq-item:first-child { border-top: 1px solid rgba(250,247,242,0.07); }
+.faq-q {
+  font-family: var(--h);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+.faq-a {
+  font-size: 15px;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.8;
+}
+
+/* Learn Reiki nudge */
+.learn-nudge {
+  padding: 72px 0;
+  text-align: center;
+}
+.learn-nudge-inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.learn-nudge h2 {
+  font-family: var(--h);
+  font-size: 34px;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.learn-nudge p {
+  font-size: 15px;
+  color: rgba(250,247,242,0.6);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+
+.cta-bg::after { background: rgba(21,37,42,0.68) !important; }
+
+@media (max-width: 760px) {
+  .offering-body { padding: 72px 0; }
+  .offering-body-grid { grid-template-columns: 1fr; gap: 52px; }
+  .includes-panel { position: static; }
+  .expect-section { padding: 72px 0; }
+  .expect-grid { grid-template-columns: 1fr; }
+  .testi-section { padding: 72px 0; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .faq-section { padding: 72px 0; }
+  .learn-nudge { padding: 60px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="jess-hero.webp" alt="Reiki Healing Adelaide with Jess Hollamby" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Reiki Healing · Adelaide &amp; Online</span>
+    <h1>Reiki Healing <em>Adelaide</em></h1>
+    <p class="page-hero-sub">For when your body is holding more than it knows what to do with. A session with Jess is a chance to put it down for a while.</p>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="offering-body">
+  <div class="container">
+    <div class="offering-body-grid">
+      <div>
+        <span class="label">What Is Reiki</span>
+        <h2 class="section-title">Your body already knows <em>how to heal.</em> Reiki just gives it the space.</h2>
+
+        <p>Reiki is a gentle energy healing practice that works with your body's own energy field. No needles, no pressure, no performance. You lie down, you breathe, and Jess holds the space while your nervous system does what it's been waiting to do - slow down and reset.</p>
+
+        <p>It's quiet. It's safe. And for a lot of people, it's the first time in a long time they've actually felt their body relax completely.</p>
+
+        <div class="body-quote">
+          "I walked out feeling so refreshed and light, I literally felt like I could float away. I came home and napped for 2.5 hours and I've never slept like that before."
+          <div style="font-size: 14px; margin-top: 12px; color: rgba(196,176,212,0.7); font-style: normal; letter-spacing: 0.05em;">- Nikki, Intuitive Healing</div>
+        </div>
+
+        <p>Jess is a Reiki Master/Teacher with a background in myotherapy and massage. She brings an understanding of the physical body to every session - so when your shoulders are carrying your stress and your chest is tight with things unsaid, she knows how to work with that.</p>
+
+        <p>Sessions are available <strong>online</strong> (distance Reiki, effective from anywhere in the world) and <strong>in-person</strong> at your location in Adelaide.</p>
+
+        <h3 style="font-family: var(--h); font-size: 26px; font-weight: 400; color: var(--cream); margin: 36px 0 16px;">A session might help with</h3>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 8px;">
+          <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(250,247,242,0.65); line-height: 1.7;"><span style="width:5px;height:5px;background:var(--rose);transform:rotate(45deg);flex-shrink:0;margin-top:8px;"></span>Exhaustion, burnout, and general depletion</li>
+          <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(250,247,242,0.65); line-height: 1.7;"><span style="width:5px;height:5px;background:var(--rose);transform:rotate(45deg);flex-shrink:0;margin-top:8px;"></span>Tension and physical tightness the body is holding</li>
+          <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(250,247,242,0.65); line-height: 1.7;"><span style="width:5px;height:5px;background:var(--rose);transform:rotate(45deg);flex-shrink:0;margin-top:8px;"></span>Stress, anxiety, and an overactive nervous system</li>
+          <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(250,247,242,0.65); line-height: 1.7;"><span style="width:5px;height:5px;background:var(--rose);transform:rotate(45deg);flex-shrink:0;margin-top:8px;"></span>Emotional heaviness that's hard to name</li>
+          <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(250,247,242,0.65); line-height: 1.7;"><span style="width:5px;height:5px;background:var(--rose);transform:rotate(45deg);flex-shrink:0;margin-top:8px;"></span>Feeling stuck, flat, or disconnected from yourself</li>
+          <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: rgba(250,247,242,0.65); line-height: 1.7;"><span style="width:5px;height:5px;background:var(--rose);transform:rotate(45deg);flex-shrink:0;margin-top:8px;"></span>Processing grief, change, or transition</li>
+        </ul>
+      </div>
+
+      <!-- STICKY PANEL -->
+      <div>
+        <div class="includes-panel reveal right">
+          <h3>Book a Reiki Session</h3>
+
+          <div class="dur-row">
+            <div>
+              <strong>60 minutes</strong>
+              <div style="font-size: 12px; margin-top: 3px;">Online or in-person Adelaide</div>
+            </div>
+            <div class="dur-price">$120</div>
+          </div>
+          <div class="dur-row">
+            <div>
+              <strong>90 minutes</strong>
+              <div style="font-size: 12px; margin-top: 3px;">Online or in-person Adelaide</div>
+            </div>
+            <div class="dur-price">$150</div>
+          </div>
+
+          <hr class="panel-divider">
+
+          <p class="panel-note">In-person sessions are at your location in Adelaide. Online sessions are available Australia-wide and internationally.</p>
+
+          <a href="booking.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Book Now ✦</a>
+
+          <hr class="panel-divider">
+
+          <p class="panel-note" style="margin-bottom: 0;">Want to learn Reiki yourself? Jess teaches <a href="reiki-level-1.html" style="color: var(--lavender);">Reiki Level 1</a> and <a href="reiki-level-2.html" style="color: var(--lavender);">Level 2</a> in Adelaide and online.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="expect-section">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="label">What to Expect</span>
+      <h2 class="section-title" style="max-width: 560px; margin: 0 auto;">You don't need to <em>do anything.</em> Just show up.</h2>
+    </div>
+    <div class="expect-grid">
+      <div class="expect-card reveal d1">
+        <div class="expect-num">01</div>
+        <h3>Before the session</h3>
+        <p>No preparation needed. Wear comfortable clothes. Come as you are - tired, stressed, unsure of what you need. That's exactly right.</p>
+      </div>
+      <div class="expect-card reveal d2">
+        <div class="expect-num">02</div>
+        <h3>During the session</h3>
+        <p>You lie down fully clothed and breathe. Jess works with your energy field - gently, quietly. Most people feel warmth, tingling, or a deep sense of calm settling in. Some fall asleep. That's fine too.</p>
+      </div>
+      <div class="expect-card reveal d3">
+        <div class="expect-num">03</div>
+        <h3>After the session</h3>
+        <p>Most people leave feeling lighter - like something they'd been carrying has been put down. Deeper sleep that night is common. Some feel emotional release in the days that follow. All of it is normal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-section">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="label">What Clients Say</span>
+      <h2 class="section-title">In their <em>own words</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal d1">
+        <p class="testi-text">"I honestly walked out feeling so refreshed and light, I literally felt like I could float away. I came home and napped for 2.5 hours and I've never slept like that before. I've booked in 2 more times."</p>
+        <div class="testi-name">Nikki</div>
+        <div class="testi-service">Intuitive Healing</div>
+      </div>
+      <div class="testi-card reveal d2">
+        <p class="testi-text">"The first time we met, I had a massage - it is hard to explain what I experienced. I walked out feeling like I was on a cloud. Jess asks questions to really understand you on an emotional level, helping to move and release blockages in the body."</p>
+        <div class="testi-name">Jill</div>
+        <div class="testi-service">Intuitive Healing, Reiki Healing</div>
+      </div>
+      <div class="testi-card reveal d3">
+        <p class="testi-text">"Jess has a way of making you feel instantly comfortable by providing a safe space for you to feel seen and heard. She has a knowing of what you need when you have no idea."</p>
+        <div class="testi-name">Bree</div>
+        <div class="testi-service">Reiki Healing, Empowered Empath</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div style="text-align: center;">
+      <span class="label">Common Questions</span>
+      <h2 class="section-title">What people <em>usually ask</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q">What is Reiki healing?</div>
+        <p class="faq-a">Reiki is a gentle energy healing practice that works with your body's own energy field to release tension, clear blocks, and restore a sense of calm and balance. Sessions are deeply relaxing and non-invasive - you remain fully clothed throughout.</p>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Do I need to believe in it for it to work?</div>
+        <p class="faq-a">No. Reiki works on a physical and energetic level regardless of what you believe going in. Many people who are sceptical have their most profound sessions. An open mind is enough.</p>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Is online Reiki as effective as in-person?</div>
+        <p class="faq-a">Yes. Distance Reiki works with energy, not proximity - so location doesn't limit the session. Jess works with clients across Australia and internationally online with the same results as in-person.</p>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">How many sessions will I need?</div>
+        <p class="faq-a">One session can shift a lot. Some people come once when they need it, others book regularly as part of how they look after themselves. There's no prescription - you'll know what feels right after your first session.</p>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What's the difference between Reiki and Intuitive Healing?</div>
+        <p class="faq-a">Reiki follows a structured approach using the traditional Usui system. Intuitive Healing is more fluid - Jess draws on Reiki alongside other modalities depending on what you need. Both are deeply relaxing and work with your energy field.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" style="padding: 100px 0; text-align: center; position: relative; overflow: hidden; background: var(--dark);">
+  <div class="orb orb-a"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <span class="label">Ready When You Are</span>
+    <h2 class="section-title" style="max-width: 540px; margin: 0 auto 20px;">You've been holding a lot. <em>Put some of it down.</em></h2>
+    <p style="font-size: 15.5px; color: rgba(250,247,242,0.6); max-width: 480px; margin: 0 auto 40px; line-height: 1.85;">Book a Reiki session online or in-person in Adelaide. No preparation needed. Just show up.</p>
+    <a href="booking.html" class="btn btn-primary" style="font-size: 17px; padding: 18px 40px;">Book a Reiki Session ✦</a>
+  </div>
+</section>
+
+<!-- LEARN REIKI NUDGE -->
+<section class="learn-nudge">
+  <div class="container">
+    <div class="learn-nudge-inner reveal">
+      <span class="label">Want to Learn?</span>
+      <h2>Interested in <em>learning Reiki</em> yourself?</h2>
+      <p>Jess teaches Reiki Level 1 and Level 2 in Adelaide and online. Whether you want to use it for yourself, your family, or build a practice - it starts here.</p>
+      <a href="learn-reiki.html" class="btn btn-ghost">Explore Reiki Training ✦</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="footer-logo">Energy with Jess</span>
+      <p>Reiki healing, psychic readings and empath coaching with Jess Hollamby. Adelaide, SA &amp; online worldwide.</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="clarity-healing.html">Clarity &amp; Healing</a>
+      <a href="learn-reiki.html">Learn Reiki</a>
+      <a href="expansion.html">Expansion</a>
+      <a href="booking.html">Book Now</a>
+    </div>
+  </div>
+  <div class="container" style="padding-top: 24px; border-top: 1px solid rgba(250,247,242,0.06); margin-top: 40px;">
+    <p style="font-size: 12px; color: rgba(250,247,242,0.25); text-align: center;">© 2026 Energy with Jess · energywithjess.com.au · <a href="connect.html" style="color: inherit;">Contact</a></p>
+  </div>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
