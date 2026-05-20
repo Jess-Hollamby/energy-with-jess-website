@@ -120,6 +120,16 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.energywithjess.com.au/your-first-reiki-session</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.energywithjess.com.au/what-is-an-akashic-record-reading</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
   <!-- Free resources & quizzes -->
   <url>
