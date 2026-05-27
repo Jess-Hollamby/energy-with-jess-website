@@ -2334,10 +2334,111 @@ const courses = [
     emoji: '🌿',
     thumbBg: 'linear-gradient(135deg,#f4f0f8,#bf4288,#C4B0D4)',
     price: 333,
-    desc: '6 lessons · self-paced · Move through your emotional landscape, build literacy around what you feel, understand your protective responses, and build a toolkit that actually works for you.',
+    stripeUrl: '',
+    paypalUrl: '',
+    duration: '6 weeks · self-paced',
+    moduleCount: 8,
+    lessonCount: 8,
+    desc: 'Move through your emotional landscape, build literacy around what you feel, understand your protective responses, and build a toolkit that actually works for you. Six weeks of guided video lessons.',
     comingSoon: true,
     enrolled: false,
-    modules: []
+    progress: 0,
+    modules: [
+      {
+        title: 'Welcome',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Welcome to Emotional Regulation', type: 'Video', done: false, youtubeId: '',
+            body: 'Who this course is for, what to expect, and how to use it.\n\nThis six-week course is for anyone who wants to understand what they\'re feeling, why they feel it, and how to work with it instead of against it. You don\'t need any background in this. You just need to be willing to pay attention.',
+          },
+        ]
+      },
+      {
+        title: 'Week 1 - Your Emotional Landscape',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Your Emotional Landscape', type: 'Video', done: false, youtubeId: '',
+            body: '"Before we do anything else, I want to check in with you. Not \'how are you\' as a social nicety - actually. How are you? And more importantly - do you actually know?"\n\nThis week is just about noticing. Not fixing. Not changing. Just starting to see what\'s actually there.',
+            topics: ['Emotions are energy in motion - information moving through the body, not problems to solve', 'Most of us were taught how to behave, not how to feel', 'Where did you learn to deal with emotions? Those patterns are still running', 'The emotion-body connection: grief in the throat, fear in the belly, anger in the jaw', 'The emotional wheel - expanding beyond fine, good, tired, stressed'],
+          },
+        ]
+      },
+      {
+        title: 'Week 2 - Emotional Literacy',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Emotional Literacy', type: 'Video', done: false, youtubeId: '',
+            body: '"Have you ever been in the middle of something and someone asks how you feel and you just... blank? That\'s not a you problem. That\'s a gap in what you were taught. Today we start filling it."',
+            topics: ['Primary vs secondary emotions - secondary is what comes out, primary is what\'s underneath', 'Example: you snap at someone. The anger is secondary. The "I felt unseen" is the primary', 'The somatic map: your body tells you what\'s happening before your brain catches up', 'Common body locations for grief, anxiety, anger, shame, joy', '"I don\'t know how I feel" is information - not a failure', 'The pause practice: before you react, three breaths, one question'],
+          },
+        ]
+      },
+      {
+        title: 'Week 3 - Your Protective Responses',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Your Protective Responses', type: 'Video', done: false, youtubeId: '',
+            body: '"Your nervous system is not broken. It is not dramatic. It is not too much. It learned to keep you safe in an environment that felt unsafe. And it got very, very good at its job."',
+            topics: ['Fight, flight, fawn, freeze are protective responses - not personality types', 'Fight can look functional: driven, needing to win arguments, always has a comeback', 'Flight can look successful: perfectionism, overworking, busyness as avoidance', 'Fawn is the sneakiest - it gets praised. You\'re told you\'re kind while you\'re exhausted and invisible', 'Freeze: shutdown, numbness, unable to make decisions - the system playing dead', 'Most of us have a default mode. Knowing yours changes everything'],
+          },
+        ]
+      },
+      {
+        title: 'Week 4 - Processing & Release',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Processing & Release', type: 'Video', done: false, youtubeId: '',
+            body: '"Emotions don\'t disappear when you ignore them. They go underground. They build pressure. And then they come out sideways - over something small, at the wrong person, at the wrong time."',
+            topics: ['Three things people do with emotions: suppress, express, or process', 'Processing is different from expressing - venting isn\'t always processing', 'The body needs to be involved - you can\'t journal your way out of activation alone', 'Match the tool to the mode: fight needs intensity, flight needs grounding, fawn needs boundary practice, freeze needs gentle activation', 'Inner child work: when activated we\'re often developmentally younger. "I am here and you are safe" is regulation', 'Body first, then journal - not journal instead of body'],
+          },
+        ]
+      },
+      {
+        title: 'Week 5 - Your Personal Toolkit',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Your Personal Toolkit', type: 'Video', done: false, youtubeId: '',
+            body: '"One of the things I hear a lot is \'I know what I should do, I just can\'t do it when I\'m in it.\' That\'s because the nervous system doesn\'t take advice when it\'s activated. It needs a response it already knows."',
+            topics: ['Tools only work if they\'re yours - what regulates one body won\'t regulate another', 'Real-time regulation vs deep processing: micro-tools for in-the-moment, deeper tools for when you have space', 'Practice when you don\'t need it yet - you don\'t run fire drills during a fire', 'The inner child relationship is ongoing, not a once-off', 'Sustainable practice: three-minute morning check-in, one somatic tool daily, journaling when something comes up'],
+          },
+        ]
+      },
+      {
+        title: 'Week 6 - Integration',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Integration', type: 'Video', done: false, youtubeId: '',
+            body: '"Six weeks ago you started this. And I want to take a moment before we do anything else to acknowledge that - because starting is the hardest part."',
+            topics: ['Integration is ongoing - making what you\'ve learned part of how you actually live', 'Emotional regulation is not being calm all the time - it\'s having the capacity to feel without being destroyed', 'You will still get dysregulated. The difference is you now have something to come back to', 'The toolkit and the practices are yours to keep', 'If you want to go deeper into the nervous system - that\'s what Nervous System Regulation is for'],
+            whatNext: [
+              { label: 'Nervous System Regulation', url: '', note: '$777 · self-paced · 12 weeks' },
+              { label: 'Full Regulation Bundle', url: '', note: '$999 · both courses + The Bridge' },
+            ],
+          },
+        ]
+      },
+      {
+        title: 'Congratulations',
+        desc: '1 lesson · closing',
+        done: false,
+        lessons: [
+          { title: 'Congratulations - You Did It', type: 'Video', done: false, youtubeId: '',
+            body: 'Six weeks. You showed up for yourself and that matters.\n\nYou now have language for what you feel, an understanding of your patterns, and a toolkit that\'s yours. The next step, when you\'re ready, is the nervous system work - the layer underneath everything you\'ve just learned.',
+            whatNext: [
+              { label: 'Nervous System Regulation', url: '', note: '$777 · self-paced · 12 weeks' },
+              { label: 'Full Regulation Bundle', url: '', note: '$999 · both courses + The Bridge transition session' },
+            ],
+          },
+        ]
+      },
+    ]
   },
   {
     id: 2,
@@ -2347,10 +2448,126 @@ const courses = [
     emoji: '🌊',
     thumbBg: 'linear-gradient(135deg,#EBF1F4,#3B5E6E,#1E2E32)',
     price: 777,
-    desc: '12 lessons · self-paced · Four phases: build the foundation, develop awareness, release what is stored, and rewire toward a new baseline. Covers Polyvagal Theory, somatic work, breathwork, and co-regulation. Includes the Triggers + Patterns tracker, Inner World journal guide, and Pattern Mapping workbook.',
+    stripeUrl: '',
+    paypalUrl: '',
+    duration: '12 weeks · self-paced',
+    moduleCount: 6,
+    lessonCount: 14,
+    desc: 'Four phases: build the foundation, develop awareness, release what is stored, and rewire toward a new baseline. Covers Polyvagal Theory, somatic work, breathwork, and co-regulation. Includes the Triggers + Patterns tracker, Inner World journal guide, and Pattern Mapping workbook.',
     comingSoon: true,
     enrolled: false,
-    modules: []
+    progress: 0,
+    modules: [
+      {
+        title: 'Welcome',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Welcome to Nervous System Regulation', type: 'Video', done: false, youtubeId: '',
+            body: 'What this course covers, the four phases, and what to expect over 12 weeks.\n\nThis course goes underneath the emotional work. If Emotional Regulation was learning the language, this is learning the biology - how your body actually creates the conditions that make emotions feel so big, so fast, so hard to stop.\n\nFour phases: Foundation → Awareness → Release → Rewire.',
+            bonusDownload: { label: 'Recommended Reading List', url: 'pdfs/regulation-reading-list.pdf' },
+          },
+        ]
+      },
+      {
+        title: 'Phase 1 - Foundation',
+        desc: '3 lessons · Weeks 1-3',
+        done: false,
+        lessons: [
+          { title: 'Week 1 - Your Nervous System, Your Story', type: 'Video', done: false, youtubeId: '',
+            body: '"Here\'s the thing about the nervous system that nobody tells you: it\'s not just about stress. It\'s about every single pattern in your life. The way you relate to people. The way you handle pressure. The way you show up in your body. It\'s all the nervous system."',
+            topics: ['The nervous system is the operating system - everything runs through it', 'Two branches: sympathetic (accelerator) and parasympathetic (brake) - neither is bad, you need both', 'Chronic stress literally rewires the nervous system - the threat detection system becomes hair-trigger', 'Dysregulation is not a character flaw - it\'s a physiological state. You can\'t think your way to regulation', 'This 12 weeks is about building a new physiological baseline - not just managing symptoms'],
+          },
+          { title: 'Week 2 - Polyvagal Theory', type: 'Video', done: false, youtubeId: '',
+            body: '"I want to talk to you about something that genuinely changed the way I understood myself. It has a very clinical name that I\'m going to make as un-clinical as possible: Polyvagal Theory."',
+            topics: ['Three states - not just on/off: Ventral Vagal (safe, social, regulated), Sympathetic (mobilised, fight/flight), Dorsal Vagal (shut down, freeze)', 'The vagus nerve connects your brainstem to your heart, lungs, and gut - gut feelings are real', 'Neuroception: your body scans for safety before your brain registers a situation', 'Co-regulation: human nervous systems literally regulate each other - connection is not optional', 'Recommended read: Deb Dana\'s "Anchored" - the most accessible introduction to Polyvagal Theory'],
+          },
+          { title: 'Week 3 - Window of Tolerance', type: 'Video', done: false, youtubeId: '',
+            body: '"There\'s a concept I come back to again and again. Once you see it, you see it everywhere - in yourself, in the people you love, in every relationship you\'ve ever had."',
+            topics: ['The window of tolerance: the zone where you can function, feel, and think at the same time', 'Above the window: hyperarousal - anxiety, overwhelm, reactivity, flooding', 'Below the window: hypoarousal - numbness, dissociation, shutdown, flatness', 'Trauma and chronic stress narrow the window - small things push you out', 'The goal is to widen the window through repeated, gentle experiences of going toward an edge and coming back'],
+          },
+        ]
+      },
+      {
+        title: 'Phase 2 - Awareness',
+        desc: '3 lessons · Weeks 4-6',
+        done: false,
+        lessons: [
+          { title: 'Week 4 - Somatic Awareness', type: 'Video', done: false, youtubeId: '',
+            body: '"The body never lies. The mind is incredibly creative when it comes to storytelling and rationalising. But the body just... tells you. Every time. We\'ve just spent years learning not to listen."',
+            topics: ['The felt sense: the body\'s internal knowing before you have words for it', 'Somatic awareness: noticing the felt sense without immediately interpreting or fixing it', 'Interoception: your body\'s internal signal system - highly developed in some, underdeveloped in others', 'Disconnection from the body is often a protective response - come back gently', 'The body scan: not to relax, but to notice. What\'s there? Where? What texture?'],
+            bonusDownload: { label: 'Your Inner World', url: 'pdfs/module-7-inner-world.pdf' },
+          },
+          { title: 'Week 5 - Reading Your Body in Real Time', type: 'Video', done: false, youtubeId: '',
+            body: '"The goal isn\'t to never get activated. The goal is to catch it earlier. To notice the whisper before it becomes a shout."',
+            topics: ['The escalation pathway: sensation → emotion → reaction. Catch it at sensation, not reaction', 'Your early warning signals are unique to you - tightening chest, held breath, clenching jaw', 'Real-time grounding: feet on the floor, hand on chest, three slow exhales, name five things you see', 'The difference between numbing and regulating: numbing shuts down the signal, regulating moves the activation through'],
+          },
+          { title: 'Week 6 - Patterns and Triggers at Depth', type: 'Video', done: false, youtubeId: '',
+            body: '"Here\'s what a trigger actually is. It\'s not an overreaction. It\'s the past colliding with the present. Your nervous system learned something, and now it pattern-matches to anything that reminds it of that thing."',
+            topics: ['A trigger is a present-moment experience activating a past nervous system response', 'Somatic memory: the body remembers what the thinking brain doesn\'t - smells, tones of voice, textures', '"How old does this feel?" - one of the most useful tools. You\'re often responding as a much younger version of yourself', 'These patterns aren\'t character flaws - they\'re evidence the nervous system was doing its job'],
+            bonusDownload: { label: 'Triggers + Patterns Tracker', url: 'triggers-patterns-tracker.html' },
+          },
+        ]
+      },
+      {
+        title: 'Phase 3 - Release',
+        desc: '3 lessons · Weeks 7-9',
+        done: false,
+        lessons: [
+          { title: 'Week 7 - Somatic Release', type: 'Video', done: false, youtubeId: '',
+            body: '"Peter Levine watched animals in the wild. After a life-threatening experience, they literally shake - sometimes for minutes. Then they get up and go on with their lives. Humans were designed to do the same thing. But we learned that shaking and crying and making noise was not okay."',
+            topics: ['The stress response cycle has a beginning, middle, and end - we interrupt the end', 'Natural ways of discharging: shaking, crying, making sound, vigorous movement, yawning', 'You don\'t need to know what you\'re releasing - the body knows', 'Go gently - somatic release should feel like relief, not flooding', 'Stay within your window: if it becomes overwhelming, return to grounding'],
+          },
+          { title: 'Week 8 - Breath as Medicine', type: 'Video', done: false, youtubeId: '',
+            body: '"The breath is the only function of the autonomic nervous system that you can consciously control. Through the breath, you can influence everything else."',
+            topics: ['The exhale activates the parasympathetic. Lengthen the exhale to shift toward regulation', 'For hyperarousal: extended exhale breathing, box breathing, physiological sigh', 'For hypoarousal: energising breath - gentle activation, not calming', 'For general regulation: diaphragmatic breathing. Most people breathe from the chest, maintaining low-level stress', 'The physiological sigh: double inhale through nose, long exhale through mouth - the fastest downregulation that exists'],
+          },
+          { title: 'Week 9 - Completion & Integration', type: 'Video', done: false, youtubeId: '',
+            body: '"Integration is the part nobody talks about. Everyone wants to know how to release things. But releasing is only half the equation. What you do after - that\'s where the actual change happens."',
+            topics: ['The nervous system needs time to process change - like updating software', 'Signs of integration: things that used to activate you don\'t land the same way', 'What supports integration: sleep, nourishment, nature, gentle movement, warmth, safe connection', 'The process is not linear - feeling destabilised can mean the pattern has been disrupted, not that you\'re going backwards'],
+          },
+        ]
+      },
+      {
+        title: 'Phase 4 - Rewire',
+        desc: '3 lessons · Weeks 10-12',
+        done: false,
+        lessons: [
+          { title: 'Week 10 - Building Safety in the Body', type: 'Video', done: false, youtubeId: '',
+            body: '"Regulation is not about forcing yourself to feel calm. It\'s about teaching your nervous system that you\'re safe now. That you can put down the armour."',
+            topics: ['Felt safety vs cognitive safety - you can know you\'re safe and still have a body that doesn\'t believe it', 'Glimmers: small moments of ease, warmth, delight. The opposite of triggers. Letting them land builds new neural pathways', 'The negativity bias: the nervous system remembers threat more than ease - you have to consciously register positive experiences', 'Safety anchors: physical, sensory experiences that reliably bring you into regulation'],
+            bonusDownload: { label: 'Pattern Mapping Workbook', url: 'pdfs/module-9-integration.pdf' },
+          },
+          { title: 'Week 11 - Co-Regulation & Healthy Connection', type: 'Video', done: false, youtubeId: '',
+            body: '"We were not built to regulate alone. I know that might be uncomfortable to hear if you\'ve spent years believing that needing people is a weakness. But it\'s not - it\'s biology."',
+            topics: ['Co-regulation: nervous systems attune to each other - a calm system near a distressed one creates a pull toward regulation', 'This is why safe relationships heal and dysregulating ones keep you stuck', 'The goal is not to need co-regulation less - it\'s to choose it more wisely and build your own capacity alongside it', 'Self-compassion as internal co-regulation: your tone of voice to yourself activates the same pathways as external connection'],
+          },
+          { title: 'Week 12 - Your New Baseline', type: 'Video', done: false, youtubeId: '',
+            body: '"Twelve weeks ago, I asked you to describe what your nervous system felt like. I want you to answer that question again now. And feel the difference."',
+            topics: ['This is not the end of the work - this is where the work becomes part of who you are', 'Peace is not the absence of difficulty - it\'s the capacity to move through difficulty and find your way back', 'Your nervous system will still respond. The difference is you have a path back - and over time it gets shorter and easier', 'Celebrate what\'s happened here. Change at the level of the nervous system takes courage and consistency'],
+            whatNext: [
+              { label: 'Expansion - Align + Flow', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
+              { label: 'The Unbecoming', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
+            ],
+          },
+        ]
+      },
+      {
+        title: 'Congratulations',
+        desc: '1 lesson · closing',
+        done: false,
+        lessons: [
+          { title: 'Congratulations - Your New Baseline', type: 'Video', done: false, youtubeId: '',
+            body: 'Twelve weeks. Four phases. You showed up for every single one.\n\nYou now have a different relationship with your own body\'s responses. Not fighting them - understanding them. Not running from them - moving through them.\n\nThat\'s not small. That\'s everything.',
+            whatNext: [
+              { label: 'Expansion - Align + Flow', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
+              { label: 'Empowered Empath', url: '', note: '$449 · self-paced' },
+              { label: 'The Unbecoming', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
+            ],
+          },
+        ]
+      },
+    ]
   },
   {
     id: 3,
@@ -2360,10 +2577,28 @@ const courses = [
     emoji: '✦',
     thumbBg: 'linear-gradient(135deg,#C4B0D4,#3B5E6E,#bf4288)',
     price: 999,
-    desc: '18 lessons · self-paced · Both Emotional Regulation and Nervous System Regulation in one continuous container. The complete pathway from emotional awareness through to a regulated nervous system baseline.',
+    stripeUrl: '',
+    paypalUrl: '',
+    duration: '18 weeks · self-paced',
+    moduleCount: 1,
+    lessonCount: 1,
+    desc: 'Both Emotional Regulation and Nervous System Regulation in one continuous container, plus The Bridge - an exclusive transition session for bundle students only. The complete pathway from emotional awareness through to a regulated nervous system baseline.',
     comingSoon: true,
     enrolled: false,
-    modules: []
+    progress: 0,
+    modules: [
+      {
+        title: 'The Bridge',
+        desc: '1 lesson · bundle exclusive',
+        done: false,
+        lessons: [
+          { title: 'The Bridge - ER to NS Transition', type: 'Video', done: false, youtubeId: '',
+            body: '"Before we move into the nervous system work, I want to pause here with you for a moment. Six weeks is a long time to do this kind of work. And I want to acknowledge that before we go anywhere."\n\nThis session sits between Emotional Regulation Week 6 and Nervous System Regulation Week 1. It\'s not a teaching session - it\'s a handover. It acknowledges the ER work, names what has shifted, and connects it to what\'s coming next.\n\nBundle students only.',
+            topics: ['What you\'ve just done is not small - six weeks of looking at your emotional landscape', 'The emotional work is the foundation for everything that comes next. NS work goes underneath it', 'Emotions are the felt experience. The nervous system is the mechanism creating that experience', 'The reason the order matters: you\'ll recognise yourself in the somatic work because you already have the language', 'Sit with this before Week 1: what has actually shifted in you over the last six weeks?'],
+          },
+        ]
+      },
+    ]
   },
   {
     id: 4,
