@@ -2488,12 +2488,22 @@ const courses = [
     stripeUrl: '',
     paypalUrl: '',
     duration: 'Self-paced',
-    moduleCount: 6,
-    lessonCount: 6,
+    moduleCount: 8,
+    lessonCount: 8,
     comingSoon: true,
     enrolled: false,
     progress: 0,
     modules: [
+      {
+        title: 'Welcome',
+        desc: '1 lesson · video',
+        done: false,
+        lessons: [
+          { title: 'Welcome to Going Deeper', type: 'Video', done: false, youtubeId: '',
+            body: 'You\'ve done the foundation work. You know what your offer is, you\'ve got the basics in place, and you\'re ready to build further.\n\nThis course picks up where Core left off - going deeper into the things that grow a business: your brand, your visibility, the legal and tax stuff no one walks you through, AI tools that give you your time back, your email list, and how to price for where you\'re going.\n\nHow the course works and how to move through it at your own pace.',
+          },
+        ]
+      },
       {
         title: 'Module 1 - How to Use AI in Your Business',
         desc: '1 lesson · video',
@@ -2557,6 +2567,21 @@ const courses = [
           { title: 'Pricing for Growth', type: 'Video', done: false, youtubeId: '',
             topics: ['When to raise your prices - and the signs you\'ve been undercharging', 'How to raise prices without losing everyone', 'Moving from session pricing to packages - why and how', 'The solo-specific pricing reality: your price has to carry more weight', 'What to do when someone says it\'s too expensive'],
             body: 'From starting price to sustainable income.\n\nExpansion prompts: What would I charge if I trusted that people would pay it? What\'s the gap between that number and my current price? What\'s in that gap?\n\nSomatic: Where does "charging more" land in your body? What does it want you to know?',
+          },
+        ]
+      },
+      {
+        title: 'What\'s Next',
+        desc: '1 lesson · closing',
+        done: false,
+        lessons: [
+          { title: 'What\'s Next', type: 'Video', done: false, youtubeId: '',
+            body: 'You\'ve built the foundation and gone deeper. You have an offer, a brand, a legal setup, a content approach, an email list starting, and a pricing structure that can actually hold you.\n\nWhat comes next depends on where you want to go - more support, more structure, or both.',
+            whatNext: [
+              { label: 'The Foundation: Bundle', url: '', note: '$999 · 1:1 with Jess · 12 sessions over 6 months' },
+              { label: 'Soul-Led Business Pack', url: '', note: 'For women ready to grow what\'s already built' },
+              { label: 'Expansion Discovery Call', url: 'https://www.energywithjess.com.au/booking', note: 'Free · 30 min' },
+            ],
           },
         ]
       },
