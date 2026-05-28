@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solid Ground 1:1 - Soul-Led Business with Real Support | Energy with Jess</title>
+<meta name="description" content="1:1 business support for women starting solo. Six sessions over 12 weeks, built entirely around you - your offer, your blocks, your life.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ── INTRO ── */
+.sg1-intro { padding: 100px 0; }
+.sg1-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.sg1-intro p { font-size: 15.5px; color: rgba(250,247,242,0.68); line-height: 1.88; margin-bottom: 18px; }
+.sg1-intro p strong { color: var(--cream); }
+.sg1-quote {
+  font-family: var(--h);
+  font-size: 21px;
+  font-style: italic;
+  color: var(--lavender);
+  border-left: 3px solid var(--lavender);
+  padding-left: 22px;
+  margin: 32px 0;
+  line-height: 1.6;
+}
+
+/* ── WHAT MAKES 1:1 DIFFERENT ── */
+.sg1-diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+.sg1-diff-item {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 14px;
+  padding: 28px 24px;
+}
+.sg1-diff-item h4 { font-family: var(--h); font-size: 19px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+.sg1-diff-item p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.7; margin: 0; }
+
+/* ── TIERS ── */
+.sg1-tiers { padding: 100px 0; background: var(--mid); }
+.sg1-tiers-stack { display: flex; flex-direction: column; gap: 32px; margin-top: 60px; }
+
+/* ── TIER CARD ── */
+.sg1-tier-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+  position: relative;
+}
+.sg1-tier-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--lavender), var(--rose));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.sg1-tier-card:hover { border-color: rgba(196,176,212,0.2); }
+.sg1-tier-card:hover::after { transform: scaleX(1); }
+.sg1-tier-body { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; }
+.sg1-tier-main { padding: 52px 48px; }
+.sg1-tier-main h3 { font-family: var(--h); font-size: 32px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.sg1-tier-main h3 em { font-style: italic; color: var(--lavender); }
+.sg1-tier-main p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.85; margin-bottom: 18px; }
+.sg1-tier-main p strong { color: var(--cream); }
+.sg1-tier-story {
+  font-family: var(--h);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--lavender);
+  border-left: 3px solid rgba(196,176,212,0.3);
+  padding-left: 20px;
+  margin: 24px 0;
+  line-height: 1.65;
+}
+.sg1-tier-side {
+  background: rgba(250,247,242,0.02);
+  border-left: 1px solid rgba(250,247,242,0.06);
+  padding: 52px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.sg1-side-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.sg1-side-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.sg1-side-list li {
+  font-size: 13.5px;
+  color: rgba(250,247,242,0.55);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.55;
+}
+.sg1-side-list li::before {
+  content: '';
+  width: 4px; height: 4px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.sg1-resonates-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.sg1-resonates-list li {
+  font-size: 13.5px;
+  color: rgba(250,247,242,0.55);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.55;
+}
+.sg1-resonates-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--lavender);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.sg1-tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+
+/* ── SESSIONS BREAKDOWN ── */
+.sg1-sessions { display: flex; flex-direction: column; gap: 14px; margin: 24px 0; }
+.sg1-session {
+  background: rgba(250,247,242,0.04);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+.sg1-session-head { display: flex; gap: 14px; align-items: baseline; margin-bottom: 5px; }
+.sg1-session-num {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  flex-shrink: 0;
+}
+.sg1-session-title { font-family: var(--h); font-size: 16px; color: var(--cream); }
+.sg1-session-desc { font-size: 13px; color: rgba(250,247,242,0.45); line-height: 1.6; }
+
+/* ── BUNDLE ── */
+.sg1-bundle {
+  background: rgba(196,176,212,0.06);
+  border: 1px solid rgba(196,176,212,0.2);
+  border-radius: 20px;
+  padding: 52px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+.sg1-bundle h3 { font-family: var(--h); font-size: 32px; font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.sg1-bundle h3 em { font-style: italic; color: var(--lavender); }
+.sg1-bundle p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.85; margin-bottom: 14px; }
+.sg1-bundle-price { text-align: center; flex-shrink: 0; }
+.sg1-bundle-price .was { font-size: 14px; color: rgba(250,247,242,0.3); text-decoration: line-through; font-family: var(--h); margin-bottom: 6px; }
+.sg1-bundle-price .now { font-family: var(--h); font-size: 52px; font-weight: 300; color: var(--lavender); line-height: 1; }
+.sg1-bundle-price .save { font-size: 12px; color: var(--lavender); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-top: 8px; }
+
+/* ── GRADUATING PRACTITIONERS ── */
+.sg1-grads {
+  padding: 100px 0;
+  background: var(--dark);
+}
+.sg1-grads-inner {
+  background: rgba(196,176,212,0.05);
+  border: 1px solid rgba(196,176,212,0.15);
+  border-radius: 20px;
+  padding: 64px;
+}
+.sg1-grads-inner h2 { font-family: var(--h); font-size: clamp(26px, 3vw, 40px); font-weight: 400; color: var(--cream); margin-bottom: 20px; line-height: 1.2; }
+.sg1-grads-inner h2 em { font-style: italic; color: var(--lavender); }
+.sg1-grads-inner p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.85; margin-bottom: 16px; max-width: 720px; }
+.sg1-grads-inner p strong { color: var(--cream); }
+
+/* ── DISCOVERY / CTA STRIP ── */
+.sg1-discovery {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 16px;
+  padding: 36px 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-top: 48px;
+}
+.sg1-discovery h3 { font-family: var(--h); font-size: 24px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+.sg1-discovery p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.7; margin: 0; }
+.sg1-discovery-btns { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+
+@media (max-width: 900px) {
+  .sg1-tier-body { grid-template-columns: 1fr; }
+  .sg1-tier-side { border-left: none; border-top: 1px solid rgba(250,247,242,0.06); padding: 36px; }
+  .sg1-bundle { grid-template-columns: 1fr; gap: 32px; }
+  .sg1-bundle-price { text-align: left; }
+  .sg1-intro-grid { grid-template-columns: 1fr; gap: 52px; }
+  .sg1-diff-grid { grid-template-columns: 1fr; }
+  .sg1-discovery { flex-direction: column; gap: 24px; }
+  .sg1-discovery-btns { flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 760px) {
+  .sg1-intro { padding: 72px 0; }
+  .sg1-tiers { padding: 72px 0; }
+  .sg1-grads { padding: 72px 0; }
+  .sg1-grads-inner { padding: 36px 24px; }
+  .sg1-tier-main { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="service-featured.jpg" alt="Solid Ground 1:1" style="object-position: center 60%;" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Soul-Led Business &middot; 1:1</span>
+    <h1>Solid Ground <em>1:1</em></h1>
+    <p class="page-hero-sub">Six sessions over twelve weeks. Built entirely around you - not a template, not a formula. Real support for building something real.</p>
+  </div>
+</section>
+
+<!-- ── INTRO ── -->
+<section class="sg1-intro">
+  <div class="container">
+    <div class="sg1-intro-grid">
+      <div class="reveal left">
+        <span class="label">What Makes This Different</span>
+        <h2 class="section-title">The thing you don't have at home is <em>someone in the room with you.</em></h2>
+        <p>The self-paced courses give you the framework. This gives you something else - someone who knows where you're starting from, what's in your way, and what success actually looks like for your specific situation.</p>
+        <p>Most business content treats everyone the same. One template. One path. <strong>Solid Ground 1:1 starts by finding out where you're starting.</strong> Session 1 is all that. Everything after is built from there.</p>
+        <div class="sg1-quote">"I had no sounding board. No one who really understood what this process was like. When you're doing this solo, you have to make every decision alone - and that's exhausting in a way that's hard to explain if you haven't done it."</div>
+        <p>These sessions hold the space that isn't in anyone's living room. The practical - offer, setup, clients, money - and the energetic - what's underneath the resistance, what needs to shift, what the Reiki finds. Both are real. Both belong.</p>
+      </div>
+      <div class="reveal right">
+        <div class="sg1-diff-grid" style="margin-top: 0; grid-template-columns: 1fr; gap: 14px;">
+          <div class="sg1-diff-item">
+            <h4>Built around you, not a template</h4>
+            <p>Session 1 finds out exactly where you're starting - what you want to build, what's in your way, what support looks like for you. Everything after is shaped around that conversation, not a pre-set structure.</p>
+          </div>
+          <div class="sg1-diff-item">
+            <h4>Practical and energetic, both</h4>
+            <p>Offer, setup, clients, pricing, visibility - the practical work is all here. But so is the Reiki, the energetic clearing, the space to name what's underneath the "I should be further along by now."</p>
+          </div>
+          <div class="sg1-diff-item">
+            <h4>Continued access between sessions</h4>
+            <p>Telegram and Voxer access for the full 12 weeks. When something comes up - a decision, a wobble, a win you need to share with someone who gets it - that channel is there.</p>
+          </div>
+          <div class="sg1-diff-item">
+            <h4>A real person who has done this</h4>
+            <p>Not speaking from above. Five years in, third version of the business, still building solo. The credential here is having been in the middle of it - and still going.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIERS ── -->
+<section class="sg1-tiers">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <span class="label">1:1 Options</span>
+      <h2 class="section-title">Choose the container <em>that fits where you are.</em></h2>
+      <p style="font-size: 15.5px; color: rgba(250,247,242,0.52); max-width: 560px; margin: 0 auto;">Core covers the foundations. Going Deeper continues the work - brand, AI, legal, content, email, pricing. The Bundle is both, six months, the full build from starting to growing.</p>
+    </div>
+
+    <div class="sg1-tiers-stack">
+
+      <!-- CORE 1:1 -->
+      <div class="sg1-tier-card reveal">
+        <div class="sg1-tier-body">
+          <div class="sg1-tier-main">
+            <div class="sg1-tag-row">
+              <span class="tag tag-lavender">Start Here</span>
+              <span class="tag">6 Sessions</span>
+              <span class="tag">12 Weeks</span>
+            </div>
+            <h3>Solid Ground: Core <em>1:1</em></h3>
+            <div class="sg1-tier-story">"Session 1 finds out where they're starting. Who they are, what they want to build, what's already in their way - practically and energetically. What success looks like for them. Not a generic goal. That conversation shapes everything that follows."</div>
+            <p>Six sessions. Twelve weeks. Starting from wherever you actually are.</p>
+            <p><strong>This is for the woman who knows she does better with someone alongside her</strong> - not a workbook, not a video series, but a real conversation that builds into a real foundation. You come in with an idea, or even just a feeling. You leave with an offer, a setup, a plan, and the knowing you can actually do this.</p>
+
+            <div style="margin: 8px 0 24px;">
+              <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(250,247,242,0.35); margin-bottom: 16px;">6 Sessions - What's Covered</div>
+              <div class="sg1-sessions">
+                <div class="sg1-session">
+                  <div class="sg1-session-head">
+                    <span class="sg1-session-num">Session 1</span>
+                    <span class="sg1-session-title">Where You're Starting</span>
+                  </div>
+                  <div class="sg1-session-desc">Discovery and roadmap. Who you are, what you want to build, what's in your way - practically and energetically. Builds the map for everything that follows.</div>
+                </div>
+                <div class="sg1-session">
+                  <div class="sg1-session-head">
+                    <span class="sg1-session-num">Session 2</span>
+                    <span class="sg1-session-title">Your Offer + Your Voice</span>
+                  </div>
+                  <div class="sg1-session-desc">Define the offer, find the pricing you can say out loud without flinching, put what you do into your own words. You leave with something you can actually tell people about.</div>
+                </div>
+                <div class="sg1-session">
+                  <div class="sg1-session-head">
+                    <span class="sg1-session-num">Session 3</span>
+                    <span class="sg1-session-title">Getting Set Up</span>
+                  </div>
+                  <div class="sg1-session-desc">Everything that needs to be in place before money can come in. Tech, payment, booking, legal basics. You leave with a business that can operationally receive a client.</div>
+                </div>
+                <div class="sg1-session">
+                  <div class="sg1-session-head">
+                    <span class="sg1-session-num">Session 4</span>
+                    <span class="sg1-session-title">Getting Visible + Getting Clients</span>
+                  </div>
+                  <div class="sg1-session-desc">Where your first clients actually come from. What to say, in your voice. The visibility resistance - what's underneath it, how to move through it. A real first outreach plan.</div>
+                </div>
+                <div class="sg1-session">
+                  <div class="sg1-session-head">
+                    <span class="sg1-session-num">Session 5</span>
+                    <span class="sg1-session-title">The Harder Stuff</span>
+                  </div>
+                  <div class="sg1-session-desc">Whatever has surfaced across the first four sessions that needs more room. The energetic blocks underneath the practical ones. Decision-making without someone to check with. Tools for the messy middle.</div>
+                </div>
+                <div class="sg1-session">
+                  <div class="sg1-session-head">
+                    <span class="sg1-session-num">Session 6</span>
+                    <span class="sg1-session-title">90-Day Plan + Close</span>
+                  </div>
+                  <div class="sg1-session-desc">What's been built - usually more than they realise. The 90-day plan: specific, grounded, not overwhelming. How to keep moving. When to come back, and that it's okay to come back.</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 8px;">
+              <a href="booking.html#discovery" class="btn btn-primary" style="font-size: 13px;">Book a Discovery Call</a>
+              <span style="font-size: 13px; color: rgba(250,247,242,0.38);">Free, 30 minutes</span>
+            </div>
+          </div>
+          <div class="sg1-tier-side">
+            <div class="course-side-block">
+              <div class="sg1-side-label">This is for you if you...</div>
+              <ul class="sg1-resonates-list">
+                <li>Know you do better with someone alongside you than working alone</li>
+                <li>Are starting from scratch and want someone to think it through with</li>
+                <li>Have been circling this for a while and need help actually beginning</li>
+                <li>Want the energetic + practical worked through together</li>
+                <li>Have no one at home to check decisions with - and feel that absence</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="sg1-side-label">What's included</div>
+              <ul class="sg1-side-list">
+                <li>6 x 90-minute 1:1 sessions, fortnightly over 12 weeks</li>
+                <li>Session recordings sent by email (available 30 days)</li>
+                <li>Telegram + Voxer access for the full 12 weeks</li>
+                <li>Resources and worksheets built or found as needed</li>
+                <li>Energy and Reiki woven through the work</li>
+                <li>Payment plan available - fortnightly or monthly, no surcharge</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="sg1-side-label">Investment</div>
+              <div style="font-family: var(--h); font-size: 42px; font-weight: 300; color: var(--lavender); line-height: 1;">$666</div>
+              <div style="font-size: 12px; color: rgba(250,247,242,0.35); margin-top: 6px;">Payment plan available &middot; No surcharge</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GOING DEEPER 1:1 -->
+      <div class="sg1-tier-card reveal">
+        <div class="sg1-tier-body">
+          <div class="sg1-tier-main">
+            <div class="sg1-tag-row">
+              <span class="tag" style="background: rgba(196,176,212,0.12); color: var(--lavender);">Next Step</span>
+              <span class="tag">6 Sessions</span>
+              <span class="tag">12 Weeks</span>
+            </div>
+            <h3>Solid Ground: Going Deeper <em>1:1</em></h3>
+            <div class="sg1-tier-story">"Once the foundation is there, you can start building the rest - brand, content, visibility, how to price for where you want to go, not just where you are now. This is that next layer. Still 1:1. Still shaped around you."</div>
+            <p>The second container. Follows Core - or stands alone if the basics are already in place.</p>
+            <p><strong>Six sessions covering the things that grow the foundation into something visible:</strong> how to use AI as a solo operator without losing your voice, brand basics, the Australian legal and tax essentials, how to show up with content when it feels exposing, building an email list from nothing, and pricing in a way that actually grows.</p>
+            <p>Same format. 90 minutes per session, fortnightly, Telegram access throughout. Built entirely around you.</p>
+
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 28px;">
+              <a href="booking.html#discovery" class="btn btn-primary" style="font-size: 13px;">Book a Discovery Call</a>
+              <span style="font-size: 13px; color: rgba(250,247,242,0.38);">Free, 30 minutes</span>
+            </div>
+          </div>
+          <div class="sg1-tier-side">
+            <div class="course-side-block">
+              <div class="sg1-side-label">Sessions cover</div>
+              <ul class="sg1-side-list">
+                <li>AI in your business - your voice stays yours</li>
+                <li>Brand basics - name, voice, simple visual starting point</li>
+                <li>Legal + tax for Australian sole traders</li>
+                <li>Content + showing up - including the visibility resistance</li>
+                <li>Email list building from zero</li>
+                <li>Pricing for growth - beyond just covering costs</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="sg1-side-label">What's included</div>
+              <ul class="sg1-side-list">
+                <li>6 x 90-minute 1:1 sessions, fortnightly over 12 weeks</li>
+                <li>Session recordings sent by email (available 30 days)</li>
+                <li>Telegram + Voxer access for the full 12 weeks</li>
+                <li>Resources built or found as needed</li>
+                <li>Energy and Reiki woven through</li>
+                <li>Payment plan available - no surcharge</li>
+              </ul>
+            </div>
+            <div class="course-side-block">
+              <div class="sg1-side-label">Investment</div>
+              <div style="font-family: var(--h); font-size: 42px; font-weight: 300; color: var(--lavender); line-height: 1;">$666</div>
+              <div style="font-size: 12px; color: rgba(250,247,242,0.35); margin-top: 6px;">Payment plan available &middot; No surcharge</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUNDLE 1:1 -->
+      <div class="sg1-bundle reveal">
+        <div>
+          <div class="sg1-tag-row">
+            <span class="tag" style="background: rgba(196,176,212,0.15); color: var(--lavender);">Best Value</span>
+            <span class="tag tag-gold">Save $333</span>
+          </div>
+          <h3>Solid Ground: Bundle <em>1:1</em></h3>
+          <p>Both 1:1 containers together. Core builds the foundation across the first 12 weeks. Going Deeper continues the work through months 4-6. Twelve sessions total. Six months of real, continuous support.</p>
+          <p>This is the full build - from first idea, through offer and setup, through brand, content, and pricing for growth. With someone in the room for all of it.</p>
+          <p style="font-size: 14px; color: rgba(250,247,242,0.45);">12 x 90-minute sessions &middot; 6 months &middot; Telegram + Voxer access throughout &middot; Reiki woven through</p>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px;">
+            <a href="booking.html#discovery" class="btn btn-primary" style="font-size: 13px;">Book a Discovery Call</a>
+            <span style="font-size: 13px; color: rgba(250,247,242,0.38);">Free, 30 minutes &middot; No pressure</span>
+          </div>
+        </div>
+        <div class="sg1-bundle-price">
+          <div class="was">$666 + $666</div>
+          <div class="now">$999</div>
+          <div class="save">Save $333</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GRADUATING PRACTITIONERS ── -->
+<section class="sg1-grads">
+  <div class="container">
+    <div class="sg1-grads-inner reveal">
+      <span class="label" style="color: var(--lavender);">For Graduating Practitioners</span>
+      <h2>Your degree taught you the skill. <em>The 1:1 builds everything around it.</em></h2>
+      <p>If you're in your final semester of myotherapy, naturopathy, counselling, massage, kinesiology, or allied health - Solid Ground 1:1 Core runs across exactly 12 weeks. <strong>Start in your last semester and you'll graduate with a business foundation already in place.</strong></p>
+      <p>The course version lets you work through it alone. The 1:1 version gives you someone alongside - working through your specific offer, your specific concerns, the blocks that are particular to you and not just general business advice.</p>
+      <p>Session 1 always starts with where you are. If you're still studying, that's the starting point. The rest of the sessions are built from there.</p>
+      <div class="sg1-discovery">
+        <div>
+          <h3>Not sure if this is the right fit?</h3>
+          <p>Book a free Soul-Led Business Discovery Call - 30 minutes to talk through where you are and what would actually support you. No pitch, no pressure. Just a real conversation.</p>
+        </div>
+        <div class="sg1-discovery-btns">
+          <a href="booking.html#discovery" class="btn btn-primary" style="font-size: 13px; white-space: nowrap;">Book a Discovery Call</a>
+          <a href="solid-ground.html" class="btn btn-ghost" style="font-size: 13px; white-space: nowrap;">Self-Paced Option</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT HAPPENS NEXT ── -->
+<section style="padding: 80px 0; background: var(--mid);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 52px;" class="reveal">
+      <span class="label">How It Works</span>
+      <h2 class="section-title">From discovery call to <em>first session</em></h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;" class="reveal">
+      <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 28px 22px; text-align: center;">
+        <div style="font-family: var(--h); font-size: 36px; color: var(--lavender); margin-bottom: 10px;">1</div>
+        <div style="font-family: var(--h); font-size: 17px; color: var(--cream); margin-bottom: 8px;">Discovery call</div>
+        <div style="font-size: 13px; color: rgba(250,247,242,0.48); line-height: 1.6;">30 minutes, free. We talk through where you're starting and whether this is the right fit.</div>
+      </div>
+      <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 28px 22px; text-align: center;">
+        <div style="font-family: var(--h); font-size: 36px; color: var(--lavender); margin-bottom: 10px;">2</div>
+        <div style="font-family: var(--h); font-size: 17px; color: var(--cream); margin-bottom: 8px;">Confirm the container</div>
+        <div style="font-size: 13px; color: rgba(250,247,242,0.48); line-height: 1.6;">Choose Core, Going Deeper, or Bundle. Set up the payment plan if you'd like one. That's it.</div>
+      </div>
+      <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 28px 22px; text-align: center;">
+        <div style="font-family: var(--h); font-size: 36px; color: var(--lavender); margin-bottom: 10px;">3</div>
+        <div style="font-family: var(--h); font-size: 17px; color: var(--cream); margin-bottom: 8px;">Session 1</div>
+        <div style="font-size: 13px; color: rgba(250,247,242,0.48); line-height: 1.6;">Discovery and roadmap. Where you're starting, what you want to build, what the 12 weeks will look like for you specifically.</div>
+      </div>
+      <div style="background: rgba(250,247,242,0.03); border: 1px solid rgba(250,247,242,0.06); border-radius: 14px; padding: 28px 22px; text-align: center;">
+        <div style="font-family: var(--h); font-size: 36px; color: var(--lavender); margin-bottom: 10px;">4</div>
+        <div style="font-family: var(--h); font-size: 17px; color: var(--cream); margin-bottom: 8px;">Build, session by session</div>
+        <div style="font-size: 13px; color: rgba(250,247,242,0.48); line-height: 1.6;">Sessions 2-6 fortnightly. Telegram open between. Everything shaped around you, not a pre-set plan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-bg"><img src="service-featured.jpg" alt="Solid Ground 1:1" /></div>
+  <div class="cta-orb"></div>
+  <div class="cta-content reveal">
+    <h2>The discovery call is free. <em>Start there.</em></h2>
+    <p>30 minutes. We talk through where you are. You leave knowing whether this is the right fit - and what the right fit looks like if it's not.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="booking.html#discovery" class="btn btn-primary">Book a Discovery Call</a>
+      <a href="solid-ground.html" class="btn btn-ghost">See Self-Paced Option</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ── NAV SCROLL ── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ── MOBILE MENU ── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+/* ── REVEAL ── */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
