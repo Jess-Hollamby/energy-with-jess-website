@@ -342,6 +342,15 @@ auth.onAuthStateChanged(async user => {
         { merge: true }
       );
     } catch (e) { /* non-fatal - redirect anyway */ }
+
+    // Trigger buyer email sequence for SG courses (fire-and-forget)
+    const sgCourses = coursesToEnroll.filter(id => [4, 5, 6].includes(id));
+    if (sgCourses.length > 0) {
+      const courseId = sgCourses.includes(6) ? 6 : sgCourses.includes(5) ? 5 : 4;
+      const firstName = encodeURIComponent(user.displayName || '');
+      const emailAddr = encodeURIComponent(user.email || '');
+      fetch('https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec?source=sg_buyer&email=' + emailAddr + '&first_name=' + firstName + '&course=' + courseId, { mode: 'no-cors' }).catch(() => {});
+    }
   }
   window.location.href = 'energy-with-jess-lms.html';
 });
