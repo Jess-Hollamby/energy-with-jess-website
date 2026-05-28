@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solid Ground: Going Deeper — Workbook</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Belleza&display=swap" rel="stylesheet">
+<style>
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal:   #3B5E6E;
+    --pink:   #bf4288;
+    --dark:   #1E2E32;
+    --cream:  #FAF7F2;
+    --lav:    #C4B0D4;
+    --border: #E4EAEC;
+    --mid:    #8a9ea5;
+  }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--teal);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    page-break-after: always;
+    position: relative;
+  }
+  .cover-eyebrow {
+    font-family: 'Belleza', sans-serif;
+    font-size: 10pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lav);
+    margin-bottom: 28px;
+  }
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52pt;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18pt;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--lav);
+    margin-bottom: 48px;
+  }
+  .cover-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--lav);
+    margin: 0 auto 48px;
+  }
+  .cover-name-field {
+    border-bottom: 1px solid rgba(196,176,212,0.5);
+    width: 260px;
+    padding-bottom: 6px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lav);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .cover-name-label {
+    font-family: 'Belleza', sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(196,176,212,0.6);
+  }
+  .cover-byline {
+    position: absolute;
+    bottom: 40px;
+    font-size: 8.5pt;
+    color: rgba(196,176,212,0.7);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── PAGE ── */
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 52px 64px;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ── MODULE HEADER ── */
+  .module-header {
+    border-top: 3px solid var(--teal);
+    padding-top: 24px;
+    margin-bottom: 36px;
+  }
+  .module-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10pt;
+    font-style: italic;
+    color: var(--pink);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .module-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26pt;
+    font-weight: 500;
+    color: var(--teal);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .module-intro {
+    font-size: 10pt;
+    color: var(--mid);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  .label {
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .question {
+    font-size: 11pt;
+    color: var(--dark);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .question strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--dark);
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .lines { margin-bottom: 22px; }
+  .line {
+    border-bottom: 1px solid var(--border);
+    height: 30px;
+    margin-bottom: 2px;
+  }
+
+  .checklist { margin-bottom: 22px; }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--teal);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .ex-box {
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    background: #fff;
+  }
+
+  .note-box {
+    background: rgba(59,94,110,0.06);
+    border-left: 3px solid var(--teal);
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 10pt;
+    font-style: italic;
+    color: var(--teal);
+    line-height: 1.6;
+  }
+
+  .inline-fill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 9px;
+    font-size: 10.5pt;
+  }
+  .fill-line {
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+    height: 24px;
+  }
+
+  .fill-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .fill-cell {
+    border: 1px solid var(--border);
+    padding: 14px;
+    min-height: 110px;
+  }
+  .fill-cell-label {
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 26px 0;
+  }
+
+  .end-note {
+    text-align: center;
+    padding: 32px 0 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14pt;
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .no-break { page-break-inside: avoid; }
+
+  /* ── CLOSING PATHS ── */
+  .path-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 14px 16px;
+    margin-bottom: 9px;
+  }
+  .path-option .check-box { margin-top: 3px; }
+  .path-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+  .path-desc {
+    font-size: 9.5pt;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  @media print {
+    body { background: white; font-size: 10.5pt; }
+    .cover { min-height: 100vh; }
+    .page { padding: 36px 44px 52px; max-width: 100%; }
+    .page-break { page-break-before: always; }
+    a { color: inherit; text-decoration: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══ -->
+<div class="cover">
+  <div class="cover-eyebrow">Energy with Jess &nbsp;·&nbsp; Soul-Led Business</div>
+  <div class="cover-title">Going Deeper</div>
+  <div class="cover-subtitle">The Course — Workbook</div>
+  <div class="cover-rule"></div>
+  <div class="cover-name-field">&nbsp;</div>
+  <div class="cover-name-label">Your name</div>
+  <div class="cover-byline">energywithjess.com.au</div>
+</div>
+
+
+<!-- ══ WELCOME ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Welcome</div>
+    <div class="module-title">You've got the foundation. Now let's build.</div>
+    <div class="module-intro">Start with the module that's most alive for you right now. There's no rule that says you go front to back.</div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Where you're starting from</span>
+    <div class="question"><strong>What's the most alive module for you right now?</strong>
+    Which one did you see on the list and immediately feel something about?</div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Intention</span>
+    <div class="question"><strong>What do you want to have in place by the time you finish Going Deeper?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+</div>
+
+
+<!-- ══ MODULE 1 ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Module One</div>
+    <div class="module-title">How to Use AI in Your Business</div>
+    <div class="module-intro">You don't have to figure everything out alone.</div>
+  </div>
+
+  <div class="note-box">You don't have to use AI. Like anything in business, it's a free resource — not a requirement. This section is here if it's useful to you.</div>
+
+  <div class="no-break">
+    <span class="label">Before you read anything</span>
+    <div class="question"><strong>What do you think AI can support you with in your business?</strong>
+    Before you read on or look anything up — write what comes to mind.</div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <div class="question"><strong>What do you think you would use it for?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <div class="question"><strong>What would you like to keep doing yourself — and why does that matter?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div style="font-size:9pt; color:var(--mid); font-style:italic; margin-bottom:24px;">Curious about what AI can actually help you with? A free reference guide is included with this module as a separate resource.</div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Write your first prompt</span>
+    <div class="question"><strong>Pick one task from your list above. Write a prompt you could use right now in Claude or ChatGPT.</strong></div>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap;">Task</span><div class="fill-line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:14px 0 8px;">My prompt</div>
+      <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">AI as sounding board</span>
+    <div class="question"><strong>Write one question or decision you've been sitting with. Take it to AI. What came back?</strong></div>
+    <div class="ex-box">
+      <div style="font-size:9pt; color:var(--teal); margin-bottom:6px;">What I asked</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:12px 0 6px;">What came back that was useful</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:12px 0 6px;">What I still need to sit with myself</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Expansion prompt</span>
+    <div class="question"><strong>What would it feel like to not have to figure everything out alone?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+</div>
+
+
+
+<!-- ══ MODULE 2 ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Module Two</div>
+    <div class="module-title">Brand Basics</div>
+    <div class="module-intro">How people feel when they find you. Let's make sure that's intentional.</div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Business name</span>
+    <div class="question"><strong>Write every option you're considering. Include the one you keep coming back to even if you're not sure.</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+    <div class="question" style="font-size:10pt; color:var(--mid); margin-top:4px;">Ask about each: Can I say it easily out loud? Does it feel like me? Is it available (check ASIC: asic.gov.au)? Will it still fit in three years?</div>
+    <div class="inline-fill" style="margin-top:14px;"><span style="color:var(--teal); font-size:10pt; white-space:nowrap; font-family:'Cormorant Garamond',serif; font-weight:600;">The one I'm leaning toward</span><div class="fill-line"></div></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Voice note exercise — find your brand words</span>
+    <div class="question"><strong>Describe your business to a friend out loud. Not a pitch — a conversation.</strong>
+    Write down the words you naturally reached for. These are your brand words.</div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Your visual starting point</span>
+    <div class="question" style="margin-bottom:14px;"><strong>Two colours, one font, one feeling. Enough to be consistent. Not enough to be precious about.</strong></div>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">Two colours</span><div class="fill-line"></div><span style="color:var(--mid); font-size:10pt; white-space:nowrap; padding:0 8px;">and</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">Heading font</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">Body font</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">One feeling / one word</span><div class="fill-line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Reflection</span>
+    <div class="question"><strong>What does your brand feel like right now — and what do you want it to feel like?</strong></div>
+    <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:80px;">Right now</span><div class="fill-line"></div></div>
+    <div class="inline-fill" style="margin-top:6px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:80px;">What I want</span><div class="fill-line"></div></div>
+    <div class="inline-fill" style="margin-top:6px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:80px;">The gap</span><div class="fill-line"></div></div>
+  </div>
+</div>
+
+
+<!-- ══ MODULE 3 ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Module Three</div>
+    <div class="module-title">The Legal and Tax Basics</div>
+    <div class="module-intro">The stuff nobody walks you through. Now they are.</div>
+  </div>
+
+  <div class="note-box">This is an overview and practical starting points — not legal or financial advice. One accountant appointment early on is worth more than it costs.</div>
+
+  <span class="label">Business setup checklist</span>
+  <div class="checklist no-break">
+    <div class="check-item"><div class="check-box"></div><span>ABN registered and confirmed (abr.gov.au — free, 5 minutes)</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Business name registered through ASIC (if trading under a name other than your legal name)</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Invoice template saved — business name, ABN, date, description, amount, payment details</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Business money tracker set up (resource attached to this module)</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Folder system in place — income records, expenses, receipts all in one place</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Accountant booked (or on the list to book)</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Privacy policy in place if collecting emails on a website</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Professional indemnity insurance in place (or quotes obtained)</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Public liability insurance in place if seeing clients in person</span></div>
+    <div class="check-item"><div class="check-box"></div><span>Income protection insurance considered (sole traders have no sick leave)</span></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Insurance basics</span>
+    <div class="note-box" style="font-style:normal; font-size:9.5pt; margin-bottom:16px;">This is an overview only — not financial advice. A broker can help you find the right cover for your specific type of work.</div>
+    <div class="ex-box">
+      <div style="font-size:9pt; color:var(--teal); margin-bottom:4px;">Professional indemnity</div>
+      <div style="font-size:9.5pt; color:var(--dark); margin-bottom:14px; line-height:1.6;">Covers claims that your advice or service caused harm. Most relevant for coaches, practitioners, healers, consultants. Some professional associations require it before you can practice — check yours.</div>
+      <div style="font-size:9pt; color:var(--teal); margin-bottom:4px;">Public liability</div>
+      <div style="font-size:9.5pt; color:var(--dark); margin-bottom:14px; line-height:1.6;">Covers you if a client is injured or property is damaged during your work. Essential if you see clients in person — your space, their space, a studio, events.</div>
+      <div style="font-size:9pt; color:var(--teal); margin-bottom:4px;">Income protection</div>
+      <div style="font-size:9.5pt; color:var(--dark); line-height:1.6;">Covers your income if you're too sick or injured to work. Sole traders have no sick leave. This is the one most people skip — and the one they most regret skipping.</div>
+    </div>
+    <div class="question" style="font-size:10pt; color:var(--mid);">Most service-based businesses pay a few hundred dollars a year. Get at least two or three quotes. Check your professional association for preferred providers before going direct.</div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Sole trader or company?</span>
+    <div class="question"><strong>Write down where you've landed on this and why.</strong>
+    Most people starting out: sole trader. Simpler, cheaper, enough for where you are.</div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Simple tracking — set it up now</span>
+    <div class="question" style="margin-bottom:12px;"><strong>Open a spreadsheet. Create these columns. Add your first entry, even if it's a past payment.</strong></div>
+    <div class="ex-box" style="font-size:9.5pt; color:var(--mid);">
+      Date &nbsp;|&nbsp; Client / Description &nbsp;|&nbsp; Amount &nbsp;|&nbsp; Category &nbsp;|&nbsp; Receipt saved?
+    </div>
+    <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap;">Date of first entry</span><div class="fill-line"></div></div>
+    <div class="inline-fill" style="margin-top:6px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap;">Total income tracked so far</span><div class="fill-line" style="max-width:100px;"></div></div>
+  </div>
+
+  <div class="no-break" style="margin-top:20px;">
+    <span class="label">Accountant questions</span>
+    <div class="question"><strong>What would you ask an accountant if you had one appointment this week?</strong>
+    Write the questions now. Use them when you book.</div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+</div>
+
+
+<!-- ══ MODULE 4 ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Module Four</div>
+    <div class="module-title">Content Creation + Showing Up Online</div>
+    <div class="module-intro">Consistently, in your voice, without it taking over.</div>
+  </div>
+
+  <div class="note-box" style="font-style:normal;">A content pillar is a theme that's always true about your business — something you could talk about every week without running dry. Think of it as a lane, not a single topic. "Pricing mindset" is a pillar. "Here's how I priced my first service" is a post that lives inside it. Most businesses have 3-4 pillars. Once you have them, you'll always know where to start.</div>
+
+  <div class="no-break">
+    <span class="label">Your content pillars</span>
+    <div class="question" style="margin-bottom:14px;"><strong>3-4 themes that are always true for you and your business. Everything you post maps back to one of these.</strong></div>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:60px;">Pillar 1</span><div class="fill-line"></div></div>
+      <div class="lines" style="margin:6px 0 12px; padding-left:72px;"><div class="line"></div></div>
+      <div class="inline-fill"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:60px;">Pillar 2</span><div class="fill-line"></div></div>
+      <div class="lines" style="margin:6px 0 12px; padding-left:72px;"><div class="line"></div></div>
+      <div class="inline-fill"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:60px;">Pillar 3</span><div class="fill-line"></div></div>
+      <div class="lines" style="margin:6px 0 12px; padding-left:72px;"><div class="line"></div></div>
+      <div class="inline-fill"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:60px;">Pillar 4</span><div class="fill-line"></div></div>
+      <div class="lines" style="margin:6px 0 0; padding-left:72px;"><div class="line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Content ideas bank</span>
+    <div class="question" style="margin-bottom:14px;"><strong>Fill this in now while you have momentum. Come back to it when you have nothing to post.</strong></div>
+    <div class="question">Something I know that my ideal client doesn't:</div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question">A question I get asked all the time:</div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question">A mistake I made that's worth sharing:</div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question">Something that happened this week worth talking about:</div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Expansion prompts</span>
+    <div class="question"><strong>What do I want people to feel when they find me online?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question"><strong>What am I afraid to say?</strong> (That one's usually worth saying.)</div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question"><strong>What's the one thing I keep wanting to post but talk myself out of?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question"><strong>If my ideal client read this, would they feel seen — or would they feel sold to?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+    <div class="question"><strong>Am I showing up for them, or am I waiting to show up until I feel ready?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+  </div>
+</div>
+
+
+<!-- ══ MODULE 5 ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Module Five</div>
+    <div class="module-title">Email List Building</div>
+    <div class="module-intro">Something you own. Something the algorithm can't touch.</div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Your freebie concept</span>
+    <div class="ex-box">
+      <div class="question">The problem it solves:</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div class="question" style="margin-top:10px;">The format (checklist / guide / audio / template):</div>
+      <div class="lines"><div class="line"></div></div>
+      <div class="question" style="margin-top:10px;">What I'll call it:</div>
+      <div class="lines"><div class="line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Stage 1 — before a platform</span>
+    <div class="question" style="margin-bottom:12px; font-size:10pt; color:var(--mid);">Start here. No sign-ups required.</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div><span>Spreadsheet created — columns: Name | Email | Date added | How they found me</span></div>
+      <div class="check-item"><div class="check-box"></div><span>First contact added</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Sending method confirmed — Gmail BCC works up to ~50 people</span></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Stage 2 — when you're ready for a platform</span>
+    <div class="question" style="margin-bottom:12px; font-size:10pt; color:var(--mid);">Switch when your list hits 50-100, or when you want the welcome email to go out automatically.</div>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div><span>MailerLite free account created (handles up to 1,000 subscribers free)</span></div>
+      <div class="check-item"><div class="check-box"></div><span>List imported</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Welcome email written and set to send automatically</span></div>
+      <div class="check-item"><div class="check-box"></div><span>Sign-up form live</span></div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Draft your welcome email</span>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:100px;">Subject line</span><div class="fill-line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:14px 0 6px;">Opening (warm, like a text from a friend)</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:10px 0 6px;">What they can expect from you</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:10px 0 6px;">One thing you want them to know about you right now</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:10px 0 6px;">Soft close</div>
+      <div class="lines"><div class="line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">First three email topics</span>
+    <div class="question" style="margin-bottom:12px;">Don't overthink these. What do you already know that would be useful to them?</div>
+    <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:16px;">1.</span><div class="fill-line"></div></div>
+    <div class="inline-fill" style="margin-top:6px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:16px;">2.</span><div class="fill-line"></div></div>
+    <div class="inline-fill" style="margin-top:6px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:16px;">3.</span><div class="fill-line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Emails 4 and 5 — keep showing up</span>
+    <div class="ex-box">
+      <div style="font-size:9pt; color:var(--teal); margin-bottom:6px;">Email 4 — Something useful</div>
+      <div class="question" style="font-size:10pt; margin-bottom:10px;">One thing you know that would make their week easier. A tip, a resource, a shortcut you've found. No pitch. Just useful.</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:14px 0 6px;">Email 5 — A soft invite</div>
+      <div class="question" style="font-size:10pt; margin-bottom:10px;">Remind them you exist and what you do. One service, one link. "If you're ready, here's how I can help." That's it.</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══ MODULE 6 ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Module Six</div>
+    <div class="module-title">Pricing for Growth</div>
+    <div class="module-intro">Your starting price got you here. Here's where it goes next.</div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Pricing review</span>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:200px;">My current main offer</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:200px;">Current price</span><div class="fill-line" style="max-width:80px;"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:200px;">Hours it takes (including everything)</span><div class="fill-line" style="max-width:80px;"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:200px;">Effective hourly rate</span><div class="fill-line" style="max-width:80px;"></div></div>
+      <hr class="rule" style="margin:14px 0;">
+      <div style="font-size:10pt; color:var(--dark);">Does that feel sustainable?
+        <span style="margin-left:16px; font-size:9.5pt; color:var(--mid);">☐ Yes &nbsp;&nbsp; ☐ No &nbsp;&nbsp; ☐ Not sure</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Signs it might be time to raise prices</span>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box"></div><span>My books are consistently full</span></div>
+      <div class="check-item"><div class="check-box"></div><span>I'm getting regular enquiries I can't take on</span></div>
+      <div class="check-item"><div class="check-box"></div><span>I've said yes to clients I'd rather not work with because I needed the money</span></div>
+      <div class="check-item"><div class="check-box"></div><span>I haven't raised my prices in over 12 months</span></div>
+      <div class="check-item"><div class="check-box"></div><span>People rarely question my price (could mean you're undercharging)</span></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Expansion prompts</span>
+    <div class="question"><strong>What would I charge if I trusted that people would pay it?</strong></div>
+    <div class="inline-fill"><div class="fill-line" style="max-width:120px;"></div></div>
+    <div class="question" style="margin-top:14px;"><strong>What's the gap between that number and my current price?</strong></div>
+    <div class="inline-fill"><div class="fill-line" style="max-width:120px;"></div></div>
+    <div class="question" style="margin-top:14px;"><strong>What's in that gap?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Package thinking</span>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">Package name</span><div class="fill-line"></div></div>
+      <div style="font-size:9pt; color:var(--teal); margin:12px 0 6px;">What's included</div>
+      <div class="lines"><div class="line"></div><div class="line"></div></div>
+      <div class="inline-fill" style="margin-top:10px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">Length / number of sessions</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--mid); font-size:10pt; white-space:nowrap; min-width:160px;">Price</span><div class="fill-line" style="max-width:80px;"></div></div>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Somatic</span>
+    <div class="question"><strong>Where does "charging more" land in your body right now? Just notice. What does it want you to know?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="end-note">You built the foundation. Now you're building the business.</div>
+</div>
+
+
+<!-- ══ CLOSING ══ -->
+<div class="page page-break">
+  <div class="module-header">
+    <div class="module-eyebrow">Closing</div>
+    <div class="module-title">Look how far you've come.</div>
+    <div class="module-intro">You went further than most people do.</div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Name what you have now</span>
+    <div class="question" style="margin-bottom:16px;">Go through each module and write one thing you have now that you didn't have before.</div>
+    <div class="ex-box">
+      <div class="inline-fill"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:160px;">Module 1 — AI</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:160px;">Module 2 — Brand</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:160px;">Module 3 — Legal + Tax</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:160px;">Module 4 — Content</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:160px;">Module 5 — Email List</span><div class="fill-line"></div></div>
+      <div class="inline-fill" style="margin-top:8px;"><span style="color:var(--teal); font-size:9.5pt; white-space:nowrap; min-width:160px;">Module 6 — Pricing</span><div class="fill-line"></div></div>
+    </div>
+  </div>
+
+  <div class="no-break">
+    <span class="label">Reflection</span>
+    <div class="question"><strong>What shifted for you through this process?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <hr class="rule">
+
+  <div class="no-break">
+    <span class="label">Next 7 days</span>
+    <div class="question"><strong>What's the one thing you're going to do in the next 7 days?</strong></div>
+    <div class="lines"><div class="line"></div><div class="line"></div></div>
+  </div>
+
+  <div class="no-break" style="margin-top:28px;">
+    <span class="label">What's next for you</span>
+    <div class="question" style="margin-bottom:16px;">Three paths forward. No pressure. Which one calls?</div>
+    <div class="path-option">
+      <div class="check-box"></div>
+      <div>
+        <div class="path-title">Keep going</div>
+        <div class="path-desc">You've built something real. Keep moving with what you have.</div>
+      </div>
+    </div>
+    <div class="path-option">
+      <div class="check-box"></div>
+      <div>
+        <div class="path-title">Align + Flow</div>
+        <div class="path-desc">When you need a thinking partner — for decisions, momentum, or sorting something out. 1:1 sessions with Jess, shaped around what you need. energywithjess.com.au</div>
+      </div>
+    </div>
+    <div class="path-option">
+      <div class="check-box"></div>
+      <div>
+        <div class="path-title">Soul-Led Business Pack</div>
+        <div class="path-desc">You've built the foundation. Now grow it. For women ready to take what they have and build something bigger. energywithjess.com.au</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="end-note">You built this. Now go do something with it.</div>
+</div>
+
+</body>
+</html>
