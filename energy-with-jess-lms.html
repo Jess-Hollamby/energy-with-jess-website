@@ -2350,7 +2350,7 @@ const courses = [
         done: false,
         lessons: [
           { title: 'Welcome to Emotional Regulation', type: 'Video', done: false, youtubeId: '',
-            body: 'Who this course is for, what to expect, and how to use it.\n\nThis six-week course is for anyone who wants to understand what they\'re feeling, why they feel it, and how to work with it instead of against it. You don\'t need any background in this. You just need to be willing to pay attention.',
+            body: 'Who this course is for, what to expect, and how to use it.\n\nThis six-week course is for anyone who wants to understand what they\'re feeling, why they feel it, and how to work with it instead of against it. You don\'t need any background in this. You just need to be willing to pay attention.\n\nYou\'ll find a community space for this work in the Community tab - head to the #regulation channel to share reflections, ask questions, and connect with others going through this course.',
           },
         ]
       },
@@ -2464,7 +2464,7 @@ const courses = [
         done: false,
         lessons: [
           { title: 'Welcome to Nervous System Regulation', type: 'Video', done: false, youtubeId: '',
-            body: 'What this course covers, the four phases, and what to expect over 12 weeks.\n\nThis course goes underneath the emotional work. If Emotional Regulation was learning the language, this is learning the biology - how your body actually creates the conditions that make emotions feel so big, so fast, so hard to stop.\n\nFour phases: Foundation → Awareness → Release → Rewire.',
+            body: 'What this course covers, the four phases, and what to expect over 12 weeks.\n\nThis course goes underneath the emotional work. If Emotional Regulation was learning the language, this is learning the biology - how your body actually creates the conditions that make emotions feel so big, so fast, so hard to stop.\n\nFour phases: Foundation → Awareness → Release → Rewire.\n\nYou\'ll find a community space for this work in the Community tab - head to the #regulation channel to share reflections, ask questions, and connect with others going through this course.',
             bonusDownload: { label: 'Recommended Reading List', url: 'pdfs/regulation-reading-list.pdf' },
           },
         ]
@@ -3584,6 +3584,19 @@ async function initCommunity() {
       createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       order: 0
+    });
+  }
+
+  // Ensure Regulation channel exists
+  const regRef = db.collection('channels').doc('regulation');
+  const regDoc = await regRef.get();
+  if (!regDoc.exists) {
+    await regRef.set({
+      name: 'regulation',
+      createdBy: currentUser.uid,
+      createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      order: 1
     });
   }
 
