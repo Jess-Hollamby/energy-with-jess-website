@@ -272,6 +272,77 @@
   .sg-grads-inner { padding: 36px 24px; }
   .course-card-main { padding: 36px 24px; }
 }
+
+/* ── FREE GUIDE OPT-IN ── */
+.sg-optin {
+  padding: 64px 0;
+  background: rgba(196,176,212,0.06);
+  border-top: 1px solid rgba(196,176,212,0.12);
+  border-bottom: 1px solid rgba(196,176,212,0.12);
+}
+.sg-optin-inner {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sg-optin-inner h2 {
+  font-size: clamp(26px, 3.5vw, 34px);
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+.sg-optin-inner > p {
+  font-size: 15.5px;
+  color: rgba(250,247,242,0.62);
+  line-height: 1.8;
+  margin-bottom: 28px;
+}
+.sg-optin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sg-optin-form input {
+  background: rgba(250,247,242,0.06);
+  border: 1px solid rgba(250,247,242,0.14);
+  border-radius: 6px;
+  padding: 14px 18px;
+  font-family: var(--b);
+  font-size: 15px;
+  color: var(--cream);
+  outline: none;
+  transition: border-color 0.25s;
+}
+.sg-optin-form input::placeholder { color: rgba(250,247,242,0.35); }
+.sg-optin-form input:focus { border-color: rgba(196,176,212,0.45); }
+.sg-optin-form button {
+  background: var(--teal);
+  color: var(--cream);
+  border: none;
+  border-radius: 6px;
+  padding: 14px 28px;
+  font-family: var(--b);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.sg-optin-form button:hover { background: #4a7587; }
+.sg-optin-form button:disabled { opacity: 0.5; cursor: default; }
+.sg-optin-thanks {
+  font-family: var(--h);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--lavender);
+  line-height: 1.55;
+  margin: 0;
+}
+.sg-optin-note {
+  font-size: 12px;
+  color: rgba(250,247,242,0.32);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
 </style>
 </head>
 <body>
@@ -305,6 +376,26 @@
     <span class="label">Soul-Led Business</span>
     <h1>Solid <em>Ground</em></h1>
     <p class="page-hero-sub">Business foundations for women doing it solo - no partner safety net, no roadmap. Just real, practical ground beneath your feet.</p>
+  </div>
+</section>
+
+<!-- ── FREE GUIDE OPT-IN ── -->
+<section class="sg-optin">
+  <div class="container">
+    <div class="sg-optin-inner reveal">
+      <span class="label" style="color: var(--lavender);">Free to Download</span>
+      <h2>Not sure where to start? <em>Grab the free guide.</em></h2>
+      <p>The Solid Ground guide covers what you actually need before you begin, the trap that keeps most people stuck, and your first real steps - no fluff, no hustle. Download it now, read it when you're ready.</p>
+      <form id="sg-optin-form" class="sg-optin-form" onsubmit="handleSgOptIn(event)">
+        <input type="text" name="firstName" placeholder="First name" required autocomplete="given-name">
+        <input type="email" name="email" placeholder="Email address" required autocomplete="email">
+        <button type="submit" id="sg-optin-btn">Send Me the Guide</button>
+      </form>
+      <div id="sg-optin-success" style="display:none; padding: 24px 0;">
+        <p class="sg-optin-thanks">On its way. Check your inbox - and your spam folder if it doesn't show up in a few minutes.</p>
+      </div>
+      <p class="sg-optin-note">No spam. No countdown timers. Just the guide, and the occasional email from Jess when she has something worth saying.</p>
+    </div>
   </div>
 </section>
 
@@ -630,6 +721,26 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
 }, { threshold: 0.1 });
 reveals.forEach(r => observer.observe(r));
+
+/* ── FREE GUIDE OPT-IN ── */
+const SG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+function handleSgOptIn(e) {
+  e.preventDefault();
+  const btn = document.getElementById('sg-optin-btn');
+  const form = document.getElementById('sg-optin-form');
+  const firstName = form.querySelector('[name="firstName"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const url = SG_SCRIPT_URL + '?source=solid_ground&first_name=' + encodeURIComponent(firstName) + '&email=' + encodeURIComponent(email);
+  fetch(url, { mode: 'no-cors' }).catch(() => {});
+
+  form.style.display = 'none';
+  document.getElementById('sg-optin-success').style.display = 'block';
+}
 </script>
 </body>
 </html>
