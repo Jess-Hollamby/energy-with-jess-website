@@ -186,48 +186,39 @@
 .sg-bundle-price .now { font-family: var(--h); font-size: 52px; font-weight: 300; color: var(--rose); line-height: 1; }
 .sg-bundle-price .save { font-size: 12px; color: var(--rose); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-top: 8px; }
 
-/* ── GRADUATING PRACTITIONERS ── */
-.sg-grads {
-  padding: 100px 0;
-  background: var(--dark);
-}
-.sg-grads-inner {
+/* ── GRADUATING CALLOUT ── */
+.sg-grads-callout {
+  margin-top: 48px;
   background: rgba(196,176,212,0.05);
   border: 1px solid rgba(196,176,212,0.15);
-  border-radius: 20px;
-  padding: 64px;
+  border-radius: 16px;
+  padding: 40px 48px;
+}
+.sg-grads-callout p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.85; margin-bottom: 24px; }
+.sg-grads-callout p strong { color: var(--cream); }
+.sg-grads-callout-steps {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
-.sg-grads-inner h2 { font-family: var(--h); font-size: clamp(26px, 3vw, 40px); font-weight: 400; color: var(--cream); margin-bottom: 20px; line-height: 1.2; }
-.sg-grads-inner h2 em { font-style: italic; color: var(--lavender); }
-.sg-grads-inner p { font-size: 15px; color: rgba(250,247,242,0.62); line-height: 1.85; margin-bottom: 16px; }
-.sg-grads-inner p strong { color: var(--cream); }
-.sg-grads-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
-.sg-grads-list li {
-  display: flex; gap: 14px; align-items: flex-start;
-  font-size: 14px; color: rgba(250,247,242,0.58); line-height: 1.6;
+.sg-grads-callout-steps div {
+  font-size: 13px;
+  color: rgba(250,247,242,0.48);
+  line-height: 1.65;
 }
-.sg-grads-list li::before {
-  content: '';
-  width: 5px; height: 5px;
-  background: var(--lavender);
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 7px;
+.sg-grads-callout-steps span {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  margin-bottom: 6px;
 }
-.sg-grads-timeline { display: flex; flex-direction: column; gap: 16px; margin-top: 12px; }
-.sg-grads-step {
-  background: rgba(250,247,242,0.03);
-  border: 1px solid rgba(250,247,242,0.06);
-  border-radius: 12px;
-  padding: 20px 24px;
+@media (max-width: 760px) {
+  .sg-grads-callout { padding: 32px 24px; }
+  .sg-grads-callout-steps { grid-template-columns: 1fr 1fr; }
 }
-.sg-grads-step .step-num { font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lavender); margin-bottom: 6px; }
-.sg-grads-step .step-title { font-family: var(--h); font-size: 17px; color: var(--cream); margin-bottom: 4px; }
-.sg-grads-step .step-desc { font-size: 13px; color: rgba(250,247,242,0.48); line-height: 1.6; }
 
 /* ── PATH EXPLAINER ── */
 .sg-paths { padding: 80px 0; background: var(--mid); }
@@ -575,54 +566,19 @@
       </div>
 
     </div>
-  </div>
-</section>
 
-<!-- ── GRADUATING PRACTITIONERS ── -->
-<section class="sg-grads">
-  <div class="container">
-    <div class="sg-grads-inner reveal">
-      <div>
-        <span class="label" style="color: var(--lavender);">For Graduating Practitioners</span>
-        <h2>Your degree taught you the skill. <em>Nobody taught you the business.</em></h2>
-        <p>If you're in your final semester of myotherapy, naturopathy, counselling, massage, kinesiology, or any health or allied health degree - you're closer to the right moment than you think.</p>
-        <p><strong>The best time to start building is before you graduate - not after.</strong> After is when the financial pressure lands, the confidence dips, and you're starting from zero while also trying to hold everything else together.</p>
-        <p>The Solid Ground Core course takes most students six weeks to work through. Start now, and you'll have the foundations in place before your degree ends.</p>
-        <ul class="sg-grads-list">
-          <li>Your offer defined and ready to describe</li>
-          <li>A way to get paid set up and tested</li>
-          <li>Your first outreach done - before the panic sets in</li>
-          <li>Six months of quiet building behind you</li>
-          <li>A name already out there among the people who know you</li>
-        </ul>
-        <p style="font-size: 14px; color: rgba(250,247,242,0.45);">Want 1:1 support working through this alongside study? See <a href="solid-ground-1on1.html" style="color: var(--lavender); text-decoration: none;">Solid Ground 1:1</a> - six sessions over 12 weeks, built entirely around you.</p>
-      </div>
-      <div>
-        <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lavender); margin-bottom: 20px;">What the timeline looks like</div>
-        <div class="sg-grads-timeline">
-          <div class="sg-grads-step">
-            <div class="step-num">Months 1 - 2</div>
-            <div class="step-title">Core: Foundations</div>
-            <div class="step-desc">Work through the 6 Core modules alongside study. Offer defined, payment set up, first outreach planned.</div>
-          </div>
-          <div class="sg-grads-step">
-            <div class="step-num">Month 3</div>
-            <div class="step-title">First visibility</div>
-            <div class="step-desc">Tell people what you do. Put it in a caption. Say it out loud before you feel ready. The building starts here.</div>
-          </div>
-          <div class="sg-grads-step">
-            <div class="step-num">Graduation</div>
-            <div class="step-title">Ready, not starting</div>
-            <div class="step-desc">You finish the degree with a foundation already in place. Not a blank page. Not a panic. Solid ground.</div>
-          </div>
-          <div class="sg-grads-step">
-            <div class="step-num">After you graduate</div>
-            <div class="step-title">Going Deeper</div>
-            <div class="step-desc">When you're settled, add Going Deeper - brand, AI, legal, content, email, pricing for growth. Build on what's already there.</div>
-          </div>
-        </div>
+    <!-- graduating practitioner callout -->
+    <div class="sg-grads-callout reveal">
+      <span class="label" style="color: var(--lavender); margin-bottom: 10px; display: block;">Still Studying?</span>
+      <p><strong>The best time to start building is before you graduate - not after.</strong> After is when the financial pressure lands and you're starting from zero while holding everything else together. Core takes most students six weeks. Start now and you'll have the foundations in place before your degree ends.</p>
+      <div class="sg-grads-callout-steps">
+        <div><span>Months 1 - 2</span>Work through Core alongside study - offer defined, payment set up, first outreach done.</div>
+        <div><span>Month 3</span>Tell people what you do. Say it out loud before you feel ready.</div>
+        <div><span>Graduation</span>Finish your degree with a foundation already in place. Not a blank page.</div>
+        <div><span>After</span>Add Going Deeper when you're settled - brand, content, pricing for growth.</div>
       </div>
     </div>
+
   </div>
 </section>
 
