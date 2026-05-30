@@ -1220,6 +1220,21 @@
     font-weight: 300;
   }
 
+  .intl-note {
+    background: #f0f6ff;
+    border: 1.5px solid #b8d0f0;
+    border-left: 4px solid #3B5E6E;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .intl-note .intl-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .intl-note .intl-body { font-size: 13.5px; color: #2a4a5a; line-height: 1.65; }
+  .intl-note .intl-body strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: #3B5E6E; margin-bottom: 5px; }
+
   .lesson-nav-btns {
     display: flex;
     justify-content: space-between;
@@ -2778,6 +2793,7 @@ const courses = [
             slidesUrl: 'pdfs/sg-deeper-module-3.pdf',
             topics: ['Sole trader vs. company: what the difference actually is', 'How to register an ABN (free, takes five minutes)', 'What must go on every invoice - no exceptions', 'Tax basics for sole traders: income, deductions, what to keep', 'When to talk to an accountant'],
             body: 'Australian-specific. The stuff nobody walks you through.\n\nYou\'ll leave with ABN registered, sole trader basics understood, and a simple system for tracking what you need at tax time.\n\nNote: This module gives an overview and practical starting points, not legal or financial advice. One appointment with an accountant early on is worth every cent.\n\nWorkbook: Setup checklist - ABN, invoice template, tracking folder, accountant booked.',
+            intlNote: 'Not based in Australia? Search <strong>[your country] sole trader registration</strong> and <strong>[your country] self-employed tax basics</strong> to find your local equivalent. The structure of this module is the same wherever you are - the terminology and registration steps will differ.',
           },
         ]
       },
@@ -3262,6 +3278,11 @@ function openLesson(moduleIdx, lessonIdx) {
     ? lesson.body.split('\n\n').map(p => `<p>${p}</p>`).join('')
     : '';
 
+  // International note (shown when lesson has intlNote field)
+  const intlNoteHtml = lesson.intlNote
+    ? `<div class="intl-note"><div class="intl-icon">🌏</div><div class="intl-body"><strong>Outside Australia?</strong>${lesson.intlNote}</div></div>`
+    : '';
+
   el.innerHTML = `
     <div class="lesson-viewer">
       <div class="lesson-main">
@@ -3271,6 +3292,7 @@ function openLesson(moduleIdx, lessonIdx) {
           <h3>${lesson.title}</h3>
           ${audioHtml ? `<div class="audio-files">${audioHtml}</div>` : ''}
           ${topicsHtml}
+          ${intlNoteHtml}
           ${bodyHtml}
           ${whatNextHtml}
           ${telegramHtml}
