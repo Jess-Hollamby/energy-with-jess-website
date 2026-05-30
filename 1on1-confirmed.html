@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>You're in — Energy with Jess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --teal:#3B5E6E;--pink:#bf4288;--dark:#1E2E32;--cream:#FAF7F2;
+  --lav:#C4B0D4;--border:#E4EAEC;--mid:#4A5E63;--light:#8A9FA5;
+}
+body{
+  font-family:'Belleza',sans-serif;background:var(--cream);color:var(--dark);
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:40px 24px;
+}
+.card{
+  background:#fff;max-width:560px;width:100%;
+  border:1px solid var(--border);padding:52px 48px 48px;
+  text-align:center;
+}
+.tick-circle{
+  width:56px;height:56px;border-radius:50%;
+  border:1.5px solid var(--teal);display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;color:var(--teal);font-size:22px;
+}
+.eyebrow{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--light);margin-bottom:16px;}
+h1{
+  font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;
+  line-height:1.1;color:var(--dark);margin-bottom:10px;
+}
+h1 em{font-style:italic;color:var(--pink);}
+.tagline{font-size:13px;color:var(--mid);line-height:1.75;margin-bottom:36px;}
+
+.rule{height:1px;background:var(--border);margin:32px 0;}
+.rule.pink{background:var(--pink);height:1.5px;width:48px;margin:0 auto 32px;}
+
+.steps-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--light);margin-bottom:20px;}
+.steps{display:flex;flex-direction:column;gap:0;text-align:left;}
+.step{display:flex;gap:18px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--border);}
+.step:last-child{border-bottom:none;}
+.step-num{
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;
+  color:var(--teal);line-height:1;flex-shrink:0;width:28px;
+}
+.step-body{}
+.step-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--dark);margin-bottom:3px;}
+.step-desc{font-size:12px;color:var(--mid);line-height:1.65;}
+
+.rule2{height:1px;background:var(--border);margin:32px 0;}
+.note{font-size:12px;color:var(--light);line-height:1.7;}
+.note a{color:var(--teal);text-decoration:none;}
+.note a:hover{text-decoration:underline;}
+
+@media(max-width:520px){
+  .card{padding:40px 28px 36px;}
+  h1{font-size:32px;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="tick-circle">✓</div>
+  <div class="eyebrow">Energy with Jess</div>
+  <h1>You're in.<br><em>This is the beginning.</em></h1>
+  <p class="tagline">Your payment has been received. Jess will be in touch within 24 hours to get your first session scheduled and answer any questions you have.</p>
+
+  <div class="rule pink"></div>
+
+  <div class="steps-label">What happens next</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Check your inbox</div>
+        <div class="step-desc">A receipt from Stripe is on its way. Keep it for your records. If you don't see it, check your spam folder.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Jess will reach out within 24 hours</div>
+        <div class="step-desc">You'll hear directly from Jess to schedule your first session and get you set up. No forms. No waiting.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Come as you are</div>
+        <div class="step-desc">You don't need to prepare anything. Just show up. That's enough.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule2"></div>
+  <p class="note">Questions before then? Email <a href="mailto:energywjess@gmail.com">energywjess@gmail.com</a> and Jess will get back to you.</p>
+
+</div>
+
+</body>
+</html>
