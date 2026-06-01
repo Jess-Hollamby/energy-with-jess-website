@@ -237,8 +237,8 @@
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ firstName, email, typeCode: 'SUBSCRIBE' }).toString()
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: 'monthly-email-signup', firstName, email })
       });
     } catch (err) {
       console.log('CRM note:', err.message);
