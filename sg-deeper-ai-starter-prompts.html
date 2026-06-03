@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Starter Prompts | Solid Ground: Going Deeper</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .page-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-family: 'Belleza', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--teal);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .intro-box {
+    background: white;
+    border-left: 4px solid var(--teal);
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--dark);
+  }
+
+  .intro-box strong {
+    color: var(--teal);
+  }
+
+  .section {
+    margin-bottom: 52px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--pink);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .use-case-desc {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .prompt-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  .prompt-label {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .prompt-text {
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.75;
+    background: var(--cream);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+
+  .prompt-text .fill {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 6px;
+    font-style: italic;
+    color: var(--pink);
+    white-space: nowrap;
+  }
+
+  .prompt-tip {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+  }
+
+  .tip-box {
+    background: #f0f4f6;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  .tip-box strong {
+    color: var(--teal);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .soul-check {
+    background: white;
+    border: 2px solid var(--lavender);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-top: 56px;
+    text-align: center;
+  }
+
+  .soul-check h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  .soul-check p {
+    font-size: 14px;
+    color: #666;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+  }
+
+  @media print {
+    body { background: white; }
+    .page-wrap { padding: 24px 24px 40px; }
+    .prompt-card { break-inside: avoid; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="header">
+    <div class="eyebrow">Solid Ground: Going Deeper · Module 1 Resource</div>
+    <h1>AI Starter Prompts</h1>
+    <p class="subtitle">Ready-to-use prompts for common solo business tasks. Copy, adapt, and make them yours.</p>
+  </div>
+
+  <div class="intro-box">
+    <strong>How to use this.</strong> Copy any prompt into Claude, ChatGPT, or whichever AI tool you're using. Replace anything in <span style="color:var(--pink);font-style:italic;">[brackets]</span> with your actual details. The more specific you are, the better the output. If the first response isn't quite right, say what needs to change - AI works best as a back-and-forth, not a one-shot.
+  </div>
+
+  <!-- SECTION 1: WRITING AND DRAFTING -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Use case 01</span>
+      <h2>Writing + Drafting</h2>
+    </div>
+    <p class="use-case-desc">Bios, captions, emails, website copy - anything where you know what you want to say but the words aren't coming out right.</p>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 1 - Instagram Bio</div>
+      <div class="prompt-text">
+        Write a 3-sentence Instagram bio for <span class="fill">[what you do]</span>, for <span class="fill">[who you help]</span>, based in <span class="fill">[your location]</span>. Tone: warm, real, no corporate language. Don't use the words "empower," "transform," "journey," or "hustle." End with a soft call to action pointing to my link in bio.
+      </div>
+      <p class="prompt-tip">Tip: paste in your existing bio and say "rewrite this in a warmer, more human voice" if you're starting from something.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 2 - Instagram Caption</div>
+      <div class="prompt-text">
+        Write an Instagram caption about <span class="fill">[topic or idea]</span>. My audience is <span class="fill">[describe who you're writing for]</span>. The tone should feel like a text from a knowledgeable friend - warm, direct, no hype. Keep it under 150 words. End with a question or a soft invitation to book or reach out.
+      </div>
+      <p class="prompt-tip">Tip: if it sounds too polished or salesy, say "make it sound less like marketing and more like a real person wrote it."</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 3 - Email to a Potential Client</div>
+      <div class="prompt-text">
+        Help me write a short follow-up email to someone who enquired about <span class="fill">[your service]</span> but hasn't booked yet. Warm but not pushy. Remind them what the session covers, what the next step is, and how to book. Keep it to 3-4 short paragraphs.
+      </div>
+      <p class="prompt-tip">Tip: paste in any details they shared in their enquiry so the email feels personal, not generic.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: PLANNING -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Use case 02</span>
+      <h2>Planning + Mapping</h2>
+    </div>
+    <p class="use-case-desc">Launch plans, content calendars, task prioritisation - when you have too many moving pieces and not enough order.</p>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 1 - Simple Content Plan</div>
+      <div class="prompt-text">
+        I want to post on Instagram <span class="fill">[X times per week]</span> for the next <span class="fill">[4 weeks / month]</span>. My business is <span class="fill">[describe briefly]</span>. My content themes are <span class="fill">[list 2-3 topics you regularly talk about]</span>. Give me a simple posting plan - one idea per slot, enough to get started, not so detailed I feel overwhelmed.
+      </div>
+      <p class="prompt-tip">Tip: once you have the plan, ask it to write the first 3 captions so you're not staring at a blank page.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 2 - Launch Prep Checklist</div>
+      <div class="prompt-text">
+        I'm launching <span class="fill">[describe your offer]</span> in <span class="fill">[timeframe, e.g. 6 weeks]</span>. I'm working solo with limited time. What are the essential things I need to have in place before I open it? Give me a simple checklist, no more than 12 items, in the order I should tackle them.
+      </div>
+      <p class="prompt-tip">Tip: say "now help me figure out which 3 to do this week" once you have the list.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 3 - Sorting a Busy Brain</div>
+      <div class="prompt-text">
+        I have a lot of things I'm trying to do at once and I'm not sure what to focus on. Here's everything on my plate right now: <span class="fill">[list everything - messy is fine]</span>. Help me sort this into: what needs attention this week, what can wait, and what I should probably drop or delegate. I have about <span class="fill">[X hours per week]</span> to work on the business.
+      </div>
+      <p class="prompt-tip">Tip: be honest about your hours. AI will prioritise differently if you have 5 hours vs 20.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: SOUNDING BOARD -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Use case 03</span>
+      <h2>AI as a Sounding Board</h2>
+    </div>
+    <p class="use-case-desc">When you need to think out loud and there's no one at the kitchen table. AI won't have your instincts - but it can help you organise the noise.</p>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 1 - Decision Support</div>
+      <div class="prompt-text">
+        I'm trying to decide between <span class="fill">[option A]</span> and <span class="fill">[option B]</span>. Here's the context: <span class="fill">[explain the situation in a few sentences]</span>. I'm not asking you to decide for me. I want you to help me think it through. Ask me 3-4 questions that would help me get clearer, and then reflect back what you're hearing.
+      </div>
+      <p class="prompt-tip">Tip: when it reflects back, notice what lands as true and what doesn't. That's information.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 2 - Challenge My Thinking</div>
+      <div class="prompt-text">
+        I'm planning to <span class="fill">[describe your plan or idea]</span>. I want you to play devil's advocate. What are the things I might not have considered? Where could this go wrong? What assumptions am I making that I should test? Be direct - I want honest pushback, not reassurance.
+      </div>
+      <p class="prompt-tip">Tip: useful when you've been sitting with an idea for a while and need a fresh angle.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 3 - Unsticking a Stuck Thing</div>
+      <div class="prompt-text">
+        I've been avoiding <span class="fill">[describe the task or decision]</span> for <span class="fill">[how long]</span>. I know I need to do it but I keep not doing it. Can you help me figure out what's actually in the way? I'll answer your questions honestly. Don't jump to solutions yet - help me understand the block first.
+      </div>
+      <p class="prompt-tip">Tip: sometimes naming the real block out loud (even to AI) is enough to get moving.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: ADMIN + OPERATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Use case 04</span>
+      <h2>Admin + Day-to-Day</h2>
+    </div>
+    <p class="use-case-desc">The practical stuff that piles up when you're doing everything yourself.</p>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 1 - Client Message or Response</div>
+      <div class="prompt-text">
+        Help me write a response to this client message: <span class="fill">[paste the message]</span>. I want to reply in a warm, professional tone. The outcome I'm hoping for is <span class="fill">[e.g. they rebook / they understand the cancellation policy / they feel heard]</span>. Keep it short - 3-4 sentences max.
+      </div>
+      <p class="prompt-tip">Tip: always read it before sending and adjust anything that doesn't sound like you.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 2 - Policy or FAQ Draft</div>
+      <div class="prompt-text">
+        Help me write a simple <span class="fill">[cancellation policy / booking policy / FAQs page]</span> for my business. I offer <span class="fill">[describe your services]</span>. Key things to include: <span class="fill">[list any specifics - e.g. 24hr cancellation window, no refunds on digital products, etc.]</span>. Tone: clear and direct but not cold. Written for a solo service business, not a corporate.
+      </div>
+      <p class="prompt-tip">Tip: have a quick read and check it covers everything - AI sometimes misses edge cases you'd know from experience.</p>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-label">Prompt 3 - Service Description for Website or Booking Page</div>
+      <div class="prompt-text">
+        Write a short description for my <span class="fill">[service name]</span> for my booking page or website. The service is <span class="fill">[describe what happens, how long, what it's for]</span>. It's for <span class="fill">[who it's for]</span>. Tone: warm and grounded, no hype, no woo-woo performance. Around 80-100 words.
+      </div>
+      <p class="prompt-tip">Tip: if it sounds too generic, say "this sounds like it could be for anyone - make it more specific to [describe your niche]."</p>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>The soul-led check - always do this before you use anything AI writes.</strong>
+    Does this still sound like me? Would I actually say this? Does it feel true - or just technically correct? If something feels off, it probably is. AI doesn't know your clients, your instincts, or your voice. It's a starting point. You're the editor.
+  </div>
+
+  <div class="soul-check">
+    <h3>Prompting gets better with practice.</h3>
+    <p>The more context you give, the better the output. If a response isn't quite right, don't start over - just say what needs to change. The conversation approach works better than trying to get it right in one go.</p>
+  </div>
+
+  <div class="footer">
+    Solid Ground: Going Deeper · Module 1 Resource · energywithjess.com.au
+  </div>
+
+</div>
+</body>
+</html>
