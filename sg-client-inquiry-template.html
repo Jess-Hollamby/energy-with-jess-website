@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Inquiry Email Template — Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Belleza', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+  .page-header {
+    background: var(--teal);
+    padding: 40px 32px 32px;
+    color: white;
+  }
+  .page-header .eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .page-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .page-header p {
+    font-size: 14px;
+    opacity: 0.85;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .content-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 32px 64px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--teal);
+    margin-bottom: 4px;
+    margin-top: 40px;
+  }
+  .section-subtitle {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 20px;
+  }
+  .tip-box {
+    background: white;
+    border-left: 3px solid var(--lavender);
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  .tip-box strong { color: var(--teal); }
+
+  .email-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .email-card-header {
+    background: var(--dark);
+    color: white;
+    padding: 12px 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .email-meta {
+    padding: 16px 20px 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 14px;
+  }
+  .email-meta-row {
+    display: flex;
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 6px;
+    align-items: flex-start;
+  }
+  .email-meta-row .label {
+    color: #888;
+    min-width: 60px;
+    flex-shrink: 0;
+  }
+  .email-meta-row .value {
+    color: var(--dark);
+    flex: 1;
+  }
+  .email-body {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--dark);
+    white-space: pre-wrap;
+  }
+  .placeholder {
+    background: #FFF3E0;
+    border-radius: 3px;
+    padding: 1px 4px;
+    font-style: italic;
+    color: #e67e22;
+    white-space: nowrap;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 20px 16px;
+    padding: 8px 16px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 12px;
+    color: var(--teal);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: var(--teal); color: white; border-color: var(--teal); }
+
+  .addon-section {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .addon-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .addon-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--dark);
+    white-space: pre-wrap;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 16px;
+    margin-top: 10px;
+  }
+
+  .rule {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0 0;
+  }
+  .practitioner-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--dark);
+    margin-top: 40px;
+    margin-bottom: 4px;
+  }
+  .practitioner-sub {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="eyebrow">Solid Ground — Bonus Resource</div>
+  <h1>Client Inquiry Templates</h1>
+  <p>What to say when someone reaches out — so you don't lose the booking because you didn't know how to reply.</p>
+</div>
+
+<div class="content-wrap">
+
+  <div class="tip-box" style="margin-top:0; margin-bottom:32px;">
+    <strong>The rule:</strong> Reply within 24 hours. That's it. People who enquire are in a moment of readiness — the longer you wait, the more that window closes. You don't need a perfect response. You need a prompt one.
+  </div>
+
+  <!-- TEMPLATE 1 -->
+  <div class="section-title">Template 1</div>
+  <div class="section-subtitle">First Reply to an Inquiry</div>
+
+  <div class="email-card">
+    <div class="email-card-header">Email / DM Response</div>
+    <div class="email-meta">
+      <div class="email-meta-row">
+        <span class="label">Subject:</span>
+        <span class="value">Re: <span class="placeholder">[their name]</span> — <span class="placeholder">[your service]</span></span>
+      </div>
+    </div>
+    <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Thanks so much for reaching out — I'd love to tell you a bit more.
+
+<span class="placeholder">[One sentence about your service and who it's for — e.g. "I work with women who are exhausted from giving everything to everyone, helping them find space to breathe again through Reiki and intuitive healing."]</span>
+
+Here's what a session looks like:
+
+- <span class="placeholder">[Duration and format — e.g. "60 minutes, online via Zoom"]</span>
+- <span class="placeholder">[What happens — e.g. "We start with a brief check-in, then I hold space for whatever needs to move"]</span>
+- <span class="placeholder">[What they walk away with — e.g. "A recording of the session and a short voice note with what I noticed"]</span>
+
+Sessions are $<span class="placeholder">[price]</span>. <span class="placeholder">[Add availability — e.g. "I have space on Tuesdays and Thursdays at the moment."]</span>
+
+The easiest way to book is <span class="placeholder">[booking link or payment link]</span>.
+
+Any questions, just reply here — I'm happy to chat before you commit to anything.
+
+Warm,
+<span class="placeholder">[Your name]</span></div>
+    <button class="copy-btn" onclick="copyTemplate(this, 'tmpl1')">⬇ Copy this template</button>
+  </div>
+
+  <!-- TEMPLATE 2 -->
+  <div class="section-title">Template 2</div>
+  <div class="section-subtitle">Follow-Up (3-7 Days Later)</div>
+
+  <div class="tip-box">
+    Most people don't follow up because it feels pushy. It's not. They're busy. A gentle nudge shows you care enough to check in — and often that's all it takes.
+  </div>
+
+  <div class="email-card">
+    <div class="email-card-header">Follow-Up Email / DM</div>
+    <div class="email-meta">
+      <div class="email-meta-row">
+        <span class="label">Subject:</span>
+        <span class="value">Just checking in — <span class="placeholder">[your service]</span></span>
+      </div>
+    </div>
+    <div class="email-body">Hi <span class="placeholder">[Name]</span>,
+
+Just circling back in case my last message got buried!
+
+<span class="placeholder">[One line reminder — e.g. "I still have space in my schedule if you're still thinking about it."]</span>
+
+No pressure either way — happy to answer any questions if that helps.
+
+<span class="placeholder">[Your name]</span></div>
+    <button class="copy-btn" onclick="copyTemplate(this, 'tmpl2')">⬇ Copy this template</button>
+  </div>
+
+  <!-- TEMPLATE 3 -->
+  <div class="section-title">Template 3</div>
+  <div class="section-subtitle">When They Say "I'll Think About It"</div>
+
+  <div class="email-card">
+    <div class="email-card-header">Response to "I'll Think About It"</div>
+    <div class="email-meta">
+      <div class="email-meta-row">
+        <span class="label">Subject:</span>
+        <span class="value">Re: <span class="placeholder">[your service]</span></span>
+      </div>
+    </div>
+    <div class="email-body">Of course — take your time.
+
+I'm here when you're ready. If any questions come up in the meantime, just reply.
+
+<span class="placeholder">[Optional: add something relevant — e.g. "I do have limited spots in July, so let me know if timing matters for you."]</span>
+
+<span class="placeholder">[Your name]</span></div>
+    <button class="copy-btn" onclick="copyTemplate(this, 'tmpl3')">⬇ Copy this template</button>
+  </div>
+
+  <hr class="rule">
+
+  <!-- PRACTITIONER ADD-ONS -->
+  <div class="practitioner-heading">Practitioner Add-Ons</div>
+  <div class="practitioner-sub">
+    Swap these into Template 1 where it says "Here's what a session looks like" — or add them as extra context below your main reply.
+  </div>
+
+  <div class="addon-section">
+    <div class="addon-title">Energy Healing / Intuitive Healing</div>
+    <div class="addon-body">I work intuitively — meaning each session is shaped around what comes up for you on the day, rather than a set structure.
+
+Sessions are held <span class="placeholder">[in person / online]</span>. For distance sessions, you don't need to do anything specific — just find a quiet space where you can rest for the duration.
+
+After the session I'll send you a voice note with what I noticed and anything that came through.
+    </div>
+  </div>
+
+  <div class="addon-section">
+    <div class="addon-title">Reiki</div>
+    <div class="addon-body">Reiki is a gentle energy healing practice that works with your body's natural ability to find balance. You don't need to believe in it for it to work — you just need to be open to it.
+
+<span class="placeholder">[In person:]</span> You'll lie fully clothed on a massage table. I'll place my hands lightly on or above your body. Most people feel deeply relaxed, some notice warmth or tingling, some drift off.
+
+<span class="placeholder">[Distance:]</span> You'll be in your own space. I'll hold the session energetically — it's just as effective. Most people find it easier to relax at home.
+    </div>
+  </div>
+
+  <div class="addon-section">
+    <div class="addon-title">Tarot / Psychic Readings</div>
+    <div class="addon-body">Readings are <span class="placeholder">[15 / 30 / 45 / 60]</span> minutes. We connect <span class="placeholder">[via Zoom / via voice note / in person]</span>.
+
+You don't need to prepare questions — but if there's something specific you want to explore, feel free to mention it at the start.
+
+<span class="placeholder">[Optional:]</span> I'll record the session so you can come back to it. The link is available for 30 days.
+    </div>
+  </div>
+
+  <div class="addon-section">
+    <div class="addon-title">Massage / Myotherapy</div>
+    <div class="addon-body">Sessions are held at <span class="placeholder">[your location / clinic name / address]</span>.
+
+What to bring: comfortable clothing to change into, or you're welcome to undress to your comfort level — you'll be draped with a sheet throughout.
+
+Please arrive 5 minutes early for your first session so we can do a brief intake.
+
+<span class="placeholder">[If relevant:]</span> If you have any injuries, chronic conditions, or areas to avoid, just let me know before we start.
+    </div>
+  </div>
+
+</div>
+
+<script>
+function copyTemplate(btn, id) {
+  const card = btn.closest('.email-card');
+  const body = card.querySelector('.email-body');
+  const text = body.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    setTimeout(() => btn.innerHTML = '⬇ Copy this template', 2000);
+  });
+}
+</script>
+</body>
+</html>
