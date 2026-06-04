@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pre-Discovery Form — Solid Ground | Energy with Jess</title>
+  <title>Welcome to Solid Ground — Energy with Jess</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -36,9 +36,14 @@
     .field:last-of-type { margin-bottom:0; }
     label.field-label { font-size:0.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--mid); font-weight:400; }
     .field-note { font-size:0.78rem; color:var(--mid); opacity:0.75; font-style:italic; margin-top:-2px; }
-    input[type="text"], input[type="email"], textarea { font-family:'Jost',sans-serif; font-weight:300; font-size:0.93rem; color:var(--brown); background:var(--cream); border:1.5px solid var(--border); border-radius:8px; padding:12px 16px; width:100%; outline:none; transition:border-color 0.2s; resize:vertical; }
-    input:focus, textarea:focus { border-color:var(--accent); }
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+      font-family:'Jost',sans-serif; font-weight:300; font-size:0.93rem; color:var(--brown);
+      background:var(--cream); border:1.5px solid var(--border); border-radius:8px;
+      padding:12px 16px; width:100%; outline:none; transition:border-color 0.2s; resize:vertical;
+    }
+    input:focus, textarea:focus, select:focus { border-color:var(--accent); }
     textarea { min-height:96px; }
+    select { appearance:none; cursor:pointer; }
     .divider { height:1px; background:var(--border); margin:32px 0; }
     .section-head { font-size:0.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:24px; padding-bottom:10px; border-bottom:1px solid var(--border); }
     .options-list { display:flex; flex-direction:column; gap:10px; }
@@ -68,14 +73,16 @@
 
   <header class="form-header">
     <p class="eyebrow">Energy with Jess</p>
-    <h1>Before your <em>discovery call</em></h1>
-    <p class="service-tag">Solid Ground</p>
-    <p class="intro-text">You're booked in. Before we speak, take a few quiet minutes with these questions. There are no right answers - just honest ones. The more you share here, the more useful our time together will be.</p>
+    <h1>You said <em>yes.</em></h1>
+    <p class="service-tag">Solid Ground 1:1</p>
+    <p class="intro-text">Before we begin, I want to get a proper picture of who you are and what you're building toward. Take your time with this - the more honest you are, the more useful our sessions will be.</p>
   </header>
 
   <div id="form-section">
     <div class="form-card">
-      <form id="pdForm" novalidate>
+      <form id="intakeForm" novalidate>
+
+        <p class="section-head">The basics</p>
 
         <div class="field-row">
           <div class="field" style="margin-bottom:0">
@@ -83,118 +90,133 @@
             <input type="text" id="firstName" placeholder="Your first name" required />
           </div>
           <div class="field" style="margin-bottom:0">
-            <label class="field-label" for="email">Email</label>
-            <input type="email" id="email" placeholder="your@email.com" required />
+            <label class="field-label" for="lastName">Last name</label>
+            <input type="text" id="lastName" placeholder="Your last name" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="phone">Phone number</label>
+          <p class="field-note">For Telegram - this is how we'll connect between sessions</p>
+          <input type="tel" id="phone" placeholder="0400 000 000" />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="telegram">Telegram username</label>
+          <p class="field-note">If you already have one - if not, no worries, we'll sort it</p>
+          <input type="text" id="telegram" placeholder="@yourusername" />
+        </div>
+
+        <div class="field">
+          <label class="field-label">Which package are you in?</label>
+          <div class="options-list">
+            <label class="opt">
+              <input type="radio" name="package" value="Solid Ground: Core 1:1" />
+              <div class="opt-body">
+                <div class="opt-label">Solid Ground: Core 1:1</div>
+                <div class="opt-sub">6 sessions, 12 weeks, building from scratch</div>
+              </div>
+            </label>
+            <label class="opt">
+              <input type="radio" name="package" value="Solid Ground: Going Deeper 1:1" />
+              <div class="opt-body">
+                <div class="opt-label">Solid Ground: Going Deeper 1:1</div>
+                <div class="opt-sub">6 sessions, next layer - brand, content, pricing, email</div>
+              </div>
+            </label>
+            <label class="opt">
+              <input type="radio" name="package" value="Solid Ground: Bundle 1:1" />
+              <div class="opt-body">
+                <div class="opt-label">Solid Ground: Bundle 1:1</div>
+                <div class="opt-sub">12 sessions, 6 months, Core + Going Deeper</div>
+              </div>
+            </label>
           </div>
         </div>
 
         <div class="divider"></div>
 
-        <p class="section-head">Where you're starting from</p>
+        <p class="section-head">Who you are</p>
 
         <div class="field">
-          <label class="field-label">Where are you right now with your idea or business?</label>
-          <div class="options-list">
-            <label class="opt">
-              <input type="radio" name="stage" value="Solid Ground (Brand new idea)" />
-              <div class="opt-body">
-                <div class="opt-label">Brand new idea</div>
-                <div class="opt-sub">I have something forming but haven't started building yet</div>
-              </div>
-            </label>
-            <label class="opt">
-              <input type="radio" name="stage" value="Solid Ground (Started but stalled)" />
-              <div class="opt-body">
-                <div class="opt-label">Started but stalled</div>
-                <div class="opt-sub">I've made some moves but it hasn't gone anywhere yet</div>
-              </div>
-            </label>
-            <label class="opt">
-              <input type="radio" name="stage" value="Solid Ground (Pivoting)" />
-              <div class="opt-body">
-                <div class="opt-label">Pivoting</div>
-                <div class="opt-sub">I've been doing something and I need to change direction</div>
-              </div>
-            </label>
-          </div>
+          <label class="field-label">Tell me about your life right now</label>
+          <p class="field-note">Work, study, family, living situation - the full picture. What are you juggling alongside building this?</p>
+          <textarea id="q_life" rows="4" placeholder="e.g. I work part-time, I'm studying, I have two kids, I'm on my own..."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Are you studying anything at the moment?</label>
+          <p class="field-note">What, where, and how much of your time it takes</p>
+          <textarea id="q_study" rows="2" placeholder="e.g. degree, course, certification - or nothing right now"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">What's your background - what have you done before this?</label>
+          <p class="field-note">Work history, skills, industries - anything that shapes where you're coming from</p>
+          <textarea id="q_background" rows="3" placeholder="What's the path that brought you here?"></textarea>
         </div>
 
         <div class="field">
           <label class="field-label">Identifiers and pronouns</label>
-          <p class="field-note">And anything else you'd like to include</p>
+          <p class="field-note">And anything else you'd like me to know</p>
           <input type="text" id="q_identifiers" placeholder="e.g. she/her, they/them..." />
         </div>
 
         <div class="divider"></div>
 
-        <p class="section-head">The idea and the vision</p>
+        <p class="section-head">Your why</p>
 
         <div class="field">
-          <label class="field-label">Tell me about the idea or direction you're working with</label>
-          <p class="field-note">What it is, who it's for, how far along it is - even if it's still forming, that's fine</p>
-          <textarea id="q_idea" rows="4" placeholder="Give me a feel for what you're building..."></textarea>
+          <label class="field-label">Why this business? What's driving you?</label>
+          <p class="field-note">Not the elevator pitch - the real answer. Why this, and why now?</p>
+          <textarea id="q_why" rows="4" placeholder="What's underneath it for you?"></textarea>
         </div>
 
         <div class="field">
-          <label class="field-label">What does solid ground look like for you?</label>
-          <p class="field-note">Not the big dream - the immediate version. What would feel stable? What would feel like enough?</p>
-          <textarea id="q_solidground" rows="4" placeholder="What are you actually building toward in the next 6-12 months?"></textarea>
-        </div>
-
-        <div class="divider"></div>
-
-        <p class="section-head">The honest part</p>
-
-        <div class="field">
-          <label class="field-label">What is getting in the way right now?</label>
-          <p class="field-note">Practically, financially, energetically - what's stopping this from moving</p>
-          <textarea id="q_blockers" rows="4" placeholder="Be honest - there's no wrong answer here..."></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Have you tried to build something before? What happened?</label>
-          <p class="field-note">If this is your first attempt, say so. If you've been here before, I want to know what stopped you - what you tried, what didn't work, and what you walked away from</p>
-          <textarea id="q_history" rows="4" placeholder="Previous attempts, pivots, or a clean start - all of it is useful..."></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">What is prompting you to seek support right now?</label>
-          <p class="field-note">What's shifted, or what's become too hard to keep doing alone</p>
-          <textarea id="q_prompting" rows="3" placeholder="What made you book this call?"></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">Why 1:1 support rather than working through the course at your own pace?</label>
-          <p class="field-note">There's no wrong answer - I just want to understand what you're looking for from having someone alongside you</p>
-          <textarea id="q_why1on1" rows="3" placeholder="What does having Jess in your corner give you that going it alone doesn't?"></textarea>
+          <label class="field-label">What does your life look like when this is working?</label>
+          <p class="field-note">Not the big dream - the real version. What does "solid ground" actually feel like for you?</p>
+          <textarea id="q_vision" rows="4" placeholder="What changes? What does a week look like? What stops being hard?"></textarea>
         </div>
 
         <div class="divider"></div>
 
-        <p class="section-head">Capacity and practicalities</p>
+        <p class="section-head">What you want from our time together</p>
 
         <div class="field">
-          <label class="field-label">How much time do you have available each week for this?</label>
-          <p class="field-note">For tasks and work outside of our sessions - be honest, there's no wrong answer</p>
-          <textarea id="q_time" rows="2" placeholder="e.g. a few hours, evenings only, half a day..."></textarea>
+          <label class="field-label">What do you most want to get from working with me?</label>
+          <p class="field-note">Be specific if you can - the more I know about what you're looking for, the better I can shape our sessions</p>
+          <textarea id="q_wantfrom" rows="4" placeholder="What would make this feel worth it?"></textarea>
         </div>
 
         <div class="field">
-          <label class="field-label">Are there financial constraints or a timeline I should know about?</label>
-          <p class="field-note">How long can you sustain building before you need revenue coming in - or any other financial reality that shapes what's realistic right now</p>
-          <textarea id="q_financial" rows="3" placeholder="There's no pressure here - I just want to work with what's real for you..."></textarea>
-        </div>
-
-        <div class="field">
-          <label class="field-label">How do you work best - what does useful support look like for you?</label>
-          <p class="field-note">Structured and step-by-step, more fluid, accountability-focused, a sounding board - what's actually helped you before, and what hasn't</p>
-          <textarea id="q_support" rows="3" placeholder="What does support actually look like when it works for you?"></textarea>
+          <label class="field-label">What has felt hardest about building this so far?</label>
+          <p class="field-note">The thing that keeps stopping you, or the thing you keep coming back to</p>
+          <textarea id="q_hardest" rows="3" placeholder="What's been the sticking point?"></textarea>
         </div>
 
         <div class="divider"></div>
 
+        <p class="section-head">Practicalities</p>
+
         <div class="field">
-          <label class="field-label">Anything else you'd like me to know before we speak?</label>
+          <label class="field-label">What days and times generally work for you?</label>
+          <p class="field-note">Our sessions are fortnightly - give me a feel for what your week looks like and we'll find a slot that fits</p>
+          <textarea id="q_availability" rows="2" placeholder="e.g. weekday afternoons, evenings, weekend mornings..."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Is there anything about your health or wellbeing I should know?</label>
+          <p class="field-note">Anything that affects your capacity, energy, or how we work together - only share what you're comfortable with</p>
+          <textarea id="q_health" rows="3" placeholder="Optional - only if it's relevant to how we work..."></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Anything else you want me to know before we start?</label>
           <textarea id="q_else" rows="3" placeholder="No pressure - anything at all..."></textarea>
         </div>
 
@@ -206,8 +228,8 @@
   <div class="ty-wrap" id="thankyou">
     <div class="ty-icon">🌱</div>
     <h2>Thank you, <em id="ty-name">lovely</em>.</h2>
-    <p>I'll read this before our call. You're not doing this alone anymore.</p>
-    <p>See you soon.</p>
+    <p>I'll read this before our first session. You're not doing this alone anymore.</p>
+    <p>I'll be in touch soon to lock in our first session time.</p>
     <p class="ty-sig">Jess x</p>
   </div>
 
@@ -224,29 +246,33 @@
     });
   });
 
-  document.getElementById('pdForm').addEventListener('submit', function(e) {
+  document.getElementById('intakeForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const firstName = document.getElementById('firstName').value.trim();
     const email     = document.getElementById('email').value.trim();
     if (!firstName || !email) { alert('Please add your name and email so I know who this is from.'); return; }
 
-    const stageEl = document.querySelector('input[name="stage"]:checked');
-    if (!stageEl) { alert('Please let me know where you are right now - brand new, stalled, or pivoting.'); return; }
+    const pkgEl = document.querySelector('input[name="package"]:checked');
+    if (!pkgEl) { alert('Please let me know which package you\'re in.'); return; }
 
     const data = {
-      formType:     'pre-discovery-response',
-      service:      stageEl.value,
-      firstName,    email,
+      formType:     'sg-post-yes-intake',
+      package:      pkgEl.value,
+      firstName,
+      lastName:     document.getElementById('lastName').value.trim(),
+      email,
+      phone:        document.getElementById('phone').value.trim(),
+      telegram:     document.getElementById('telegram').value.trim(),
       identifiers:  document.getElementById('q_identifiers').value.trim(),
-      idea:         document.getElementById('q_idea').value.trim(),
-      solidground:  document.getElementById('q_solidground').value.trim(),
-      blockers:     document.getElementById('q_blockers').value.trim(),
-      history:      document.getElementById('q_history').value.trim(),
-      prompting:    document.getElementById('q_prompting').value.trim(),
-      why1on1:      document.getElementById('q_why1on1').value.trim(),
-      time:         document.getElementById('q_time').value.trim(),
-      financial:    document.getElementById('q_financial').value.trim(),
-      support:      document.getElementById('q_support').value.trim(),
+      life:         document.getElementById('q_life').value.trim(),
+      study:        document.getElementById('q_study').value.trim(),
+      background:   document.getElementById('q_background').value.trim(),
+      why:          document.getElementById('q_why').value.trim(),
+      vision:       document.getElementById('q_vision').value.trim(),
+      wantfrom:     document.getElementById('q_wantfrom').value.trim(),
+      hardest:      document.getElementById('q_hardest').value.trim(),
+      availability: document.getElementById('q_availability').value.trim(),
+      health:       document.getElementById('q_health').value.trim(),
       anythingelse: document.getElementById('q_else').value.trim(),
     };
 
