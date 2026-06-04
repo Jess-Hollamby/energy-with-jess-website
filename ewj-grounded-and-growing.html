@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f2c14e">
+<title>Grounded and Growing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #3B5E6E;
+  --pink: #bf4288;
+  --dark: #1E2E32;
+  --cream: #FAF7F2;
+  --lavender: #C4B0D4;
+  --border: #E4EAEC;
+  --muted: #8AACB8;
+  --nav-h: 68px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--cream);
+  font-family: 'Belleza', sans-serif;
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* HEADER */
+.app-header {
+  background: var(--dark);
+  padding: 14px 18px;
+  padding-top: calc(14px + env(safe-area-inset-top));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.logo-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-main { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 300; color: white; letter-spacing: 0.3px; }
+.logo-main em { color: var(--lavender); font-style: italic; }
+.logo-sub { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.5px; }
+
+.header-badge {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  padding: 4px 11px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+/* SCREENS */
+.screens { flex: 1; overflow: hidden; position: relative; }
+
+.screen {
+  display: none;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px calc(var(--nav-h) + 28px);
+}
+
+.screen.active { display: block; }
+
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  background: white;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 8px;
+  z-index: 100;
+  box-shadow: 0 -2px 16px rgba(30,46,50,0.07);
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  color: #B0CACF;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s;
+}
+
+.nav-btn.active { color: var(--teal); }
+.nav-btn svg { width: 22px; height: 22px; }
+.nav-btn span { font-size: 10px; font-family: 'Belleza', sans-serif; letter-spacing: 0.3px; }
+
+/* TYPOGRAPHY */
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--teal);
+  margin-bottom: 3px;
+}
+
+.page-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border);
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Belleza', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn:active { opacity: 0.82; transform: scale(0.97); }
+.btn-primary { background: var(--teal); color: white; width: 100%; }
+.btn-dark { background: var(--dark); color: white; width: 100%; }
+.btn-outline { background: white; color: var(--teal); border: 1.5px solid var(--border); }
+.btn-sm { padding: 8px 14px; font-size: 12px; }
+.btn-pink { background: var(--pink); color: white; }
+
+/* INPUTS */
+input[type=text], textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 14px;
+  color: var(--dark);
+  background: white;
+  outline: none;
+  line-height: 1.5;
+}
+input[type=text]:focus, textarea:focus { border-color: var(--teal); }
+textarea { resize: none; }
+
+/* TABS */
+.tabs {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  padding: 3px;
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 9px 6px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.tab-btn.active { background: var(--teal); color: white; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* STATUS BADGES */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+}
+.badge-pending { background: #FEF3C7; color: #92400E; }
+.badge-done { background: #D1FAE5; color: #065F46; }
+.badge-exploring { background: #EDE9FE; color: #5B21B6; }
+.badge-active { background: #DBEAFE; color: #1E40AF; }
+
+/* HOME */
+.home-greeting { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--teal); }
+.home-date { font-size: 12px; color: var(--muted); margin-bottom: 18px; margin-top: 2px; }
+
+.focus-card {
+  background: var(--dark);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.focus-label { font-size: 10px; letter-spacing: 1px; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+
+.focus-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0;
+  padding: 6px 0;
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 300;
+  font-style: italic;
+  width: 100%;
+  outline: none;
+}
+
+.focus-input::placeholder { color: rgba(255,255,255,0.35); }
+
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.summary-tile {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.summary-tile:active { transform: scale(0.97); }
+.summary-count { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--teal); line-height: 1; margin-bottom: 4px; }
+.summary-label { font-size: 11px; color: var(--muted); }
+
+.quick-add-row { display: flex; gap: 8px; margin-bottom: 20px; }
+.quick-add-row .btn { flex: 1; }
+
+/* TASK LIST */
+.task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 14px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: opacity 0.2s;
+}
+
+.task-item.done { opacity: 0.5; }
+.task-item.done .task-text { text-decoration: line-through; color: var(--muted); }
+
+.task-check {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+  margin-top: 1px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.task-item.done .task-check { background: var(--teal); border-color: var(--teal); }
+.task-item.done .task-check::after { content: '✓'; color: white; font-size: 11px; }
+.task-text { font-size: 14px; color: var(--dark); line-height: 1.4; flex: 1; }
+.task-delete { color: var(--border); font-size: 18px; cursor: pointer; padding: 0 2px; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
+.task-delete:active { color: #EF4444; }
+
+.add-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.add-row input { flex: 1; }
+.add-row .btn { flex-shrink: 0; padding: 12px 16px; border-radius: 10px; }
+
+/* DECISIONS */
+.decision-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.decision-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.decision-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--dark); flex: 1; padding-right: 10px; line-height: 1.3; }
+.decision-body { font-size: 13px; color: #5A7A86; line-height: 1.6; margin-bottom: 10px; }
+.decision-label { font-size: 10px; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 4px; }
+
+.gut-check {
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 10px 0;
+  font-size: 13px;
+  color: var(--dark);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.gut-check-empty { color: var(--muted); font-style: italic; font-size: 13px; }
+.decision-actions { display: flex; gap: 8px; margin-top: 12px; }
+
+/* PATHS */
+.path-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.path-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.path-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--dark); flex: 1; padding-right: 10px; }
+.path-notes { font-size: 13px; color: #5A7A86; line-height: 1.55; margin-bottom: 10px; }
+.path-actions { display: flex; gap: 8px; }
+
+/* IDEAS */
+.idea-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.idea-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.idea-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--dark); flex: 1; }
+.idea-date { font-size: 11px; color: var(--muted); flex-shrink: 0; margin-left: 8px; }
+.idea-notes { font-size: 13px; color: #5A7A86; line-height: 1.55; margin-bottom: 10px; }
+.idea-actions { display: flex; gap: 8px; }
+
+/* PRACTICES */
+.practice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.practice-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px;
+}
+
+.practice-icon { font-size: 26px; margin-bottom: 8px; }
+.practice-name { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--dark); margin-bottom: 4px; line-height: 1.3; }
+.practice-when { font-size: 11px; color: var(--muted); line-height: 1.4; margin-bottom: 10px; }
+.practice-soon { font-size: 10px; color: var(--lavender); letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px; }
+
+/* RESOURCES */
+.resource-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+}
+.resource-card:active { background: var(--cream); }
+.resource-icon { font-size: 22px; flex-shrink: 0; }
+.resource-info { flex: 1; }
+.resource-title { font-size: 14px; color: var(--dark); margin-bottom: 2px; }
+.resource-type { font-size: 11px; color: var(--muted); }
+.resource-arrow { color: var(--border); font-size: 18px; }
+
+/* LEARN */
+.course-tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 18px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.course-tabs::-webkit-scrollbar { display: none; }
+
+.course-tab {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-family: 'Belleza', sans-serif;
+  font-size: 12px;
+  color: var(--teal);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+.course-tab.active { background: var(--teal); border-color: var(--teal); color: white; }
+.course-tab.locked { opacity: 0.5; }
+
+.module-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.mod-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--teal);
+  flex-shrink: 0;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.mod-info { flex: 1; }
+.mod-title { font-size: 14px; color: var(--dark); margin-bottom: 2px; }
+.mod-sub { font-size: 11px; color: var(--muted); }
+.mod-arrow { color: var(--border); font-size: 20px; }
+
+.coming-soon-wrap { text-align: center; padding: 40px 20px; }
+.cs-icon { font-size: 40px; margin-bottom: 14px; }
+.cs-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--teal); margin-bottom: 8px; }
+.cs-desc { font-size: 13px; color: var(--muted); }
+
+/* MODAL OVERLAY */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30,46,50,0.5);
+  z-index: 300;
+  align-items: flex-end;
+}
+
+.modal.open { display: flex; }
+
+.modal-sheet {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px 40px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+
+.modal-field { margin-bottom: 14px; }
+.modal-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; display: block; letter-spacing: 0.3px; }
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--cream);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+/* UTILS */
+.empty-state { text-align: center; padding: 36px 16px; }
+.empty-icon { font-size: 36px; margin-bottom: 8px; }
+.empty-text { font-size: 14px; color: var(--muted); line-height: 1.55; }
+
+/* ── GaG THEME: YELLOW ──────────────────────────────── */
+:root { --yellow: #f2c14e; }
+.app-header { background: var(--yellow); }
+.logo-main { color: var(--dark); }
+.logo-main em { color: var(--teal); font-style: italic; }
+.logo-sub { color: rgba(30,46,50,0.55); }
+.header-badge { background: rgba(30,46,50,0.12); color: var(--dark); }
+.nav-btn.active { color: #c9a020; }
+.btn-primary { background: var(--yellow); color: var(--dark); }
+.btn-dark { background: var(--yellow); color: var(--dark); }
+.tab-btn.active { background: var(--yellow); color: var(--dark); }
+.course-tab.active { background: var(--yellow); border-color: var(--yellow); color: var(--dark); }
+input[type=text]:focus, textarea:focus { border-color: var(--yellow); }
+.task-check:active, .task-item.done .task-check { background: var(--yellow); border-color: var(--yellow); }
+.badge-active { background: #FEF9C3; color: #92400E; }
+.lms-link-btn { display: block; background: var(--yellow); color: var(--dark); text-align: center; text-decoration: none; padding: 13px 20px; border-radius: 10px; font-size: 14px; letter-spacing: 0.04em; margin-bottom: 18px; font-weight: 600; }
+.lms-link-btn:active { opacity: 0.85; }
+.lms-link-locked { display: block; background: #f5f5f5; color: #999; text-align: center; padding: 13px 20px; border-radius: 10px; font-size: 13px; margin-bottom: 18px; }
+.app-loading { position: fixed; inset: 0; background: var(--cream); display: flex; align-items: center; justify-content: center; z-index: 999; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--teal); font-style: italic; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo-wrap">
+      <div class="logo-main">Grounded <em>and Growing</em></div>
+      <div class="logo-sub">Energy with Jess</div>
+    </div>
+    <div class="header-badge" id="user-badge">Solid Ground</div>
+  </header>
+
+  <!-- SCREENS -->
+  <div class="screens">
+
+    <!-- ─── HOME ─────────────────────────────────────────────── -->
+    <section id="screen-home" class="screen active">
+
+      <div class="home-greeting" id="home-greeting">Welcome back.</div>
+      <div class="home-date" id="home-date"></div>
+
+      <div class="focus-card">
+        <div class="focus-label">TODAY'S FOCUS</div>
+        <input type="text" class="focus-input" id="focus-input"
+          placeholder="What's the one thing that matters today?"
+          oninput="saveFocus(this.value)">
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-tile" onclick="navTo('plan'); switchPlanTab('tasks')">
+          <div class="summary-count" id="count-tasks">0</div>
+          <div class="summary-label">Tasks</div>
+        </div>
+        <div class="summary-tile" onclick="navTo('plan'); switchPlanTab('decisions')">
+          <div class="summary-count" id="count-decisions">0</div>
+          <div class="summary-label">Decisions</div>
+        </div>
+        <div class="summary-tile" onclick="navTo('ideas')">
+          <div class="summary-count" id="count-ideas">0</div>
+          <div class="summary-label">Ideas</div>
+        </div>
+      </div>
+
+      <div class="quick-add-row">
+        <button class="btn btn-outline btn-sm" onclick="openModal('task')">+ Task</button>
+        <button class="btn btn-outline btn-sm" onclick="openModal('decision')">+ Decision</button>
+        <button class="btn btn-outline btn-sm" onclick="openModal('idea')">+ Idea</button>
+      </div>
+
+      <div class="section-label">RESOURCES</div>
+      <div id="home-resources">
+        <div class="resource-card">
+          <div class="resource-icon">📋</div>
+          <div class="resource-info">
+            <div class="resource-title">Solid Ground: Core Workbook</div>
+            <div class="resource-type">Workbook &middot; PDF</div>
+          </div>
+          <div class="resource-arrow">›</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">✦</div>
+          <div class="resource-info">
+            <div class="resource-title">Business Values Exercise</div>
+            <div class="resource-type">Worksheet &middot; PDF</div>
+          </div>
+          <div class="resource-arrow">›</div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">📅</div>
+          <div class="resource-info">
+            <div class="resource-title">Book a Session with Jess</div>
+            <div class="resource-type">energywithjess.com.au</div>
+          </div>
+          <div class="resource-arrow">›</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ─── PLAN ──────────────────────────────────────────────── -->
+    <section id="screen-plan" class="screen">
+      <div class="page-title">Plan</div>
+
+      <div class="tabs" id="plan-tabs">
+        <button class="tab-btn active" onclick="switchPlanTab('tasks')">Tasks</button>
+        <button class="tab-btn" onclick="switchPlanTab('decisions')">Decisions</button>
+        <button class="tab-btn" onclick="switchPlanTab('paths')">Paths Forward</button>
+      </div>
+
+      <!-- TASKS TAB -->
+      <div class="tab-panel active" id="plan-tab-tasks">
+        <div class="add-row">
+          <input type="text" id="task-input" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTask()">
+          <button class="btn btn-primary btn-sm" style="width:auto;" onclick="addTask()">Add</button>
+        </div>
+        <div id="task-list"></div>
+        <div id="tasks-empty" class="empty-state" style="display:none;">
+          <div class="empty-icon">✓</div>
+          <div class="empty-text">No tasks yet.<br>Add one above.</div>
+        </div>
+      </div>
+
+      <!-- DECISIONS TAB -->
+      <div class="tab-panel" id="plan-tab-decisions">
+        <button class="btn btn-primary" style="margin-bottom:14px;" onclick="openModal('decision')">+ Add a decision</button>
+        <div id="decision-list"></div>
+        <div id="decisions-empty" class="empty-state" style="display:none;">
+          <div class="empty-icon">◎</div>
+          <div class="empty-text">Decisions you're sitting with<br>will appear here.</div>
+        </div>
+      </div>
+
+      <!-- PATHS TAB -->
+      <div class="tab-panel" id="plan-tab-paths">
+        <button class="btn btn-primary" style="margin-bottom:14px;" onclick="openModal('path')">+ Add a path</button>
+        <div id="path-list"></div>
+        <div id="paths-empty" class="empty-state" style="display:none;">
+          <div class="empty-icon">→</div>
+          <div class="empty-text">Options and directions<br>you're considering will appear here.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ─── IDEAS ─────────────────────────────────────────────── -->
+    <section id="screen-ideas" class="screen">
+      <div class="page-title">Bounce Ideas</div>
+      <div class="page-sub">Capture anything. Sort it out later.</div>
+
+      <div class="card" style="margin-bottom:14px;">
+        <div class="modal-field">
+          <input type="text" id="idea-title-quick" placeholder="What's the idea?">
+        </div>
+        <div class="modal-field">
+          <textarea id="idea-notes-quick" rows="3" placeholder="Any context or detail... (optional)"></textarea>
+        </div>
+        <button class="btn btn-dark" onclick="addIdeaQuick()">Save this idea</button>
+      </div>
+
+      <div id="idea-list"></div>
+      <div id="ideas-empty" class="empty-state" style="display:none;">
+        <div class="empty-icon">💡</div>
+        <div class="empty-text">Your ideas will appear here.<br>Capture freely - nothing needs to be ready yet.</div>
+      </div>
+    </section>
+
+    <!-- ─── PRACTICES ─────────────────────────────────────────── -->
+    <section id="screen-practices" class="screen">
+      <div class="page-title">Guided Practices</div>
+      <div class="page-sub">Sessions to support your work - recorded by Jess.</div>
+
+      <div style="background:var(--cream); border:1.5px dashed var(--border); border-radius:12px; padding:14px 16px; margin-bottom:18px; font-size:13px; color:var(--muted); line-height:1.55;">
+        These sessions are being recorded. Each one will drop here when it's ready.
+      </div>
+
+      <div class="practice-grid">
+
+        <div class="practice-card">
+          <div class="practice-icon">◎</div>
+          <div class="practice-name">Before a Big Decision</div>
+          <div class="practice-when">Clear the noise and hear yourself</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">◐</div>
+          <div class="practice-name">When You're Second-Guessing</div>
+          <div class="practice-when">Return to what you already know</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">✦</div>
+          <div class="practice-name">Clearing Fear Around Money</div>
+          <div class="practice-when">Release the stories in the way</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">♡</div>
+          <div class="practice-name">When a Client is Draining You</div>
+          <div class="practice-when">Reset and return to yourself</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">🌿</div>
+          <div class="practice-name">Finding Clarity</div>
+          <div class="practice-when">When everything feels foggy</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">→</div>
+          <div class="practice-name">Before a Sales Conversation</div>
+          <div class="practice-when">Ground before you get on the call</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">↑</div>
+          <div class="practice-name">When Momentum Stalls</div>
+          <div class="practice-when">Shift the energy underneath</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+        <div class="practice-card">
+          <div class="practice-icon">🌙</div>
+          <div class="practice-name">Closing the Business Day</div>
+          <div class="practice-when">Leave work at work - even from home</div>
+          <div class="practice-soon">⏳ Coming soon</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── LEARN ─────────────────────────────────────────────── -->
+    <section id="screen-learn" class="screen">
+      <div class="page-title">Learn</div>
+
+      <div class="course-tabs">
+        <div class="course-tab active" data-course="sg-core" onclick="switchCourse('sg-core')">SG: Core</div>
+        <div class="course-tab" data-course="sg-deeper" onclick="switchCourse('sg-deeper')">SG: Going Deeper</div>
+        <div class="course-tab locked" data-course="slb" onclick="switchCourse('slb')">Soul-Led Business</div>
+      </div>
+
+      <div id="learn-sg-core">
+        <div id="lms-link-core"></div>
+        <div id="sg-core-modules"></div>
+      </div>
+
+      <div id="learn-sg-deeper" style="display:none;">
+        <div id="lms-link-deeper"></div>
+        <div id="sg-deeper-modules"></div>
+      </div>
+
+      <div id="learn-slb" style="display:none;">
+        <div class="coming-soon-wrap">
+          <div class="cs-icon">✦</div>
+          <div class="cs-title">Soul-Led Business</div>
+          <div class="cs-desc">Coming soon. This space will be here when you're ready.</div>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /screens -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="navTo('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <span>Home</span>
+    </button>
+    <button class="nav-btn" id="nav-plan" onclick="navTo('plan')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+      </svg>
+      <span>Plan</span>
+    </button>
+    <button class="nav-btn" id="nav-ideas" onclick="navTo('ideas')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 2a7 7 0 015.292 11.587A5 5 0 0115 17H9a5 5 0 01-2.292-3.413A7 7 0 0112 2z"/><path d="M9 21h6M10 17v4M14 17v4"/>
+      </svg>
+      <span>Ideas</span>
+    </button>
+    <button class="nav-btn" id="nav-practices" onclick="navTo('practices')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="10 8 16 12 10 16 10 8"/>
+      </svg>
+      <span>Practices</span>
+    </button>
+    <button class="nav-btn" id="nav-learn" onclick="navTo('learn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+      </svg>
+      <span>Learn</span>
+    </button>
+  </nav>
+
+</div><!-- /app -->
+
+<!-- ADD MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-sheet" style="position:relative;">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script>
+
+// ─── MODULE DATA ──────────────────────────────────────────────────────
+
+const SG_CORE = [
+  { num: '1', title: 'Starting from where you are', sub: 'Foundation' },
+  { num: '2', title: 'What you actually want', sub: 'Clarity and vision' },
+  { num: '3', title: 'Your energetic foundation', sub: 'Building from the inside' },
+  { num: '4', title: 'Money, worth, and what you charge', sub: 'Practical and energetic' },
+  { num: '5', title: 'Getting visible without burning out', sub: 'Showing up sustainably' },
+  { num: '6', title: 'Staying grounded as you grow', sub: 'Integration' }
+];
+
+const SG_DEEPER = [
+  { num: '1', title: 'What held you back', sub: 'Patterns and roots' },
+  { num: '2', title: 'Your relationship with growth', sub: 'Expanding without losing yourself' },
+  { num: '3', title: 'Boundaries in business', sub: 'What's yours and what's not' },
+  { num: '4', title: 'The fear of being seen', sub: 'Visibility and safety' },
+  { num: '5', title: 'Aligned decision-making', sub: 'Using your body as a compass' },
+  { num: '6', title: 'Building a business that holds you', sub: 'Integration' }
+];
+
+// ─── STATE ────────────────────────────────────────────────────────────
+
+let tasks = JSON.parse(localStorage.getItem('gag_tasks') || '[]');
+let decisions = JSON.parse(localStorage.getItem('gag_decisions') || '[]');
+let paths = JSON.parse(localStorage.getItem('gag_paths') || '[]');
+let ideas = JSON.parse(localStorage.getItem('gag_ideas') || '[]');
+
+function save() {
+  localStorage.setItem('gag_tasks', JSON.stringify(tasks));
+  localStorage.setItem('gag_decisions', JSON.stringify(decisions));
+  localStorage.setItem('gag_paths', JSON.stringify(paths));
+  localStorage.setItem('gag_ideas', JSON.stringify(ideas));
+  updateCounts();
+}
+
+function updateCounts() {
+  document.getElementById('count-tasks').textContent = tasks.filter(t => !t.done).length;
+  document.getElementById('count-decisions').textContent = decisions.filter(d => d.status === 'pending').length;
+  document.getElementById('count-ideas').textContent = ideas.length;
+}
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────
+
+function navTo(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  const nb = document.getElementById('nav-' + name);
+  if (nb) nb.classList.add('active');
+}
+
+// ─── HOME ─────────────────────────────────────────────────────────────
+
+function initHome() {
+  const now = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const h = now.getHours();
+  const greeting = h < 12 ? 'Good morning.' : h < 17 ? 'Good afternoon.' : 'Good evening.';
+  document.getElementById('home-greeting').textContent = greeting;
+  document.getElementById('home-date').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  const saved = localStorage.getItem('gag_focus_' + now.toDateString()) || '';
+  document.getElementById('focus-input').value = saved;
+  updateCounts();
+}
+
+function saveFocus(val) {
+  localStorage.setItem('gag_focus_' + new Date().toDateString(), val);
+}
+
+// ─── TASKS ────────────────────────────────────────────────────────────
+
+function addTask() {
+  const input = document.getElementById('task-input');
+  const val = input.value.trim();
+  if (!val) return;
+  tasks.unshift({ id: Date.now(), text: val, done: false });
+  input.value = '';
+  save();
+  renderTasks();
+}
+
+function toggleTask(id) {
+  const t = tasks.find(t => t.id === id);
+  if (t) t.done = !t.done;
+  save();
+  renderTasks();
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(t => t.id !== id);
+  save();
+  renderTasks();
+}
+
+function renderTasks() {
+  const el = document.getElementById('task-list');
+  const empty = document.getElementById('tasks-empty');
+  const active = tasks.filter(t => !t.done);
+  const done = tasks.filter(t => t.done);
+  const all = [...active, ...done];
+
+  if (all.length === 0) {
+    el.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  el.innerHTML = all.map(t => `
+    <div class="task-item ${t.done ? 'done' : ''}">
+      <div class="task-check" onclick="toggleTask(${t.id})"></div>
+      <div class="task-text">${escHtml(t.text)}</div>
+      <div class="task-delete" onclick="deleteTask(${t.id})">✕</div>
+    </div>
+  `).join('');
+}
+
+// ─── DECISIONS ────────────────────────────────────────────────────────
+
+function addDecision(data) {
+  decisions.unshift({
+    id: Date.now(),
+    title: data.title,
+    context: data.context || '',
+    options: data.options || '',
+    gut: data.gut || '',
+    status: 'pending',
+    resolved: ''
+  });
+  save();
+  renderDecisions();
+}
+
+function resolveDecision(id, resolved) {
+  const d = decisions.find(d => d.id === id);
+  if (d) { d.status = 'done'; d.resolved = resolved; }
+  save();
+  renderDecisions();
+}
+
+function deleteDecision(id) {
+  decisions = decisions.filter(d => d.id !== id);
+  save();
+  renderDecisions();
+}
+
+function renderDecisions() {
+  const el = document.getElementById('decision-list');
+  const empty = document.getElementById('decisions-empty');
+
+  if (decisions.length === 0) {
+    el.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  el.innerHTML = decisions.map(d => `
+    <div class="decision-card">
+      <div class="decision-header">
+        <div class="decision-title">${escHtml(d.title)}</div>
+        <span class="badge badge-${d.status === 'pending' ? 'pending' : 'done'}">${d.status === 'pending' ? 'Pending' : 'Decided'}</span>
+      </div>
+      ${d.context ? `<div class="decision-label">CONTEXT</div><div class="decision-body">${escHtml(d.context)}</div>` : ''}
+      ${d.options ? `<div class="decision-label">OPTIONS</div><div class="decision-body">${escHtml(d.options)}</div>` : ''}
+      ${d.gut ? `<div class="decision-label">GUT CHECK</div><div class="gut-check">${escHtml(d.gut)}</div>` : ''}
+      ${d.status === 'done' && d.resolved ? `<div class="decision-label">DECISION MADE</div><div class="gut-check" style="border-left:3px solid #10B981;">${escHtml(d.resolved)}</div>` : ''}
+      <div class="decision-actions">
+        ${d.status === 'pending' ? `<button class="btn btn-outline btn-sm" onclick="promptResolve(${d.id})">I've decided</button>` : ''}
+        <button class="btn btn-sm" style="background:none; border:none; color:var(--muted); padding:8px;" onclick="deleteDecision(${d.id})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function promptResolve(id) {
+  const resolved = prompt('What did you decide?');
+  if (resolved && resolved.trim()) resolveDecision(id, resolved.trim());
+}
+
+// ─── PATHS ────────────────────────────────────────────────────────────
+
+function addPath(data) {
+  paths.unshift({
+    id: Date.now(),
+    title: data.title,
+    notes: data.notes || '',
+    status: 'exploring'
+  });
+  save();
+  renderPaths();
+}
+
+function setPathStatus(id, status) {
+  const p = paths.find(p => p.id === id);
+  if (p) p.status = status;
+  save();
+  renderPaths();
+}
+
+function deletePath(id) {
+  paths = paths.filter(p => p.id !== id);
+  save();
+  renderPaths();
+}
+
+function renderPaths() {
+  const el = document.getElementById('path-list');
+  const empty = document.getElementById('paths-empty');
+
+  if (paths.length === 0) {
+    el.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  el.innerHTML = paths.map(p => `
+    <div class="path-card">
+      <div class="path-header">
+        <div class="path-title">${escHtml(p.title)}</div>
+        <span class="badge badge-${p.status}">${p.status.charAt(0).toUpperCase() + p.status.slice(1)}</span>
+      </div>
+      ${p.notes ? `<div class="path-notes">${escHtml(p.notes)}</div>` : ''}
+      <div class="path-actions">
+        ${p.status !== 'active' ? `<button class="btn btn-outline btn-sm" onclick="setPathStatus(${p.id},'active')">Mark active</button>` : ''}
+        ${p.status !== 'archived' ? `<button class="btn btn-outline btn-sm" style="color:var(--muted); border-color:var(--border);" onclick="setPathStatus(${p.id},'archived')">Archive</button>` : ''}
+        <button class="btn btn-sm" style="background:none; border:none; color:var(--muted); padding:8px;" onclick="deletePath(${p.id})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── IDEAS ────────────────────────────────────────────────────────────
+
+function addIdeaQuick() {
+  const title = document.getElementById('idea-title-quick').value.trim();
+  const notes = document.getElementById('idea-notes-quick').value.trim();
+  if (!title) return;
+  const now = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  ideas.unshift({
+    id: Date.now(),
+    title,
+    notes,
+    date: now.getDate() + ' ' + months[now.getMonth()]
+  });
+  document.getElementById('idea-title-quick').value = '';
+  document.getElementById('idea-notes-quick').value = '';
+  save();
+  renderIdeas();
+}
+
+function addIdea(data) {
+  const now = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  ideas.unshift({
+    id: Date.now(),
+    title: data.title,
+    notes: data.notes || '',
+    date: now.getDate() + ' ' + months[now.getMonth()]
+  });
+  save();
+  renderIdeas();
+}
+
+function promoteIdea(id, type) {
+  const idea = ideas.find(i => i.id === id);
+  if (!idea) return;
+  if (type === 'task') {
+    tasks.unshift({ id: Date.now(), text: idea.title, done: false });
+    renderTasks();
+  } else if (type === 'decision') {
+    decisions.unshift({ id: Date.now(), title: idea.title, context: idea.notes, options: '', gut: '', status: 'pending', resolved: '' });
+    renderDecisions();
+  }
+  save();
+  alert((type === 'task' ? 'Task' : 'Decision') + ' added to Plan.');
+}
+
+function deleteIdea(id) {
+  ideas = ideas.filter(i => i.id !== id);
+  save();
+  renderIdeas();
+}
+
+function renderIdeas() {
+  const el = document.getElementById('idea-list');
+  const empty = document.getElementById('ideas-empty');
+
+  if (ideas.length === 0) {
+    el.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+
+  empty.style.display = 'none';
+  el.innerHTML = ideas.map(idea => `
+    <div class="idea-card">
+      <div class="idea-header">
+        <div class="idea-title">${escHtml(idea.title)}</div>
+        <div class="idea-date">${idea.date}</div>
+      </div>
+      ${idea.notes ? `<div class="idea-notes">${escHtml(idea.notes)}</div>` : ''}
+      <div class="idea-actions">
+        <button class="btn btn-outline btn-sm" onclick="promoteIdea(${idea.id},'task')">→ Task</button>
+        <button class="btn btn-outline btn-sm" onclick="promoteIdea(${idea.id},'decision')">→ Decision</button>
+        <button class="btn btn-sm" style="background:none; border:none; color:var(--muted); padding:8px;" onclick="deleteIdea(${idea.id})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── PLAN TABS ────────────────────────────────────────────────────────
+
+function switchPlanTab(tab) {
+  document.querySelectorAll('#screen-plan .tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#plan-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('plan-tab-' + tab).classList.add('active');
+  const idx = { tasks: 0, decisions: 1, paths: 2 }[tab];
+  document.querySelectorAll('#plan-tabs .tab-btn')[idx].classList.add('active');
+}
+
+// ─── MODAL ────────────────────────────────────────────────────────────
+
+let currentModalType = null;
+
+function openModal(type) {
+  currentModalType = type;
+  const el = document.getElementById('modal-content');
+
+  const templates = {
+    task: `
+      <div class="modal-title">New Task</div>
+      <div class="modal-field">
+        <label class="modal-label">WHAT NEEDS TO BE DONE?</label>
+        <input type="text" id="m-task-text" placeholder="Task description...">
+      </div>
+      <button class="btn btn-dark" onclick="submitModal()">Add task</button>
+    `,
+    decision: `
+      <div class="modal-title">New Decision</div>
+      <div class="modal-field">
+        <label class="modal-label">WHAT DECISION ARE YOU SITTING WITH?</label>
+        <input type="text" id="m-dec-title" placeholder="e.g. Whether to raise my prices">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">CONTEXT OR BACKGROUND</label>
+        <textarea id="m-dec-context" rows="2" placeholder="What's the situation?"></textarea>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">OPTIONS I'M CONSIDERING</label>
+        <textarea id="m-dec-options" rows="2" placeholder="List the options..."></textarea>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">GUT CHECK - what does my gut say?</label>
+        <textarea id="m-dec-gut" rows="2" placeholder="What does your body already know?"></textarea>
+      </div>
+      <button class="btn btn-dark" onclick="submitModal()">Add decision</button>
+    `,
+    path: `
+      <div class="modal-title">Path Forward</div>
+      <div class="modal-field">
+        <label class="modal-label">WHAT OPTION ARE YOU CONSIDERING?</label>
+        <input type="text" id="m-path-title" placeholder="e.g. Launch a group program">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">NOTES</label>
+        <textarea id="m-path-notes" rows="3" placeholder="What makes this appealing? Any hesitations?"></textarea>
+      </div>
+      <button class="btn btn-dark" onclick="submitModal()">Add path</button>
+    `,
+    idea: `
+      <div class="modal-title">Bounce an Idea</div>
+      <div class="modal-field">
+        <label class="modal-label">WHAT'S THE IDEA?</label>
+        <input type="text" id="m-idea-title" placeholder="Name it...">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">NOTES (OPTIONAL)</label>
+        <textarea id="m-idea-notes" rows="3" placeholder="Any detail, context, or excitement..."></textarea>
+      </div>
+      <button class="btn btn-dark" onclick="submitModal()">Save idea</button>
+    `
+  };
+
+  el.innerHTML = templates[type] || '';
+  document.getElementById('modal').classList.add('open');
+
+  // Focus first input
+  setTimeout(() => {
+    const first = document.querySelector('#modal-content input, #modal-content textarea');
+    if (first) first.focus();
+  }, 100);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  currentModalType = null;
+}
+
+function submitModal() {
+  const type = currentModalType;
+  if (type === 'task') {
+    const text = document.getElementById('m-task-text').value.trim();
+    if (!text) return;
+    tasks.unshift({ id: Date.now(), text, done: false });
+    save();
+    renderTasks();
+  } else if (type === 'decision') {
+    const title = document.getElementById('m-dec-title').value.trim();
+    if (!title) return;
+    addDecision({
+      title,
+      context: document.getElementById('m-dec-context').value.trim(),
+      options: document.getElementById('m-dec-options').value.trim(),
+      gut: document.getElementById('m-dec-gut').value.trim()
+    });
+  } else if (type === 'path') {
+    const title = document.getElementById('m-path-title').value.trim();
+    if (!title) return;
+    addPath({ title, notes: document.getElementById('m-path-notes').value.trim() });
+  } else if (type === 'idea') {
+    const title = document.getElementById('m-idea-title').value.trim();
+    if (!title) return;
+    addIdea({ title, notes: document.getElementById('m-idea-notes').value.trim() });
+    renderIdeas();
+  }
+  closeModal();
+}
+
+// ─── LEARN ───────────────────────────────────────────────────────────
+
+function initLearn() {
+  document.getElementById('sg-core-modules').innerHTML = SG_CORE.map(m => `
+    <div class="module-card">
+      <div class="mod-num">${m.num}</div>
+      <div class="mod-info"><div class="mod-title">${m.title}</div><div class="mod-sub">${m.sub}</div></div>
+      <div class="mod-arrow">›</div>
+    </div>
+  `).join('');
+
+  document.getElementById('sg-deeper-modules').innerHTML = SG_DEEPER.map(m => `
+    <div class="module-card">
+      <div class="mod-num">${m.num}</div>
+      <div class="mod-info"><div class="mod-title">${m.title}</div><div class="mod-sub">${m.sub}</div></div>
+      <div class="mod-arrow">›</div>
+    </div>
+  `).join('');
+}
+
+function switchCourse(course) {
+  ['sg-core','sg-deeper','slb'].forEach(c => {
+    document.getElementById('learn-' + c).style.display = c === course ? 'block' : 'none';
+  });
+  document.querySelectorAll('.course-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.course === course);
+  });
+}
+
+// ─── UTILS ───────────────────────────────────────────────────────────
+
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', function() {
+  initHome();
+  initLearn();
+  renderTasks();
+  renderDecisions();
+  renderPaths();
+  renderIdeas();
+});
+
+</script>
+
+<!-- FIREBASE AUTH -->
+<div class="app-loading" id="app-loading">Loading...</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+  const _fbConfig = {
+    apiKey:            "AIzaSyBErHDdakJYLGjAVADJM__mNxnNOy7cEa0",
+    authDomain:        "energy-with-jess-lms.firebaseapp.com",
+    projectId:         "energy-with-jess-lms",
+    storageBucket:     "energy-with-jess-lms.firebasestorage.app",
+    messagingSenderId: "974191871270",
+    appId:             "1:974191871270:web:9836a77d4cd403e6226de7"
+  };
+  if (!firebase.apps.length) firebase.initializeApp(_fbConfig);
+  const _db = firebase.firestore();
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+      window.location.href = '/auth';
+      return;
+    }
+
+    // Show app
+    document.getElementById('app-loading').style.display = 'none';
+
+    // Show user's first name in header
+    const firstName = (user.displayName || user.email || '').split(' ')[0];
+    const badge = document.getElementById('user-badge');
+    if (badge && firstName) badge.textContent = 'Hi ' + firstName;
+
+    // Read enrolled courses and wire LMS links
+    _db.collection('users').doc(user.uid).get().then(function(doc) {
+      const enrolled = doc.exists ? (doc.data().enrolledCourses || []) : [];
+      const hasCore   = enrolled.includes(4) || enrolled.includes(6);
+      const hasDeeper = enrolled.includes(5) || enrolled.includes(6);
+
+      const coreLink   = document.getElementById('lms-link-core');
+      const deeperLink = document.getElementById('lms-link-deeper');
+      const coreTab    = document.querySelector('[data-course="sg-core"]');
+      const deeperTab  = document.querySelector('[data-course="sg-deeper"]');
+
+      if (coreLink) {
+        coreLink.innerHTML = hasCore
+          ? '<a href="/solid-ground-core-lms.html" class="lms-link-btn">Open Solid Ground: Core course →</a>'
+          : '<div class="lms-link-locked">Course not enrolled</div>';
+      }
+      if (deeperLink) {
+        deeperLink.innerHTML = hasDeeper
+          ? '<a href="/solid-ground-going-deeper-lms.html" class="lms-link-btn">Open Solid Ground: Going Deeper course →</a>'
+          : '<div class="lms-link-locked">Course not enrolled</div>';
+      }
+
+      // Lock tabs for courses not enrolled
+      if (coreTab  && !hasCore)   coreTab.classList.add('locked');
+      if (deeperTab && !hasDeeper) deeperTab.classList.add('locked');
+    }).catch(function() {
+      // Firestore error - still show app, just no LMS links
+    });
+  });
+</script>
+</body>
+</html>

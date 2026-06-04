@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#bf4288">
+<title>Energy with Jess</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal: #3B5E6E;
+  --pink: #bf4288;
+  --dark: #1E2E32;
+  --cream: #FAF7F2;
+  --lavender: #C4B0D4;
+  --border: #E4EAEC;
+  --muted: #8AACB8;
+  --nav-h: 68px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--cream);
+  font-family: 'Belleza', sans-serif;
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* HEADER */
+.app-header {
+  background: var(--teal);
+  padding: 14px 18px;
+  padding-top: calc(14px + env(safe-area-inset-top));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 300;
+  color: white;
+  letter-spacing: 0.3px;
+}
+
+.logo em { color: var(--lavender); font-style: italic; }
+
+.header-badge {
+  background: rgba(255,255,255,0.18);
+  color: white;
+  font-size: 11px;
+  padding: 4px 11px;
+  border-radius: 20px;
+  letter-spacing: 0.3px;
+}
+
+/* SCREENS */
+.screens { flex: 1; overflow: hidden; position: relative; }
+
+.screen {
+  display: none;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px calc(var(--nav-h) + 28px);
+}
+
+.screen.active { display: block; }
+
+/* BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  background: white;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 8px;
+  z-index: 100;
+  box-shadow: 0 -2px 16px rgba(30,46,50,0.07);
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  color: #B0CACF;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.2s;
+}
+
+.nav-btn.active { color: var(--teal); }
+.nav-btn svg { width: 22px; height: 22px; }
+.nav-btn span { font-size: 10px; font-family: 'Belleza', sans-serif; letter-spacing: 0.3px; }
+
+/* TYPOGRAPHY */
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--teal);
+  margin-bottom: 3px;
+}
+
+.page-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.card-body { font-size: 13px; color: #5A7A86; line-height: 1.55; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Belleza', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn:active { opacity: 0.82; transform: scale(0.97); }
+.btn-primary { background: var(--teal); color: white; width: 100%; }
+.btn-secondary { background: var(--cream); color: var(--teal); border: 1.5px solid var(--border); }
+.btn-pink { background: var(--pink); color: white; width: 100%; }
+
+/* PILL SELECTORS */
+.pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+
+.pill {
+  padding: 9px 15px;
+  border-radius: 22px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-family: 'Belleza', sans-serif;
+  font-size: 13px;
+  color: var(--dark);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.pill.selected { background: var(--teal); border-color: var(--teal); color: white; }
+
+/* SLIDERS */
+.slider-wrap { margin-bottom: 18px; }
+
+.slider-label {
+  font-size: 13px;
+  color: var(--dark);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-val {
+  color: var(--teal);
+  font-size: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  min-width: 24px;
+  text-align: right;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  background: var(--border);
+  border-radius: 5px;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--teal);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(59,94,110,0.3);
+}
+
+/* CHECK GROUPS */
+.check-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 1.3;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+  user-select: none;
+}
+
+.check-item.checked { background: #EBF3F6; border-color: var(--teal); color: var(--teal); }
+
+.check-dot {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: all 0.15s;
+}
+
+.check-item.checked .check-dot {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: white;
+}
+
+.check-item.checked .check-dot::after { content: '✓'; }
+
+/* FORM */
+.form-section { margin-bottom: 22px; }
+
+.form-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  color: var(--teal);
+  margin-bottom: 10px;
+  display: block;
+}
+
+textarea {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 13px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 14px;
+  color: var(--dark);
+  background: white;
+  resize: none;
+  outline: none;
+  line-height: 1.5;
+}
+
+textarea:focus { border-color: var(--teal); }
+
+/* HOME */
+.home-greeting {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--teal);
+}
+
+.home-date {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 20px;
+  margin-top: 2px;
+}
+
+.need-label {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.need-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 20px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.need-row::-webkit-scrollbar { display: none; }
+
+.need-chip {
+  flex-shrink: 0;
+  padding: 10px 15px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+  color: var(--dark);
+}
+
+.need-chip:active { background: var(--teal); border-color: var(--teal); color: white; }
+
+.home-quick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.hq-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.hq-card:active { transform: scale(0.97); }
+
+.hq-card.accent {
+  background: var(--teal);
+  border-color: var(--teal);
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  text-align: left;
+}
+
+.hq-icon { font-size: 26px; margin-bottom: 6px; }
+.hq-label { font-size: 12px; color: var(--dark); line-height: 1.3; }
+.hq-card.accent .hq-label { color: white; font-size: 14px; margin: 0; }
+
+/* MEDITATION */
+.med-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.med-cat {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+
+.med-cat:active { transform: scale(0.97); background: var(--cream); }
+.med-cat-icon { font-size: 28px; margin-bottom: 8px; }
+.med-cat-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--dark); margin-bottom: 3px; }
+.med-cat-when { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+/* MEDITATION OVERLAY */
+.med-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 200;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 16px 48px;
+  padding-top: calc(20px + env(safe-area-inset-top));
+}
+
+.med-overlay.open { display: block; }
+
+.med-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--teal);
+  font-family: 'Belleza', sans-serif;
+  font-size: 14px;
+  margin-bottom: 22px;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  background: white;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  padding: 3px;
+  margin-bottom: 16px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all 0.15s;
+}
+
+.tab-btn.active { background: var(--teal); color: white; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* INSIGHT CARD */
+.insight-card {
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.insight-meta { font-size: 11px; letter-spacing: 0.5px; opacity: 0.75; margin-bottom: 8px; }
+.insight-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
+.insight-title { font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 300; margin-bottom: 10px; }
+.insight-message { font-size: 14px; line-height: 1.65; opacity: 0.9; }
+.insight-links { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+
+.insight-link-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 24px;
+  padding: 11px 16px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 13px;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* TRACKER HISTORY */
+.tracker-entry {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+
+.te-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.te-date { font-size: 11px; color: var(--muted); }
+.te-tag { font-size: 10px; padding: 3px 10px; border-radius: 12px; color: white; flex-shrink: 0; margin-left: 8px; }
+.te-energy { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.te-bar { flex: 1; height: 4px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.te-fill { height: 100%; border-radius: 4px; }
+.te-who { font-size: 12px; color: #5A7A86; }
+
+/* TOOLS */
+.tools-section { margin-bottom: 26px; }
+.tools-heading { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--teal); margin-bottom: 12px; }
+
+.energy-meter { display: flex; gap: 5px; margin-bottom: 12px; }
+.em-dot {
+  flex: 1;
+  height: 38px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--muted);
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.em-dot.filled { background: var(--teal); border-color: var(--teal); color: white; }
+
+.prompt-card {
+  background: linear-gradient(135deg, #EBF3F6 0%, var(--cream) 100%);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.prompt-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--dark);
+  line-height: 1.45;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+
+.prompt-nav { display: flex; justify-content: space-between; gap: 10px; }
+.prompt-nav .btn { padding: 9px 16px; font-size: 13px; flex: 1; }
+
+/* FIELD GUIDE */
+.field-guide-item {
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.field-guide-item:last-child { border-bottom: none; }
+
+.fg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fg-title { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--dark); }
+.fg-chevron { color: var(--muted); transition: transform 0.2s; font-size: 16px; }
+.field-guide-item.open .fg-chevron { transform: rotate(180deg); }
+.fg-content { display: none; font-size: 13px; color: #5A7A86; line-height: 1.65; margin-top: 10px; }
+.field-guide-item.open .fg-content { display: block; }
+
+/* PROTECTION STEPS */
+.practice-step {
+  display: flex;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.practice-step:last-child { border-bottom: none; }
+.step-num { color: var(--teal); font-family: 'Cormorant Garamond', serif; font-size: 18px; flex-shrink: 0; line-height: 1.2; }
+.step-text { font-size: 13px; color: var(--dark); line-height: 1.6; }
+
+/* LEARN */
+.course-tabs { display: flex; gap: 8px; overflow-x: auto; margin-bottom: 18px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.course-tabs::-webkit-scrollbar { display: none; }
+
+.course-tab {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: white;
+  font-family: 'Belleza', sans-serif;
+  font-size: 12px;
+  color: var(--teal);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.15s;
+}
+
+.course-tab.active { background: var(--teal); border-color: var(--teal); color: white; }
+.course-tab.locked { opacity: 0.5; }
+
+.module-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
+}
+
+.module-card:active { background: var(--cream); }
+
+.mod-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--teal);
+  flex-shrink: 0;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.mod-info { flex: 1; }
+.mod-title { font-size: 14px; color: var(--dark); margin-bottom: 2px; }
+.mod-sub { font-size: 11px; color: var(--muted); }
+.mod-arrow { color: var(--border); font-size: 20px; }
+
+.coming-soon-wrap {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.cs-icon { font-size: 40px; margin-bottom: 14px; }
+.cs-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--teal); margin-bottom: 8px; }
+.cs-desc { font-size: 13px; color: var(--muted); }
+
+/* UTILS */
+.empty-state { text-align: center; padding: 36px 16px; }
+.empty-icon { font-size: 36px; margin-bottom: 8px; }
+.empty-text { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+/* ── EE THEME: PINK ─────────────────────────────────── */
+.app-header { background: var(--pink); }
+.nav-btn.active { color: var(--pink); }
+.btn-primary { background: var(--pink); }
+.btn-pink { background: var(--pink); }
+input[type=range]::-webkit-slider-thumb { background: var(--pink); box-shadow: 0 2px 6px rgba(191,66,136,0.3); }
+.pill.selected { background: var(--pink); border-color: var(--pink); }
+.tab-btn.active { background: var(--pink); }
+.check-item.checked { background: #FDE8F3; border-color: var(--pink); color: var(--pink); }
+.check-item.checked .check-dot { background: var(--pink); border-color: var(--pink); }
+.hq-card.accent { background: var(--pink); border-color: var(--pink); }
+.em-dot.filled { background: var(--pink); border-color: var(--pink); }
+.course-tab.active { background: var(--pink); border-color: var(--pink); }
+.slider-val { color: var(--pink); }
+input[type=text]:focus, textarea:focus { border-color: var(--pink); }
+.need-chip:active { background: var(--pink); border-color: var(--pink); color: white; }
+.med-back { color: var(--pink); }
+.lms-link-btn { display: block; background: var(--pink); color: white; text-align: center; text-decoration: none; padding: 13px 20px; border-radius: 10px; font-size: 14px; letter-spacing: 0.04em; margin-bottom: 18px; }
+.lms-link-btn:active { opacity: 0.85; }
+.app-loading { position: fixed; inset: 0; background: var(--cream); display: flex; align-items: center; justify-content: center; z-index: 999; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--teal); font-style: italic; }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="logo">Energy with <em>Jess</em></div>
+    <div class="header-badge" id="course-badge">Empowered Empath</div>
+  </header>
+
+  <!-- SCREENS -->
+  <div class="screens">
+
+    <!-- ─── HOME ─────────────────────────────────────────────── -->
+    <section id="screen-home" class="screen active">
+
+      <div class="home-greeting" id="home-greeting">Welcome back.</div>
+      <div class="home-date" id="home-date"></div>
+
+      <div class="need-label">WHAT DO YOU NEED RIGHT NOW?</div>
+      <div class="need-row">
+        <div class="need-chip" onclick="showMeditation('grounding')">🌿 Grounding</div>
+        <div class="need-chip" onclick="showMeditation('nervous-system-reset')">◎ Nervous system reset</div>
+        <div class="need-chip" onclick="showMeditation('shielding')">🛡 Shielding</div>
+        <div class="need-chip" onclick="showMeditation('clearing')">◐ Clear others' energy</div>
+        <div class="need-chip" onclick="showMeditation('emotional-release')">♡ Emotional release</div>
+        <div class="need-chip" onclick="showMeditation('closing')">🌙 Close your energy</div>
+      </div>
+
+      <div class="home-quick">
+        <div class="hq-card accent" onclick="navTo('tracker')">
+          <div class="hq-label">Track an experience</div>
+          <div style="color:rgba(255,255,255,0.6); font-size:20px;">›</div>
+        </div>
+        <div class="hq-card" onclick="openCheckin()">
+          <div class="hq-icon">✦</div>
+          <div class="hq-label">Daily check-in</div>
+        </div>
+        <div class="hq-card" onclick="navTo('meditations')">
+          <div class="hq-icon">◎</div>
+          <div class="hq-label">All meditations</div>
+        </div>
+      </div>
+
+      <div id="home-recent"></div>
+
+      <div class="card">
+        <div style="font-size:10px; letter-spacing:1px; color:var(--muted); margin-bottom:8px;">TODAY'S PROMPT</div>
+        <div id="home-prompt" style="font-family:'Cormorant Garamond',serif; font-size:19px; font-weight:300; font-style:italic; color:var(--dark); line-height:1.45;"></div>
+      </div>
+
+    </section>
+
+    <!-- ─── MEDITATIONS ───────────────────────────────────────── -->
+    <section id="screen-meditations" class="screen">
+      <div class="page-title">Meditations</div>
+      <div class="page-sub">Choose by what you need right now - not by module number.</div>
+
+      <div class="med-grid">
+        <div class="med-cat" onclick="showMeditation('grounding')">
+          <div class="med-cat-icon">🌿</div>
+          <div class="med-cat-name">Grounding</div>
+          <div class="med-cat-when">When you feel scattered or overwhelmed</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('shielding')">
+          <div class="med-cat-icon">🛡</div>
+          <div class="med-cat-name">Shielding</div>
+          <div class="med-cat-when">Before a difficult situation</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('clearing')">
+          <div class="med-cat-icon">◐</div>
+          <div class="med-cat-name">Clearing</div>
+          <div class="med-cat-when">After absorbing someone else's energy</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('nervous-system-reset')">
+          <div class="med-cat-icon">◎</div>
+          <div class="med-cat-name">Reset</div>
+          <div class="med-cat-when">When your body is in alert mode</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('emotional-release')">
+          <div class="med-cat-icon">♡</div>
+          <div class="med-cat-name">Emotional Release</div>
+          <div class="med-cat-when">When feelings are too big</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('opening')">
+          <div class="med-cat-icon">☀</div>
+          <div class="med-cat-name">Opening</div>
+          <div class="med-cat-when">Before sessions or creative work</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('closing')">
+          <div class="med-cat-icon">🌙</div>
+          <div class="med-cat-name">Closing</div>
+          <div class="med-cat-when">End of day or after people</div>
+        </div>
+        <div class="med-cat" onclick="showMeditation('sleep')">
+          <div class="med-cat-icon">✦</div>
+          <div class="med-cat-name">Sleep</div>
+          <div class="med-cat-when">Wind down and release the day</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDITATION DETAIL OVERLAY -->
+    <div class="med-overlay" id="med-overlay">
+      <button class="med-back" onclick="closeMeditation()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back
+      </button>
+      <div id="med-content"></div>
+    </div>
+
+    <!-- ─── TRACKER ───────────────────────────────────────────── -->
+    <section id="screen-tracker" class="screen">
+      <div class="page-title">Energy Tracker</div>
+      <div class="page-sub">Build self-awareness about who, what, where, and why.</div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('add')">Add Entry</button>
+        <button class="tab-btn" onclick="switchTab('history')">My Patterns</button>
+      </div>
+
+      <!-- ADD ENTRY TAB -->
+      <div class="tab-panel active" id="tab-add">
+        <div id="tracker-form">
+
+          <div class="form-section">
+            <label class="form-label">Who were you with?</label>
+            <div class="pill-group">
+              <div class="pill" data-group="who" data-val="stranger">Stranger</div>
+              <div class="pill" data-group="who" data-val="friend">Friend</div>
+              <div class="pill" data-group="who" data-val="family">Family</div>
+              <div class="pill" data-group="who" data-val="partner">Partner</div>
+              <div class="pill" data-group="who" data-val="colleague">Colleague</div>
+              <div class="pill" data-group="who" data-val="authority">Authority figure</div>
+              <div class="pill" data-group="who" data-val="crowd">Alone in a crowd</div>
+              <div class="pill" data-group="who" data-val="online">Online interaction</div>
+            </div>
+          </div>
+
+          <div class="form-section" style="margin-top:18px;">
+            <label class="form-label">Where were you?</label>
+            <div class="pill-group">
+              <div class="pill" data-group="where" data-val="home">Home</div>
+              <div class="pill" data-group="where" data-val="work">Work</div>
+              <div class="pill" data-group="where" data-val="public">Public place</div>
+              <div class="pill" data-group="where" data-val="social">Social gathering</div>
+              <div class="pill" data-group="where" data-val="online">Online</div>
+              <div class="pill" data-group="where" data-val="nature">In nature</div>
+            </div>
+          </div>
+
+          <div class="form-section" style="margin-top:18px;">
+            <label class="form-label">Your energy</label>
+            <div class="slider-wrap">
+              <div class="slider-label">
+                <span>Before the experience</span>
+                <span class="slider-val" id="before-val">7</span>
+              </div>
+              <input type="range" min="1" max="10" value="7" id="slider-before"
+                oninput="document.getElementById('before-val').textContent=this.value">
+            </div>
+            <div class="slider-wrap">
+              <div class="slider-label">
+                <span>After the experience</span>
+                <span class="slider-val" id="after-val">5</span>
+              </div>
+              <input type="range" min="1" max="10" value="5" id="slider-after"
+                oninput="document.getElementById('after-val').textContent=this.value">
+            </div>
+          </div>
+
+          <div class="form-section" style="margin-top:4px;">
+            <label class="form-label">What did you notice in your body?</label>
+            <div class="check-group">
+              <div class="check-item" data-group="sensations" data-val="tight_chest"><div class="check-dot"></div>Tight chest</div>
+              <div class="check-item" data-group="sensations" data-val="heavy_foggy"><div class="check-dot"></div>Heavy or foggy</div>
+              <div class="check-item" data-group="sensations" data-val="anxious"><div class="check-dot"></div>Anxious</div>
+              <div class="check-item" data-group="sensations" data-val="teary"><div class="check-dot"></div>Emotional / teary</div>
+              <div class="check-item" data-group="sensations" data-val="exhausted"><div class="check-dot"></div>Exhausted</div>
+              <div class="check-item" data-group="sensations" data-val="headache"><div class="check-dot"></div>Headache</div>
+              <div class="check-item" data-group="sensations" data-val="nausea"><div class="check-dot"></div>Nausea</div>
+              <div class="check-item" data-group="sensations" data-val="disconnected"><div class="check-dot"></div>Disconnected</div>
+              <div class="check-item" data-group="sensations" data-val="not_myself"><div class="check-dot"></div>"Not myself"</div>
+              <div class="check-item" data-group="sensations" data-val="nothing"><div class="check-dot"></div>Nothing much</div>
+            </div>
+          </div>
+
+          <div class="form-section" style="margin-top:4px;">
+            <label class="form-label">What seemed to trigger this?</label>
+            <div class="check-group">
+              <div class="check-item" data-group="triggers" data-val="their_mood"><div class="check-dot"></div>Their mood/energy</div>
+              <div class="check-item" data-group="triggers" data-val="conflict"><div class="check-dot"></div>Conflict</div>
+              <div class="check-item" data-group="triggers" data-val="crowds"><div class="check-dot"></div>Crowds</div>
+              <div class="check-item" data-group="triggers" data-val="bad_news"><div class="check-dot"></div>Bad news</div>
+              <div class="check-item" data-group="triggers" data-val="unknown"><div class="check-dot"></div>No idea / unknown</div>
+              <div class="check-item" data-group="triggers" data-val="my_reaction"><div class="check-dot"></div>My own reaction</div>
+            </div>
+          </div>
+
+          <div class="form-section" style="margin-top:4px;">
+            <label class="form-label">Notes (optional)</label>
+            <textarea id="tracker-notes" rows="3" placeholder="Anything you want to remember about this..."></textarea>
+          </div>
+
+          <button class="btn btn-primary" onclick="submitTracker()">Track this experience</button>
+          <div style="height:10px;"></div>
+
+        </div><!-- /tracker-form -->
+
+        <div id="tracker-result" style="display:none;"></div>
+
+      </div><!-- /tab-add -->
+
+      <!-- PATTERNS TAB -->
+      <div class="tab-panel" id="tab-history">
+        <div id="history-content"></div>
+      </div>
+
+    </section>
+
+    <!-- ─── TOOLS ─────────────────────────────────────────────── -->
+    <section id="screen-tools" class="screen">
+      <div class="page-title">Tools</div>
+      <div class="page-sub">Resources for everyday life as an empath.</div>
+
+      <!-- Daily Check-in -->
+      <div class="tools-section">
+        <div class="tools-heading">Daily Energy Check-in</div>
+        <div class="card" id="checkin-card">
+          <div style="font-size:13px; color:var(--muted); margin-bottom:12px;">How's your energy today?</div>
+          <div class="energy-meter" id="energy-meter">
+            <div class="em-dot" data-val="1">1</div>
+            <div class="em-dot" data-val="2">2</div>
+            <div class="em-dot" data-val="3">3</div>
+            <div class="em-dot" data-val="4">4</div>
+            <div class="em-dot" data-val="5">5</div>
+            <div class="em-dot" data-val="6">6</div>
+            <div class="em-dot" data-val="7">7</div>
+            <div class="em-dot" data-val="8">8</div>
+            <div class="em-dot" data-val="9">9</div>
+            <div class="em-dot" data-val="10">10</div>
+          </div>
+          <div id="checkin-msg" style="font-size:13px; color:var(--muted); margin-top:10px; text-align:center; font-style:italic;">Tap a number to check in</div>
+        </div>
+      </div>
+
+      <!-- Journaling Prompts -->
+      <div class="tools-section">
+        <div class="tools-heading">Journaling Prompts</div>
+        <div class="prompt-card">
+          <div class="prompt-text" id="prompt-display"></div>
+          <div class="prompt-nav">
+            <button class="btn btn-secondary" onclick="changePrompt(-1)">Prev</button>
+            <button class="btn btn-secondary" onclick="changePrompt(1)">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empath Field Guide -->
+      <div class="tools-section">
+        <div class="tools-heading">Empath Field Guide</div>
+        <div class="card" style="padding: 0 16px;">
+
+          <div class="field-guide-item" onclick="toggleFg(this)">
+            <div class="fg-header">
+              <span class="fg-title">What is energy absorption?</span>
+              <span class="fg-chevron">▾</span>
+            </div>
+            <div class="fg-content">Energy absorption happens when you unconsciously take on the emotional, energetic, or physical state of someone else. As an empath, your nervous system is highly attuned to the people around you - this is a gift, but without awareness it can leave you carrying feelings and sensations that aren't yours. The first step is noticing it's happening.</div>
+          </div>
+
+          <div class="field-guide-item" onclick="toggleFg(this)">
+            <div class="fg-header">
+              <span class="fg-title">Signs your nervous system is overwhelmed</span>
+              <span class="fg-chevron">▾</span>
+            </div>
+            <div class="fg-content">Your nervous system signals overwhelm through the body: tight chest, shallow breathing, a racing or heavy feeling, sudden fatigue, irritability out of proportion to the situation, difficulty making decisions, or a sense of wanting to disappear. These aren't weaknesses. They're your system asking for space.</div>
+          </div>
+
+          <div class="field-guide-item" onclick="toggleFg(this)">
+            <div class="fg-header">
+              <span class="fg-title">Empathy vs absorption - the difference</span>
+              <span class="fg-chevron">▾</span>
+            </div>
+            <div class="fg-content">Empathy is feeling WITH someone - you understand their pain but remain in your own body. Absorption is feeling AS someone - their state becomes indistinguishable from yours. Empaths often default to absorption without realising it. The distinction matters because empathy is sustainable; absorption is exhausting and leads to burnout.</div>
+          </div>
+
+          <div class="field-guide-item" onclick="toggleFg(this)">
+            <div class="fg-header">
+              <span class="fg-title">Closing your energy field (quick guide)</span>
+              <span class="fg-chevron">▾</span>
+            </div>
+            <div class="fg-content">Take three slow breaths. With each exhale, imagine your energy drawing closer to your body - like pulling a cloak inward. Set a quiet intention: "My energy is mine. I'm here, in my body, in my own field." You don't need to shut down or block anything. Just return to yourself. This takes less than 60 seconds and can be done anywhere.</div>
+          </div>
+
+          <div class="field-guide-item" onclick="toggleFg(this)">
+            <div class="fg-header">
+              <span class="fg-title">Why empaths get tired around people</span>
+              <span class="fg-chevron">▾</span>
+            </div>
+            <div class="fg-content">Empaths process environmental energy constantly, even passively. Being around people - especially in groups or emotionally charged situations - is work for the empath nervous system. This is not social anxiety or introversion (though it can coexist). It's energetic processing. The tiredness is real. Rest is productive for empaths in a way it isn't for everyone else.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Protection Practice -->
+      <div class="tools-section">
+        <div class="tools-heading">Protection Practice</div>
+        <div class="card">
+          <div class="card-title">The Field Reset</div>
+          <div class="card-body" style="margin-bottom:14px;">A 2-minute practice for before, during, or after any interaction.</div>
+          <div class="practice-step">
+            <div class="step-num">1</div>
+            <div class="step-text">Feel your feet on the ground. Take one slow breath in and out.</div>
+          </div>
+          <div class="practice-step">
+            <div class="step-num">2</div>
+            <div class="step-text">Notice where in your body you feel any tension or weight. Don't try to change it yet - just notice.</div>
+          </div>
+          <div class="practice-step">
+            <div class="step-num">3</div>
+            <div class="step-text">Breathe in and imagine drawing your own energy back to you from wherever it's scattered. Breathe out anything that isn't yours.</div>
+          </div>
+          <div class="practice-step">
+            <div class="step-num">4</div>
+            <div class="step-text">Set your field. Imagine a soft boundary around your body - not a wall, just a membrane. It lets love in and keeps everything else out.</div>
+          </div>
+          <div class="practice-step">
+            <div class="step-num">5</div>
+            <div class="step-text">Say quietly: "I am here. This is mine. That is theirs."</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ─── LEARN ─────────────────────────────────────────────── -->
+    <section id="screen-learn" class="screen">
+      <div class="page-title">Learn</div>
+
+      <div class="course-tabs">
+        <div class="course-tab active" data-course="ee" onclick="switchCourse('ee')">Empowered Empath</div>
+        <div class="course-tab locked" data-course="sg" onclick="switchCourse('sg')">Solid Ground</div>
+        <div class="course-tab locked" data-course="slb" onclick="switchCourse('slb')">Soul-Led Business</div>
+      </div>
+
+      <div id="learn-ee">
+        <a href="/energy-with-jess-lms.html" class="lms-link-btn">Open Empowered Empath course →</a>
+        <div id="ee-modules-list"></div>
+      </div>
+
+      <div id="learn-sg" style="display:none;">
+        <div class="coming-soon-wrap">
+          <div class="cs-icon">🌱</div>
+          <div class="cs-title">Solid Ground</div>
+          <div class="cs-desc">Coming September 2026. This space will be here when you're ready.</div>
+        </div>
+      </div>
+
+      <div id="learn-slb" style="display:none;">
+        <div class="coming-soon-wrap">
+          <div class="cs-icon">✦</div>
+          <div class="cs-title">Soul-Led Business</div>
+          <div class="cs-desc">Coming soon. Watch this space.</div>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /screens -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="navTo('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+        <path d="M9 21V12h6v9"/>
+      </svg>
+      <span>Home</span>
+    </button>
+    <button class="nav-btn" id="nav-meditations" onclick="navTo('meditations')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="3"/>
+        <circle cx="12" cy="12" r="7"/>
+        <circle cx="12" cy="12" r="11"/>
+      </svg>
+      <span>Meditate</span>
+    </button>
+    <button class="nav-btn" id="nav-tracker" onclick="navTo('tracker')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 20V10M18 20V4M6 20v-6"/>
+      </svg>
+      <span>Track</span>
+    </button>
+    <button class="nav-btn" id="nav-tools" onclick="navTo('tools')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+      </svg>
+      <span>Tools</span>
+    </button>
+    <button class="nav-btn" id="nav-learn" onclick="navTo('learn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M4 19.5A2.5 2.5 0 016.5 17H20"/>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/>
+      </svg>
+      <span>Learn</span>
+    </button>
+  </nav>
+
+</div><!-- /app -->
+
+<script>
+
+// ─── MEDITATION DATA ─────────────────────────────────────────────────
+
+const MEDS = {
+  grounding: {
+    title: 'Grounding', icon: '🌿', duration: '10 min',
+    when: 'When you feel scattered, overwhelmed, or untethered.',
+    desc: "This meditation anchors you back into your body and connects you to the earth beneath you. Use it when your energy feels like it's everywhere but here.",
+    steps: [
+      'Find somewhere comfortable to sit or stand with your feet flat on the ground.',
+      'Close your eyes and take three slow breaths, letting each exhale be longer than the inhale.',
+      'Imagine roots growing down from the soles of your feet, through the floor, through the earth beneath you, down until they reach bedrock.',
+      'Feel the weight of your body. Feel where you make contact with the chair or floor.',
+      'Stay here for as long as you need. When you\'re ready, take a slow breath and open your eyes.'
+    ]
+  },
+  shielding: {
+    title: 'Shielding', icon: '🛡', duration: '5 min',
+    when: 'Before entering a difficult situation, a crowd, or an emotionally charged conversation.',
+    desc: 'Prepare your field before you need to. This is a practice for closing off energetic entry points before you step into challenging spaces.',
+    steps: [
+      'Stand or sit comfortably. Take two slow breaths.',
+      'Imagine a soft, luminous light surrounding your body - not a wall, but a membrane. It lets what is yours stay yours, and keeps what is theirs with them.',
+      'Set an intention: "I am present and open to connection. I am also contained within my own field."',
+      'Feel the boundary. Not tight or defensive - just clear.',
+      'Step into whatever is ahead of you, knowing you can return to this feeling at any moment.'
+    ]
+  },
+  clearing: {
+    title: "Clearing Others' Energy", icon: '◐', duration: '8 min',
+    when: "After absorbing someone else's emotional state, after a difficult interaction, or when you notice feelings that don't quite feel like yours.",
+    desc: "This meditation helps you identify and release what you've taken on, and return energy to where it belongs.",
+    steps: [
+      'Find a quiet space. Sit comfortably, spine upright.',
+      'Take three slow breaths and check in: what are you feeling right now? Don\'t try to change it yet.',
+      'Ask yourself: is this mine? If there\'s any uncertainty, that\'s a signal.',
+      'Breathe in slowly. On the exhale, imagine releasing everything that isn\'t yours - like smoke leaving the body. Let it go with kindness, not force.',
+      'Do this three to five times, until the breath feels clear.',
+      'Fill the space left behind with your own energy. Imagine warm light moving into any place that feels empty.',
+      'Set a quiet close: "I release what is not mine. I return it with love."'
+    ]
+  },
+  'nervous-system-reset': {
+    title: 'Nervous System Reset', icon: '◎', duration: '7 min',
+    when: 'When you feel anxious, on edge, tight in the chest, or like your body is braced for something.',
+    desc: 'Physiological reset for an overstimulated nervous system. This works directly on the body - no visualisation required.',
+    steps: [
+      'If possible, find somewhere you can sit or lie down. If you\'re in public, this can be done with eyes open.',
+      'Breathe in through your nose for 4 counts. Hold for 4. Out through your mouth for 6. The longer exhale activates your calming system.',
+      'Repeat this three times.',
+      'Now soften your jaw. Let your shoulders drop. Unclench your hands.',
+      'Feel the weight of your body where it meets the surface below you.',
+      'You are safe. Your body is responding to input, not threat. This will pass.',
+      'Stay in slow breath for as long as you need.'
+    ]
+  },
+  'emotional-release': {
+    title: 'Emotional Release', icon: '♡', duration: '10 min',
+    when: "When emotions are intense or overwhelming - whether yours or ones you've absorbed.",
+    desc: "Space to feel what's here without being swept away by it. Empaths often suppress feeling to cope - this is a container for letting it move.",
+    steps: [
+      'Find privacy if you can. Sit comfortably, feet flat.',
+      'Put one hand on your heart and one on your belly. Just breathe.',
+      'Name what you feel without judgement. Angry. Sad. Numb. Overwhelmed. Scared. Just name it.',
+      'Breathe into where you feel it in your body. Don\'t try to fix it or understand it.',
+      'Allow it to be here. Emotions are not dangerous - they are information, and they move when they\'re allowed to.',
+      'Stay with this until there\'s a shift - even a small one. It might be a sigh, a softening, or tears. All of these are release.',
+      'When ready, take a long slow breath and feel your feet on the ground.'
+    ]
+  },
+  opening: {
+    title: 'Opening', icon: '☀', duration: '5 min',
+    when: 'Before a healing session, creative work, readings, or any work where you want to be receptive.',
+    desc: 'An intentional opening of the energetic field for receptive, connected work.',
+    steps: [
+      'Sit quietly and take three centering breaths.',
+      'Set your intention for what this space is for.',
+      'Imagine your field gently expanding - not forcing, just softening. Like opening a hand that was held in a fist.',
+      'Invite in what serves your work: clarity, presence, truth, compassion.',
+      'Begin when it feels right.'
+    ]
+  },
+  closing: {
+    title: 'Closing', icon: '🌙', duration: '8 min',
+    when: 'End of day, after being with many people, after a healing session or reading.',
+    desc: 'A gentle close of the energetic day. Return to your own field and release what you carried on behalf of others.',
+    steps: [
+      'Sit or lie somewhere comfortable.',
+      'Take three slow breaths and exhale any remaining tension of the day.',
+      'Imagine drawing your energy back from everywhere it went today - every conversation, every room, every person.',
+      'Feel yourself settle into your own field.',
+      'Offer gratitude for the day without analysis.',
+      'Set your close: "This day is complete. I am here, in my body, at rest."',
+      'Let sleep or stillness follow.'
+    ]
+  },
+  sleep: {
+    title: 'Sleep', icon: '✦', duration: '12 min',
+    when: "When you're ready to wind down and release the day completely.",
+    desc: 'A body scan and field release to carry you into rest.',
+    steps: [
+      'Lie down comfortably.',
+      'Take five slow breaths. Feel your body getting heavier with each exhale.',
+      'Scan slowly from feet to head: feet, ankles, calves, knees, hips. With each area, breathe in and let it soften as you exhale.',
+      'Continue: belly, chest, shoulders, arms, hands, jaw, eyes.',
+      'Release anything you\'re still holding from the day. You don\'t need to resolve it tonight. You can put it down.',
+      'If you absorbed anything that isn\'t yours today, let it return to where it came from now. It was never yours to keep.',
+      'You are here. You are safe. You can rest.'
+    ]
+  }
+};
+
+// ─── INSIGHT ENGINE ──────────────────────────────────────────────────
+
+const INSIGHT_CONFIGS = {
+  ns: {
+    label: 'Nervous System Response',
+    bg: '#7B5EA7', fg: 'white',
+    meditation: 'nervous-system-reset',
+    medLabel: 'Nervous System Reset',
+    message: "Your nervous system went into alert mode. This is a physiological response to energetic overwhelm - not a personal failing. Your body is doing its job. Time to resource it.",
+    module: 'Module 5 - Nervous System Regulation'
+  },
+  emotional: {
+    label: 'Emotional Regulation Moment',
+    bg: '#bf4288', fg: 'white',
+    meditation: 'emotional-release',
+    medLabel: 'Emotional Release',
+    message: "Those feelings may not all be yours. Empaths often absorb the emotional state of people close to them, especially in conflict. Before you process, try clearing first.",
+    module: 'Module 4 - Your Emotional Body'
+  },
+  absorption: {
+    label: 'Empath Energy Absorption',
+    bg: '#3B5E6E', fg: 'white',
+    meditation: 'clearing',
+    medLabel: "Clear Others' Energy",
+    message: "You likely picked up and carried someone else's energy without realising. This is energy absorption - a core empath experience. Module 2 was built for exactly this pattern.",
+    module: 'Module 2 - Opening and Closing Your Energy'
+  },
+  drain: {
+    label: 'Energy Drain',
+    bg: '#2C4A54', fg: 'white',
+    meditation: 'grounding',
+    medLabel: 'Grounding and Return',
+    message: "Your energy went out but wasn't replenished. This happens when we give more than we receive - in conversation, in space, in presence. Time to come back to yourself.",
+    module: null
+  },
+  neutral: {
+    label: 'Energy Held',
+    bg: '#5A7A86', fg: 'white',
+    meditation: null,
+    medLabel: null,
+    message: "You moved through this one with your energy mostly intact. Notice what was different here - that's information worth keeping.",
+    module: null
+  }
+};
+
+function generateInsight(who, where, before, after, sensations, triggers) {
+  const drop = before - after;
+  let ns = 0, emotional = 0, absorption = 0, drain = 0;
+
+  if (sensations.includes('tight_chest')) ns += 3;
+  if (sensations.includes('anxious')) ns += 3;
+  if (sensations.includes('nausea')) ns += 2;
+  if (where === 'public' || where === 'social') ns += 2;
+  if (who === 'crowd') ns += 2;
+  if (drop >= 3) ns += 1;
+
+  if (sensations.includes('teary')) emotional += 3;
+  if (triggers.includes('conflict')) emotional += 3;
+  if ((who === 'family' || who === 'partner') && triggers.includes('their_mood')) emotional += 2;
+  if (who === 'family' || who === 'partner') emotional += 1;
+
+  if (sensations.includes('heavy_foggy')) absorption += 3;
+  if (sensations.includes('not_myself')) absorption += 3;
+  if (triggers.includes('unknown')) absorption += 2;
+  if (triggers.includes('their_mood')) absorption += 2;
+  if (drop >= 4) absorption += 2;
+
+  if (sensations.includes('exhausted')) drain += 2;
+  if (drop >= 2) drain += 1;
+
+  const max = Math.max(ns, emotional, absorption, drain);
+  if (max === 0) return 'neutral';
+  if (max === ns) return 'ns';
+  if (max === emotional) return 'emotional';
+  if (max === absorption) return 'absorption';
+  return 'drain';
+}
+
+// ─── EE MODULES ─────────────────────────────────────────────────────
+
+const EE_MODULES = [
+  { num: '1', title: 'What it means to be an empath', sub: 'Foundation' },
+  { num: '2', title: 'Opening and closing your energy', sub: 'Core practice' },
+  { num: '3', title: 'Your energy field', sub: 'Understanding your aura' },
+  { num: '4', title: 'Your emotional body', sub: 'Feeling as information' },
+  { num: '5', title: 'Nervous system regulation', sub: 'Calming the alert system' },
+  { num: '6', title: 'Energetic boundaries', sub: 'Protecting your field' },
+  { num: '7', title: 'Inner child', sub: 'Where patterns begin' },
+  { num: '8', title: 'Higher self', sub: 'Your wisest voice' },
+  { num: '9', title: 'Self-mastery', sub: 'Living from your own centre' },
+  { num: '10', title: 'Living as an empowered empath', sub: 'Integration' },
+  { num: 'B1', title: 'Bonus: Empath and relationships', sub: 'Navigating connection' },
+  { num: 'B2', title: 'Bonus: Advanced energy work', sub: 'Going deeper' }
+];
+
+// ─── JOURNALING PROMPTS ──────────────────────────────────────────────
+
+const PROMPTS = [
+  "Where did you end the day differently than you began it? What shifted?",
+  "Whose energy did you notice today? How did it sit in your body?",
+  "What did you give that wasn't asked for? What did that cost you?",
+  "When did you feel most like yourself today? What made it possible?",
+  "What are you feeling right now that might not be yours?",
+  "Where in your body do you hold other people's emotions? What's there today?",
+  "What boundary felt hard to hold this week? What would have made it easier?",
+  "When did you last feel truly resourced? What fills you up?",
+  "What are you absorbing from your environment that you haven't noticed yet?",
+  "What does your energy need to be returned to you today?",
+  "Who in your life gives energy and who takes it? Where are you in that balance?",
+  "What would feel like breathing room right now?"
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────
+
+let trackerData = { who: null, where: null, sensations: [], triggers: [] };
+let trackerHistory = JSON.parse(localStorage.getItem('ewj_tracker') || '[]');
+let promptIdx = 0;
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────
+
+function navTo(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  const nb = document.getElementById('nav-' + name);
+  if (nb) nb.classList.add('active');
+  closeMeditation();
+}
+
+// ─── HOME INIT ───────────────────────────────────────────────────────
+
+function initHome() {
+  const now = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const h = now.getHours();
+  const greeting = h < 12 ? 'Good morning.' : h < 17 ? 'Good afternoon.' : 'Good evening.';
+  document.getElementById('home-greeting').textContent = greeting;
+  document.getElementById('home-date').textContent = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  promptIdx = Math.floor(Math.random() * PROMPTS.length);
+  document.getElementById('home-prompt').textContent = '“' + PROMPTS[promptIdx] + '”';
+
+  const el = document.getElementById('home-recent');
+  if (trackerHistory.length > 0) {
+    const r = trackerHistory[0];
+    const ic = INSIGHT_CONFIGS[r.insight] || INSIGHT_CONFIGS.neutral;
+    el.innerHTML = `
+      <div style="font-size:10px; letter-spacing:1px; color:var(--muted); margin-bottom:8px;">RECENT INSIGHT</div>
+      <div onclick="navTo('tracker')" style="background:${ic.bg}; border-radius:14px; padding:16px; margin-bottom:16px; cursor:pointer;">
+        <div style="font-size:11px; color:rgba(255,255,255,0.65); margin-bottom:6px;">${r.date}</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:20px; color:white; margin-bottom:4px;">${ic.label}</div>
+        <div style="font-size:12px; color:rgba(255,255,255,0.7);">With ${r.who || '-'} &middot; ${r.where || '-'} &middot; Energy ${r.before}&rarr;${r.after}</div>
+      </div>
+    `;
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+// ─── MEDITATIONS ─────────────────────────────────────────────────────
+
+function showMeditation(key) {
+  const m = MEDS[key];
+  if (!m) return;
+
+  const steps = m.steps.map((s, i) => `
+    <div style="display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); align-items:flex-start;">
+      <span style="color:var(--teal); font-family:'Cormorant Garamond',serif; font-size:20px; flex-shrink:0; line-height:1.2;">${i+1}</span>
+      <span style="font-size:14px; color:var(--dark); line-height:1.65;">${s}</span>
+    </div>
+  `).join('');
+
+  document.getElementById('med-content').innerHTML = `
+    <div style="text-align:center; margin-bottom:24px;">
+      <div style="font-size:52px; margin-bottom:12px;">${m.icon}</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:28px; font-weight:300; color:var(--teal);">${m.title}</div>
+      <div style="font-size:12px; color:var(--muted); margin-top:4px;">${m.duration}</div>
+    </div>
+
+    <div style="background:white; border:1.5px solid var(--border); border-left:3px solid var(--teal); border-radius:12px; padding:14px 16px; margin-bottom:16px;">
+      <div style="font-size:10px; letter-spacing:1px; color:var(--muted); margin-bottom:6px;">USE WHEN</div>
+      <div style="font-size:14px; color:var(--dark); line-height:1.5; font-style:italic;">${m.when}</div>
+    </div>
+
+    <div style="font-size:14px; color:#5A7A86; line-height:1.65; margin-bottom:20px;">${m.desc}</div>
+
+    <div style="background:white; border:1.5px solid var(--border); border-radius:14px; padding:0 16px; margin-bottom:20px;">
+      ${steps}
+    </div>
+
+    <div style="background:var(--cream); border:1.5px dashed var(--border); border-radius:14px; padding:28px 20px; text-align:center; margin-bottom:8px;">
+      <div style="font-size:32px; margin-bottom:10px;">▶</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:19px; color:var(--teal); margin-bottom:6px;">Guided audio coming soon</div>
+      <div style="font-size:13px; color:var(--muted);">Jess will be recording these meditations. They'll appear here when ready.</div>
+    </div>
+  `;
+
+  document.getElementById('med-overlay').classList.add('open');
+  document.getElementById('med-overlay').scrollTop = 0;
+}
+
+function closeMeditation() {
+  document.getElementById('med-overlay').classList.remove('open');
+}
+
+// ─── TRACKER ─────────────────────────────────────────────────────────
+
+// Handle pill + checkbox clicks via delegation
+document.addEventListener('click', function(e) {
+  const pill = e.target.closest('.pill[data-group]');
+  if (pill) {
+    const g = pill.dataset.group;
+    document.querySelectorAll('.pill[data-group="' + g + '"]').forEach(p => p.classList.remove('selected'));
+    pill.classList.add('selected');
+    trackerData[g] = pill.dataset.val;
+  }
+
+  const check = e.target.closest('.check-item[data-group]');
+  if (check) {
+    const g = check.dataset.group;
+    const v = check.dataset.val;
+    check.classList.toggle('checked');
+    if (!trackerData[g]) trackerData[g] = [];
+    if (check.classList.contains('checked')) {
+      if (!trackerData[g].includes(v)) trackerData[g].push(v);
+    } else {
+      trackerData[g] = trackerData[g].filter(x => x !== v);
+    }
+  }
+});
+
+function switchTab(tab) {
+  document.querySelectorAll('#screen-tracker .tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('#screen-tracker .tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.querySelector('#screen-tracker .tab-btn' + (tab === 'add' ? ':first-child' : ':last-child')).classList.add('active');
+  if (tab === 'history') renderHistory();
+}
+
+function submitTracker() {
+  const before = parseInt(document.getElementById('slider-before').value);
+  const after = parseInt(document.getElementById('slider-after').value);
+  const notes = document.getElementById('tracker-notes').value.trim();
+  const now = new Date();
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateStr = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+
+  const insight = generateInsight(
+    trackerData.who, trackerData.where, before, after,
+    trackerData.sensations || [], trackerData.triggers || []
+  );
+
+  const entry = {
+    id: now.getTime(),
+    date: dateStr,
+    who: trackerData.who,
+    where: trackerData.where,
+    before, after,
+    sensations: trackerData.sensations || [],
+    triggers: trackerData.triggers || [],
+    notes,
+    insight
+  };
+
+  trackerHistory.unshift(entry);
+  localStorage.setItem('ewj_tracker', JSON.stringify(trackerHistory));
+  showInsightResult(entry);
+  initHome();
+}
+
+function showInsightResult(entry) {
+  const ic = INSIGHT_CONFIGS[entry.insight] || INSIGHT_CONFIGS.neutral;
+
+  const links = [];
+  if (ic.meditation) links.push(`<button class="insight-link-btn" onclick="showMeditation('${ic.meditation}')">&#9675; Meditation: ${ic.medLabel}</button>`);
+  if (ic.module) links.push(`<button class="insight-link-btn" onclick="navTo('learn')">&#9655; ${ic.module}</button>`);
+
+  document.getElementById('tracker-form').style.display = 'none';
+  document.getElementById('tracker-result').style.display = 'block';
+  document.getElementById('tracker-result').innerHTML = `
+    <div class="insight-card" style="background:${ic.bg}; color:${ic.fg};">
+      <div class="insight-meta">${entry.date} &middot; With ${entry.who || '-'} &middot; ${entry.where || '-'}</div>
+      <div class="insight-label">What this looks like</div>
+      <div class="insight-title">${ic.label}</div>
+      <div class="insight-message">${ic.message}</div>
+      ${links.length ? '<div class="insight-links">' + links.join('') + '</div>' : ''}
+    </div>
+    <div style="display:flex; gap:10px; margin-top:4px;">
+      <button class="btn btn-secondary" style="flex:1;" onclick="resetTracker()">Track another</button>
+      <button class="btn btn-secondary" style="flex:1;" onclick="switchTab('history')">View patterns</button>
+    </div>
+  `;
+}
+
+function resetTracker() {
+  trackerData = { who: null, where: null, sensations: [], triggers: [] };
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
+  document.querySelectorAll('.check-item').forEach(c => c.classList.remove('checked'));
+  document.getElementById('slider-before').value = 7;
+  document.getElementById('slider-after').value = 5;
+  document.getElementById('before-val').textContent = '7';
+  document.getElementById('after-val').textContent = '5';
+  document.getElementById('tracker-notes').value = '';
+  document.getElementById('tracker-form').style.display = 'block';
+  document.getElementById('tracker-result').style.display = 'none';
+}
+
+function renderHistory() {
+  const el = document.getElementById('history-content');
+  if (trackerHistory.length === 0) {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">◎</div><div class="empty-text">Your patterns will appear here as you track experiences.<br>Each entry builds a picture over time.</div></div>';
+    return;
+  }
+
+  el.innerHTML = trackerHistory.map(entry => {
+    const ic = INSIGHT_CONFIGS[entry.insight] || INSIGHT_CONFIGS.neutral;
+    const afterPct = Math.round((entry.after / 10) * 100);
+    const fillColor = entry.before > entry.after ? '#bf4288' : '#3B5E6E';
+    return `
+      <div class="tracker-entry">
+        <div class="te-header">
+          <div class="te-date">${entry.date}</div>
+          <div class="te-tag" style="background:${ic.bg};">${ic.label}</div>
+        </div>
+        <div class="te-energy">
+          <span>${entry.before}</span>
+          <div class="te-bar"><div class="te-fill" style="width:${afterPct}%; background:${fillColor};"></div></div>
+          <span>${entry.after}</span>
+        </div>
+        <div class="te-who">With: ${entry.who || '-'} &middot; ${entry.where || '-'}</div>
+        ${entry.notes ? `<div style="font-size:12px; color:var(--muted); margin-top:6px; font-style:italic;">"${entry.notes}"</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+// ─── TOOLS ───────────────────────────────────────────────────────────
+
+function openCheckin() {
+  navTo('tools');
+  setTimeout(() => {
+    const el = document.getElementById('checkin-card');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 80);
+}
+
+document.addEventListener('click', function(e) {
+  const dot = e.target.closest('.em-dot[data-val]');
+  if (dot) setCheckin(parseInt(dot.dataset.val));
+});
+
+function setCheckin(val) {
+  document.querySelectorAll('.em-dot').forEach((d, i) => {
+    d.classList.toggle('filled', i < val);
+  });
+  const msgs = {
+    1: 'Really depleted. Be gentle with yourself today.',
+    2: 'Very low. Rest is the work.',
+    3: 'Low energy. Small steps only.',
+    4: 'A bit flat. You can still move gently.',
+    5: 'Middling. Steady as she goes.',
+    6: 'Okay. Good enough to move forward.',
+    7: 'Pretty good. Use this energy wisely.',
+    8: 'Good energy today.',
+    9: 'Strong. This is a good day to push through.',
+    10: 'Full tank. Make the most of it.'
+  };
+  document.getElementById('checkin-msg').textContent = msgs[val] || '';
+  localStorage.setItem('ewj_checkin_' + new Date().toDateString(), val);
+}
+
+function initCheckin() {
+  const saved = parseInt(localStorage.getItem('ewj_checkin_' + new Date().toDateString()) || '0');
+  if (saved > 0) setCheckin(saved);
+}
+
+function changePrompt(dir) {
+  promptIdx = (promptIdx + dir + PROMPTS.length) % PROMPTS.length;
+  document.getElementById('prompt-display').textContent = '“' + PROMPTS[promptIdx] + '”';
+}
+
+function toggleFg(el) {
+  el.classList.toggle('open');
+}
+
+// ─── LEARN ───────────────────────────────────────────────────────────
+
+function initLearn() {
+  document.getElementById('ee-modules-list').innerHTML = EE_MODULES.map(m => `
+    <div class="module-card">
+      <div class="mod-num">${m.num}</div>
+      <div class="mod-info">
+        <div class="mod-title">${m.title}</div>
+        <div class="mod-sub">${m.sub}</div>
+      </div>
+      <div class="mod-arrow">›</div>
+    </div>
+  `).join('');
+}
+
+function switchCourse(course) {
+  ['ee','sg','slb'].forEach(c => {
+    document.getElementById('learn-' + c).style.display = c === course ? 'block' : 'none';
+  });
+  document.querySelectorAll('.course-tab').forEach(t => {
+    const isActive = t.dataset.course === course;
+    t.classList.toggle('active', isActive);
+    t.classList.toggle('locked', !isActive && t.dataset.course !== 'ee');
+  });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', function() {
+  initHome();
+  initLearn();
+  initCheckin();
+  promptIdx = Math.floor(Math.random() * PROMPTS.length);
+  document.getElementById('prompt-display').textContent = '“' + PROMPTS[promptIdx] + '”';
+});
+
+</script>
+
+<!-- FIREBASE AUTH -->
+<div class="app-loading" id="app-loading">Loading...</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script>
+  const _fbConfig = {
+    apiKey:            "AIzaSyBErHDdakJYLGjAVADJM__mNxnNOy7cEa0",
+    authDomain:        "energy-with-jess-lms.firebaseapp.com",
+    projectId:         "energy-with-jess-lms",
+    storageBucket:     "energy-with-jess-lms.firebasestorage.app",
+    messagingSenderId: "974191871270",
+    appId:             "1:974191871270:web:9836a77d4cd403e6226de7"
+  };
+  if (!firebase.apps.length) firebase.initializeApp(_fbConfig);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (!user) {
+      window.location.href = '/auth';
+      return;
+    }
+    // Show app, hide loading screen
+    document.getElementById('app-loading').style.display = 'none';
+    // Show user's first name in header badge
+    const firstName = (user.displayName || user.email || '').split(' ')[0];
+    const badge = document.getElementById('course-badge');
+    if (badge && firstName) badge.textContent = 'Hi ' + firstName;
+  });
+</script>
+</body>
+</html>
