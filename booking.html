@@ -963,6 +963,14 @@
       <p class="section-sub" style="margin-bottom:20px;">All calls are complimentary &mdash; 30 minutes to talk through where you are and what fits. No pressure, just an honest conversation.</p>
       <div class="cards-grid">
 
+        <div class="svc-card svc-discovery" onclick="bookFromPrograms('Solid Ground Discovery Call','30 min','Complimentary','online')">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌍</span>
+          <h3>Solid Ground</h3>
+          <p>Building a business solo with no partner safety net. A 30-min call to explore whether Solid Ground is the right fit.</p>
+          <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
+        </div>
+
         <div class="svc-card svc-discovery" onclick="bookFromPrograms('Soul-Led Business Discovery Call','30 min','Complimentary','online')">
           <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="icon">🌱</span>
@@ -1114,6 +1122,104 @@
           </div>
           <div class="btn-row">
             <button class="btn btn-primary" onclick="openEnquiry('Soul-Led Business Pack')">Enquire</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('prog-discovery').scrollIntoView({behavior:'smooth'})">Book a Discovery Call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLID GROUND -->
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:6px;">Solid Ground</p>
+      <p class="section-title" style="margin-bottom:6px;"><em>Soul-led business</em> for solo women</p>
+      <p class="section-sub" style="margin-bottom:20px;">Built for the woman doing it with no partner safety net - single by choice or coincidence. No sounding board at 10pm, no one to split the bills while you figure it out. This exists because nothing like it did.</p>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🌍</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Self-Paced</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Solid Ground</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $147 &middot; Self-paced &middot; Lifetime access</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>Two self-paced courses that take you from nothing to something real. Start with Core to get the foundations in. Go Deeper when you're ready. Or take the bundle and have it all from day one.</p>
+          <div class="sub-options">
+            <div class="sub-opt">
+              <div class="price">$147</div>
+              <div class="sessions-lbl">Core &middot; 6 modules &middot; Self-paced</div>
+              <h4>Solid Ground: Core</h4>
+              <p>The foundations. Starting from scratch, building something real - on your own terms, without a safety net. Practical and energetically aligned.</p>
+            </div>
+            <div class="sub-opt">
+              <div class="price">$199</div>
+              <div class="sessions-lbl">Going Deeper &middot; 6 modules &middot; Self-paced</div>
+              <h4>Solid Ground: Going Deeper</h4>
+              <p>For when the foundations are in and you're ready to grow. More depth, more specificity, more of what it actually takes to stay grounded as things expand.</p>
+            </div>
+            <div class="sub-opt" style="grid-column:1/-1;">
+              <div class="price">$297</div>
+              <div class="sessions-lbl">Bundle &middot; Both courses &middot; Best value</div>
+              <h4>Solid Ground: Bundle</h4>
+              <p>Core and Going Deeper together. The complete self-paced path at the best price. Payment plan available.</p>
+            </div>
+          </div>
+          <div class="prog-includes">
+            <span class="incl-chip">6 modules per course</span>
+            <span class="incl-chip">Lifetime access</span>
+            <span class="incl-chip">Payment plan available</span>
+          </div>
+          <div class="btn-row">
+            <a href="solid-ground.html" class="btn btn-primary">Learn More &amp; Enrol</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🤝</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">1:1 Support</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Solid Ground - Supported</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $666 &middot; 6 or 12 sessions &middot; up to 6 months</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>The same material as the self-paced courses, done alongside Jess. Fortnightly sessions over 12 weeks or 6 months. Not on your own, not winging it - real-time support as you build.</p>
+          <div class="sub-options">
+            <div class="sub-opt">
+              <div class="price">$666</div>
+              <div class="sessions-lbl">Core 1:1 &middot; 6 sessions &middot; 12 weeks</div>
+              <h4>Solid Ground: Core (1:1)</h4>
+              <p>6 fortnightly sessions to move through the Core material with direct support from Jess. Starting from scratch, with someone who actually has your back.</p>
+            </div>
+            <div class="sub-opt">
+              <div class="price">$666</div>
+              <div class="sessions-lbl">Going Deeper 1:1 &middot; 6 sessions</div>
+              <h4>Solid Ground: Going Deeper (1:1)</h4>
+              <p>6 sessions for when the foundations are in and you're ready to grow with support alongside you. Can follow Core 1:1 or stand alone.</p>
+            </div>
+            <div class="sub-opt" style="grid-column:1/-1;">
+              <div class="price">$999</div>
+              <div class="sessions-lbl">Bundle 1:1 &middot; 12 sessions &middot; 6 months</div>
+              <h4>Solid Ground: Bundle (1:1)</h4>
+              <p>Both courses in a 1:1 container. 12 sessions over 6 months - the full supported path from nothing to something genuinely yours. Payment plan available.</p>
+            </div>
+          </div>
+          <div class="prog-includes">
+            <span class="incl-chip">Fortnightly sessions</span>
+            <span class="incl-chip">Telegram access</span>
+            <span class="incl-chip">Payment plans available</span>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-primary" onclick="openEnquiry('Solid Ground (1:1)')">Enquire</button>
             <button class="btn btn-ghost" onclick="document.getElementById('prog-discovery').scrollIntoView({behavior:'smooth'})">Book a Discovery Call</button>
           </div>
         </div>
@@ -1423,6 +1529,14 @@
           <label>I'm interested in...</label>
           <select id="enq-interest">
             <option value="">Select...</option>
+            <optgroup label="Solid Ground">
+              <option>Solid Ground: Core - Self-Paced ($147)</option>
+              <option>Solid Ground: Going Deeper - Self-Paced ($199)</option>
+              <option>Solid Ground: Bundle - Self-Paced ($297)</option>
+              <option>Solid Ground: Core - 1:1 ($666)</option>
+              <option>Solid Ground: Going Deeper - 1:1 ($666)</option>
+              <option>Solid Ground: Bundle - 1:1 ($999)</option>
+            </optgroup>
             <optgroup label="Align + Flow">
               <option>Session Pack - 5 Sessions ($666)</option>
               <option>Session Pack - 10 Sessions ($1,111)</option>
@@ -1564,6 +1678,7 @@
   // ── DISCOVERY CALL CONFIG ──────────────────────────────────────────────────
   // Add your pre-discovery call form URLs here (Typeform, Google Form, etc.)
   const DISCOVERY_FORMS = {
+    'Solid Ground Discovery Call':       'pre-discovery-solid-ground.html',
     'Soul-Led Business Discovery Call':  'pre-discovery-soul-led-business.html',
     'Soul Support Discovery Call':       'pre-discovery-soul-support.html',
     'Align + Flow Packs Discovery Call': 'pre-discovery-align-flow.html',
@@ -1571,6 +1686,7 @@
   };
   // Email sequence tags sent in the webhook payload (wire these up in your automation tool)
   const DISCOVERY_SEQUENCE_TAGS = {
+    'Solid Ground Discovery Call':       'discovery-solid-ground',
     'Soul-Led Business Discovery Call':  'discovery-soul-led-business',
     'Soul Support Discovery Call':       'discovery-soul-support',
     'Align + Flow Packs Discovery Call': 'discovery-align-flow-packs',
