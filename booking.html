@@ -956,8 +956,18 @@
     <p class="section-title">Programs, packs &amp; <em>longer containers</em></p>
     <p class="section-sub">These offerings go deeper. Most start with a discovery call so Jess can understand where you are and make sure it's the right fit before you commit.</p>
 
+    <div class="filter-toggle" style="margin-bottom:28px;">
+      <button class="filter-btn prog-filter-btn active" onclick="filterPrograms('all',this)">All</button>
+      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('discovery',this)">Discovery Call</button>
+      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('alignflow',this)">Align + Flow</button>
+      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('soulbusiness',this)">Soul-Led Business</button>
+      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('reikimenoring',this)">Reiki Mentoring</button>
+      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('selfpaced',this)">Self-Paced</button>
+      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('soulexpansion',this)">Soul Expansion</button>
+    </div>
+
     <!-- DISCOVERY CALLS -->
-    <div class="prog-section" id="prog-discovery">
+    <div class="prog-section" id="prog-discovery" data-prog-cat="discovery">
       <p class="section-label" style="margin-bottom:6px;">Discovery Calls</p>
       <p class="section-title" style="margin-bottom:6px;">Not sure where to <em>start?</em></p>
       <p class="section-sub" style="margin-bottom:20px;">All calls are complimentary &mdash; 30 minutes to talk through where you are and what fits. No pressure, just an honest conversation.</p>
@@ -1007,7 +1017,7 @@
     </div>
 
     <!-- ALIGN + FLOW -->
-    <div class="prog-section">
+    <div class="prog-section" data-prog-cat="alignflow">
       <p class="section-label" style="margin-bottom:6px;">Align + Flow</p>
       <p class="section-title" style="margin-bottom:6px;"><em>Single sessions</em></p>
       <p class="section-sub" style="margin-bottom:20px;">Each session is shaped around what you need at the time. Pick a type, choose a time, and we'll go from there. 90 min &middot; $150 &middot; online.</p>
@@ -1087,7 +1097,7 @@
     </div>
 
     <!-- SOUL-LED BUSINESS -->
-    <div class="prog-section">
+    <div class="prog-section" data-prog-cat="soulbusiness">
       <p class="section-label" style="margin-bottom:6px;">Soul-Led Business</p>
       <p class="section-title" style="margin-bottom:6px;"><em>Building something</em> that's genuinely yours</p>
       <p class="section-sub" style="margin-bottom:20px;">For women building a soul-led business - whether you're starting from nothing, pivoting, or ready to go deeper with someone alongside you.</p>
@@ -1183,7 +1193,7 @@
     </div>
 
     <!-- SOUL EXPANSION -->
-    <div class="prog-section">
+    <div class="prog-section" data-prog-cat="soulexpansion reikimenoring">
       <p class="section-label" style="margin-bottom:14px;">Soul Expansion</p>
 
       <div class="prog-card">
@@ -1233,7 +1243,7 @@
     </div>
 
     <!-- SELF-PACED -->
-    <div class="prog-section">
+    <div class="prog-section" data-prog-cat="selfpaced">
       <p class="section-label" style="margin-bottom:14px;">Self-Paced</p>
 
       <div class="prog-card">
@@ -1358,7 +1368,7 @@
     </div>
 
     <!-- SIGNATURE PROGRAMS -->
-    <div class="prog-section">
+    <div class="prog-section" data-prog-cat="signature">
       <p class="section-label" style="margin-bottom:14px;">Signature Programs</p>
 
       <div class="prog-card">
@@ -2514,8 +2524,21 @@
     all:       null,
   };
 
+  function filterPrograms(cat, btn) {
+    document.querySelectorAll('.prog-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('[data-prog-cat]').forEach(section => {
+      if (cat === 'all') {
+        section.style.display = '';
+      } else {
+        const cats = section.dataset.progCat.split(' ');
+        section.style.display = cats.includes(cat) ? '' : 'none';
+      }
+    });
+  }
+
   function filterSessions(type, btn, skipHash) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn:not(.prog-filter-btn)').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     // Push hash so this filter state is deep-linkable
