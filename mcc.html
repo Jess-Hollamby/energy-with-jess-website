@@ -7061,15 +7061,14 @@ document.addEventListener('keydown', e => {
 
 // ─── SYNC ──────────────────────────────────────────────────
 function exportState() {
-  const bundle = {
+  const bundle = JSON.stringify({
     posts: localStorage.getItem(POSTS_KEY),
     state: localStorage.getItem(STATE_KEY)
-  };
-  const text = btoa(JSON.stringify(bundle));
-  navigator.clipboard.writeText(text).then(() => {
+  });
+  navigator.clipboard.writeText(bundle).then(() => {
     alert('Calendar state copied to clipboard. Paste it into Import State on your other device.');
   }).catch(() => {
-    prompt('Copy this code:', text);
+    prompt('Copy this code:', bundle);
   });
 }
 
@@ -7086,7 +7085,7 @@ function doImport() {
   const raw = document.getElementById('import-data').value.trim();
   if (!raw) return;
   try {
-    const bundle = JSON.parse(atob(raw));
+    const bundle = JSON.parse(raw);
     if (bundle.posts) localStorage.setItem(POSTS_KEY, bundle.posts);
     if (bundle.state) localStorage.setItem(STATE_KEY, bundle.state);
     closeImport();
