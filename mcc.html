@@ -7061,14 +7061,12 @@ document.addEventListener('keydown', e => {
 
 // ─── SYNC ──────────────────────────────────────────────────
 function exportState() {
-  const bundle = JSON.stringify({
-    posts: localStorage.getItem(POSTS_KEY),
-    state: localStorage.getItem(STATE_KEY)
-  });
-  navigator.clipboard.writeText(bundle).then(() => {
-    alert('Calendar state copied to clipboard. Paste it into Import State on your other device.');
+  const state = localStorage.getItem(STATE_KEY);
+  if (!state) { alert('Nothing to export yet - no checkboxes have been ticked.'); return; }
+  navigator.clipboard.writeText(state).then(() => {
+    alert('Done! Your ticked checkboxes are copied. Now open Import State on your other device and paste it in.');
   }).catch(() => {
-    prompt('Copy this code:', bundle);
+    prompt('Copy this code:', state);
   });
 }
 
@@ -7085,9 +7083,8 @@ function doImport() {
   const raw = document.getElementById('import-data').value.trim();
   if (!raw) return;
   try {
-    const bundle = JSON.parse(raw);
-    if (bundle.posts) localStorage.setItem(POSTS_KEY, bundle.posts);
-    if (bundle.state) localStorage.setItem(STATE_KEY, bundle.state);
+    JSON.parse(raw);
+    localStorage.setItem(STATE_KEY, raw);
     closeImport();
     location.reload();
   } catch(e) {
