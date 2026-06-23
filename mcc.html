@@ -134,6 +134,46 @@ h1 em { color: var(--pink); font-style: italic; }
 }
 .btn-add:hover { opacity: 0.85; }
 
+.btn-sync {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'Belleza', sans-serif;
+  font-size: 0.82rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--teal);
+  background: transparent;
+  color: var(--teal);
+  transition: all 0.15s;
+}
+.btn-sync:hover { background: var(--teal); color: #fff; }
+.sync-modal-overlay {
+  position: fixed; inset: 0; background: rgba(30,46,50,0.45);
+  z-index: 9999; display: none; align-items: center; justify-content: center;
+}
+.sync-modal-overlay.open { display: flex; }
+.sync-modal {
+  background: #fff; border-radius: 12px; padding: 32px;
+  max-width: 480px; width: 90%; box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+.sync-modal h3 {
+  font-family: 'Cormorant Garamond', serif; color: var(--teal);
+  font-size: 1.3rem; font-weight: 400; margin: 0 0 8px;
+}
+.sync-modal p { font-size: 0.82rem; color: #6B8490; margin: 0 0 16px; }
+.sync-modal textarea {
+  width: 100%; height: 120px; border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px; font-family: monospace;
+  font-size: 0.75rem; resize: vertical; box-sizing: border-box;
+}
+.sync-modal-btns { display: flex; gap: 10px; margin-top: 14px; justify-content: flex-end; }
+.sync-modal-btns button {
+  padding: 8px 18px; border-radius: 8px; font-family: 'Belleza', sans-serif;
+  font-size: 0.85rem; cursor: pointer; border: none;
+}
+.sync-btn-cancel { background: var(--border); color: var(--dark); }
+.sync-btn-go { background: var(--teal); color: #fff; }
+
 .stats-row {
   display: flex;
   align-items: center;
@@ -696,7 +736,23 @@ textarea.finput { resize: vertical; min-height: 80px; line-height: 1.5; }
         <h1>Energy with <em>Jess</em></h1>
         <div class="hdr-sub">Master Content Calendar &nbsp;·&nbsp; Instagram · Facebook · TikTok</div>
       </div>
-      <button class="btn-add" onclick="openAdd()">+ Add Post</button>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="btn-sync" onclick="exportState()" title="Copy your calendar state to clipboard">Export State</button>
+        <button class="btn-sync" onclick="openImport()" title="Paste exported state to sync from another device">Import State</button>
+        <button class="btn-add" onclick="openAdd()">+ Add Post</button>
+      </div>
+    </div>
+
+    <div class="sync-modal-overlay" id="import-overlay">
+      <div class="sync-modal">
+        <h3>Import Calendar State</h3>
+        <p>Paste the code you copied from your other device. This will restore all your completed, video done, and posted checkboxes.</p>
+        <textarea id="import-data" placeholder="Paste your export code here..."></textarea>
+        <div class="sync-modal-btns">
+          <button class="sync-btn-cancel" onclick="closeImport()">Cancel</button>
+          <button class="sync-btn-go" onclick="doImport()">Import</button>
+        </div>
+      </div>
     </div>
     <div class="stats-row">
       <div class="stat">
@@ -7002,6 +7058,43 @@ function deletePost() {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeModal();
 });
+
+// ─── SYNC ──────────────────────────────────────────────────
+function exportState() {
+  const bundle = {
+    posts: localStorage.getItem(POSTS_KEY),
+    state: localStorage.getItem(STATE_KEY)
+  };
+  const text = btoa(JSON.stringify(bundle));
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Calendar state copied to clipboard. Paste it into Import State on your other device.');
+  }).catch(() => {
+    prompt('Copy this code:', text);
+  });
+}
+
+function openImport() {
+  document.getElementById('import-overlay').classList.add('open');
+  document.getElementById('import-data').value = '';
+}
+
+function closeImport() {
+  document.getElementById('import-overlay').classList.remove('open');
+}
+
+function doImport() {
+  const raw = document.getElementById('import-data').value.trim();
+  if (!raw) return;
+  try {
+    const bundle = JSON.parse(atob(raw));
+    if (bundle.posts) localStorage.setItem(POSTS_KEY, bundle.posts);
+    if (bundle.state) localStorage.setItem(STATE_KEY, bundle.state);
+    closeImport();
+    location.reload();
+  } catch(e) {
+    alert('That code doesn\'t look right. Copy it again from the other device and try again.');
+  }
+}
 
 // ─── INIT ──────────────────────────────────────────────────
 loadData();
