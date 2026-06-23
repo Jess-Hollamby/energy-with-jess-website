@@ -745,12 +745,12 @@ textarea.finput { resize: vertical; min-height: 80px; line-height: 1.5; }
 
     <div class="sync-modal-overlay" id="import-overlay">
       <div class="sync-modal">
-        <h3>Import Calendar State</h3>
-        <p>Paste the code you copied from your other device. This will restore all your completed, video done, and posted checkboxes.</p>
+        <h3 id="sync-modal-title">Export Calendar State</h3>
+        <p id="sync-modal-desc">Select all the text below, copy it, then open Import State on your other device and paste it in.</p>
         <textarea id="import-data" placeholder="Paste your export code here..."></textarea>
         <div class="sync-modal-btns">
           <button class="sync-btn-cancel" onclick="closeImport()">Cancel</button>
-          <button class="sync-btn-go" onclick="doImport()">Import</button>
+          <button class="sync-btn-go" id="sync-action-btn" onclick="doImport()">Import</button>
         </div>
       </div>
     </div>
@@ -7062,17 +7062,25 @@ document.addEventListener('keydown', e => {
 // ─── SYNC ──────────────────────────────────────────────────
 function exportState() {
   const state = localStorage.getItem(STATE_KEY);
-  if (!state) { alert('Nothing to export yet - no checkboxes have been ticked.'); return; }
-  navigator.clipboard.writeText(state).then(() => {
-    alert('Done! Your ticked checkboxes are copied. Now open Import State on your other device and paste it in.');
-  }).catch(() => {
-    prompt('Copy this code:', state);
-  });
+  if (!state || state === '{"g":{},"v":{},"p":{}}') { alert('Nothing to export yet - tick some checkboxes first.'); return; }
+  document.getElementById('sync-modal-title').textContent = 'Export Calendar State';
+  document.getElementById('sync-modal-desc').textContent = 'Select all the text below, copy it, then open Import State on your phone and paste it in.';
+  document.getElementById('sync-action-btn').style.display = 'none';
+  const ta = document.getElementById('import-data');
+  ta.value = state;
+  ta.readOnly = true;
+  document.getElementById('import-overlay').classList.add('open');
+  setTimeout(() => { ta.select(); }, 50);
 }
 
 function openImport() {
+  document.getElementById('sync-modal-title').textContent = 'Import Calendar State';
+  document.getElementById('sync-modal-desc').textContent = 'Paste the code you copied from your other device. This will restore all your completed, video done, and posted checkboxes.';
+  document.getElementById('sync-action-btn').style.display = '';
+  const ta = document.getElementById('import-data');
+  ta.value = '';
+  ta.readOnly = false;
   document.getElementById('import-overlay').classList.add('open');
-  document.getElementById('import-data').value = '';
 }
 
 function closeImport() {
