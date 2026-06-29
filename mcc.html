@@ -6684,6 +6684,11 @@ function loadData() {
         added = true;
       }
     });
+    // Remove posts that no longer exist in INITIAL_POSTS (handles deletions)
+    const initIds = new Set(INITIAL_POSTS.map(p => p.id));
+    const before = posts.length;
+    posts = posts.filter(p => initIds.has(p.id));
+    if (posts.length !== before) added = true;
     if (added) localStorage.setItem(POSTS_KEY, JSON.stringify(posts));
   } else {
     posts = [...INITIAL_POSTS];
