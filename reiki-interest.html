@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Reiki - Energy with Jess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--teal:#3B5E6E;--pink:#bf4288;--dark:#1E2E32;--cream:#FAF7F2;--lav:#C4B0D4;--border:#E4EAEC;--mid:#4A5E63;--light:#8A9FA5;}
+body{font-family:'Belleza',sans-serif;background:#fff;color:var(--dark);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 16px;}
+.card{max-width:480px;width:100%;border:1px solid var(--border);padding:48px 44px 52px;}
+.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--light);margin-bottom:20px;}
+h1{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;line-height:1.15;margin-bottom:16px;}
+h1 em{font-style:italic;color:var(--pink);}
+.sub{font-size:14px;color:var(--mid);line-height:1.75;margin-bottom:32px;}
+.rule{height:1px;background:var(--border);margin:28px 0;}
+label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+input{width:100%;border:1px solid var(--border);padding:13px 16px;font-family:'Belleza',sans-serif;font-size:15px;color:var(--dark);background:#fff;margin-bottom:20px;outline:none;transition:border-color .15s;}
+input:focus{border-color:var(--teal);}
+.btn{display:block;width:100%;background:var(--teal);color:#fff;border:none;padding:16px;font-family:'Belleza',sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer;transition:background .15s;margin-top:8px;}
+.btn:hover{background:#2e4d5c;}
+.privacy{font-size:12px;color:var(--light);margin-top:16px;line-height:1.6;}
+.success{display:none;text-align:center;padding:32px 0;}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--teal);margin-bottom:12px;}
+.success p{font-size:14px;color:var(--mid);line-height:1.7;}
+.error-msg{color:#c0392b;font-size:13px;margin-top:-14px;margin-bottom:16px;display:none;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div id="formView">
+    <p class="eyebrow">Energy with Jess · Learn Reiki</p>
+    <h1>Curious about <em>Reiki?</em></h1>
+    <p class="sub">Leave your name and email and I'll send you a bit more about what Reiki actually is, what a class with me looks like, and how to know if you're ready to learn it.</p>
+    <div class="rule"></div>
+    <form id="interestForm" novalidate>
+      <label for="firstName">First name</label>
+      <input type="text" id="firstName" name="firstName" placeholder="Your first name" required autocomplete="given-name">
+      <p class="error-msg" id="nameErr">Please enter your first name.</p>
+
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      <p class="error-msg" id="emailErr">Please enter a valid email address.</p>
+
+      <button type="submit" class="btn" id="submitBtn">Send me the details</button>
+      <p class="privacy">Your details are kept private. No spam. Unsubscribe any time.</p>
+    </form>
+  </div>
+
+  <div class="success" id="successView">
+    <h2>Thank you, check your inbox.</h2>
+    <p>I've sent a note to your email with a bit more about Reiki and what learning it looks like. If it doesn't arrive within a few minutes, check your junk folder.</p>
+  </div>
+</div>
+
+<script>
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx9lRUrTOZTymhepVlGE1MJEpTb04nZOwUHbMhnNdzfVYIDqddBvYtvL1AfUJZ8Q3dIAw/exec';
+
+const form      = document.getElementById('interestForm');
+const nameInput = document.getElementById('firstName');
+const emailInput = document.getElementById('email');
+const nameErr   = document.getElementById('nameErr');
+const emailErr  = document.getElementById('emailErr');
+const submitBtn = document.getElementById('submitBtn');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  nameErr.style.display  = 'none';
+  emailErr.style.display = 'none';
+
+  let valid = true;
+  if (!nameInput.value.trim()) {
+    nameErr.style.display = 'block';
+    valid = false;
+  }
+  const emailVal = emailInput.value.trim();
+  if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+    emailErr.style.display = 'block';
+    valid = false;
+  }
+  if (!valid) return;
+
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled    = true;
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        action:    'reikiInterest',
+        firstName: nameInput.value.trim(),
+        email:     emailVal,
+      }),
+    });
+  } catch(_) {}
+
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('successView').style.display = 'block';
+});
+</script>
+</body>
+</html>
