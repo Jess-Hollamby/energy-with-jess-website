@@ -72,9 +72,13 @@ input:focus{border-color:var(--teal);}
     <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
     <p class="error-msg" id="emailErr">Please enter a valid email address.</p>
 
-    <label for="courseDate">Your course date</label>
-    <input type="date" id="courseDate">
-    <p class="error-msg" id="dateErr">Please enter your course date.</p>
+    <label for="courseDay1">Day 1 of your course</label>
+    <input type="date" id="courseDay1">
+    <p class="error-msg" id="day1Err">Please enter the date of your first day.</p>
+
+    <label for="courseDay2">Day 2 of your course</label>
+    <input type="date" id="courseDay2">
+    <p class="error-msg" id="day2Err">Please enter the date of your second day.</p>
 
     <div class="rule"></div>
 
@@ -131,8 +135,9 @@ const LINKS = {
 };
 
 // Pre-fill date from URL param if provided
-const urlDate = new URLSearchParams(window.location.search).get('date');
-if (urlDate) document.getElementById('courseDate').value = urlDate;
+const params = new URLSearchParams(window.location.search);
+if (params.get('day1')) document.getElementById('courseDay1').value = params.get('day1');
+if (params.get('day2')) document.getElementById('courseDay2').value = params.get('day2');
 
 // Highlight selected option/method cards
 document.querySelectorAll('input[name="payOption"]').forEach(r => {
@@ -151,20 +156,23 @@ document.querySelectorAll('input[name="payMethod"]').forEach(r => {
 document.getElementById('submitBtn').addEventListener('click', function() {
   const firstName  = document.getElementById('firstName').value.trim();
   const email      = document.getElementById('email').value.trim();
-  const courseDate = document.getElementById('courseDate').value;
+  const courseDay1 = document.getElementById('courseDay1').value;
+  const courseDay2 = document.getElementById('courseDay2').value;
   const payOption  = document.querySelector('input[name="payOption"]:checked');
   const payMethod  = document.querySelector('input[name="payMethod"]:checked');
 
   document.getElementById('nameErr').style.display   = 'none';
   document.getElementById('emailErr').style.display  = 'none';
-  document.getElementById('dateErr').style.display   = 'none';
+  document.getElementById('day1Err').style.display   = 'none';
+  document.getElementById('day2Err').style.display   = 'none';
   document.getElementById('optionErr').style.display = 'none';
   document.getElementById('methodErr').style.display = 'none';
 
   let valid = true;
   if (!firstName) { document.getElementById('nameErr').style.display = 'block'; valid = false; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('emailErr').style.display = 'block'; valid = false; }
-  if (!courseDate) { document.getElementById('dateErr').style.display = 'block'; valid = false; }
+  if (!courseDay1) { document.getElementById('day1Err').style.display = 'block'; valid = false; }
+  if (!courseDay2) { document.getElementById('day2Err').style.display = 'block'; valid = false; }
   if (!payOption) { document.getElementById('optionErr').style.display = 'block'; valid = false; }
   if (!payMethod) { document.getElementById('methodErr').style.display = 'block'; valid = false; }
   if (!valid) return;
@@ -187,7 +195,9 @@ document.getElementById('submitBtn').addEventListener('click', function() {
       level: '1',
       firstName,
       email,
-      courseDate,
+      courseDate: courseDay2,
+      courseDay1,
+      courseDay2,
       payOption: payOption.value,
       payMethod: payMethod.value,
     }),
