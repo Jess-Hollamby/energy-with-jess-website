@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reiki 2 - Secure Your Place · Energy with Jess</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--teal:#3B5E6E;--pink:#bf4288;--dark:#1E2E32;--cream:#FAF7F2;--lav:#C4B0D4;--border:#E4EAEC;--mid:#4A5E63;--light:#8A9FA5;}
+body{font-family:'Belleza',sans-serif;background:#fff;color:var(--dark);min-height:100vh;padding:48px 16px 64px;}
+.wrap{max-width:520px;margin:0 auto;}
+.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--light);margin-bottom:20px;}
+h1{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:300;line-height:1.15;margin-bottom:10px;}
+h1 em{font-style:italic;color:var(--pink);}
+.sub{font-size:14px;color:var(--mid);line-height:1.75;margin-bottom:8px;}
+.course-meta{font-size:13px;color:var(--light);margin-bottom:32px;}
+.rule{height:1px;background:var(--border);margin:28px 0;}
+.section-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;}
+label{display:block;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:6px;}
+input[type="text"],input[type="email"],input[type="date"]{width:100%;border:1px solid var(--border);padding:13px 16px;font-family:'Belleza',sans-serif;font-size:15px;color:var(--dark);background:#fff;margin-bottom:20px;outline:none;transition:border-color .15s;}
+input:focus{border-color:var(--teal);}
+.error-msg{color:#c0392b;font-size:13px;margin-top:-14px;margin-bottom:16px;display:none;}
+
+.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.option-card{border:1px solid var(--border);padding:18px 16px;cursor:pointer;transition:border-color .15s,background .15s;position:relative;}
+.option-card:hover{border-color:var(--teal);}
+.option-card.selected{border-color:var(--teal);background:var(--cream);}
+.option-card input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
+.option-label{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--dark);display:block;margin-bottom:4px;}
+.option-price{font-size:22px;font-family:'Cormorant Garamond',serif;color:var(--teal);display:block;margin-bottom:4px;}
+.option-note{font-size:11px;color:var(--light);line-height:1.5;}
+
+.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+.method-card{border:1px solid var(--border);padding:16px;cursor:pointer;transition:border-color .15s,background .15s;text-align:center;position:relative;}
+.method-card:hover{border-color:var(--teal);}
+.method-card.selected{border-color:var(--teal);background:var(--cream);}
+.method-card input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
+.method-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--dark);}
+.method-note{font-size:11px;color:var(--light);margin-top:3px;}
+
+.btn{display:block;width:100%;background:var(--teal);color:#fff;border:none;padding:17px;font-family:'Belleza',sans-serif;font-size:15px;letter-spacing:1px;cursor:pointer;transition:background .15s;margin-top:8px;}
+.btn:hover{background:#2e4d5c;}
+.btn:disabled{background:var(--light);cursor:not-allowed;}
+.privacy{font-size:12px;color:var(--light);margin-top:14px;line-height:1.6;}
+.privacy a{color:var(--teal);text-decoration:none;}
+
+.success{display:none;text-align:center;padding:48px 0;}
+.success h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--teal);margin-bottom:12px;}
+.success p{font-size:14px;color:var(--mid);line-height:1.7;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="formView">
+    <p class="eyebrow">Energy with Jess · In-Person Training</p>
+    <h1>Reiki <em>Level 2.</em></h1>
+    <p class="sub">Ten hours across two days. You'll receive three symbols, learn distance healing, and deepen your practice in ways that Reiki 1 opens the door to but can't yet reach.</p>
+    <p class="course-meta">$555 total &nbsp;·&nbsp; Payment plans available - ask Jess</p>
+
+    <div class="rule"></div>
+
+    <p class="section-label">Your details</p>
+
+    <label for="firstName">First name</label>
+    <input type="text" id="firstName" placeholder="Your first name" autocomplete="given-name">
+    <p class="error-msg" id="nameErr">Please enter your first name.</p>
+
+    <label for="email">Email address</label>
+    <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+    <p class="error-msg" id="emailErr">Please enter a valid email address.</p>
+
+    <label for="courseDate">Your course date</label>
+    <input type="date" id="courseDate">
+    <p class="error-msg" id="dateErr">Please enter your course date.</p>
+
+    <div class="rule"></div>
+
+    <p class="section-label">How would you like to pay?</p>
+    <div class="option-grid">
+      <label class="option-card" id="card-full">
+        <input type="radio" name="payOption" value="full">
+        <span class="option-label">Pay in full</span>
+        <span class="option-price">$555</span>
+        <span class="option-note">Everything covered today</span>
+      </label>
+      <label class="option-card" id="card-deposit">
+        <input type="radio" name="payOption" value="deposit">
+        <span class="option-label">Pay deposit</span>
+        <span class="option-price">$155</span>
+        <span class="option-note">$400 remaining due before your course</span>
+      </label>
+    </div>
+    <p class="error-msg" id="optionErr" style="margin-top:-8px;">Please choose a payment option.</p>
+
+    <div class="rule"></div>
+
+    <p class="section-label">Payment method</p>
+    <div class="method-grid">
+      <label class="method-card" id="card-stripe">
+        <input type="radio" name="payMethod" value="stripe">
+        <div class="method-name">Stripe</div>
+        <div class="method-note">Card payment · secure link</div>
+      </label>
+      <label class="method-card" id="card-paypal">
+        <input type="radio" name="payMethod" value="paypal">
+        <div class="method-name">PayPal</div>
+        <div class="method-note">PayPal account or card</div>
+      </label>
+    </div>
+    <p class="error-msg" id="methodErr" style="margin-top:-8px;">Please choose a payment method.</p>
+
+    <button class="btn" id="submitBtn">Secure my place</button>
+    <p class="privacy">Your details are kept private. Questions? <a href="mailto:energywjess@gmail.com">energywjess@gmail.com</a></p>
+  </div>
+
+  <div class="success" id="successView">
+    <h2>You're nearly there.</h2>
+    <p>Redirecting you to payment now. If it doesn't happen automatically, <a href="#" id="manualLink" style="color:var(--teal);">click here</a>.</p>
+  </div>
+
+</div>
+<script>
+const WEBHOOK = 'https://script.google.com/macros/s/AKfycbx9lRUrTOZTymhepVlGE1MJEpTb04nZOwUHbMhnNdzfVYIDqddBvYtvL1AfUJZ8Q3dIAw/exec';
+
+const LINKS = {
+  full:    { stripe: 'https://buy.stripe.com/6oU9ATfBe5Leemq46OcZa0H', paypal: 'https://www.paypal.com/ncp/payment/GPR6E83TQT6W8' },
+  deposit: { stripe: 'https://buy.stripe.com/8x200jfBe6Picei1YGcZa0J', paypal: 'https://www.paypal.com/ncp/payment/FASLN429BFW5S' },
+};
+
+const urlDate = new URLSearchParams(window.location.search).get('date');
+if (urlDate) document.getElementById('courseDate').value = urlDate;
+
+document.querySelectorAll('input[name="payOption"]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    r.closest('.option-card').classList.add('selected');
+  });
+});
+document.querySelectorAll('input[name="payMethod"]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.querySelectorAll('.method-card').forEach(c => c.classList.remove('selected'));
+    r.closest('.method-card').classList.add('selected');
+  });
+});
+
+document.getElementById('submitBtn').addEventListener('click', function() {
+  const firstName  = document.getElementById('firstName').value.trim();
+  const email      = document.getElementById('email').value.trim();
+  const courseDate = document.getElementById('courseDate').value;
+  const payOption  = document.querySelector('input[name="payOption"]:checked');
+  const payMethod  = document.querySelector('input[name="payMethod"]:checked');
+
+  document.getElementById('nameErr').style.display   = 'none';
+  document.getElementById('emailErr').style.display  = 'none';
+  document.getElementById('dateErr').style.display   = 'none';
+  document.getElementById('optionErr').style.display = 'none';
+  document.getElementById('methodErr').style.display = 'none';
+
+  let valid = true;
+  if (!firstName) { document.getElementById('nameErr').style.display = 'block'; valid = false; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('emailErr').style.display = 'block'; valid = false; }
+  if (!courseDate) { document.getElementById('dateErr').style.display = 'block'; valid = false; }
+  if (!payOption) { document.getElementById('optionErr').style.display = 'block'; valid = false; }
+  if (!payMethod) { document.getElementById('methodErr').style.display = 'block'; valid = false; }
+  if (!valid) return;
+
+  const paymentUrl = LINKS[payOption.value][payMethod.value];
+
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('submitBtn').textContent = 'Securing your place...';
+
+  document.getElementById('manualLink').href = paymentUrl;
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('successView').style.display = 'block';
+
+  fetch(WEBHOOK, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      action: 'reikiBooking',
+      level: '2',
+      firstName,
+      email,
+      courseDate,
+      payOption: payOption.value,
+      payMethod: payMethod.value,
+    }),
+  }).catch(() => {});
+
+  setTimeout(() => { window.location.href = paymentUrl; }, 400);
+});
+</script>
+</body>
+</html>
