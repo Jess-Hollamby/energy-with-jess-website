@@ -2895,6 +2895,104 @@ const courses = [
       },
     ]
   },
+  {
+    id: 7,
+    title: 'Akashic Records Practitioner Training',
+    category: 'psychic',
+    categoryLabel: 'Psychic Development',
+    emoji: '📖',
+    thumbBg: 'linear-gradient(135deg,#3B5E6E,#C4B0D4)',
+    desc: 'A live cohort training practitioners to read and hold healing space in the Akashic Records - open entry, working toward IICT-recognised practitioner certification. Live sessions happen via Zoom/Telegram; recordings and resources land here after each phase.',
+    price: null,
+    stripeUrl: '',
+    paypalUrl: '',
+    duration: 'Live cohort - length TBC',
+    moduleCount: 7,
+    lessonCount: 7,
+    comingSoon: true,
+    enrolled: false,
+    progress: 0,
+    modules: [
+      {
+        title: 'Welcome',
+        desc: '1 lesson · reading',
+        done: false,
+        lessons: [
+          { title: 'Welcome to the Cohort', type: 'Reading', done: false, youtubeId: '',
+            body: 'A warm welcome to the training - how the cohort runs, what to expect from each phase, and where to find your recordings, resources, and Telegram access between live sessions.',
+            telegramUrl: '',
+          },
+        ]
+      },
+      {
+        title: 'Phase 1 - Opening the Field',
+        desc: '1 lesson · live session recording',
+        done: false,
+        lessons: [
+          { title: 'Opening the Field', type: 'Video', done: false, youtubeId: '',
+            topics: ['What the Akashic Records are', 'Energetic hygiene and protection', 'Permission-based access, consent, boundaries', 'Opening and closing the records safely'],
+            body: 'Foundations and safety. Recording lands here after the live session.',
+          },
+        ]
+      },
+      {
+        title: 'Phase 2 - Reading the Records',
+        desc: '1 lesson · live session recording',
+        done: false,
+        lessons: [
+          { title: 'Reading the Records', type: 'Video', done: false, youtubeId: '',
+            topics: ['Structure of a reading', 'Interpreting symbols, patterns, soul contracts, karmic threads', 'Trusting what comes through vs. second-guessing'],
+            body: 'Skill building. Recording lands here after the live session.',
+          },
+        ]
+      },
+      {
+        title: 'Phase 3 - Healing in the Records',
+        desc: '1 lesson · live session recording',
+        done: false,
+        lessons: [
+          { title: 'Healing in the Records', type: 'Video', done: false, youtubeId: '',
+            topics: ['Cord cutting, contract rewriting, ancestral and past-life threads', 'Holding a client through what surfaces'],
+            body: 'Deepening. Recording lands here after the live session.',
+          },
+        ]
+      },
+      {
+        title: 'Phase 4 - Practitioner Readiness',
+        desc: '1 lesson · live session recording',
+        done: false,
+        lessons: [
+          { title: 'Practitioner Readiness', type: 'Video', done: false, youtubeId: '',
+            topics: ['Running a paid reading or healing session start to finish', 'Ethics and scope of practice', 'Pricing and positioning', 'Insurance and IICT requirements walkthrough'],
+            body: 'Business and ethics. Recording lands here after the live session.',
+          },
+        ]
+      },
+      {
+        title: 'Phase 5 - Certification Practicum',
+        desc: '1 lesson · live session recording',
+        done: false,
+        lessons: [
+          { title: 'Certification Practicum', type: 'Video', done: false, youtubeId: '',
+            topics: ['Supervised practice readings and healings', 'Final assessment', 'Graduation'],
+            body: 'Assessment and graduation. Recording lands here after the live session.',
+          },
+        ]
+      },
+      {
+        title: 'Resources',
+        desc: '1 lesson · downloads',
+        done: false,
+        lessons: [
+          { title: 'Training Resources', type: 'Reference', done: false, youtubeId: '',
+            body: 'Your reference documents for the training - keep these handy throughout the cohort.',
+            bonusDownload: { label: 'Program Structure Overview', url: 'pdfs/akashic-training-structure.pdf' },
+            bonusDownload2: { label: 'Training Manual - Scope, Client Management, Contraindications', url: 'pdfs/akashic-training-manual.pdf' },
+          },
+        ]
+      },
+    ]
+  },
 ];
 
 const quizQuestions = [
@@ -2977,7 +3075,7 @@ function renderCatalog(filter) {
         <div class="catalog-title">${c.title}</div>
         <div class="catalog-desc">${c.desc.substring(0, 100)}...</div>
         <div class="catalog-footer">
-          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">$${c.price} <span>AUD</span></div>
+          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">${c.price == null ? 'Price TBC' : '$' + c.price + ' <span>AUD</span>'}</div>
           ${c.comingSoon
             ? '<span class="coming-soon-label">Notify Me</span>'
             : c.enrolled
@@ -3039,7 +3137,7 @@ function searchCourses(val) {
         <div class="catalog-title">${c.title}</div>
         <div class="catalog-desc">${c.desc.substring(0, 100)}...</div>
         <div class="catalog-footer">
-          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">$${c.price} <span>AUD</span></div>
+          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">${c.price == null ? 'Price TBC' : '$' + c.price + ' <span>AUD</span>'}</div>
           ${c.comingSoon
             ? '<span class="coming-soon-label">Notify Me</span>'
             : c.enrolled
