@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Session - Reiki, Readings & Healing Adelaide | Energy with Jess</title>
-  <meta name="description" content="Book a psychic reading, tarot reading, Reiki healing or mentoring session with Jess Hollamby. Online and in-person in Adelaide, SA.">
+  <meta name="description" content="Book a psychic reading, tarot reading, Reiki healing or mentoring session with Jess Hollamby. Online and in-person in Adelaide and Port Elliot, SA.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -659,6 +659,7 @@
         <button class="filter-btn active" onclick="filterSessions('all', this)">All</button>
         <button class="filter-btn" onclick="filterSessions('clarity', this)">Clarity &amp; Healing</button>
         <button class="filter-btn" onclick="filterSessions('inperson', this)">In Person - Adelaide</button>
+        <button class="filter-btn" onclick="filterSessions('artofyou', this)">Art of You - Port Elliot</button>
       </div>
 
       <!-- Online group label -->
@@ -748,6 +749,44 @@
 
       </div>
 
+      <!-- Art of You group label -->
+      <div class="filter-group-label svc-group-artofyou">Art of You &middot; Port Elliot &middot; Fortnightly Wednesdays</div>
+      <div class="cards-grid">
+
+        <div class="svc-card svc-artofyou svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🃏</span>
+          <h3>Tarot Reading</h3>
+          <p>A focused tarot session in the beautiful Art of You space at Port Elliot.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - Port Elliot','30 min','$60')">30 min · $60</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - Port Elliot','45 min','$75')">45 min · $75</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-artofyou svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">💫</span>
+          <h3>Intuitive Healing</h3>
+          <p>Intuitive energy work in the Art of You space. Grounded, present, and held.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - Port Elliot','60 min','$120')">60 min · $120</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - Port Elliot','90 min','$150')">90 min · $150</button>
+          </div>
+        </div>
+
+        <div class="svc-card svc-artofyou svc-multi">
+          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <span class="icon">🌿</span>
+          <h3>Reiki</h3>
+          <p>In-person Reiki at the beautiful Art of You space. Gentle, grounding, restorative.</p>
+          <div class="dur-pills">
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Port Elliot','60 min','$120')">60 min · $120</button>
+            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Port Elliot','90 min','$150')">90 min · $150</button>
+          </div>
+        </div>
+
+      </div>
 
       <div class="btn-row btn-row-end">
         <button class="btn btn-primary" id="next-1" disabled onclick="goToStep(2)">Next &rarr;</button>
@@ -804,6 +843,7 @@
           <select id="sformat">
             <option value="">Select...</option>
             <option value="in-person">In-person (Adelaide)</option>
+            <option value="port-elliot">In-person (Port Elliot)</option>
             <option value="online">Online (Zoom)</option>
           </select>
         </div>
@@ -888,10 +928,10 @@
       <!-- Discovery call confirm (no payment needed) -->
       <div id="discovery-confirm-section" style="display:none;">
         <div class="notice notice-gold">
-          <strong>This call is complimentary - no payment needed.</strong> Once confirmed, Jess will receive your booking and you'll get an email with your pre-discovery call form to complete before the call. Your email sequence will kick in from there.
+          <strong>This call is complimentary &mdash; no payment needed.</strong> Once confirmed, Jess will receive your booking and you'll get an email with your pre-discovery call form to complete before the call. Your email sequence will kick in from there.
         </div>
         <div class="notice" style="margin-top:-10px;">
-          <strong>Cancellation:</strong> Need to reschedule? No problem - just <a id="reschedule-link-dc" href="mailto:energywjess@gmail.com?subject=Discovery%20call%20reschedule" style="color:var(--lavender);">email Jess</a> as soon as you know.
+          <strong>Cancellation:</strong> Need to reschedule? No problem &mdash; just <a id="reschedule-link-dc" href="mailto:energywjess@gmail.com?subject=Discovery%20call%20reschedule" style="color:var(--lavender);">email Jess</a> as soon as you know.
         </div>
         <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;margin-top:8px;">
           <button class="btn btn-primary" onclick="submitSession()" style="justify-content:center;">Confirm my discovery call</button>
@@ -956,30 +996,12 @@
     <p class="section-title">Programs, packs &amp; <em>longer containers</em></p>
     <p class="section-sub">These offerings go deeper. Most start with a discovery call so Jess can understand where you are and make sure it's the right fit before you commit.</p>
 
-    <div class="filter-toggle" style="margin-bottom:28px;">
-      <button class="filter-btn prog-filter-btn active" onclick="filterPrograms('all',this)">All</button>
-      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('discovery',this)">Discovery Call</button>
-      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('alignflow',this)">Align + Flow</button>
-      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('soulbusiness',this)">Soul-Led Business</button>
-      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('reikimenoring',this)">Reiki Mentoring</button>
-      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('selfpaced',this)">Self-Paced</button>
-      <button class="filter-btn prog-filter-btn" onclick="filterPrograms('soulexpansion',this)">Soul Expansion</button>
-    </div>
-
     <!-- DISCOVERY CALLS -->
-    <div class="prog-section" id="prog-discovery" data-prog-cat="discovery">
+    <div class="prog-section" id="prog-discovery">
       <p class="section-label" style="margin-bottom:6px;">Discovery Calls</p>
       <p class="section-title" style="margin-bottom:6px;">Not sure where to <em>start?</em></p>
       <p class="section-sub" style="margin-bottom:20px;">All calls are complimentary &mdash; 30 minutes to talk through where you are and what fits. No pressure, just an honest conversation.</p>
       <div class="cards-grid">
-
-        <div class="svc-card svc-discovery" onclick="bookFromPrograms('Solid Ground Discovery Call','30 min','Complimentary','online')">
-          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="icon">🌍</span>
-          <h3>Solid Ground</h3>
-          <p>Building a business solo with no partner safety net. A 30-min call to explore whether Solid Ground is the right fit.</p>
-          <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
-        </div>
 
         <div class="svc-card svc-discovery" onclick="bookFromPrograms('Soul-Led Business Discovery Call','30 min','Complimentary','online')">
           <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -989,10 +1011,10 @@
           <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
         </div>
 
-        <div class="svc-card svc-discovery" onclick="bookFromPrograms('Soul Expansion Discovery Call','30 min','Complimentary','online')">
+        <div class="svc-card svc-discovery" onclick="bookFromPrograms('Soul Support Discovery Call','30 min','Complimentary','online')">
           <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <span class="icon">✨</span>
-          <h3>Soul Expansion</h3>
+          <h3>Soul Support</h3>
           <p>Ongoing 1:1 support &mdash; Reiki mentoring and Soul Expansion pathways. A call to feel into what fits.</p>
           <span class="pill pill-lavender">Complimentary &middot; 30 min</span>
         </div>
@@ -1017,7 +1039,7 @@
     </div>
 
     <!-- ALIGN + FLOW -->
-    <div class="prog-section" data-prog-cat="alignflow">
+    <div class="prog-section">
       <p class="section-label" style="margin-bottom:6px;">Align + Flow</p>
       <p class="section-title" style="margin-bottom:6px;"><em>Single sessions</em></p>
       <p class="section-sub" style="margin-bottom:20px;">Each session is shaped around what you need at the time. Pick a type, choose a time, and we'll go from there. 90 min &middot; $150 &middot; online.</p>
@@ -1094,46 +1116,38 @@
         </div>
       </div>
 
-    </div>
-
-    <!-- SOUL-LED BUSINESS -->
-    <div class="prog-section" data-prog-cat="soulbusiness">
-      <p class="section-label" style="margin-bottom:6px;">Soul-Led Business</p>
-      <p class="section-title" style="margin-bottom:6px;"><em>Building something</em> that's genuinely yours</p>
-      <p class="section-sub" style="margin-bottom:20px;">For women building a soul-led business - whether you're starting from nothing, pivoting, or ready to go deeper with someone alongside you.</p>
-
       <div class="prog-card">
         <button class="prog-card-toggle" onclick="toggleCard(this)">
           <div style="display:flex;align-items:center;gap:14px;">
             <span style="font-size:1.4rem;">🌱</span>
             <div>
-              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Soul-Led Business Pack</div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Soul-Led Business</div>
               <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Building Something That's Truly Yours</div>
-              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $777 &middot; 6 or 10 sessions</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $777 · 6 or 10 sessions</div>
             </div>
           </div>
           <span class="toggle-arrow">&#9660;</span>
         </button>
         <div class="prog-card-body collapsed">
-          <p>For the woman who knows what she wants to build - or already has something building - and wants someone to help her navigate and create her vision. No set structure, no curriculum. Sessions are shaped by what's alive for you each time. Show up with what's present and we'll work through it from there.</p>
+          <p>For the woman starting her own business, finishing a service-based degree and wondering what comes next, or ready to weave energetics into what she already does. We'll build an actionable plan, help you understand your business energetically, and grow something genuinely in alignment with your gifts.</p>
           <div class="sub-options">
             <div class="sub-opt">
               <div class="price">$777</div>
               <div class="sessions-lbl">6 x 90-min sessions</div>
               <h4>Build or Begin</h4>
-              <p>Starting out or pivoting - 6 sessions to work through whatever comes up. Use them however you need.</p>
+              <p>Starting a soul-led or spiritual business, or pivoting your existing work into better alignment with who you are now.</p>
               <div class="prog-pay-wrapper" data-prog="soul-led-begin"></div>
             </div>
             <div class="sub-opt">
               <div class="price">$1,111</div>
               <div class="sessions-lbl">10 x 90-min sessions</div>
               <h4>Deepen &amp; Evolve</h4>
-              <p>More complex pivots or longer-term thinking partnership. 10 sessions, fully shaped around what you bring each time.</p>
+              <p>Integrating energetics into existing services, more complex pivots, or building something that needs more space to unfold.</p>
               <div class="prog-pay-wrapper" data-prog="soul-led-evolve"></div>
             </div>
           </div>
           <div class="prog-includes">
-            <span class="incl-chip">No fixed curriculum</span>
+            <span class="incl-chip">Aligned business plan</span>
             <span class="incl-chip">Business energy check-ins</span>
             <span class="incl-chip">Telegram access</span>
             <span class="incl-chip">Payment plans available</span>
@@ -1144,65 +1158,18 @@
           </div>
         </div>
       </div>
-
-      <div class="prog-card">
-        <button class="prog-card-toggle" onclick="toggleCard(this)">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <span style="font-size:1.4rem;">🤝</span>
-            <div>
-              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Solid Ground &middot; 1:1</div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Solid Ground - Supported</div>
-              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $666 &middot; 6 or 12 sessions &middot; up to 6 months</div>
-            </div>
-          </div>
-          <span class="toggle-arrow">&#9660;</span>
-        </button>
-        <div class="prog-card-body collapsed">
-          <p>The Solid Ground courses done in a structured 1:1 container with Jess. Each session moves through the course modules in sequence - so there's a clear path, not an open-ended conversation. You know exactly where you are and what's coming next, with direct support as you work through it.</p>
-          <div class="sub-options">
-            <div class="sub-opt">
-              <div class="price">$666</div>
-              <div class="sessions-lbl">Core 1:1 &middot; 6 sessions &middot; 12 weeks</div>
-              <h4>Solid Ground: Core (1:1)</h4>
-              <p>One session per Core module, fortnightly over 12 weeks. You move through the full curriculum with Jess alongside you the whole way.</p>
-            </div>
-            <div class="sub-opt">
-              <div class="price">$666</div>
-              <div class="sessions-lbl">Going Deeper 1:1 &middot; 6 sessions</div>
-              <h4>Solid Ground: Going Deeper (1:1)</h4>
-              <p>One session per Going Deeper module, fortnightly. Works as a follow-on from Core 1:1 or as a standalone if the foundations are already in place.</p>
-            </div>
-            <div class="sub-opt" style="grid-column:1/-1;">
-              <div class="price">$999</div>
-              <div class="sessions-lbl">Bundle 1:1 &middot; 12 sessions &middot; 6 months</div>
-              <h4>Solid Ground: Bundle (1:1)</h4>
-              <p>Both curricula in sequence - Core first, then Going Deeper. 12 fortnightly sessions over 6 months. The full structured path from nothing to something real. Payment plan available.</p>
-            </div>
-          </div>
-          <div class="prog-includes">
-            <span class="incl-chip">Fortnightly sessions</span>
-            <span class="incl-chip">Telegram access</span>
-            <span class="incl-chip">Payment plans available</span>
-          </div>
-          <div class="btn-row">
-            <button class="btn btn-primary" onclick="openEnquiry('Solid Ground (1:1)')">Enquire</button>
-            <button class="btn btn-ghost" onclick="document.getElementById('prog-discovery').scrollIntoView({behavior:'smooth'})">Book a Discovery Call</button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- SOUL EXPANSION -->
-    <div class="prog-section" data-prog-cat="soulexpansion reikimenoring">
-      <p class="section-label" style="margin-bottom:6px;">Soul Expansion</p>
-      <p class="section-title" style="margin-bottom:6px;"><em>Deeper containers</em> for longer paths</p>
-      <p class="section-sub" style="margin-bottom:20px;">Reiki mentoring, signature programs, and immersive group containers. For the women ready to go all the way in - not just to learn, but to integrate, embody, and lead from what they know.</p>
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Soul Expansion</p>
 
       <div class="prog-card">
         <button class="prog-card-toggle" onclick="toggleCard(this)">
           <div style="display:flex;align-items:center;gap:14px;">
             <span style="font-size:1.4rem;">✨</span>
             <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Reiki Mentoring</div>
               <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Reiki Practice &amp; Integration Support</div>
               <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $1,555 · 3, 6, or 9-month containers</div>
             </div>
@@ -1210,7 +1177,6 @@
           <span class="toggle-arrow">&#9660;</span>
         </button>
         <div class="prog-card-body collapsed">
-          <p style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;">Reiki Mentoring</p>
           <p>You've done (or you're doing) the training - but you want more than just the basics. Real integration support, energetic development, and someone in your corner as you put it all into practice.</p>
           <div class="sub-options">
             <div class="sub-opt">
@@ -1242,74 +1208,20 @@
         </div>
       </div>
 
-      <div class="prog-card">
-        <button class="prog-card-toggle" onclick="toggleCard(this)">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <span style="font-size:1.4rem;">🌙</span>
-            <div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">The Unbecoming</div>
-              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">$8,888 &middot; 12 months &middot; 1:1</div>
-            </div>
-          </div>
-          <span class="toggle-arrow">&#9660;</span>
-        </button>
-        <div class="prog-card-body collapsed">
-          <p style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;">Signature Program</p>
-          <p>Putting down everything that was never yours. Empowerment. Discernment. Sovereignty of self. This is the purpose of reclaiming your life - and finally living it.</p>
-          <p>Covers Reiki 1 and 2, energy basics, emotion and nervous system, the brain, learning about yourself, and reconnecting with play, joy, and fun.</p>
-          <div class="prog-includes">
-            <span class="incl-chip">12 months 1:1</span>
-            <span class="incl-chip">Reiki 1 &amp; 2 included</span>
-            <span class="incl-chip">Payment plan up to 24 months</span>
-            <span class="incl-chip">Fortnightly or monthly &middot; no surcharge</span>
-          </div>
-          <div class="prog-pay-wrapper" data-prog="the-unbecoming"></div>
-          <div class="btn-row">
-            <button class="btn btn-gold" onclick="openEnquiry('The Unbecoming')">Enquire</button>
-            <button class="btn btn-ghost" onclick="document.getElementById('prog-discovery').scrollIntoView({behavior:'smooth'})">Book a Discovery Call</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="prog-card" style="opacity:0.78;">
-        <button class="prog-card-toggle" onclick="toggleCard(this)">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <span style="font-size:1.4rem;">🌑</span>
-            <div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Into the Dark: Becoming Dark and Divine</div>
-              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">18 weeks &middot; Cohort &middot; Reiki Level 2+ &middot; <span class="coming-soon-badge">Opening 2027</span></div>
-            </div>
-          </div>
-          <span class="toggle-arrow">&#9660;</span>
-        </button>
-        <div class="prog-card-body collapsed">
-          <p style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:10px;">Signature Program &middot; Cohort</p>
-          <p>An 18-week path into the shadows, soul, and integration. For women holding Reiki Level 2 or higher who are ready to stop running from their edges and start living from their whole self.</p>
-          <div class="btn-row">
-            <button class="btn btn-ghost" onclick="openEnquiry('Into the Dark (Waitlist)')">Join the waitlist</button>
-          </div>
-        </div>
-      </div>
-
     </div>
 
     <!-- SELF-PACED -->
-    <div class="prog-section" data-prog-cat="selfpaced">
-      <p class="section-label" style="margin-bottom:6px;">Self-Paced</p>
-      <p class="section-title" style="margin-bottom:6px;">Learn at your own <em>pace</em></p>
-      <p class="section-sub" style="margin-bottom:20px;">Courses and programs you move through in your own time. Structured content, guided practices, and lifetime access - so you can go deep without the pressure of a schedule.</p>
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Self-Paced</p>
 
       <div class="prog-card">
         <button class="prog-card-toggle" onclick="toggleCard(this)">
           <div style="display:flex;align-items:center;gap:14px;">
             <span style="font-size:1.4rem;">🌸</span>
             <div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);">Empowered Empath</div>
-                <span class="coming-soon-badge">Coming Soon</span>
-              </div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);margin-top:3px;">Empowered Empath</div>
-              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">$449 · Self-Paced · Available 10 Aug</div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Empowered Empath</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">Becoming an Empowered Empath</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">$333 · Self-Paced · Available 17 Aug</div>
             </div>
           </div>
           <span class="toggle-arrow">&#9660;</span>
@@ -1324,54 +1236,6 @@
           </div>
           <div class="btn-row">
             <a href="empowered-empath.html" class="btn btn-primary">Learn More &amp; Enrol</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="prog-card">
-        <button class="prog-card-toggle" onclick="toggleCard(this)">
-          <div style="display:flex;align-items:center;gap:14px;">
-            <span style="font-size:1.4rem;">🌍</span>
-            <div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);">Solid Ground</div>
-                <span class="coming-soon-badge">Coming Soon</span>
-              </div>
-              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);margin-top:3px;">Solid Ground</div>
-              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">From $147 &middot; Self-paced &middot; Lifetime access</div>
-            </div>
-          </div>
-          <span class="toggle-arrow">&#9660;</span>
-        </button>
-        <div class="prog-card-body collapsed">
-          <p>Two self-paced courses that take you from nothing to something real. Start with Core to get the foundations in. Go Deeper when you're ready. Or take the bundle and have it all from day one.</p>
-          <div class="sub-options">
-            <div class="sub-opt">
-              <div class="price">$147</div>
-              <div class="sessions-lbl">Core &middot; 6 modules &middot; Self-paced</div>
-              <h4>Solid Ground: Core</h4>
-              <p>The foundations. Starting from scratch, building something real - on your own terms, without a safety net. Practical and energetically aligned.</p>
-            </div>
-            <div class="sub-opt">
-              <div class="price">$199</div>
-              <div class="sessions-lbl">Going Deeper &middot; 6 modules &middot; Self-paced</div>
-              <h4>Solid Ground: Going Deeper</h4>
-              <p>For when the foundations are in and you're ready to grow. More depth, more specificity, more of what it actually takes to stay grounded as things expand.</p>
-            </div>
-            <div class="sub-opt" style="grid-column:1/-1;">
-              <div class="price">$297</div>
-              <div class="sessions-lbl">Bundle &middot; Both courses &middot; Best value</div>
-              <h4>Solid Ground: Bundle</h4>
-              <p>Core and Going Deeper together. The complete self-paced path at the best price. Payment plan available.</p>
-            </div>
-          </div>
-          <div class="prog-includes">
-            <span class="incl-chip">6 modules per course</span>
-            <span class="incl-chip">Lifetime access</span>
-            <span class="incl-chip">Payment plan available</span>
-          </div>
-          <div class="btn-row">
-            <a href="solid-ground.html" class="btn btn-primary">Learn More &amp; Enrol</a>
           </div>
         </div>
       </div>
@@ -1420,6 +1284,54 @@
       </div>
     </div>
 
+    <!-- SIGNATURE PROGRAMS -->
+    <div class="prog-section">
+      <p class="section-label" style="margin-bottom:14px;">Signature Programs</p>
+
+      <div class="prog-card">
+        <button class="prog-card-toggle" onclick="toggleCard(this)">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="font-size:1.4rem;">🌙</span>
+            <div>
+              <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--rose);margin-bottom:3px;">Signature Program</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--brown);">The Unbecoming</div>
+              <div style="font-size:0.78rem;color:var(--brown-mid);margin-top:2px;">$8,888 · 12 months · 1:1</div>
+            </div>
+          </div>
+          <span class="toggle-arrow">&#9660;</span>
+        </button>
+        <div class="prog-card-body collapsed">
+          <p>Putting down everything that was never yours. Empowerment. Discernment. Sovereignty of self. This is the purpose of reclaiming your life - and finally living it.</p>
+          <p>Covers Reiki 1 and 2, energy basics, emotion and nervous system, the brain, learning about yourself, and reconnecting with play, joy, and fun.</p>
+          <div class="prog-includes">
+            <span class="incl-chip">12 months 1:1</span>
+            <span class="incl-chip">Reiki 1 &amp; 2 included</span>
+            <span class="incl-chip">Payment plan up to 24 months</span>
+            <span class="incl-chip">Fortnightly or monthly · no surcharge</span>
+          </div>
+          <div class="prog-pay-wrapper" data-prog="the-unbecoming"></div>
+          <div class="btn-row">
+            <button class="btn btn-gold" onclick="openEnquiry('The Unbecoming')">Enquire</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('prog-discovery').scrollIntoView({behavior:'smooth'})">Book a Discovery Call</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="prog-card" style="opacity:0.78;">
+        <div class="prog-card-header">
+          <span class="icon">🌑</span>
+          <div class="prog-card-info">
+            <div class="label-small">Cohort Program</div>
+            <h3>Into the Dark: Becoming Dark and Divine <span class="coming-soon-badge">Opening 2027</span></h3>
+            <p>An 18-week path into the shadows, soul, and integration. For women holding Reiki Level 2 or higher who are ready to stop running from their edges and start living from their whole self.</p>
+          </div>
+        </div>
+        <div style="padding: 0 22px 20px;">
+          <button class="btn btn-ghost" onclick="openEnquiry('Into the Dark (Waitlist)')">Join the waitlist</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ════════════════════════════════
@@ -1431,9 +1343,38 @@
     <p class="section-sub">Group sessions, circles, and training intensives. All held with care and community in mind.</p>
 
     <!-- Learn Reiki training dates -->
+    <div class="event-card">
+      <div class="event-date"><span class="day">6</span><span class="mon">Jun</span></div>
+      <div class="event-info">
+        <h3>Learn Reiki - Level 1</h3>
+        <div class="event-meta"><span>📅 6th &amp; 7th June</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
+        <p>Receive your Reiki Level 1 attunement and leave with a living practice to carry with you every day. Step into your Reiki practice.</p>
+        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Beginner Friendly</span></div>
+      </div>
+      <div class="event-action reiki-action" id="reiki-action-r1-jun" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
+        <button class="btn btn-primary reiki-book-btn" onclick="openReikiModal('r1-jun','deposit')">Secure your spot - $111</button>
+        <button class="btn btn-ghost reiki-book-btn" onclick="openReikiModal('r1-jun','full')">Pay in full - $333</button>
+        <p class="reiki-closed-msg" style="display:none;font-size:0.78rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Bookings for this intake<br>are now closed.</p>
+      </div>
+    </div>
 
-    <div class="event-card" style="border-color: #a8c4a6; background: linear-gradient(135deg, #edf4ed 0%, #f8fcf8 100%);">
-      <div class="event-date" style="background: #C2D1C1; color: var(--brown);"><span class="day">19</span><span class="mon">Sep</span></div>
+    <div class="event-card">
+      <div class="event-date"><span class="day">14</span><span class="mon">Jun</span></div>
+      <div class="event-info">
+        <h3>Learn Reiki - Level 2</h3>
+        <div class="event-meta"><span>📅 14th &amp; 21st June</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
+        <p>Step into Level 2 symbols, distance healing, and a deeper capacity to work with energy intentionally. Reiki Level 1 required.</p>
+        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Level 1 Required</span></div>
+      </div>
+      <div class="event-action reiki-action" id="reiki-action-r2-jun" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
+        <button class="btn btn-primary reiki-book-btn" onclick="openReikiModal('r2-jun','deposit')">Secure your spot - $155</button>
+        <button class="btn btn-ghost reiki-book-btn" onclick="openReikiModal('r2-jun','full')">Pay in full - $555</button>
+        <p class="reiki-closed-msg" style="display:none;font-size:0.78rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Bookings for this intake<br>are now closed.</p>
+      </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-date"><span class="day">19</span><span class="mon">Sep</span></div>
       <div class="event-info">
         <h3>Learn Reiki - Level 1</h3>
         <div class="event-meta"><span>📅 19th &amp; 20th September</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
@@ -1447,8 +1388,8 @@
       </div>
     </div>
 
-    <div class="event-card" style="border-color: #b5cdd4; background: linear-gradient(135deg, #edf4f7 0%, #f8fcfd 100%);">
-      <div class="event-date" style="background: var(--border); color: var(--brown);"><span class="day">4</span><span class="mon">Oct</span></div>
+    <div class="event-card">
+      <div class="event-date"><span class="day">4</span><span class="mon">Oct</span></div>
       <div class="event-info">
         <h3>Learn Reiki - Level 2</h3>
         <div class="event-meta"><span>📅 4th &amp; 10th October</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
@@ -1462,36 +1403,22 @@
       </div>
     </div>
 
-    <div class="event-card" style="border-color: var(--rose-light); background: linear-gradient(135deg, #faf0f0 0%, #fff 100%);">
-      <div class="event-date" style="background: var(--rose-light); color: var(--brown);"><span class="day">1</span><span class="mon">Nov</span></div>
-      <div class="event-info">
-        <h3>Plan Your Year 2027</h3>
-        <div class="event-meta"><span>📅 1 November 2026</span><span>💻 Online</span><span>90 minutes</span></div>
-        <p>A live workshop where Jess walks through how she plans her year - what she looks at, how she maps it, and how she builds in energy and spaciousness alongside the practical. Walk away with your own 2027 mapped out.</p>
-        <div class="event-tags"><span class="tag tag-rose">Workshop</span><span class="tag tag-sage">Online</span><span class="tag tag-lav">Free</span></div>
-      </div>
-      <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
-        <button class="btn btn-primary" onclick="openEnquiry('Plan Your Year 2027')">Register Interest</button>
-        <p style="font-size:0.72rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Free &middot; 90 minutes</p>
-      </div>
-    </div>
-
     <div class="event-card" style="border-color: var(--lavender-light); background: linear-gradient(135deg, #faf7ff 0%, #fff 100%);">
-      <div class="event-date" style="background: var(--lavender-light); color: var(--brown);"><span class="day">3</span><span class="mon">Nov</span></div>
+      <div class="event-date" style="background: var(--lavender-light); color: var(--brown);"><span class="day">21</span><span class="mon">Sep</span></div>
       <div class="event-info">
         <h3>Reiki Master &amp; Master/Teacher</h3>
-        <div class="event-meta"><span>📅 From 3 November 2026</span><span>💻 Online via Zoom</span><span>Fortnightly sessions</span></div>
-        <p>The highest level of Reiki training. Two pathways - Reiki Master (4 sessions, 20hrs) and Master/Teacher add-on (3 additional sessions). Runs once per year. Payment plans available.</p>
+        <div class="event-meta"><span>📅 From 30 November 2026</span><span>💻 Online via Zoom</span><span>Weekly sessions</span></div>
+        <p>The highest level of Reiki training. Two pathways - Reiki Master (4 sessions, 12hrs) and Master/Teacher add-on (4 additional sessions, 12hrs). Runs once per year. Payment plans available.</p>
         <div class="event-tags"><span class="tag tag-lav">Reiki III</span><span class="tag tag-sage">Master Level</span><span class="tag tag-rose">Waitlist Open</span></div>
       </div>
       <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
         <a href="reiki-master-teacher.html" class="btn btn-primary" style="text-align:center;text-decoration:none;">Join the Waitlist</a>
-        <p style="font-size:0.72rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Waitlist closes 24 Oct<br>Payment plans available</p>
+        <p style="font-size:0.72rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Waitlist closes 19 Oct<br>Payment plans available</p>
       </div>
     </div>
 
-    <div class="event-card" style="border-color: #a8c4a6; background: linear-gradient(135deg, #edf4ed 0%, #f8fcf8 100%);">
-      <div class="event-date" style="background: #C2D1C1; color: var(--brown);"><span class="day">5</span><span class="mon">Dec</span></div>
+    <div class="event-card">
+      <div class="event-date"><span class="day">5</span><span class="mon">Dec</span></div>
       <div class="event-info">
         <h3>Learn Reiki - Level 1</h3>
         <div class="event-meta"><span>&#128197; 5th &amp; 6th December</span><span>&#128187; Online</span><span>10 hours over 2 days</span></div>
@@ -1502,20 +1429,6 @@
         <button class="btn btn-primary reiki-book-btn" onclick="openReikiModal('r1-dec','deposit')">Secure your spot - $111</button>
         <button class="btn btn-ghost reiki-book-btn" onclick="openReikiModal('r1-dec','full')">Pay in full - $333</button>
         <p class="reiki-closed-msg" style="display:none;font-size:0.78rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Bookings for this intake<br>are now closed.</p>
-      </div>
-    </div>
-
-    <div class="event-card" style="border-color: var(--lavender-light); background: linear-gradient(135deg, #faf7ff 0%, #fff 100%);">
-      <div class="event-date" style="background: var(--lavender-light); color: var(--brown);"><span class="day">19</span><span class="mon">Jan</span></div>
-      <div class="event-info">
-        <h3>Reiki Master/Teacher</h3>
-        <div class="event-meta"><span>📅 From 19 January 2027</span><span>💻 Online via Zoom</span><span>3 fortnightly sessions</span></div>
-        <p>The Teacher pathway for 2026 Reiki Masters graduates. Three additional fortnightly sessions (15hrs) covering everything you need to attune and teach. Runs directly after the Masters cohort. Payment plans available.</p>
-        <div class="event-tags"><span class="tag tag-lav">Reiki Teacher</span><span class="tag tag-sage">Masters Graduates</span><span class="tag tag-rose">Waitlist Open</span></div>
-      </div>
-      <div class="event-action" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
-        <a href="reiki-master-teacher.html" class="btn btn-primary" style="text-align:center;text-decoration:none;">Join the Waitlist</a>
-        <p style="font-size:0.72rem;color:var(--brown-mid);text-align:center;line-height:1.5;">$555 &middot; Payment plans available</p>
       </div>
     </div>
 
@@ -1550,14 +1463,6 @@
           <label>I'm interested in...</label>
           <select id="enq-interest">
             <option value="">Select...</option>
-            <optgroup label="Solid Ground">
-              <option>Solid Ground: Core - Self-Paced ($147)</option>
-              <option>Solid Ground: Going Deeper - Self-Paced ($199)</option>
-              <option>Solid Ground: Bundle - Self-Paced ($297)</option>
-              <option>Solid Ground: Core - 1:1 ($666)</option>
-              <option>Solid Ground: Going Deeper - 1:1 ($666)</option>
-              <option>Solid Ground: Bundle - 1:1 ($999)</option>
-            </optgroup>
             <optgroup label="Align + Flow">
               <option>Session Pack - 5 Sessions ($666)</option>
               <option>Session Pack - 10 Sessions ($1,111)</option>
@@ -1699,17 +1604,15 @@
   // ── DISCOVERY CALL CONFIG ──────────────────────────────────────────────────
   // Add your pre-discovery call form URLs here (Typeform, Google Form, etc.)
   const DISCOVERY_FORMS = {
-    'Solid Ground Discovery Call':       'pre-discovery-solid-ground.html',
     'Soul-Led Business Discovery Call':  'pre-discovery-soul-led-business.html',
-    'Soul Expansion Discovery Call':       'pre-discovery-soul-support.html',
+    'Soul Support Discovery Call':       'pre-discovery-soul-support.html',
     'Align + Flow Packs Discovery Call': 'pre-discovery-align-flow.html',
     'The Unbecoming Discovery Call':     'pre-discovery-unbecoming.html',
   };
   // Email sequence tags sent in the webhook payload (wire these up in your automation tool)
   const DISCOVERY_SEQUENCE_TAGS = {
-    'Solid Ground Discovery Call':       'discovery-solid-ground',
     'Soul-Led Business Discovery Call':  'discovery-soul-led-business',
-    'Soul Expansion Discovery Call':       'discovery-soul-support',
+    'Soul Support Discovery Call':       'discovery-soul-support',
     'Align + Flow Packs Discovery Call': 'discovery-align-flow-packs',
     'The Unbecoming Discovery Call':     'discovery-the-unbecoming',
   };
@@ -1723,7 +1626,7 @@
     38:  'https://buy.stripe.com/5kQ8wP3Sw2z20vAeLscZa0d',  // 45min Tarot ($75 total)
     60:  'https://buy.stripe.com/8x28wP0Gk3D67Y246OcZa02',  // Akashic, Reiki 60min
     63:  'https://buy.stripe.com/6oUdR9exa7Tmdim5aScZa0e',  // Reiki/Intuitive/Myotherapy 75min ($125 total)
-    75:  'https://buy.stripe.com/aFadR92Os8Xq6TYbzgcZa0g',  // Reiki 90min, Align+Flow 90min ($150 total)
+    75:  'https://buy.stripe.com/aFadR92Os8Xq6TYbzgcZa0g',  // Reiki 90min, Align+Flow, Port Elliot 90min ($150 total)
     80:  'https://buy.stripe.com/28EfZhcp24Ha6TYeLscZa0f',  // Intuitive/Myotherapy/Relaxation 90min ($160 total)
     105: 'https://buy.stripe.com/8x200j0GkddG1zEcDkcZa0h',  // Relaxation 120min ($210 total)
   };
@@ -1747,7 +1650,7 @@
     38:  'https://www.paypal.com/ncp/payment/U3ZYKEKV4ZZ9J',  // 45min Tarot ($75 total)
     60:  'https://www.paypal.com/ncp/payment/P8CFRVWQQXPM6',  // Akashic, Reiki 60min ($120 total)
     63:  'https://www.paypal.com/ncp/payment/2EFC4ZBTCRUN2',  // Reiki/Intuitive/Myotherapy 75min ($125 total)
-    75:  'https://www.paypal.com/ncp/payment/3UM87JANFD29C',  // Reiki 90min, Align+Flow 90min ($150 total)
+    75:  'https://www.paypal.com/ncp/payment/3UM87JANFD29C',  // Reiki 90min, Align+Flow, Port Elliot 90min ($150 total)
     80:  'https://www.paypal.com/ncp/payment/E759WMPLACEPQ',  // Intuitive/Myotherapy/Relaxation 90min ($160 total)
     105: 'https://www.paypal.com/ncp/payment/TC66EETSYW8XC',  // Relaxation 120min ($210 total)
   };
@@ -1824,6 +1727,24 @@
 
   // ── REIKI TRAINING INTAKES ──
   const REIKI_INTAKES = {
+    'r1-jun': {
+      name:    'Learn Reiki - Level 1',
+      month:   'June',
+      day1:    '6 June 2026 · 10:00am - 3:00pm',
+      day2:    '7 June 2026 · 11:00am - 4:00pm',
+      cutoff:  '2026-05-30',
+      deposit: { label: 'Deposit - $111', stripe: 'https://buy.stripe.com/fZu28rexaflO5PU9r8cZa0I', paypal: 'https://www.paypal.com/ncp/payment/FFK29EF7S936N' },
+      full:    { label: 'Pay in full - $333', stripe: 'https://buy.stripe.com/14A4gz3Swc9C3HMgTAcZa0G', paypal: 'https://www.paypal.com/ncp/payment/SX6VZEBTMRDTN' }
+    },
+    'r2-jun': {
+      name:    'Learn Reiki - Level 2',
+      month:   'June',
+      day1:    '14 June 2026 · 10:00am - 3:00pm',
+      day2:    '21 June 2026 · 11:00am - 4:00pm',
+      cutoff:  '2026-06-07',
+      deposit: { label: 'Deposit - $155', stripe: 'https://buy.stripe.com/8x200jfBe6Picei1YGcZa0J', paypal: 'https://www.paypal.com/ncp/payment/FASLN429BFW5S' },
+      full:    { label: 'Pay in full - $555', stripe: 'https://buy.stripe.com/6oU9ATfBe5Leemq46OcZa0H', paypal: 'https://www.paypal.com/ncp/payment/GPR6E83TQT6W8' }
+    },
     'r1-sep': {
       name:    'Learn Reiki - Level 1',
       month:   'September',
@@ -1854,10 +1775,12 @@
   };
 
   // ── REIKI CLASS LIMITS ──
-  const REIKI_LIMITS = { 'r1-sep': 6, 'r2-oct': 4, 'r1-dec': 6 };
+  const REIKI_LIMITS = { 'r1-jun': 6, 'r2-jun': 4, 'r1-sep': 6, 'r2-oct': 4, 'r1-dec': 6 };
   const REIKI_NEXT = {
+    'r1-jun': '19 &amp; 20 September 2026',
     'r1-sep': '5 &amp; 6 December 2026',
     'r1-dec': null,
+    'r2-jun': '4 &amp; 10 October 2026',
     'r2-oct': null
   };
 
@@ -1973,7 +1896,22 @@
   const ONLINE_BOOKED_THU = [];
   const ONLINE_BOOKED_SAT = [1, 3];
 
-  let selServiceType = null; // 'online' | 'inperson'
+  // Art of You - Port Elliot: fortnightly Wednesdays(3)
+  // Reference Wednesday = May 6 2026 = Week A (4pm-8pm)
+  // Alternates: A=4pm-8pm, B=1pm-5pm every fortnight
+  const AOY_REF = new Date(2026, 4, 6); // May 6, 2026
+  const AOY_TIMES_A = ['4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM'];
+  const AOY_TIMES_B = ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
+  const AOY_BOOKED  = [];
+
+  function getAoyType(date) {
+    if (date.getDay() !== 3) return null; // Not a Wednesday
+    const weeksDiff = Math.round((date - AOY_REF) / (7 * 24 * 3600 * 1000));
+    if (weeksDiff < 0 || weeksDiff % 2 !== 0) return null; // Not an AOY Wednesday
+    return (weeksDiff / 2) % 2 === 0 ? 'A' : 'B';
+  }
+
+  let selServiceType = null; // 'online' | 'inperson' | 'artofyou'
 
   // ── BOOK FROM PROGRAMS & PACKS ──
   // Lets cards in Programs & Packs trigger the booking flow directly.
@@ -2054,14 +1992,16 @@
     setTimeout(() => next1.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
 
     // Detect service type
-    if (el.classList.contains('svc-inperson')) selServiceType = 'inperson';
+    if (el.classList.contains('svc-inperson'))    selServiceType = 'inperson';
+    else if (el.classList.contains('svc-artofyou')) selServiceType = 'artofyou';
     else selServiceType = 'online';
 
     // Pre-select format field
     const fmt = document.getElementById('sformat');
     if (fmt) {
-      if (selServiceType === 'online') fmt.value = 'online';
-      else                             fmt.value = 'in-person';
+      if (selServiceType === 'online')       fmt.value = 'online';
+      else if (selServiceType === 'artofyou') fmt.value = 'port-elliot';
+      else                                   fmt.value = 'in-person';
     }
 
     // If service type changed, reset date/time and re-render calendar
@@ -2087,7 +2027,8 @@
       : '<strong>Online:</strong> Friday 10:00 AM - 8:00 PM · Saturday 10:00 AM - 3:00 PM ACST';
     const hints = {
       inperson:  '<strong>In-person - Adelaide:</strong> Monday &amp; Tuesday · 3:00 PM ACST · One appointment per day',
-      online:    onlineHint
+      online:    onlineHint,
+      artofyou:  '<strong>Art of You - Port Elliot:</strong> Fortnightly Wednesdays · alternating 4:00 PM - 8:00 PM &amp; 1:00 PM - 5:00 PM ACST'
     };
     hint.innerHTML = hints[selServiceType] || '';
     hint.style.display = 'block';
@@ -2111,6 +2052,8 @@
       let unavailable;
       if (selServiceType === 'inperson') {
         unavailable = past || !INPERSON_DAYS.includes(dow) || isBlocked(date);
+      } else if (selServiceType === 'artofyou') {
+        unavailable = past || getAoyType(date) === null || isBlocked(date);
       } else {
         // Online: date-aware (Fri+Sat until July, Thu+Sat from July) + Reiki teaching days blocked
         unavailable = past || !getOnlineDays(date).includes(dow) || isBlocked(date) || isOnlineBlocked(date);
@@ -2136,7 +2079,45 @@
     renderCal();
     renderTimes();
   }
-  function renderTimes() {
+  // ── PORT ELLIOT SLOT BLOCKING ──
+  let aoyEventCache = {};
+
+  async function fetchPortElliotBooked(date) {
+    const key = date.toDateString();
+    if (aoyEventCache[key]) return aoyEventCache[key];
+    if (!GCAL_BLOCKED_CALENDAR_ID || !GCAL_API_KEY) return [];
+    const dayStart = new Date(date); dayStart.setHours(0,0,0,0);
+    const dayEnd   = new Date(date); dayEnd.setHours(23,59,59,999);
+    const url = 'https://www.googleapis.com/calendar/v3/calendars/'
+      + encodeURIComponent(GCAL_BLOCKED_CALENDAR_ID)
+      + '/events?key=' + GCAL_API_KEY
+      + '&timeMin=' + dayStart.toISOString()
+      + '&timeMax=' + dayEnd.toISOString()
+      + '&singleEvents=true';
+    try {
+      const res  = await fetch(url);
+      const data = await res.json();
+      const events = (data.items || [])
+        .filter(ev => ev.start && ev.start.dateTime)
+        .map(ev => ({ start: new Date(ev.start.dateTime), end: new Date(ev.end.dateTime) }));
+      aoyEventCache[key] = events;
+      return events;
+    } catch(e) { return []; }
+  }
+
+  function timeStrToDate(timeStr, refDate) {
+    const [time, mer] = timeStr.split(' ');
+    let [h, m] = time.split(':').map(Number);
+    if (mer === 'PM' && h !== 12) h += 12;
+    if (mer === 'AM' && h === 12) h = 0;
+    const d = new Date(refDate); d.setHours(h, m, 0, 0); return d;
+  }
+
+  function slotOverlaps(slotStart, slotEnd, events) {
+    return events.some(ev => slotStart < ev.end && slotEnd > ev.start);
+  }
+
+  async function renderTimes() {
     document.getElementById('times-prompt').style.display = 'none';
     const grid = document.getElementById('time-slots');
     grid.style.display = 'grid';
@@ -2145,6 +2126,23 @@
     if (selServiceType === 'inperson') {
       times  = INPERSON_TIMES;
       booked = INPERSON_BOOKED;
+    } else if (selServiceType === 'artofyou') {
+      const aoyType = selDate ? getAoyType(selDate) : null;
+      times  = aoyType === 'B' ? AOY_TIMES_B : AOY_TIMES_A;
+      booked = AOY_BOOKED;
+      grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
+      const calEvents  = await fetchPortElliotBooked(selDate);
+      const durMins    = selDuration ? (parseInt(selDuration) || 60) : 60;
+      const blockEndStr = aoyType === 'B' ? '5:00 PM' : '8:00 PM';
+      const blockEnd    = timeStrToDate(blockEndStr, selDate);
+      grid.innerHTML   = times.map((t, i) => {
+        const slotStart  = timeStrToDate(t, selDate);
+        const slotEnd    = new Date(slotStart.getTime() + durMins * 60000);
+        const isTaken    = booked.includes(i) || slotOverlaps(slotStart, slotEnd, calEvents) || slotEnd > blockEnd;
+        const isSel      = t === selTime;
+        return `<button class="time-slot${isSel?' selected':''}" ${isTaken?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`;
+      }).join('');
+      return;
     } else {
       // Online - day-specific slots (Thu from July, Fri before July, Sat year-round)
       const dow = selDate ? selDate.getDay() : 5;
@@ -2192,7 +2190,7 @@
   function applyCoupon() {
     const code = document.getElementById('coupon-input').value.trim().toUpperCase();
     const msg  = document.getElementById('coupon-msg');
-    const isInPerson = selServiceType === 'inperson';
+    const isInPerson = selServiceType === 'inperson' || selServiceType === 'artofyou';
     msg.style.display = 'block';
     if (code === 'CASH') {
       if (!isInPerson) {
@@ -2218,6 +2216,7 @@
     const isDiscovery = !!(selService && selService.includes('Discovery Call'));
     const fmt = document.getElementById('sformat').value;
     const fmtLabel = fmt==='in-person' ? 'In-person (Adelaide)'
+                   : fmt==='port-elliot' ? 'In-person (Port Elliot)'
                    : fmt==='online' ? 'Online (Zoom)' : 'TBC';
     const dateStr = selDate ? selDate.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) : '-';
 
@@ -2505,24 +2504,12 @@
     discovery: 'online',
     alignflow: 'online',
     inperson:  'inperson',
+    artofyou:  'artofyou',
     all:       null,
   };
 
-  function filterPrograms(cat, btn) {
-    document.querySelectorAll('.prog-filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('[data-prog-cat]').forEach(section => {
-      if (cat === 'all') {
-        section.style.display = '';
-      } else {
-        const cats = section.dataset.progCat.split(' ');
-        section.style.display = cats.includes(cat) ? '' : 'none';
-      }
-    });
-  }
-
   function filterSessions(type, btn, skipHash) {
-    document.querySelectorAll('.filter-btn:not(.prog-filter-btn)').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     // Push hash so this filter state is deep-linkable
@@ -2544,25 +2531,30 @@
     const discoveryCards  = document.querySelectorAll('.svc-discovery');
     const alignflowCards  = document.querySelectorAll('.svc-alignflow');
     const inpersonCards   = document.querySelectorAll('.svc-inperson');
+    const artofyouCards   = document.querySelectorAll('.svc-artofyou');
     const clarityLabels   = document.querySelectorAll('.svc-group-clarity');
     const discoveryLabels = document.querySelectorAll('.svc-group-discovery');
     const alignflowLabels = document.querySelectorAll('.svc-group-alignflow');
     const inpersonLabel   = document.querySelector('.svc-group-inperson');
+    const artofyouLabel   = document.querySelector('.svc-group-artofyou');
     const packsNote       = document.getElementById('alignflow-packs-note');
 
     const showClarity   = type === 'all' || type === 'clarity';
     const showDiscovery = type === 'all' || type === 'discovery';
     const showAlignflow = type === 'all' || type === 'alignflow';
     const showInperson  = type === 'all' || type === 'inperson';
+    const showArtofyou  = type === 'all' || type === 'artofyou';
 
     clarityCards.forEach(c   => c.style.display = showClarity   ? '' : 'none');
     discoveryCards.forEach(c => c.style.display = showDiscovery ? '' : 'none');
     alignflowCards.forEach(c => c.style.display = showAlignflow ? '' : 'none');
     inpersonCards.forEach(c  => c.style.display = showInperson  ? '' : 'none');
+    artofyouCards.forEach(c  => c.style.display = showArtofyou  ? '' : 'none');
     clarityLabels.forEach(l  => l.style.display = showClarity   ? '' : 'none');
     discoveryLabels.forEach(l => l.style.display = showDiscovery ? '' : 'none');
     alignflowLabels.forEach(l => l.style.display = showAlignflow ? '' : 'none');
     if (inpersonLabel) inpersonLabel.style.display = showInperson ? '' : 'none';
+    if (artofyouLabel) artofyouLabel.style.display = showArtofyou ? '' : 'none';
     if (packsNote) packsNote.style.display = showAlignflow ? '' : 'none';
 
     // Deselect if hidden card was selected
@@ -2635,7 +2627,7 @@
   fetchGcalBlockedDates();
 
   // ── HASH-BASED ROUTING (tabs + session filters) ──
-  const FILTER_HASHES = new Set(['clarity','inperson']);
+  const FILTER_HASHES = new Set(['clarity','inperson','artofyou']);
 
   function openTabByHash() {
     const hash = window.location.hash.replace('#','');
