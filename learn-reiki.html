@@ -345,6 +345,49 @@ textarea.eoi-field {
   .eoi-two-col { grid-template-columns: 1fr; }
   .eoi-days-grid { grid-template-columns: 1fr; }
 }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section { padding: 80px 0 60px; }
+.testimonials-section .label { margin-bottom: 36px; display: block; }
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.testimonial-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.08);
+  border-radius: 16px;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.testimonial-text {
+  font-family: var(--h);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.65;
+  flex: 1;
+}
+.testimonial-byline {
+  font-size: 12px;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.testimonial-byline span {
+  color: rgba(250,247,242,0.35);
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  margin-top: 2px;
+  text-transform: none;
+}
+@media (max-width: 768px) {
+  .testimonial-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -463,19 +506,20 @@ textarea.eoi-field {
         </div>
       </div>
 
-      <div class="level-card reveal" style="opacity: 0.72;">
+      <div class="level-card reveal">
         <div class="level-num-col"><div class="level-roman">III</div></div>
         <div class="level-body">
-          <span class="tag" style="background: rgba(242,193,78,0.08); color: var(--gold); border-color: rgba(242,193,78,0.2);">Coming Late 2026</span>
+          <span class="tag" style="background: rgba(59,94,110,0.15); color: #a8cdd8; border-color: rgba(59,94,110,0.4);">Waitlist Open - closes 19 Oct</span>
           <h3>Reiki Master &amp; Teacher</h3>
-          <p>The highest level of Reiki training. At Master level you receive the Master attunement, learn the Master symbol, and - if you choose to teach - gain the knowledge and ability to attune others. You become a Reiki lineage holder in your own right.</p>
-          <p>This isn't just a qualification. It's a deepening of your relationship with energy itself - and the beginning of a lifelong practice of teaching, sharing, and holding space.</p>
+          <p>The highest level of Reiki training. At Master level you receive the Master attunement, learn the Master symbols, and - if you choose to teach - gain the knowledge and ability to attune others. You become a Reiki lineage holder in your own right.</p>
+          <p>Two pathways: Reiki Master ($999) and Master/Teacher add-on ($444). Both delivered fortnightly via Zoom. 2026 intake starts November.</p>
           <ul class="level-includes">
-            <li>Master attunement</li>
-            <li>The Master symbol</li>
-            <li>How to attune students at all levels</li>
-            <li>Teaching frameworks and practice</li>
-            <li>Certificate of Master/Teacher completion</li>
+            <li>Master attunement and symbols</li>
+            <li>Shielding and Protection</li>
+            <li>TCM and the 5 Elements</li>
+            <li>Attunement protocols for all levels</li>
+            <li>Teaching frameworks and curriculum design</li>
+            <li>Certificate of completion</li>
           </ul>
           <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
             <a href="reiki-master-teacher.html" class="btn btn-ghost" style="font-size:13px;">Learn More &amp; Join Waitlist</a>
@@ -584,7 +628,7 @@ textarea.eoi-field {
               <select class="eoi-field" id="location" name="preferred_location" required>
                 <option value="" disabled selected>Choose your location...</option>
                 <option value="York Peninsula">York Peninsula</option>
-
+                <option value="Port Elliot">Port Elliot</option>
                 <option value="Adelaide">Adelaide</option>
                 <option value="Other">Other - I'll share details below</option>
               </select>
@@ -692,6 +736,23 @@ textarea.eoi-field {
   </div>
 </section>
 
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials-section">
+  <div class="container">
+    <span class="label reveal">What students say</span>
+    <div class="testimonial-grid">
+      <div class="testimonial-card reveal d1">
+        <p class="testimonial-text">"Jess is a teacher for the teachers, for those that have never had anything 'stick'. Taking a course with Jess is like jumping from a cliff with a protective and vibrant cloud attached."</p>
+        <div class="testimonial-byline">Sian <span>Reiki 1 &amp; 2</span></div>
+      </div>
+      <div class="testimonial-card reveal d2">
+        <p class="testimonial-text">"Jess has a way of making you feel instantly comfortable by providing a safe space for you to feel seen and heard. As someone who is highly sensitive to energy work, Jess has a knowing of what you need whilst respecting where you are at."</p>
+        <div class="testimonial-byline">Bree <span>Empowered Empath &amp; Reiki 1 &amp; 2</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="cta-section">
   <div class="cta-bg"><img src="jess-shadow-light.jpg" alt="Jess Hollamby" /></div>
   <div class="cta-orb"></div>
@@ -701,7 +762,6 @@ textarea.eoi-field {
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
       <a href="booking.html" class="btn btn-primary">Book a Training Call</a>
       <a href="offerings.html" class="btn btn-ghost">See All Offerings</a>
-      <a href="reiki-interest.html" class="btn btn-ghost">Not sure yet? Send me the details</a>
     </div>
   </div>
 </section>
@@ -709,7 +769,7 @@ textarea.eoi-field {
 <footer>
   <div class="container">
     <div class="footer-logo">Energy with Jess</div>
-    <div class="footer-tagline">Your energy. Your terms. Your pace.</div>
+    <div class="footer-tagline">Your sensitivity is your superpower.</div>
     <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
     <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
   </div>
