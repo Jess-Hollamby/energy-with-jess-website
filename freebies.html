@@ -247,8 +247,62 @@
 
     </div>
 
-    <div class="freebies-note reveal">
-      <p>More resources on the way. If there's something specific you'd love to see, <a href="connect.html" style="color: var(--rose); text-decoration: none;">send me a message.</a></p>
+    </div>
+
+    <!-- SOLID GROUND GUIDE - full width -->
+    <div class="freebie-card reveal" style="grid-column: 1 / -1; flex-direction: row; gap: 60px; text-align: left; align-items: flex-start; padding: 52px 48px; margin-top: 8px;">
+      <div style="flex: 1; min-width: 0;">
+        <div class="freebie-icon" style="margin: 0 0 24px;">◈</div>
+        <span class="freebie-tag" style="color: var(--rose); border-color: rgba(191,66,136,0.25);">Free Guide</span>
+        <h3 style="margin-top: 14px;">Solid Ground</h3>
+        <p style="font-size: 15px; margin-bottom: 0;">Soul-led business for women doing it solo. What you actually need before you start, the trap that keeps most people stuck, and your first real steps - no fluff, no noise.</p>
+        <p style="font-size: 13px; color: rgba(250,247,242,0.35); margin-top: 10px; margin-bottom: 0;">A practical guide for women building a business alone - no partner to split the bills or sanity-check ideas.</p>
+      </div>
+      <div style="flex: 1; min-width: 260px;">
+        <!-- FREEBIE FORM -->
+        <div id="sg-guide-section">
+          <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.4); margin-bottom: 14px;">Get the free guide</div>
+          <form class="freebie-form" id="form-sg-guide">
+            <input type="text" name="firstName" placeholder="First name" required />
+            <input type="email" name="email" placeholder="Email address" required />
+            <button type="submit" class="btn btn-primary">Send Me the Guide</button>
+          </form>
+          <div class="freebie-success" id="success-sg-guide">
+            <strong>On its way ◈</strong>
+            <p>Check your inbox - the Solid Ground guide is heading to you now.</p>
+          </div>
+        </div>
+
+        <!-- WAITLIST CHECKBOX -->
+        <div id="sg-waitlist-section" style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(250,247,242,0.07);">
+          <label id="sg-waitlist-toggle" style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;user-select:none;">
+            <span id="sg-checkbox" style="width:20px;height:20px;min-width:20px;border:1.5px solid rgba(250,247,242,0.25);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all 0.2s ease;background:transparent;">
+              <span id="sg-tick" style="display:none;color:#bf4288;font-size:13px;line-height:1;">✓</span>
+            </span>
+            <span style="font-size:14px;color:rgba(250,247,242,0.65);line-height:1.6;">Notify me when Solid Ground courses open on 28 September</span>
+          </label>
+          <div id="sg-waitlist-expand" style="display:none;margin-top:16px;">
+            <form class="freebie-form" id="form-sg-waitlist">
+              <select name="interest" style="width:100%;padding:13px 16px;background:rgba(250,247,242,0.05);border:1px solid rgba(250,247,242,0.12);border-radius:10px;color:var(--cream);font-family:inherit;font-size:14px;appearance:none;outline:none;box-sizing:border-box;">
+                <option value="Not sure yet" style="background:#1E2E32;">What are you interested in?</option>
+                <option value="Self-Paced" style="background:#1E2E32;">Self-paced course</option>
+                <option value="1:1" style="background:#1E2E32;">1:1 with Jess</option>
+                <option value="Both" style="background:#1E2E32;">Both</option>
+                <option value="Not sure yet" style="background:#1E2E32;">Not sure yet</option>
+              </select>
+              <button type="submit" class="btn btn-ghost" style="width:100%;margin-top:4px;">Add Me to the Waitlist</button>
+            </form>
+          </div>
+          <div class="freebie-success" id="success-sg-waitlist" style="text-align:left;padding:14px 0 0;">
+            <strong style="font-size:16px;">You're on the list.</strong>
+            <p style="font-size:13.5px;">Doors open 28 September - you'll hear first.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="freebies-note reveal" style="padding-top: 20px;">
+      <p>If there's something specific you'd love to see, <a href="connect.html" style="color: var(--rose); text-decoration: none;">send me a message.</a></p>
     </div>
   </div>
 </section>
@@ -325,6 +379,50 @@ document.getElementById('form-chakra').addEventListener('submit', e => {
 document.getElementById('form-ns').addEventListener('submit', e => {
   e.preventDefault();
   handleFreebieSubmit('form-ns', 'success-ns', 'NS', 'Nervous System Cheatsheet.pdf');
+});
+
+// ─── SOLID GROUND GUIDE ───
+const SG_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+document.getElementById('form-sg-guide').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  const firstName = form.querySelector('[name="firstName"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  fetch(SG_URL + '?source=solid_ground&first_name=' + encodeURIComponent(firstName) + '&email=' + encodeURIComponent(email), { mode: 'no-cors' }).catch(() => {});
+  form.style.display = 'none';
+  document.getElementById('success-sg-guide').style.display = 'block';
+  // store for waitlist pre-fill
+  window._sgFirstName = firstName;
+  window._sgEmail = email;
+});
+
+// ─── SOLID GROUND WAITLIST CHECKBOX ───
+let sgWaitlistChecked = false;
+document.getElementById('sg-waitlist-toggle').addEventListener('click', () => {
+  sgWaitlistChecked = !sgWaitlistChecked;
+  document.getElementById('sg-tick').style.display = sgWaitlistChecked ? 'block' : 'none';
+  document.getElementById('sg-checkbox').style.borderColor = sgWaitlistChecked ? '#bf4288' : 'rgba(250,247,242,0.25)';
+  document.getElementById('sg-waitlist-expand').style.display = sgWaitlistChecked ? 'block' : 'none';
+});
+
+document.getElementById('form-sg-waitlist').addEventListener('submit', e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button');
+  const interest = form.querySelector('[name="interest"]').value;
+  const firstName = window._sgFirstName || '';
+  const email = window._sgEmail || '';
+  if (!email) { alert('Please enter your email above first.'); return; }
+  btn.textContent = 'Adding you...';
+  btn.disabled = true;
+  fetch(SG_URL + '?source=sg_waitlist&first_name=' + encodeURIComponent(firstName) + '&email=' + encodeURIComponent(email) + '&interest=' + encodeURIComponent(interest), { mode: 'no-cors' }).catch(() => {});
+  document.getElementById('sg-waitlist-expand').style.display = 'none';
+  document.getElementById('sg-waitlist-toggle').style.display = 'none';
+  document.getElementById('success-sg-waitlist').style.display = 'block';
 });
 </script>
 </body>
