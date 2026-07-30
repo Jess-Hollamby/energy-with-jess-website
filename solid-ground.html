@@ -447,8 +447,7 @@
             </div>
 
             <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 8px;">
-              <a href="https://buy.stripe.com/cNi7sL2Os7Tm4LQ5aScZa0P" target="_blank" class="btn btn-primary" style="font-size: 13px;">Enrol - $147</a>
-              <a href="https://www.paypal.com/ncp/payment/43ERPHRHJNS88" target="_blank" class="btn btn-primary" style="font-size: 13px; background: #003087; border-color: #003087;">PayPal - $147</a>
+              <a href="#sg-waitlist" class="btn btn-primary" style="font-size: 13px;">Join the Waitlist - Opens 28 Sep</a>
             </div>
           </div>
           <div class="course-card-side">
@@ -511,8 +510,7 @@
             <p style="font-size: 12.5px; color: rgba(250,247,242,0.45); margin: 0 0 16px; line-height: 1.6;">🌏 <em>Not based in Australia?</em> The bonus Legal + Tax module covers Australian specifics. The rest of the course applies wherever you are - the bonus includes a search prompt so you can find your local equivalent for any AU-specific content.</p>
 
             <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 8px;">
-              <a href="https://buy.stripe.com/4gMcN50GkehK2DI46OcZa0Q" target="_blank" class="btn btn-primary" style="font-size: 13px;">Enrol - $199</a>
-              <a href="https://www.paypal.com/ncp/payment/NRAMT7NABMMZA" target="_blank" class="btn btn-primary" style="font-size: 13px; background: #003087; border-color: #003087;">PayPal - $199</a>
+              <a href="#sg-waitlist" class="btn btn-primary" style="font-size: 13px;">Join the Waitlist - Opens 28 Sep</a>
             </div>
           </div>
           <div class="course-card-side">
@@ -556,8 +554,7 @@
           <p>Both courses together. Core builds the foundation. Going Deeper builds the rest. Lifetime access to both, work through them at your own pace, return to either whenever you need to.</p>
           <p style="font-size: 14px; color: rgba(250,247,242,0.45);">Core + Going Deeper &middot; 12 modules total &middot; Everything from first idea through to brand, AI, legal, content, and pricing for growth.</p>
           <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-top: 24px;">
-            <a href="https://buy.stripe.com/9B6dR988M6Pi4LQ0UCcZa0R" target="_blank" class="btn btn-primary" style="font-size: 13px;">Card - $297</a>
-            <a href="https://www.paypal.com/ncp/payment/P9L4T8K9J9YJ2" target="_blank" class="btn btn-primary" style="font-size: 13px; background: #003087; border-color: #003087;">PayPal - $297</a>
+            <a href="#sg-waitlist" class="btn btn-primary" style="font-size: 13px;">Join the Waitlist - Opens 28 Sep</a>
           </div>
         </div>
         <div class="sg-bundle-price">
@@ -594,18 +591,18 @@
     </div>
     <div class="sg-paths-grid">
       <div class="sg-path-card self-paced reveal d1">
-        <div class="sg-path-badge pink">You're here</div>
+        <div class="sg-path-badge pink">Opening 28 Sep</div>
         <h3>Self-Paced</h3>
         <p>Video lessons, workbooks, and reflection cards. Work through the modules in your own time, at your own pace. Lifetime access - come back to it whenever you need.</p>
         <div style="font-size: 13px; color: rgba(250,247,242,0.38); margin-bottom: 18px;">Core $147 &middot; Going Deeper $199 &middot; Bundle $297</div>
-        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="btn btn-primary" style="font-size: 12px;">Browse Courses Above</a>
+        <a href="#sg-waitlist" class="btn btn-primary" style="font-size: 12px;">Join the Waitlist</a>
       </div>
       <div class="sg-path-card one-on-one reveal d2">
-        <div class="sg-path-badge lav">1:1 Support</div>
+        <div class="sg-path-badge lav">Opening 28 Sep</div>
         <h3>With Real Support</h3>
         <p>Six sessions over 12 weeks, built entirely around you. Session 1 finds out where you're starting. Everything after is shaped around that. Includes Telegram access, session recordings, Reiki woven through.</p>
         <div style="font-size: 13px; color: rgba(250,247,242,0.38); margin-bottom: 18px;">Core 1:1 $666 &middot; Going Deeper 1:1 $666 &middot; Bundle 1:1 $999</div>
-        <a href="solid-ground-1on1.html" class="btn btn-ghost" style="font-size: 12px;">See the 1:1 Option</a>
+        <a href="#sg-waitlist" class="btn btn-ghost" style="font-size: 12px;">Join the Waitlist</a>
       </div>
     </div>
   </div>
@@ -631,18 +628,42 @@
   </div>
 </section>
 
+<!-- ── WAITLIST ── -->
+<section class="sg-optin" id="sg-waitlist">
+  <div class="container">
+    <div class="sg-optin-inner reveal">
+      <span class="label" style="color: var(--gold);">Opening 28 September</span>
+      <h2>Get on the list. <em>Hear first when doors open.</em></h2>
+      <p>Solid Ground opens on 28 September. Join the waitlist and you'll be the first to know - with a link straight to the option you're interested in.</p>
+      <form id="sg-waitlist-form" class="sg-optin-form" onsubmit="handleSgWaitlist(event)" style="flex-direction:column;max-width:420px;gap:10px;">
+        <input type="text" name="firstName" placeholder="First name" required autocomplete="given-name">
+        <input type="email" name="email" placeholder="Email address" required autocomplete="email">
+        <select name="interest" style="background:rgba(250,247,242,0.06);border:1px solid rgba(250,247,242,0.15);color:#FAF7F2;padding:13px 16px;border-radius:3px;font-family:inherit;font-size:14px;appearance:none;">
+          <option value="Not sure yet" style="background:#1E2E32;">What are you interested in?</option>
+          <option value="Self-Paced" style="background:#1E2E32;">Self-paced course</option>
+          <option value="1:1" style="background:#1E2E32;">1:1 with Jess</option>
+          <option value="Both" style="background:#1E2E32;">Both</option>
+          <option value="Not sure yet" style="background:#1E2E32;">Not sure yet</option>
+        </select>
+        <button type="submit" id="sg-waitlist-btn" style="background:var(--teal);color:#FAF7F2;border:none;padding:13px 28px;font-family:inherit;font-size:14px;letter-spacing:0.08em;cursor:pointer;border-radius:3px;">Get Notified When It Opens</button>
+      </form>
+      <div id="sg-waitlist-success" style="display:none; padding: 24px 0;">
+        <p class="sg-optin-thanks">You're on the list. Doors open 28 September - you'll hear first.</p>
+      </div>
+      <p class="sg-optin-note">No spam. Just a heads-up when it opens, and the occasional email from Jess when she has something worth saying.</p>
+    </div>
+  </div>
+</section>
+
 <section class="cta-section">
   <div class="cta-bg"><img src="jess-hero.webp" alt="Solid Ground" /></div>
   <div class="cta-orb"></div>
   <div class="cta-content reveal">
     <h2>You don't need to have it all figured out. <em>You just need to begin.</em></h2>
-    <p>Core is where to start. $147. Self-paced. Lifetime access. Start whenever you're ready.</p>
+    <p>Solid Ground opens 28 September. Join the waitlist and be first through the door.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://buy.stripe.com/cNi7sL2Os7Tm4LQ5aScZa0P" target="_blank" class="btn btn-primary">Enrol in Core - $147</a>
-      <a href="https://www.paypal.com/ncp/payment/43ERPHRHJNS88" target="_blank" class="btn btn-primary" style="background: #003087; border-color: #003087;">PayPal - $147</a>
-      <a href="https://buy.stripe.com/9B6dR988M6Pi4LQ0UCcZa0R" target="_blank" class="btn btn-ghost">Get the Bundle - $297</a>
+      <a href="#sg-waitlist" class="btn btn-primary">Join the Waitlist</a>
     </div>
-    <p style="margin-top: 20px; font-size: 13px; color: rgba(250,247,242,0.38);">Not sure? <a href="booking.html#discovery" style="color: var(--lavender); text-decoration: none;">Book a free Soul-Led Business Discovery Call</a> - 30 minutes, no pressure.</p>
   </div>
 </section>
 
@@ -683,6 +704,24 @@ reveals.forEach(r => observer.observe(r));
 
 /* ── FREE GUIDE OPT-IN ── */
 const SG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
+
+function handleSgWaitlist(e) {
+  e.preventDefault();
+  const btn = document.getElementById('sg-waitlist-btn');
+  const form = document.getElementById('sg-waitlist-form');
+  const firstName = form.querySelector('[name="firstName"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  const interest = form.querySelector('[name="interest"]').value;
+
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const url = SG_SCRIPT_URL + '?source=sg_waitlist&first_name=' + encodeURIComponent(firstName) + '&email=' + encodeURIComponent(email) + '&interest=' + encodeURIComponent(interest);
+  fetch(url, { mode: 'no-cors' }).catch(() => {});
+
+  form.style.display = 'none';
+  document.getElementById('sg-waitlist-success').style.display = 'block';
+}
 
 function handleSgOptIn(e) {
   e.preventDefault();
