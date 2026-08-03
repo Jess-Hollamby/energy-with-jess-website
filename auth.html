@@ -332,13 +332,17 @@ const coursesToEnroll = urlParams.get('courses')
   ? urlParams.get('courses').split(',').map(Number).filter(n => !isNaN(n))
   : [];
 
+// Expand bundle ID 6 (Solid Ground) → courses 4 and 5
+const BUNDLE_MAP = { 6: [4, 5] };
+const expandedCourses = [...new Set(coursesToEnroll.flatMap(id => BUNDLE_MAP[id] || [id]))];
+
 // After login or register - save enrollment then redirect to LMS
 auth.onAuthStateChanged(async user => {
   if (!user) return;
   if (coursesToEnroll.length > 0) {
     try {
       await db.collection('users').doc(user.uid).set(
-        { enrolledCourses: firebase.firestore.FieldValue.arrayUnion(...coursesToEnroll) },
+        { enrolledCourses: firebase.firestore.FieldValue.arrayUnion(...expandedCourses) },
         { merge: true }
       );
     } catch (e) { /* non-fatal - redirect anyway */ }
