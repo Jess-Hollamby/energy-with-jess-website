@@ -1920,25 +1920,11 @@
     <section class="page active" id="page-dashboard">
       <div class="welcome-banner">
         <h2>Welcome to Energy with Jess ✦</h2>
-        <p>This is your space to learn, grow, and come home to yourself. The Empowered Empath is live and waiting for you - start whenever you're ready.</p>
-        <button class="btn-start" onclick="openCourse(0)">Explore the Course →</button>
+        <p>This is your space to learn, grow, and come home to yourself.</p>
       </div>
 
-      <!-- FEATURED COURSE -->
-      <div class="featured-course-wrap" onclick="openCourse(0)">
-        <div class="featured-thumb">✨</div>
-        <div class="featured-body">
-          <div class="featured-eyebrow">Now Available · Self-Paced Course</div>
-          <h3 class="featured-title">The Empowered Empath</h3>
-          <p class="featured-desc">You feel everything - and it's time to make that your greatest strength. Nine modules of deep, guided learning covering empath basics, inner child, emotions, nervous system, past lives, your aura, and more - plus guided meditations throughout and a bonus soul contract meditation.</p>
-          <div class="featured-meta">
-            <span>✨ 12 modules + bonus</span>
-            <span>📝 14 lessons</span>
-            <span>⏱ 9 hours</span>
-            <span>🌿 Self-paced</span>
-          </div>
-          <button class="btn-start" style="margin-top:20px;display:inline-block;" onclick="event.stopPropagation();openCourse(0)">Start Here →</button>
-        </div>
+      <div id="dashboard-courses">
+        <!-- populated by renderDashboard() -->
       </div>
 
     </section>
@@ -2657,6 +2643,7 @@ function navigate(page, el) {
     community: 'Community'
   };
   document.getElementById('page-title').textContent = titles[page] || page;
+  if (page === 'dashboard') renderDashboard();
   if (page === 'catalog') renderCatalog('all');
   if (page === 'my-learning') renderMyLearning();
   if (page === 'community' && !communityInitialized) { communityInitialized = true; initCommunity(); }
@@ -2766,6 +2753,61 @@ function searchCourses(val) {
   `).join('');
 }
 
+// ══ DASHBOARD ══
+function renderDashboard() {
+  const enrolled = courses.filter(c => c.enrolled && !c.hidden);
+  const el = document.getElementById('dashboard-courses');
+  if (!el) return;
+
+  if (enrolled.length === 0) {
+    el.innerHTML = `
+      <div class="featured-course-wrap" onclick="openCourse(0)">
+        <div class="featured-thumb">✨</div>
+        <div class="featured-body">
+          <div class="featured-eyebrow">Now Available · Self-Paced Course</div>
+          <h3 class="featured-title">The Empowered Empath</h3>
+          <p class="featured-desc">You feel everything - and it's time to make that your greatest strength. Nine modules of deep, guided learning covering empath basics, inner child, emotions, nervous system, past lives, your aura, and more.</p>
+          <div class="featured-meta"><span>✨ 12 modules + bonus</span><span>📝 14 lessons</span><span>⏱ 9 hours</span><span>🌿 Self-paced</span></div>
+          <button class="btn-start" style="margin-top:20px;display:inline-block;" onclick="event.stopPropagation();openCourse(0)">Start Here →</button>
+        </div>
+      </div>`;
+    return;
+  }
+
+  if (enrolled.length === 1) {
+    const c = enrolled[0];
+    el.innerHTML = `
+      <div class="featured-course-wrap" onclick="openCourse(${c.id})">
+        <div class="featured-thumb" style="background:${c.thumbBg}">${c.emoji}</div>
+        <div class="featured-body">
+          <div class="featured-eyebrow">Now Available · Self-Paced Course</div>
+          <h3 class="featured-title">${c.title}</h3>
+          <p class="featured-desc">${c.desc}</p>
+          <div class="featured-meta"><span>${c.moduleCount} modules</span><span>${c.lessonCount} lessons</span><span>${c.duration}</span></div>
+          ${c.progress > 0 ? `<div class="course-progress" style="margin-top:16px;"><div class="progress-bar"><div class="progress-fill" style="width:${c.progress}%"></div></div><span class="progress-label">${c.progress}% complete</span></div>` : ''}
+          <button class="btn-start" style="margin-top:20px;display:inline-block;" onclick="event.stopPropagation();openCourse(${c.id})">${c.progress > 0 ? 'Continue →' : 'Start Here →'}</button>
+        </div>
+      </div>`;
+    return;
+  }
+
+  el.innerHTML = `<div class="courses-grid">` + enrolled.map(c => `
+    <div class="course-card" onclick="openCourse(${c.id})">
+      <div class="course-thumb" style="background:${c.thumbBg}">${c.emoji}</div>
+      <div class="course-body">
+        <div class="course-category">${c.categoryLabel}</div>
+        <div class="course-title">${c.title}</div>
+        <div class="course-meta"><span>${c.moduleCount} modules</span><span>${c.lessonCount} lessons</span><span>${c.duration}</span></div>
+        <div class="course-progress">
+          <div class="progress-bar"><div class="progress-fill" style="width:${c.progress}%"></div></div>
+          <span class="progress-label">${c.progress > 0 ? c.progress + '% complete' : 'Not started'}</span>
+        </div>
+        <button class="btn-continue">${c.progress > 0 ? 'Continue →' : 'Start Here →'}</button>
+      </div>
+    </div>
+  `).join('') + `</div>`;
+}
+
 // ══ MY LEARNING ══
 function renderMyLearning() {
   const enrolled = courses.filter(c => c.enrolled && !c.hidden);
@@ -2798,7 +2840,7 @@ function renderMyLearning() {
 
 // ══ COURSE DETAIL ══
 function openCourse(id) {
-  if (courses[id] && courses[id].comingSoon) {
+  if (courses[id] && courses[id].comingSoon && !courses[id].enrolled) {
     showToast('This course is coming soon - stay tuned! ✨');
     return;
   }
@@ -3223,6 +3265,7 @@ auth.onAuthStateChanged(async user => {
 
   // Load progress from Firestore then render
   await loadProgressFromFirestore();
+  renderDashboard();
   renderCatalog('all');
 
   // Hide loading overlay
