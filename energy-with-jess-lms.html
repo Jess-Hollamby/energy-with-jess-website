@@ -2690,17 +2690,17 @@ function openLesson(moduleIdx, lessonIdx) {
 
   // YouTube video - use lesson.youtubeId or override lookup
   const videoId = lesson.youtubeId || videoOverrides[`${moduleIdx}-${lessonIdx}`];
-  const vimeoHtml = isVideoLesson
-    ? (videoId
+  const vimeoHtml = videoId
     ? `<div class="vimeo-wrap"><iframe src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
-    : `<div class="vimeo-wrap vimeo-placeholder">
-        <div class="vimeo-placeholder-inner">
-          <div style="font-size:40px;margin-bottom:12px;">▶</div>
-          <p style="font-family:var(--font-heading);font-size:20px;color:var(--white);margin:0 0 6px;">${lesson.title}</p>
-          <p style="font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,0.6);margin:0;">Video · Coming soon</p>
-        </div>
-      </div>`)
-    : '';
+    : (isVideoLesson
+      ? `<div class="vimeo-wrap vimeo-placeholder">
+          <div class="vimeo-placeholder-inner">
+            <div style="font-size:40px;margin-bottom:12px;">▶</div>
+            <p style="font-family:var(--font-heading);font-size:20px;color:var(--white);margin:0 0 6px;">${lesson.title}</p>
+            <p style="font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,0.6);margin:0;">Video · Coming soon</p>
+          </div>
+        </div>`
+      : '');
 
   // Audio files (native HTML5 player + download button)
   const audioHtml = isAudioLesson && lesson.audioFiles ? lesson.audioFiles.map(a => a.audioUrl
