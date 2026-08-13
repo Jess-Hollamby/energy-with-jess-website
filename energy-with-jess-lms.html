@@ -2334,6 +2334,9 @@ const courses = [
     thumbBg: 'linear-gradient(135deg,#f4f0f8,#bf4288,#C4B0D4)',
     price: 333,
     desc: '6 lessons · self-paced · Move through your emotional landscape, build literacy around what you feel, understand your protective responses, and build a toolkit that actually works for you.',
+    duration: '6 weeks',
+    moduleCount: 6,
+    lessonCount: 6,
     comingSoon: true,
     enrolled: false,
     modules: []
@@ -2347,6 +2350,9 @@ const courses = [
     thumbBg: 'linear-gradient(135deg,#EBF1F4,#3B5E6E,#1E2E32)',
     price: 777,
     desc: '12 lessons · self-paced · Four phases: build the foundation, develop awareness, release what is stored, and rewire toward a new baseline. Covers Polyvagal Theory, somatic work, breathwork, and co-regulation. Includes the Triggers + Patterns tracker, Inner World journal guide, and Pattern Mapping workbook.',
+    duration: '12 weeks',
+    moduleCount: 12,
+    lessonCount: 12,
     comingSoon: true,
     enrolled: false,
     modules: []
@@ -2360,6 +2366,9 @@ const courses = [
     thumbBg: 'linear-gradient(135deg,#C4B0D4,#3B5E6E,#bf4288)',
     price: 999,
     desc: '18 lessons · self-paced · Both Emotional Regulation and Nervous System Regulation in one continuous container. The complete pathway from emotional awareness through to a regulated nervous system baseline.',
+    duration: '18 weeks',
+    moduleCount: 18,
+    lessonCount: 18,
     comingSoon: true,
     enrolled: false,
     modules: []
@@ -2756,7 +2765,7 @@ function searchCourses(val) {
 
 // ══ MY LEARNING ══
 function renderMyLearning() {
-  const enrolled = courses.filter(c => c.enrolled);
+  const enrolled = courses.filter(c => c.enrolled && !c.hidden);
   const grid = document.getElementById('my-courses-grid');
   if (enrolled.length === 0) {
     grid.innerHTML = `
