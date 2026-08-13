@@ -2798,7 +2798,7 @@ function renderDashboard() {
         <div class="course-category">${c.categoryLabel}</div>
         <div class="course-title">${c.title}</div>
         <div class="course-meta"><span>${c.moduleCount} modules</span><span>${c.lessonCount} lessons</span><span>${c.duration}</span></div>
-        <div class="course-progress">
+        <div class="course-progress" style="margin-bottom:14px;">
           <div class="progress-bar"><div class="progress-fill" style="width:${c.progress}%"></div></div>
           <span class="progress-label">${c.progress > 0 ? c.progress + '% complete' : 'Not started'}</span>
         </div>
