@@ -2375,6 +2375,7 @@ const courses = [
     price: 333,
     stripeUrl: 'https://buy.stripe.com/9B68wPcp24Hafqu0UCcZa0Y',
     paypalUrl: 'https://www.paypal.com/ncp/payment/P9L4T8K9J9YJ2',
+    salesUrl: 'https://www.energywithjess.com.au/solid-ground.html',
     duration: 'Self-paced',
     moduleCount: 14,
     lessonCount: 14,
@@ -2674,12 +2675,14 @@ function renderCatalog(filter) {
             ? '<span class="coming-soon-label">Notify Me</span>'
             : c.enrolled
               ? `<button class="btn-enroll enrolled" onclick="event.stopPropagation();">✓ Enrolled</button>`
-              : (c.stripeUrl && c.paypalUrl)
-                ? `<div style="display:flex;gap:6px;" onclick="event.stopPropagation()">
-                     <button class="btn-enroll" style="flex:1;font-size:11px;" onclick="window.open('${c.stripeUrl}','_blank')">Card</button>
-                     <button class="btn-enroll" style="flex:1;font-size:11px;background:#003087;" onclick="window.open('${c.paypalUrl}','_blank')">PayPal</button>
-                   </div>`
-                : `<button class="btn-enroll" onclick="event.stopPropagation();enrollCourse(${c.id})">Enrol Now</button>`
+              : c.salesUrl
+                ? `<a class="btn-enroll" style="text-align:center;text-decoration:none;" href="${c.salesUrl}" target="_blank" onclick="event.stopPropagation()">Learn More</a>`
+                : (c.stripeUrl && c.paypalUrl)
+                  ? `<div style="display:flex;gap:6px;" onclick="event.stopPropagation()">
+                       <button class="btn-enroll" style="flex:1;font-size:11px;" onclick="window.open('${c.stripeUrl}','_blank')">Card</button>
+                       <button class="btn-enroll" style="flex:1;font-size:11px;background:#003087;" onclick="window.open('${c.paypalUrl}','_blank')">PayPal</button>
+                     </div>`
+                  : `<button class="btn-enroll" onclick="event.stopPropagation();enrollCourse(${c.id})">Enrol Now</button>`
           }
         </div>
       </div>
@@ -2736,12 +2739,14 @@ function searchCourses(val) {
             ? '<span class="coming-soon-label">Notify Me</span>'
             : c.enrolled
               ? `<button class="btn-enroll enrolled" onclick="event.stopPropagation();">✓ Enrolled</button>`
-              : (c.stripeUrl && c.paypalUrl)
-                ? `<div style="display:flex;gap:6px;" onclick="event.stopPropagation()">
-                     <button class="btn-enroll" style="flex:1;font-size:11px;" onclick="window.open('${c.stripeUrl}','_blank')">Card</button>
-                     <button class="btn-enroll" style="flex:1;font-size:11px;background:#003087;" onclick="window.open('${c.paypalUrl}','_blank')">PayPal</button>
-                   </div>`
-                : `<button class="btn-enroll" onclick="event.stopPropagation();enrollCourse(${c.id})">Enrol Now</button>`
+              : c.salesUrl
+                ? `<a class="btn-enroll" style="text-align:center;text-decoration:none;" href="${c.salesUrl}" target="_blank" onclick="event.stopPropagation()">Learn More</a>`
+                : (c.stripeUrl && c.paypalUrl)
+                  ? `<div style="display:flex;gap:6px;" onclick="event.stopPropagation()">
+                       <button class="btn-enroll" style="flex:1;font-size:11px;" onclick="window.open('${c.stripeUrl}','_blank')">Card</button>
+                       <button class="btn-enroll" style="flex:1;font-size:11px;background:#003087;" onclick="window.open('${c.paypalUrl}','_blank')">PayPal</button>
+                     </div>`
+                  : `<button class="btn-enroll" onclick="event.stopPropagation();enrollCourse(${c.id})">Enrol Now</button>`
           }
         </div>
       </div>
