@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Energy with Jess - Learning Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1220,21 +1219,6 @@
     font-weight: 300;
   }
 
-  .intl-note {
-    background: #f0f6ff;
-    border: 1.5px solid #b8d0f0;
-    border-left: 4px solid #3B5E6E;
-    border-radius: 0 10px 10px 0;
-    padding: 14px 18px;
-    margin: 20px 0;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-  .intl-note .intl-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .intl-note .intl-body { font-size: 13.5px; color: #2a4a5a; line-height: 1.65; }
-  .intl-note .intl-body strong { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: #3B5E6E; margin-bottom: 5px; }
-
   .lesson-nav-btns {
     display: flex;
     justify-content: space-between;
@@ -1967,7 +1951,6 @@
         <button class="filter-btn" onclick="filterCatalog('psychic', this)">Psychic Development</button>
         <button class="filter-btn" onclick="filterCatalog('empath', this)">Empath</button>
         <button class="filter-btn" onclick="filterCatalog('regulation', this)">Regulation</button>
-        <button class="filter-btn" onclick="filterCatalog('solidground', this)">Solid Ground</button>
         <button class="filter-btn" onclick="filterCatalog('ritual', this)">Ritual &amp; Self-Care</button>
       </div>
 
@@ -2175,7 +2158,7 @@ const courses = [
         desc: '3 lessons · 20 min',
         done: false,
         lessons: [
-          { title: 'Welcome - I\'m So Glad You\'re Here', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Welcome - I\'m So Glad You\'re Here', type: 'Audio', done: false, youtubeId: 'IYia7aDHW7s',
             body: 'Welcome, beautiful soul!\n\nI am so excited that you have chosen to take this time for yourself. You are so worthy of living a life where you are grounded and stable and not being influenced by everything and everyone around you.\n\nCome and join The Empowered Empath Telegram Channel to share your wins, your questions, your experiences and shifts with others going through similar, if not the same things.',
             telegramUrl: 'https://t.me/+WXI4M8674W4zODFl',
             audioFiles: [
@@ -2191,11 +2174,11 @@ const courses = [
         desc: '1 lesson · audio',
         done: false,
         lessons: [
-          { title: 'Empath Basics', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Empath Basics', type: 'Audio', done: false, youtubeId: 'L-UwQJuVKs4',
             topics: ['The What, How & Why of being an Empath', 'Energy', 'The Aura', 'Basics & Boundaries'],
             audioFiles: [{ label: 'Empath Audio', audioUrl: '' }],
             bonusDownload: { label: 'Empath Basics', url: 'pdfs/empath-basics.pdf' },
-            slidesUrl: 'pdfs/module-1-slides.pdf',
+            slidesUrl: 'modules/module-1-slides.pdf',
           },
         ]
       },
@@ -2207,7 +2190,7 @@ const courses = [
           { title: 'Inner Child Meditation', type: 'Practice', done: false, youtubeId: '',
             body: 'Connect with your inner child, to establish connection, release old connections and begin creating an inner calm.',
             audioFiles: [{ label: 'Inner Child Empath Meditation', audioUrl: '' }],
-            slidesUrl: 'pdfs/module-2-slides.pdf',
+            slidesUrl: 'modules/module-2-slides.pdf',
           },
         ]
       },
@@ -2216,11 +2199,11 @@ const courses = [
         desc: '1 lesson · audio',
         done: false,
         lessons: [
-          { title: 'Emotions', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Emotions', type: 'Audio', done: false, youtubeId: 'O3JkBfPfKyM',
             topics: ['Emotional Regulation', 'Wheel of Emotion', 'The Emotional Body', 'Processing & Holding Space'],
             audioFiles: [{ label: 'Emotions Audio', audioUrl: '' }],
             bonusDownload: { label: 'Module 3 Reference', url: 'pdfs/module-3-bonus.pdf' },
-            slidesUrl: 'pdfs/module-3-slides.pdf',
+            slidesUrl: 'modules/module-3-slides.pdf',
           },
         ]
       },
@@ -2232,7 +2215,7 @@ const courses = [
           { title: 'Higher Self Meditation', type: 'Practice', done: false, youtubeId: '',
             body: 'Connect with your Higher Self to receive information regarding your Empath skills, abilities and whats next.',
             audioFiles: [{ label: 'Higher Self Meditation', audioUrl: '' }],
-            slidesUrl: 'pdfs/module-4-slides.pdf',
+            slidesUrl: 'modules/module-4-slides.pdf',
           },
         ]
       },
@@ -2241,11 +2224,11 @@ const courses = [
         desc: '1 lesson · audio',
         done: false,
         lessons: [
-          { title: 'Nervous System', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Nervous System', type: 'Audio', done: false, youtubeId: '7RrftRWf9rA',
             topics: ['The Nervous System', 'The 4 F\'s', 'Recognition & Regulation'],
             audioFiles: [{ label: 'Nervous System Audio', audioUrl: '' }],
             bonusDownload: { label: 'Module 5 Reference', url: 'pdfs/module-5-bonus.pdf' },
-            slidesUrl: 'pdfs/module-5-slides.pdf',
+            slidesUrl: 'modules/module-5-slides.pdf',
           },
         ]
       },
@@ -2257,7 +2240,7 @@ const courses = [
           { title: 'Past Lives', type: 'Practice', done: false, youtubeId: '',
             body: 'Connect with past versions of yourself - to talk with them, release old ties, and bring forward what is ready to help you in this life.',
             audioFiles: [{ label: 'Past Lives Audio', audioUrl: '' }],
-            slidesUrl: 'pdfs/module-6-slides.pdf',
+            slidesUrl: 'modules/module-6-slides.pdf',
           },
         ]
       },
@@ -2266,11 +2249,11 @@ const courses = [
         desc: '1 lesson · coming soon',
         done: false,
         lessons: [
-          { title: 'Inner World', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Inner World', type: 'Audio', done: false, youtubeId: 'vTjvluYqeb0',
             topics: ['Inner Narration & Self Talk', 'Influences', 'Separation', 'Reframe', 'Weekly Practices'],
             audioFiles: [{ label: 'Inner World Audio', audioUrl: '' }],
             bonusDownload: { label: 'Your Inner World', url: 'pdfs/module-7-inner-world.pdf' },
-            slidesUrl: 'pdfs/module-7-slides.pdf',
+            slidesUrl: 'modules/module-7-slides.pdf',
           },
         ]
       },
@@ -2282,7 +2265,7 @@ const courses = [
           { title: 'The Aura', type: 'Practice', done: false, youtubeId: '',
             body: 'Explore your aura and learn how to work with it, then connect with your own energy field through a guided meditation.',
             audioFiles: [{ label: 'The Aura Audio', audioUrl: '' }],
-            slidesUrl: 'pdfs/module-8-slides.pdf',
+            slidesUrl: 'modules/module-8-slides.pdf',
           },
         ]
       },
@@ -2291,12 +2274,12 @@ const courses = [
         desc: '1 lesson · coming soon',
         done: false,
         lessons: [
-          { title: 'Patterns', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Patterns', type: 'Audio', done: false, youtubeId: '3rfgjjfDCb4',
             topics: ['Pattern Identification', 'Re-Wiring', 'Pattern Release', 'Integration', 'Weekly Practices'],
             audioFiles: [{ label: 'Patterns Audio', audioUrl: '' }],
             bonusDownload: { label: 'Your Integration', url: 'pdfs/module-9-integration.pdf' },
             bonusDownload2: { label: 'Triggers & Patterns', url: 'pdfs/module-9-triggers-patterns.pdf' },
-            slidesUrl: 'pdfs/module-9-slides.pdf',
+            slidesUrl: 'modules/module-9-slides.pdf',
           },
         ]
       },
@@ -2317,7 +2300,7 @@ const courses = [
             bonusDownload2: { label: 'Triggers + Patterns Tracker', url: 'triggers-patterns-tracker.html' },
             bonusDownload3: { label: 'Emotion Reset Workbook', url: 'pdfs/emotion-reset-workbook.pdf' },
             bonusDownload4: { label: 'Nervous System Cheatsheet', url: 'pdfs/nervous-system-cheatsheet.pdf' },
-            slidesUrl: 'pdfs/bonus-module-slides.pdf',
+            slidesUrl: 'modules/bonus-module-slides.pdf',
           },
         ]
       },
@@ -2326,7 +2309,7 @@ const courses = [
         desc: '1 lesson · audio',
         done: false,
         lessons: [
-          { title: 'Congratulations! What Now?', type: 'Audio', done: false, youtubeId: '',
+          { title: 'Congratulations! What Now?', type: 'Audio', done: false, youtubeId: 'Sx39aqMelXE',
             body: 'You did it. You showed up for yourself, lesson after lesson, and that takes real courage. Take a moment to honour how far you\'ve come.',
             audioFiles: [{ label: 'Congratulations Audio', audioUrl: '' }],
             whatNext: [
@@ -2349,111 +2332,10 @@ const courses = [
     emoji: '🌿',
     thumbBg: 'linear-gradient(135deg,#f4f0f8,#bf4288,#C4B0D4)',
     price: 333,
-    stripeUrl: '',
-    paypalUrl: '',
-    duration: '6 weeks · self-paced',
-    moduleCount: 8,
-    lessonCount: 8,
-    desc: 'Move through your emotional landscape, build literacy around what you feel, understand your protective responses, and build a toolkit that actually works for you. Six weeks of guided video lessons.',
+    desc: '6 lessons · self-paced · Move through your emotional landscape, build literacy around what you feel, understand your protective responses, and build a toolkit that actually works for you.',
     comingSoon: true,
     enrolled: false,
-    progress: 0,
-    modules: [
-      {
-        title: 'Welcome',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Welcome to Emotional Regulation', type: 'Video', done: false, youtubeId: '',
-            body: 'Who this course is for, what to expect, and how to use it.\n\nThis six-week course is for anyone who wants to understand what they\'re feeling, why they feel it, and how to work with it instead of against it. You don\'t need any background in this. You just need to be willing to pay attention.\n\nYou\'ll find a community space for this work in the Community tab - head to the #regulation channel to share reflections, ask questions, and connect with others going through this course.',
-          },
-        ]
-      },
-      {
-        title: 'Week 1 - Your Emotional Landscape',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Your Emotional Landscape', type: 'Video', done: false, youtubeId: '',
-            body: '"Before we do anything else, I want to check in with you. Not \'how are you\' as a social nicety - actually. How are you? And more importantly - do you actually know?"\n\nThis week is just about noticing. Not fixing. Not changing. Just starting to see what\'s actually there.',
-            topics: ['Emotions are energy in motion - information moving through the body, not problems to solve', 'Most of us were taught how to behave, not how to feel', 'Where did you learn to deal with emotions? Those patterns are still running', 'The emotion-body connection: grief in the throat, fear in the belly, anger in the jaw', 'The emotional wheel - expanding beyond fine, good, tired, stressed'],
-          },
-        ]
-      },
-      {
-        title: 'Week 2 - Emotional Literacy',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Emotional Literacy', type: 'Video', done: false, youtubeId: '',
-            body: '"Have you ever been in the middle of something and someone asks how you feel and you just... blank? That\'s not a you problem. That\'s a gap in what you were taught. Today we start filling it."',
-            topics: ['Primary vs secondary emotions - secondary is what comes out, primary is what\'s underneath', 'Example: you snap at someone. The anger is secondary. The "I felt unseen" is the primary', 'The somatic map: your body tells you what\'s happening before your brain catches up', 'Common body locations for grief, anxiety, anger, shame, joy', '"I don\'t know how I feel" is information - not a failure', 'The pause practice: before you react, three breaths, one question'],
-          },
-        ]
-      },
-      {
-        title: 'Week 3 - Your Protective Responses',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Your Protective Responses', type: 'Video', done: false, youtubeId: '',
-            body: '"Your nervous system is not broken. It is not dramatic. It is not too much. It learned to keep you safe in an environment that felt unsafe. And it got very, very good at its job."',
-            topics: ['Fight, flight, fawn, freeze are protective responses - not personality types', 'Fight can look functional: driven, needing to win arguments, always has a comeback', 'Flight can look successful: perfectionism, overworking, busyness as avoidance', 'Fawn is the sneakiest - it gets praised. You\'re told you\'re kind while you\'re exhausted and invisible', 'Freeze: shutdown, numbness, unable to make decisions - the system playing dead', 'Most of us have a default mode. Knowing yours changes everything'],
-          },
-        ]
-      },
-      {
-        title: 'Week 4 - Processing & Release',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Processing & Release', type: 'Video', done: false, youtubeId: '',
-            body: '"Emotions don\'t disappear when you ignore them. They go underground. They build pressure. And then they come out sideways - over something small, at the wrong person, at the wrong time."',
-            topics: ['Three things people do with emotions: suppress, express, or process', 'Processing is different from expressing - venting isn\'t always processing', 'The body needs to be involved - you can\'t journal your way out of activation alone', 'Match the tool to the mode: fight needs intensity, flight needs grounding, fawn needs boundary practice, freeze needs gentle activation', 'Inner child work: when activated we\'re often developmentally younger. "I am here and you are safe" is regulation', 'Body first, then journal - not journal instead of body'],
-          },
-        ]
-      },
-      {
-        title: 'Week 5 - Your Personal Toolkit',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Your Personal Toolkit', type: 'Video', done: false, youtubeId: '',
-            body: '"One of the things I hear a lot is \'I know what I should do, I just can\'t do it when I\'m in it.\' That\'s because the nervous system doesn\'t take advice when it\'s activated. It needs a response it already knows."',
-            topics: ['Tools only work if they\'re yours - what regulates one body won\'t regulate another', 'Real-time regulation vs deep processing: micro-tools for in-the-moment, deeper tools for when you have space', 'Practice when you don\'t need it yet - you don\'t run fire drills during a fire', 'The inner child relationship is ongoing, not a once-off', 'Sustainable practice: three-minute morning check-in, one somatic tool daily, journaling when something comes up'],
-          },
-        ]
-      },
-      {
-        title: 'Week 6 - Integration',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Integration', type: 'Video', done: false, youtubeId: '',
-            body: '"Six weeks ago you started this. And I want to take a moment before we do anything else to acknowledge that - because starting is the hardest part."',
-            topics: ['Integration is ongoing - making what you\'ve learned part of how you actually live', 'Emotional regulation is not being calm all the time - it\'s having the capacity to feel without being destroyed', 'You will still get dysregulated. The difference is you now have something to come back to', 'The toolkit and the practices are yours to keep', 'If you want to go deeper into the nervous system - that\'s what Nervous System Regulation is for'],
-            whatNext: [
-              { label: 'Nervous System Regulation', url: '', note: '$777 · self-paced · 12 weeks' },
-              { label: 'Full Regulation Bundle', url: '', note: '$999 · both courses + The Bridge' },
-            ],
-          },
-        ]
-      },
-      {
-        title: 'Congratulations',
-        desc: '1 lesson · closing',
-        done: false,
-        lessons: [
-          { title: 'Congratulations - You Did It', type: 'Video', done: false, youtubeId: '',
-            body: 'Six weeks. You showed up for yourself and that matters.\n\nYou now have language for what you feel, an understanding of your patterns, and a toolkit that\'s yours. The next step, when you\'re ready, is the nervous system work - the layer underneath everything you\'ve just learned.',
-            whatNext: [
-              { label: 'Nervous System Regulation', url: '', note: '$777 · self-paced · 12 weeks' },
-              { label: 'Full Regulation Bundle', url: '', note: '$999 · both courses + The Bridge transition session' },
-            ],
-          },
-        ]
-      },
-    ]
+    modules: []
   },
   {
     id: 2,
@@ -2463,126 +2345,10 @@ const courses = [
     emoji: '🌊',
     thumbBg: 'linear-gradient(135deg,#EBF1F4,#3B5E6E,#1E2E32)',
     price: 777,
-    stripeUrl: '',
-    paypalUrl: '',
-    duration: '12 weeks · self-paced',
-    moduleCount: 6,
-    lessonCount: 14,
-    desc: 'Four phases: build the foundation, develop awareness, release what is stored, and rewire toward a new baseline. Covers Polyvagal Theory, somatic work, breathwork, and co-regulation. Includes the Triggers + Patterns tracker, Inner World journal guide, and Pattern Mapping workbook.',
+    desc: '12 lessons · self-paced · Four phases: build the foundation, develop awareness, release what is stored, and rewire toward a new baseline. Covers Polyvagal Theory, somatic work, breathwork, and co-regulation. Includes the Triggers + Patterns tracker, Inner World journal guide, and Pattern Mapping workbook.',
     comingSoon: true,
     enrolled: false,
-    progress: 0,
-    modules: [
-      {
-        title: 'Welcome',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Welcome to Nervous System Regulation', type: 'Video', done: false, youtubeId: '',
-            body: 'What this course covers, the four phases, and what to expect over 12 weeks.\n\nThis course goes underneath the emotional work. If Emotional Regulation was learning the language, this is learning the biology - how your body actually creates the conditions that make emotions feel so big, so fast, so hard to stop.\n\nFour phases: Foundation → Awareness → Release → Rewire.\n\nYou\'ll find a community space for this work in the Community tab - head to the #regulation channel to share reflections, ask questions, and connect with others going through this course.',
-            bonusDownload: { label: 'Recommended Reading List', url: 'pdfs/regulation-reading-list.pdf' },
-          },
-        ]
-      },
-      {
-        title: 'Phase 1 - Foundation',
-        desc: '3 lessons · Weeks 1-3',
-        done: false,
-        lessons: [
-          { title: 'Week 1 - Your Nervous System, Your Story', type: 'Video', done: false, youtubeId: '',
-            body: '"Here\'s the thing about the nervous system that nobody tells you: it\'s not just about stress. It\'s about every single pattern in your life. The way you relate to people. The way you handle pressure. The way you show up in your body. It\'s all the nervous system."',
-            topics: ['The nervous system is the operating system - everything runs through it', 'Two branches: sympathetic (accelerator) and parasympathetic (brake) - neither is bad, you need both', 'Chronic stress literally rewires the nervous system - the threat detection system becomes hair-trigger', 'Dysregulation is not a character flaw - it\'s a physiological state. You can\'t think your way to regulation', 'This 12 weeks is about building a new physiological baseline - not just managing symptoms'],
-          },
-          { title: 'Week 2 - Polyvagal Theory', type: 'Video', done: false, youtubeId: '',
-            body: '"I want to talk to you about something that genuinely changed the way I understood myself. It has a very clinical name that I\'m going to make as un-clinical as possible: Polyvagal Theory."',
-            topics: ['Three states - not just on/off: Ventral Vagal (safe, social, regulated), Sympathetic (mobilised, fight/flight), Dorsal Vagal (shut down, freeze)', 'The vagus nerve connects your brainstem to your heart, lungs, and gut - gut feelings are real', 'Neuroception: your body scans for safety before your brain registers a situation', 'Co-regulation: human nervous systems literally regulate each other - connection is not optional', 'Recommended read: Deb Dana\'s "Anchored" - the most accessible introduction to Polyvagal Theory'],
-          },
-          { title: 'Week 3 - Window of Tolerance', type: 'Video', done: false, youtubeId: '',
-            body: '"There\'s a concept I come back to again and again. Once you see it, you see it everywhere - in yourself, in the people you love, in every relationship you\'ve ever had."',
-            topics: ['The window of tolerance: the zone where you can function, feel, and think at the same time', 'Above the window: hyperarousal - anxiety, overwhelm, reactivity, flooding', 'Below the window: hypoarousal - numbness, dissociation, shutdown, flatness', 'Trauma and chronic stress narrow the window - small things push you out', 'The goal is to widen the window through repeated, gentle experiences of going toward an edge and coming back'],
-          },
-        ]
-      },
-      {
-        title: 'Phase 2 - Awareness',
-        desc: '3 lessons · Weeks 4-6',
-        done: false,
-        lessons: [
-          { title: 'Week 4 - Somatic Awareness', type: 'Video', done: false, youtubeId: '',
-            body: '"The body never lies. The mind is incredibly creative when it comes to storytelling and rationalising. But the body just... tells you. Every time. We\'ve just spent years learning not to listen."',
-            topics: ['The felt sense: the body\'s internal knowing before you have words for it', 'Somatic awareness: noticing the felt sense without immediately interpreting or fixing it', 'Interoception: your body\'s internal signal system - highly developed in some, underdeveloped in others', 'Disconnection from the body is often a protective response - come back gently', 'The body scan: not to relax, but to notice. What\'s there? Where? What texture?'],
-            bonusDownload: { label: 'Your Inner World', url: 'pdfs/module-7-inner-world.pdf' },
-          },
-          { title: 'Week 5 - Reading Your Body in Real Time', type: 'Video', done: false, youtubeId: '',
-            body: '"The goal isn\'t to never get activated. The goal is to catch it earlier. To notice the whisper before it becomes a shout."',
-            topics: ['The escalation pathway: sensation → emotion → reaction. Catch it at sensation, not reaction', 'Your early warning signals are unique to you - tightening chest, held breath, clenching jaw', 'Real-time grounding: feet on the floor, hand on chest, three slow exhales, name five things you see', 'The difference between numbing and regulating: numbing shuts down the signal, regulating moves the activation through'],
-          },
-          { title: 'Week 6 - Patterns and Triggers at Depth', type: 'Video', done: false, youtubeId: '',
-            body: '"Here\'s what a trigger actually is. It\'s not an overreaction. It\'s the past colliding with the present. Your nervous system learned something, and now it pattern-matches to anything that reminds it of that thing."',
-            topics: ['A trigger is a present-moment experience activating a past nervous system response', 'Somatic memory: the body remembers what the thinking brain doesn\'t - smells, tones of voice, textures', '"How old does this feel?" - one of the most useful tools. You\'re often responding as a much younger version of yourself', 'These patterns aren\'t character flaws - they\'re evidence the nervous system was doing its job'],
-            bonusDownload: { label: 'Triggers + Patterns Tracker', url: 'triggers-patterns-tracker.html' },
-          },
-        ]
-      },
-      {
-        title: 'Phase 3 - Release',
-        desc: '3 lessons · Weeks 7-9',
-        done: false,
-        lessons: [
-          { title: 'Week 7 - Somatic Release', type: 'Video', done: false, youtubeId: '',
-            body: '"Peter Levine watched animals in the wild. After a life-threatening experience, they literally shake - sometimes for minutes. Then they get up and go on with their lives. Humans were designed to do the same thing. But we learned that shaking and crying and making noise was not okay."',
-            topics: ['The stress response cycle has a beginning, middle, and end - we interrupt the end', 'Natural ways of discharging: shaking, crying, making sound, vigorous movement, yawning', 'You don\'t need to know what you\'re releasing - the body knows', 'Go gently - somatic release should feel like relief, not flooding', 'Stay within your window: if it becomes overwhelming, return to grounding'],
-          },
-          { title: 'Week 8 - Breath as Medicine', type: 'Video', done: false, youtubeId: '',
-            body: '"The breath is the only function of the autonomic nervous system that you can consciously control. Through the breath, you can influence everything else."',
-            topics: ['The exhale activates the parasympathetic. Lengthen the exhale to shift toward regulation', 'For hyperarousal: extended exhale breathing, box breathing, physiological sigh', 'For hypoarousal: energising breath - gentle activation, not calming', 'For general regulation: diaphragmatic breathing. Most people breathe from the chest, maintaining low-level stress', 'The physiological sigh: double inhale through nose, long exhale through mouth - the fastest downregulation that exists'],
-          },
-          { title: 'Week 9 - Completion & Integration', type: 'Video', done: false, youtubeId: '',
-            body: '"Integration is the part nobody talks about. Everyone wants to know how to release things. But releasing is only half the equation. What you do after - that\'s where the actual change happens."',
-            topics: ['The nervous system needs time to process change - like updating software', 'Signs of integration: things that used to activate you don\'t land the same way', 'What supports integration: sleep, nourishment, nature, gentle movement, warmth, safe connection', 'The process is not linear - feeling destabilised can mean the pattern has been disrupted, not that you\'re going backwards'],
-          },
-        ]
-      },
-      {
-        title: 'Phase 4 - Rewire',
-        desc: '3 lessons · Weeks 10-12',
-        done: false,
-        lessons: [
-          { title: 'Week 10 - Building Safety in the Body', type: 'Video', done: false, youtubeId: '',
-            body: '"Regulation is not about forcing yourself to feel calm. It\'s about teaching your nervous system that you\'re safe now. That you can put down the armour."',
-            topics: ['Felt safety vs cognitive safety - you can know you\'re safe and still have a body that doesn\'t believe it', 'Glimmers: small moments of ease, warmth, delight. The opposite of triggers. Letting them land builds new neural pathways', 'The negativity bias: the nervous system remembers threat more than ease - you have to consciously register positive experiences', 'Safety anchors: physical, sensory experiences that reliably bring you into regulation'],
-            bonusDownload: { label: 'Pattern Mapping Workbook', url: 'pdfs/module-9-integration.pdf' },
-          },
-          { title: 'Week 11 - Co-Regulation & Healthy Connection', type: 'Video', done: false, youtubeId: '',
-            body: '"We were not built to regulate alone. I know that might be uncomfortable to hear if you\'ve spent years believing that needing people is a weakness. But it\'s not - it\'s biology."',
-            topics: ['Co-regulation: nervous systems attune to each other - a calm system near a distressed one creates a pull toward regulation', 'This is why safe relationships heal and dysregulating ones keep you stuck', 'The goal is not to need co-regulation less - it\'s to choose it more wisely and build your own capacity alongside it', 'Self-compassion as internal co-regulation: your tone of voice to yourself activates the same pathways as external connection'],
-          },
-          { title: 'Week 12 - Your New Baseline', type: 'Video', done: false, youtubeId: '',
-            body: '"Twelve weeks ago, I asked you to describe what your nervous system felt like. I want you to answer that question again now. And feel the difference."',
-            topics: ['This is not the end of the work - this is where the work becomes part of who you are', 'Peace is not the absence of difficulty - it\'s the capacity to move through difficulty and find your way back', 'Your nervous system will still respond. The difference is you have a path back - and over time it gets shorter and easier', 'Celebrate what\'s happened here. Change at the level of the nervous system takes courage and consistency'],
-            whatNext: [
-              { label: 'Expansion - Align + Flow', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
-              { label: 'The Unbecoming', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
-            ],
-          },
-        ]
-      },
-      {
-        title: 'Congratulations',
-        desc: '1 lesson · closing',
-        done: false,
-        lessons: [
-          { title: 'Congratulations - Your New Baseline', type: 'Video', done: false, youtubeId: '',
-            body: 'Twelve weeks. Four phases. You showed up for every single one.\n\nYou now have a different relationship with your own body\'s responses. Not fighting them - understanding them. Not running from them - moving through them.\n\nThat\'s not small. That\'s everything.',
-            whatNext: [
-              { label: 'Expansion - Align + Flow', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
-              { label: 'Empowered Empath', url: '', note: '$449 · self-paced' },
-              { label: 'The Unbecoming', url: 'https://www.energywithjess.com.au/booking', note: 'Book a discovery call' },
-            ],
-          },
-        ]
-      },
-    ]
+    modules: []
   },
   {
     id: 3,
@@ -2592,429 +2358,10 @@ const courses = [
     emoji: '✦',
     thumbBg: 'linear-gradient(135deg,#C4B0D4,#3B5E6E,#bf4288)',
     price: 999,
-    stripeUrl: '',
-    paypalUrl: '',
-    duration: '18 weeks · self-paced',
-    moduleCount: 1,
-    lessonCount: 1,
-    desc: 'Both Emotional Regulation and Nervous System Regulation in one continuous container, plus The Bridge - an exclusive transition session for bundle students only. The complete pathway from emotional awareness through to a regulated nervous system baseline.',
+    desc: '18 lessons · self-paced · Both Emotional Regulation and Nervous System Regulation in one continuous container. The complete pathway from emotional awareness through to a regulated nervous system baseline.',
     comingSoon: true,
     enrolled: false,
-    progress: 0,
-    modules: [
-      {
-        title: 'The Bridge',
-        desc: '1 lesson · bundle exclusive',
-        done: false,
-        lessons: [
-          { title: 'The Bridge - ER to NS Transition', type: 'Video', done: false, youtubeId: '',
-            body: '"Before we move into the nervous system work, I want to pause here with you for a moment. Six weeks is a long time to do this kind of work. And I want to acknowledge that before we go anywhere."\n\nThis session sits between Emotional Regulation Week 6 and Nervous System Regulation Week 1. It\'s not a teaching session - it\'s a handover. It acknowledges the ER work, names what has shifted, and connects it to what\'s coming next.\n\nBundle students only.',
-            topics: ['What you\'ve just done is not small - six weeks of looking at your emotional landscape', 'The emotional work is the foundation for everything that comes next. NS work goes underneath it', 'Emotions are the felt experience. The nervous system is the mechanism creating that experience', 'The reason the order matters: you\'ll recognise yourself in the somatic work because you already have the language', 'Sit with this before Week 1: what has actually shifted in you over the last six weeks?'],
-          },
-        ]
-      },
-    ]
-  },
-  {
-    id: 4,
-    title: 'Solid Ground',
-    category: 'solidground',
-    categoryLabel: 'Solid Ground',
-    emoji: '🌱',
-    thumbBg: 'linear-gradient(135deg,#EDE8F3,#bf4288)',
-    desc: 'For women building a business alone - without a partner\'s income as a safety net, without a team, and without a roadmap. Twelve modules covering everything from your first offer through to brand, AI tools, content, email list building, pricing for growth, and how to make decisions when there\'s no one at the kitchen table.',
-    price: 333,
-    stripeUrl: 'https://buy.stripe.com/9B68wPcp24Hafqu0UCcZa0Y',
-    paypalUrl: 'https://www.paypal.com/ncp/payment/P9L4T8K9J9YJ2',
-    duration: 'Self-paced',
-    moduleCount: 8,
-    lessonCount: 8,
-    comingSoon: false,
-    enrolled: false,
-    progress: 0,
-    modules: [
-      {
-        title: 'Welcome',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Welcome to Solid Ground', type: 'Video', done: false, youtubeId: '',
-            body: 'You\'re not behind. You\'re building.\n\nThis course exists because nothing like it existed when Jess needed it. She\'s been building since 2020 - still in the middle of it. This isn\'t "I made it, here\'s how." It\'s "I\'ve been in this long enough to know every corner of it - and here\'s what I wish I\'d had."\n\nHow the course works, how to move through it at your own pace, and a somatic check-in: where are you starting from? Notice what\'s in your body right now. No need to fix it.\n\nThe one rule: done beats perfect.',
-            slidesUrl: 'pdfs/sg-core-welcome.pdf',
-            bonusDownload: { label: 'Workbook — Screen Version', url: 'solid-ground-workbook.html' },
-            bonusDownload2: { label: 'Workbook — Print Version', url: 'solid-ground-workbook-print.html' },
-          },
-        ]
-      },
-      {
-        title: 'Module 1 - What You Actually Need',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'What You Actually Need', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-module-1.pdf',
-            topics: ['What counts as an offer', 'How to describe what you do without freezing', 'The solo-specific trap: waiting for external confirmation', 'Your first offer doesn\'t have to be your forever offer'],
-            body: 'Before you start - vs. what everyone tells you.\n\nYou\'ll leave with a real, usable offer: defined, roughly priced, ready to say out loud.\n\nWorkbook: Define your offer in one sentence. Write three ways to say it.\n\nVoice note exercise: Say your offer out loud. Record it. Listen back. Notice what shifts when you hear yourself say it.\n\nSomatic: Where in your body does "this is real" land? And where does the doubt sit?',
-          },
-        ]
-      },
-      {
-        title: 'Module 2 - The "I\'ll Start When..." Trap',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'The "I\'ll Start When..." Trap', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-module-2.pdf',
-            topics: ['Why preparation often isn\'t - and what it actually is', 'The solo layer: readiness becomes a moving target without external validation', 'Staying busy as a way to avoid what actually needs attention', 'How to tell the difference between a genuine gap and avoidance'],
-            body: 'Spotting the stories keeping you stuck.\n\nYou\'ll leave with the specific story that\'s been keeping you circling - named, understood, and a little less powerful.\n\nExpansion prompts: What would actually change if that thing were in place? What am I really afraid will happen if I start now? Is this fear of failing - or fear of what happens if it works? Whose voice is the one saying "not yet"?',
-          },
-        ]
-      },
-      {
-        title: 'Module 3 - The Tools That Do the Job',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'The Tools That Do the Job', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-module-3.pdf',
-            topics: ['The only tools you need before your first dollar comes in', 'Google Workspace free tier', 'Canva free tier - what it\'s actually for', 'A booking link - the simplest setup', 'Stripe or PayPal: which one and how', 'Separate bank account for business income'],
-            body: 'Free, functional, and nothing you don\'t need yet.\n\nYou\'ll leave with a minimum viable tech stack set up and working. Not researched - done.\n\nWorkbook: Minimum viable tech stack checklist. Tick it off as you go. Nothing moves forward until this list is done.\n\nSomatic: Notice what comes up when you sit with "I have everything I need to start." Does it feel true?',
-          },
-        ]
-      },
-      {
-        title: 'Module 4 - Where Your First Clients Actually Come From',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Where Your First Clients Actually Come From', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-module-4.pdf',
-            topics: ['Your network isn\'t smaller because you\'re solo - it\'s just yours alone to use', 'The three circles: people who know you, know of you, strangers', 'What to actually say - DMs, captions, in-person', 'Why posting before you\'re ready is the marketing'],
-            body: 'Not a perfect grid.\n\nYou\'ll leave with a clear, doable first outreach plan - and the actual words to do it.\n\nVoice note exercise: Record yourself explaining what you do to someone who just asked. Don\'t script it. Just talk. Listen back - that\'s closer to your real voice than anything you\'d write.\n\nVisualisation: Imagine sending that first message or posting that first real caption. Where does the resistance show up?',
-          },
-        ]
-      },
-      {
-        title: 'Module 5 - How to Get Paid',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'How to Get Paid', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-module-5.pdf',
-            topics: ['How to work out your starting price', 'The solo-specific weight: when you\'re the only income, underpricing feels safer - it\'s not', 'Practicing your price out loud before anyone asks', 'Invoice basics: what to include, what not to overthink', 'The discounting trap'],
-            body: 'Simple and sorted from day one.\n\nYou\'ll leave with a price set, a payment method live, and an invoice template ready to send.\n\nVoice note exercise: Say your price out loud. Say it again. Say it like you mean it. Notice what shifts by the third time.\n\nSomatic: Where does the resistance sit when you say your price?',
-            resourceDownload: { label: 'Invoice Template', url: 'https://docs.google.com/spreadsheets/d/1VrNPuIji7pvJGda4FOb-Sda8X956zc8mBXOLGneq1JM/edit?usp=sharing' },
-          },
-        ]
-      },
-      {
-        title: 'Module 6 - Making Decisions Alone',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Making Decisions Alone', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-module-6.pdf',
-            topics: ['What to do when a decision lands and there\'s no one at the kitchen table', 'The body-based decision method: gut before Google', 'When to trust yourself vs. when to get outside input', 'How to find community that actually helps'],
-            body: 'How to be your own sounding board.\n\nYou\'ll leave with a decision-making process you can use without needing anyone else.\n\nExpansion prompts: What does my body already know about this decision? Am I looking for permission or for information? If I trusted myself completely, what would I do?\n\nVisualisation: See yourself six months from now having made this decision both ways. Which version feels like you?\n\nSomatic: Your body has been talking to you the whole course. This module is where you learn to listen properly.',
-          },
-        ]
-      },
-      {
-        title: 'What\'s Next',
-        desc: '1 lesson · closing',
-        done: false,
-        lessons: [
-          { title: 'What\'s Next', type: 'Video', done: false, youtubeId: '', slidesUrl: 'pdfs/sg-core-closing.pdf',
-            body: 'You\'ve built something real - even if it doesn\'t feel complete yet. Most people ahead of you started exactly here.\n\nThree paths forward: keep going alone with what you now have, go deeper with Solid Ground: Going Deeper, or book an Align + Flow session when you need a thinking partner.',
-            whatNext: [
-              { label: 'Solid Ground: Going Deeper', url: 'https://www.energywithjess.com.au/solid-ground.html', note: '$199 · self-paced' },
-              { label: 'Align + Flow', url: 'https://www.energywithjess.com.au/expansion.html#align-flow', note: '1:1 with Jess · when you need a thinking partner' },
-              { label: 'Expansion Discovery Call', url: 'https://www.energywithjess.com.au/booking', note: 'Free · 30 min' },
-            ],
-          },
-        ]
-      },
-      {
-        title: 'Bonus',
-        desc: '5 resources',
-        done: false,
-        lessons: [
-          { title: 'Invoice Tracker', type: 'Reference', done: false, youtubeId: '',
-            body: 'Keep track of every invoice you send - who\'s received one, who\'s paid, and what\'s still outstanding. One place, always up to date.',
-            bonusDownload: { label: 'Invoice Tracker', url: 'https://docs.google.com/spreadsheets/d/1oj3p_14I-NyVe3o3CTHnQwheb9xpzLOuUh9TwNumMi0/edit?usp=sharing' },
-          },
-          { title: 'Pricing Calculator', type: 'Reference', done: false, youtubeId: '',
-            body: 'Work out your minimum hourly rate based on what you actually need to earn - personal income, business costs, working hours, and non-billable time all factored in. Includes a reverse calculator: if I charge $X, how many clients do I need?',
-            bonusDownload: { label: 'Pricing Calculator', url: 'https://docs.google.com/spreadsheets/d/1-gJNfRLLquVfEkZ9o4StLPzWibj4p2-tk-qKNNufT0E/edit?usp=sharing' },
-          },
-          { title: 'Business Expense Tracker', type: 'Reference', done: false, youtubeId: '',
-            body: 'Track income and expenses month by month. 12 tabs - one per month - with category dropdowns, running balance, and a monthly summary. Everything you need at tax time without having to think about it.',
-            bonusDownload: { label: 'Business Expense Tracker', url: 'https://docs.google.com/spreadsheets/d/1_U1IeOKfmm7c5R3SuxqmqRtmOQgNZhbS3B0ThRCfrUg/edit?usp=sharing' },
-          },
-          { title: 'First 30 Days Checklist', type: 'Reference', done: false, youtubeId: '',
-            body: 'A week-by-week checklist for what to actually do when you\'re starting. Week 1: the legal and admin foundation. Week 2: get paid and get visible. Week 3: first clients. Week 4: review and reset. Available in Australian and International versions.',
-            bonusDownload: { label: 'Checklist — Screen Version', url: 'sg-30-day-checklist.html' },
-            bonusDownload2: { label: 'Checklist — Print Version', url: 'pdfs/sg-30-day-checklist-print.pdf' },
-          },
-          { title: 'Client Inquiry Templates', type: 'Reference', done: false, youtubeId: '',
-            body: 'Three templates for when an inquiry lands: your first reply, a follow-up if they go quiet, and a response to "I\'ll think about it." Plus practitioner add-ons at the bottom for energy healing, Reiki, readings, and massage.',
-            bonusDownload: { label: 'Client Inquiry Templates', url: 'sg-client-inquiry-template.html' },
-          },
-        ]
-      },
-    ]
-  },
-  {
-    id: 5,
-    title: 'Solid Ground: Going Deeper',
-    category: 'solidground',
-    hidden: true,
-    categoryLabel: 'Solid Ground',
-    emoji: '🌿',
-    thumbBg: 'linear-gradient(135deg,#C4B0D4,#bf4288)',
-    desc: 'For women who\'ve done the foundation work and are ready to go further. Six modules covering AI tools for solo business, brand basics, Australian legal and tax essentials, content creation, email list building, and pricing for growth.',
-    price: 199,
-    stripeUrl: 'https://buy.stripe.com/4gMcN50GkehK2DI46OcZa0Q',
-    paypalUrl: 'https://www.paypal.com/ncp/payment/NRAMT7NABMMZA',
-    duration: 'Self-paced',
-    moduleCount: 8,
-    lessonCount: 8,
-    comingSoon: false,
-    enrolled: false,
-    progress: 0,
-    modules: [
-      {
-        title: 'Welcome',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Welcome to Going Deeper', type: 'Video', done: false, youtubeId: '',
-            body: 'You\'ve done the foundation work. You know what your offer is, you\'ve got the basics in place, and you\'re ready to build further.\n\nThis course picks up where Core left off - going deeper into the things that grow a business: your brand, your visibility, the legal and tax stuff no one walks you through, AI tools that give you your time back, your email list, and how to price for where you\'re going.\n\nHow the course works and how to move through it at your own pace.',
-            slidesUrl: 'pdfs/sg-deeper-welcome.pdf',
-            bonusDownload: { label: 'Workbook — Screen Version', url: 'solid-ground-going-deeper-workbook.html' },
-            bonusDownload2: { label: 'Workbook — Print Version', url: 'solid-ground-going-deeper-workbook-print.html' },
-          },
-        ]
-      },
-      {
-        title: 'Module 1 - How to Use AI in Your Business',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'How to Use AI in Your Business', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-module-1.pdf',
-            topics: ['What AI can actually do for a solo business owner', 'Why this matters more for solo women: no team, no partner', 'What AI can\'t do: know your clients, have your instincts, sound like you', 'Prompting basics: how to give AI enough context to be useful', 'The soul-led check: does this still sound like me?'],
-            body: 'Your voice stays yours. AI works for you.\n\nThis module is practical - real use cases, real examples, ready-to-use prompts. The AI Starter Prompts supplement below has 12 prompts ready to copy across four use cases: writing and drafting, planning, sounding board, and day-to-day admin.\n\nExpansion prompts: Where am I spending time on tasks AI could support? What do I want to keep in my own hands - and why?',
-            bonusDownload: { label: 'AI Starter Prompts', url: 'sg-deeper-ai-starter-prompts.html' },
-          },
-        ]
-      },
-      {
-        title: 'Module 2 - Brand Basics',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Brand Basics', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-module-2.pdf',
-            topics: ['Choosing and registering a business name', 'Brand voice: how to describe what you do in your own words', 'Visual basics: two colours, one font, one feeling', 'Using Canva to create a simple, consistent look', 'When to invest in proper branding (later than most people think)'],
-            body: 'Not a logo. A foundation.\n\nYou\'ll leave with a business name you can use, a brand voice that sounds like you, and a visual starting point.\n\nVoice note exercise: Describe your business to a friend. Not a pitch - a conversation. What words do you naturally reach for? Those are your brand words.',
-          },
-        ]
-      },
-      {
-        title: 'Module 3 - The Energetics of Running Solo',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'The Energetics of Running Solo', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-module-3.pdf',
-            topics: ['You are the business - protecting your energy is business sense', 'The emotional weather of building alone', 'Energy debt: early warning signs and what to do before they escalate', 'Visibility and the fear underneath it - where it lives in the body', 'Routine as a container: structure that holds you when nothing external does'],
-            body: 'Nobody talks about this part.\n\nWhen you\'re running solo, there\'s no one to carry the load when you\'re depleted. This module is about managing yourself - not as a productivity strategy, but as a survival one.\n\nSomatic check-ins throughout. This whole module is body-based.\n\nExpansion prompts: What time of day am I actually at my best? Where does visibility fear live in my body? What one anchor point, if I held it weekly, would make everything else more stable?',
-          },
-        ]
-      },
-      {
-        title: 'Module 4 - Content Creation + Showing Up Online',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Content Creation + Showing Up Online', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-module-4.pdf',
-            topics: ['Why consistency beats volume every time', 'Content pillars: 3-4 themes that are always true for you', 'What to post when you have nothing - the formula that always works', 'Video vs. static: what\'s worth your time as a solo operator', 'Batching content: a week\'s worth in one sitting'],
-            body: 'Consistently, in your own voice, without it taking over.\n\nVoice note exercise: Record a 2-minute explanation of why you do what you do. That\'s your content. That\'s the post.\n\nExpansion prompts: What do I want people to feel when they find me online? What am I afraid to say? (That\'s usually worth saying.)',
-          },
-        ]
-      },
-      {
-        title: 'Module 5 - Email List Building',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Email List Building', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-module-5.pdf',
-            topics: ['Why an email list matters more than follower count', 'The simplest freebie that actually works', 'Setting up a free email platform (MailerLite or similar)', 'The welcome email: what to say when someone first subscribes', 'Moving people from the list to a booking - naturally, without pressure'],
-            body: 'Something you own, beyond the algorithm.\n\nWorkbook: Freebie concept, welcome email draft, first three email topics.',
-          },
-        ]
-      },
-      {
-        title: 'Module 6 - Pricing for Growth',
-        desc: '1 lesson · video',
-        done: false,
-        lessons: [
-          { title: 'Pricing for Growth', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-module-6.pdf',
-            topics: ['When to raise your prices - and the signs you\'ve been undercharging', 'How to raise prices without losing everyone', 'Moving from session pricing to packages - why and how', 'The solo-specific pricing reality: your price has to carry more weight', 'What to do when someone says it\'s too expensive'],
-            body: 'From starting price to sustainable income.\n\nExpansion prompts: What would I charge if I trusted that people would pay it? What\'s the gap between that number and my current price? What\'s in that gap?\n\nSomatic: Where does "charging more" land in your body? What does it want you to know?',
-          },
-        ]
-      },
-      {
-        title: 'Bonus - The Legal + Tax Basics',
-        desc: '1 lesson · slides only',
-        done: false,
-        lessons: [
-          { title: 'The Legal + Tax Basics', type: 'Reference', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-bonus-legal-tax-slides.pdf',
-            topics: ['Your ABN - what it is and why it can\'t wait', 'Sole trader vs. company: what the difference actually means', 'Business name registration through ASIC', 'Tax basics: what counts as income, what\'s deductible, what to keep', 'A simple tracking system from day one', 'When to talk to an accountant', 'Privacy policy basics', 'Insurance: professional indemnity, public liability, income protection', 'Setup checklist'],
-            body: 'The stuff nobody walks you through. Laid out clearly so you can work through it in your own time.\n\nSlides only - no video. Download, read, and use the checklist.\n\nThis module is an overview and practical starting point - not legal or financial advice. Seek qualified professional advice for your specific situation.',
-            intlNote: 'Not based in Australia? The structure here applies wherever you are. Search <strong>[your country] sole trader registration</strong>, <strong>[your country] self-employed tax basics</strong>, and <strong>[your country] business insurance requirements</strong> to find your local equivalents.',
-            bonusDownload: { label: 'Invoice Tracker', url: 'https://docs.google.com/spreadsheets/d/1oj3p_14I-NyVe3o3CTHnQwheb9xpzLOuUh9TwNumMi0/edit?usp=sharing' },
-            bonusDownload2: { label: 'Finance Template', url: 'https://docs.google.com/spreadsheets/d/1FCaWKSkkZGjhAyVMrFAgwRxniorAqAkRIr8Nm2d9P90/edit?usp=sharing' },
-          },
-        ]
-      },
-      {
-        title: 'What\'s Next',
-        desc: '1 lesson · closing',
-        done: false,
-        lessons: [
-          { title: 'What\'s Next', type: 'Video', done: false, youtubeId: '',
-            slidesUrl: 'pdfs/sg-deeper-closing.pdf',
-            body: 'You\'ve built the foundation and gone deeper. You have an offer, a brand, an understanding of energetics, a content approach, an email list starting, and a pricing structure that can actually hold you.\n\nWhat comes next depends on where you want to go - more support, more structure, or both.',
-            whatNext: [
-              { label: 'Soul-Led Business sessions', url: 'https://www.energywithjess.com.au/expansion.html#soul-led-business', note: 'Build with Jess over time' },
-              { label: 'Soul-Led Business Pack', url: 'https://www.energywithjess.com.au/expansion.html#soul-led-business', note: 'For women ready to grow what\'s already built' },
-              { label: 'Expansion Discovery Call', url: 'https://www.energywithjess.com.au/booking', note: 'Free · 30 min' },
-            ],
-          },
-        ]
-      },
-    ]
-  },
-  {
-    id: 7,
-    title: 'Akashic Records Practitioner Training',
-    category: 'psychic',
-    categoryLabel: 'Psychic Development',
-    emoji: '📖',
-    thumbBg: 'linear-gradient(135deg,#3B5E6E,#C4B0D4)',
-    desc: 'A live cohort training practitioners to read and hold healing space in the Akashic Records - open entry, working toward IICT-recognised practitioner certification. Live sessions happen via Zoom/Telegram; recordings and resources land here after each phase.',
-    price: null,
-    stripeUrl: '',
-    paypalUrl: '',
-    duration: '7 live sessions · 60-90 min each · ~8-9.75 hrs · small cohort (4-6)',
-    moduleCount: 9,
-    lessonCount: 9,
-    comingSoon: true,
-    enrolled: false,
-    progress: 0,
-    modules: [
-      {
-        title: 'Welcome',
-        desc: '1 lesson · reading',
-        done: false,
-        lessons: [
-          { title: 'Welcome to the Cohort', type: 'Reading', done: false, youtubeId: '',
-            body: 'A warm welcome to the training - how the cohort runs, what to expect from each phase, and where to find your recordings, resources, and Telegram access between live sessions.',
-            telegramUrl: '',
-          },
-        ]
-      },
-      {
-        title: 'Phase 1 - Opening the Field',
-        desc: '1 lesson · live session recording · 70-85 min',
-        done: false,
-        lessons: [
-          { title: 'Opening the Field', type: 'Video', done: false, youtubeId: '',
-            topics: ['What the Akashic Records are', 'Energetic hygiene and protection', 'Permission-based access, consent, boundaries', 'Opening and closing the records safely'],
-            body: 'Foundations and safety. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Phase 2 - Reading the Records',
-        desc: '1 lesson · live session recording · 80-90 min',
-        done: false,
-        lessons: [
-          { title: 'Reading the Records', type: 'Video', done: false, youtubeId: '',
-            topics: ['Structure of a reading', 'Interpreting symbols, patterns, soul contracts, karmic threads', 'Trusting what comes through vs. second-guessing'],
-            body: 'Skill building. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Phase 3a - Healing in the Records: Teaching',
-        desc: '1 lesson · live session recording · 80-90 min',
-        done: false,
-        lessons: [
-          { title: 'Healing in the Records - Teaching', type: 'Video', done: false, youtubeId: '',
-            topics: ['Cord cutting, contract rewriting, ancestral and past-life threads', 'Reading and healing across life areas - relationships, work, health, money, family/ancestry, purpose', 'Holding the container - the Emperor skill, taught explicitly'],
-            body: 'Deepening, part 1. Teaching only - demo and supervised practice happen next in Phase 3b. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Phase 3b - Healing in the Records: Demo & Supervised Practice',
-        desc: '1 lesson · live session recording · 65-85 min',
-        done: false,
-        lessons: [
-          { title: 'Healing in the Records - Demo & Practice', type: 'Video', done: false, youtubeId: '',
-            topics: ['Live demonstration healing', 'Supervised peer practice', 'Debrief'],
-            body: 'Deepening, part 2. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Phase 4 - Practitioner Readiness',
-        desc: '1 lesson · live session recording · 75-85 min',
-        done: false,
-        lessons: [
-          { title: 'Practitioner Readiness', type: 'Video', done: false, youtubeId: '',
-            topics: ['Running a paid reading or healing session start to finish', 'Ethics and scope of practice', 'Pricing and positioning', 'Insurance and IICT requirements walkthrough'],
-            body: 'Business and ethics. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Phase 5a - Assessment & Practicum',
-        desc: '1 lesson · live session recording · 65-90 min',
-        done: false,
-        lessons: [
-          { title: 'Assessment & Practicum', type: 'Video', done: false, youtubeId: '',
-            topics: ['Supervised practice readings and healings in peer pods', 'Case notes', 'Ethics scenario response'],
-            body: 'Assessment, part 1. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Phase 5b - Graduation',
-        desc: '1 lesson · live session recording · 45-60 min',
-        done: false,
-        lessons: [
-          { title: 'Graduation', type: 'Video', done: false, youtubeId: '',
-            topics: ['Closing the cohort container', 'Certificates', "What's next as a graduate"],
-            body: 'A shorter, unhurried closing session. Recording lands here after the live session.',
-          },
-        ]
-      },
-      {
-        title: 'Resources',
-        desc: '1 lesson · downloads',
-        done: false,
-        lessons: [
-          { title: 'Training Resources', type: 'Reference', done: false, youtubeId: '',
-            body: 'Your reference documents for the training - keep these handy throughout the cohort.',
-            bonusDownload: { label: 'Program Structure Overview', url: 'pdfs/akashic-training-structure.pdf' },
-            bonusDownload2: { label: 'Training Manual - Scope, Client Management, Contraindications', url: 'pdfs/akashic-training-manual.pdf' },
-          },
-        ]
-      },
-    ]
+    modules: []
   },
 ];
 
@@ -3098,7 +2445,7 @@ function renderCatalog(filter) {
         <div class="catalog-title">${c.title}</div>
         <div class="catalog-desc">${c.desc.substring(0, 100)}...</div>
         <div class="catalog-footer">
-          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">${c.price == null ? 'Price TBC' : '$' + c.price + ' <span>AUD</span>'}</div>
+          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">$${c.price} <span>AUD</span></div>
           ${c.comingSoon
             ? '<span class="coming-soon-label">Notify Me</span>'
             : c.enrolled
@@ -3160,7 +2507,7 @@ function searchCourses(val) {
         <div class="catalog-title">${c.title}</div>
         <div class="catalog-desc">${c.desc.substring(0, 100)}...</div>
         <div class="catalog-footer">
-          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">${c.price == null ? 'Price TBC' : '$' + c.price + ' <span>AUD</span>'}</div>
+          <div class="price-tag" style="${c.comingSoon ? 'opacity:0.5;' : ''}">$${c.price} <span>AUD</span></div>
           ${c.comingSoon
             ? '<span class="coming-soon-label">Notify Me</span>'
             : c.enrolled
@@ -3399,7 +2746,7 @@ function openLesson(moduleIdx, lessonIdx) {
     : '';
 
   // Downloads
-  const downloadsHtml = (lesson.bonusDownload?.label || lesson.resourceDownload?.label || lesson.slidesUrl)
+  const downloadsHtml = (lesson.bonusDownload?.label || lesson.slidesUrl)
     ? `<div class="downloads-row">
         ${lesson.bonusDownload?.label ? `
           <a class="download-btn bonus" href="${lesson.bonusDownload.url || '#'}" ${lesson.bonusDownload.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
@@ -3416,10 +2763,6 @@ function openLesson(moduleIdx, lessonIdx) {
         ${lesson.bonusDownload4?.label ? `
           <a class="download-btn bonus" href="${lesson.bonusDownload4.url || '#'}" ${lesson.bonusDownload4.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
             ⬇ Bonus: ${lesson.bonusDownload4.label}
-          </a>` : ''}
-        ${lesson.resourceDownload?.label ? `
-          <a class="download-btn slides" href="${lesson.resourceDownload.url || '#'}" ${lesson.resourceDownload.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
-            ⬇ ${lesson.resourceDownload.label}
           </a>` : ''}
         ${lesson.slidesUrl
           ? `<a class="download-btn slides" href="${lesson.slidesUrl}" target="_blank">⬇ Download Slides</a>`
@@ -3447,11 +2790,6 @@ function openLesson(moduleIdx, lessonIdx) {
     ? lesson.body.split('\n\n').map(p => `<p>${p}</p>`).join('')
     : '';
 
-  // International note (shown when lesson has intlNote field)
-  const intlNoteHtml = lesson.intlNote
-    ? `<div class="intl-note"><div class="intl-icon">🌏</div><div class="intl-body"><strong>Outside Australia?</strong>${lesson.intlNote}</div></div>`
-    : '';
-
   el.innerHTML = `
     <div class="lesson-viewer">
       <div class="lesson-main">
@@ -3461,7 +2799,6 @@ function openLesson(moduleIdx, lessonIdx) {
           <h3>${lesson.title}</h3>
           ${audioHtml ? `<div class="audio-files">${audioHtml}</div>` : ''}
           ${topicsHtml}
-          ${intlNoteHtml}
           ${bodyHtml}
           ${whatNextHtml}
           ${telegramHtml}
@@ -3788,19 +3125,6 @@ async function initCommunity() {
       createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       order: 0
-    });
-  }
-
-  // Ensure Regulation channel exists
-  const regRef = db.collection('channels').doc('regulation');
-  const regDoc = await regRef.get();
-  if (!regDoc.exists) {
-    await regRef.set({
-      name: 'regulation',
-      createdBy: currentUser.uid,
-      createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      order: 1
     });
   }
 
