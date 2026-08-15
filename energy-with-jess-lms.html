@@ -1934,7 +1934,6 @@
           <div class="featured-meta">
             <span>✨ 12 modules + bonus</span>
             <span>📝 14 lessons</span>
-            <span>⏱ 9 hours</span>
             <span>🌿 Self-paced</span>
           </div>
           <button class="btn-start" style="margin-top:20px;display:inline-block;" onclick="event.stopPropagation();openCourse(0)">Start Here →</button>
@@ -2147,7 +2146,7 @@ const courses = [
     price: 449,
     stripeUrl: 'https://buy.stripe.com/3cI3cv2Osb5y5PU7j0cZa0O',
     paypalUrl: 'https://www.paypal.com/ncp/payment/LZPMY3DYU8JM8',
-    duration: '9 hrs',
+    duration: '',
     moduleCount: 12,
     lessonCount: 14,
     enrolled: false,
@@ -2545,7 +2544,7 @@ function renderMyLearning() {
       <div class="course-body">
         <div class="course-category">${c.categoryLabel}</div>
         <div class="course-title">${c.title}</div>
-        <div class="course-meta"><span>${c.moduleCount} modules</span><span>${c.lessonCount} lessons</span><span>${c.duration}</span></div>
+        <div class="course-meta"><span>${c.moduleCount} modules</span><span>${c.lessonCount} lessons</span>${c.duration ? `<span>${c.duration}</span>` : ''}</div>
         <div class="course-progress">
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${c.progress}%"></div></div>
           <div class="progress-label"><span>${c.progress}% complete</span></div>
@@ -2577,7 +2576,7 @@ function openCourse(id) {
         <div class="hero-meta">
           <span>📚 ${c.moduleCount} modules</span>
           <span>📝 ${c.lessonCount} lessons</span>
-          <span>⏱ ${c.duration}</span>
+          ${c.duration ? `<span>⏱ ${c.duration}</span>` : ''}
           <span>✅ ${completedLessons} done</span>
         </div>
       </div>
@@ -2589,7 +2588,7 @@ function openCourse(id) {
         <div class="module-list">
           ${c.modules.map((m, mi) => `
             <div class="module-block">
-              <div class="module-header" onclick="toggleModule(${mi})">
+              <div class="module-header" onclick="openLesson(${mi}, 0)">
                 <div class="module-num ${m.done ? 'done' : ''}">${m.done ? '✓' : (mi + 1)}</div>
                 <div class="module-title-text">
                   <h4>${m.title}</h4>
@@ -2626,7 +2625,7 @@ function openCourse(id) {
           <h4>Course Info</h4>
           <div class="info-row"><span class="label">Modules</span><span class="value">${c.moduleCount}</span></div>
           <div class="info-row"><span class="label">Lessons</span><span class="value">${c.lessonCount}</span></div>
-          <div class="info-row"><span class="label">Duration</span><span class="value">${c.duration}</span></div>
+          ${c.duration ? `<div class="info-row"><span class="label">Duration</span><span class="value">${c.duration}</span></div>` : ''}
           <div class="info-row"><span class="label">Level</span><span class="value">All levels</span></div>
           <div class="info-row"><span class="label">Access</span><span class="value">Lifetime</span></div>
         </div>
