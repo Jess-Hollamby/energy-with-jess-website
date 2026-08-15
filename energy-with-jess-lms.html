@@ -837,7 +837,8 @@
     transition: background 0.2s;
   }
 
-  .module-header:hover { background: var(--primary-soft); }
+  .module-header:hover { background: var(--primary-soft); color: var(--primary); }
+  .module-header:hover .module-title-text h4 { color: var(--primary); }
 
   .module-num {
     width: 34px; height: 34px;
@@ -2594,16 +2595,7 @@ function openCourse(id) {
                   <h4>${m.title}</h4>
                   <p>${m.desc}</p>
                 </div>
-                <span style="color:var(--text-light);font-size:18px;" id="toggle-${mi}">›</span>
-              </div>
-              <div class="module-lessons" id="module-${mi}">
-                ${m.lessons.map((l, li) => `
-                  <div class="lesson-item ${l.done ? 'done' : ''}" onclick="openLesson(${mi}, ${li})">
-                    <div class="lesson-check ${l.done ? 'done' : ''}">${l.done ? '✓' : ''}</div>
-                    ${l.title}
-                    <div class="lesson-type">${l.type === 'Quiz' ? '📝' : l.type === 'Practice' ? '🌿' : l.type === 'Reading' ? '📖' : '▶'} ${l.type}</div>
-                  </div>
-                `).join('')}
+                <span style="color:var(--text-light);font-size:18px;">→</span>
               </div>
             </div>
           `).join('')}
