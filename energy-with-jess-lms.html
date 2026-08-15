@@ -1934,7 +1934,7 @@
           <p class="featured-desc">You feel everything - and it's time to make that your greatest strength. Nine modules of deep, guided learning covering empath basics, inner child, emotions, nervous system, past lives, your aura, and more - plus guided meditations throughout and a bonus soul contract meditation.</p>
           <div class="featured-meta">
             <span>✨ 12 modules + bonus</span>
-            <span>📝 14 lessons</span>
+            <span>📝 12 lessons</span>
             <span>🌿 Self-paced</span>
           </div>
           <button class="btn-start" style="margin-top:20px;display:inline-block;" onclick="event.stopPropagation();openCourse(0)">Start Here →</button>
@@ -2418,6 +2418,7 @@ function navigate(page, el) {
     community: 'Community'
   };
   document.getElementById('page-title').textContent = titles[page] || page;
+  if (page === 'dashboard') renderDashboard();
   if (page === 'catalog') renderCatalog('all');
   if (page === 'my-learning') renderMyLearning();
   if (page === 'community' && !communityInitialized) { communityInitialized = true; initCommunity(); }
@@ -2971,6 +2972,7 @@ auth.onAuthStateChanged(async user => {
 
   // Load progress from Firestore then render
   await loadProgressFromFirestore();
+  renderDashboard();
   renderCatalog('all');
 
   // Hide loading overlay
