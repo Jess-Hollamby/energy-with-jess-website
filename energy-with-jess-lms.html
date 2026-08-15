@@ -1890,6 +1890,9 @@
     <div class="nav-item" data-page="community" onclick="navigate('community', this)">
       <span class="nav-icon">💬</span> Community
     </div>
+    <div class="nav-item" data-page="about" onclick="navigate('about', this)">
+      <span class="nav-icon">🌿</span> About Jess
+    </div>
     <div class="nav-item" onclick="window.open('https://www.energywithjess.com.au/booking','_blank')">
       <span class="nav-icon">🌟</span> 1:1 Sessions
     </div>
@@ -2105,6 +2108,41 @@
           <div class="channel-modal-btns">
             <button class="btn-modal-cancel" onclick="closeChannelModal()">Cancel</button>
             <button class="btn-modal-create" onclick="createChannel()">Create</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-about">
+      <div style="max-width:680px;margin:0 auto;padding:40px 24px 60px;">
+        <div style="text-align:center;margin-bottom:36px;">
+          <img src="https://energywithjess.com.au/wp-content/uploads/2024/06/jess-profile.jpg" alt="Jess Hollamby" onerror="this.style.display='none'" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);margin-bottom:20px;display:block;margin-left:auto;margin-right:auto;">
+          <h2 style="font-family:var(--font-heading);font-size:2rem;font-weight:400;color:var(--text-dark);margin-bottom:6px;">Jess Hollamby</h2>
+          <p style="font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;color:var(--primary);font-family:var(--font-body);">Energy Healer · Reiki Teacher · Myotherapist</p>
+        </div>
+
+        <div style="background:var(--surface);border-radius:14px;padding:32px;margin-bottom:24px;border:1px solid var(--border);">
+          <p style="font-family:var(--font-body);font-size:1rem;line-height:1.8;color:var(--text-dark);margin-bottom:18px;">I'm Jess - and I've spent a long time learning how to feel things without being taken out by them. That's the heart of everything I teach.</p>
+          <p style="font-family:var(--font-body);font-size:1rem;line-height:1.8;color:var(--text-dark);margin-bottom:18px;">I'm a Reiki Master Teacher, energy healer, and myotherapist based in Adelaide, Australia. I work with women who feel everything - and who've never been given the tools to go with that gift. The women who show up fully for everyone else and wonder why there's nothing left for them.</p>
+          <p style="font-family:var(--font-body);font-size:1rem;line-height:1.8;color:var(--text-dark);">My work blends energy healing, nervous system support, Akashic Record work, and real talk about the cycles that keep sensitive women stuck. Not fixing. Not transforming. Just creating the space to come back to yourself.</p>
+        </div>
+
+        <div style="background:var(--surface);border-radius:14px;padding:32px;margin-bottom:24px;border:1px solid var(--border);">
+          <h3 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:400;color:var(--text-dark);margin-bottom:18px;">What I offer</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;">
+            <li style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-dark);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--primary);flex-shrink:0;">✦</span> Energy healing and Reiki - in person (Adelaide) and online</li>
+            <li style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-dark);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--primary);flex-shrink:0;">✦</span> Tarot and psychic readings</li>
+            <li style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-dark);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--primary);flex-shrink:0;">✦</span> Akashic Record readings and healing</li>
+            <li style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-dark);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--primary);flex-shrink:0;">✦</span> Reiki training - Levels 1, 2, and Master Teacher</li>
+            <li style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-dark);display:flex;align-items:flex-start;gap:10px;"><span style="color:var(--primary);flex-shrink:0;">✦</span> Mentoring for practitioners and soul-led business owners</li>
+          </ul>
+        </div>
+
+        <div style="text-align:center;padding:28px 24px;background:var(--surface);border-radius:14px;border:1px solid var(--border);">
+          <p style="font-family:var(--font-body);font-size:0.95rem;color:var(--text-mid);margin-bottom:20px;">Questions about the course, or ready to explore what else is available?</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+            <a href="mailto:energywjess@gmail.com" style="display:inline-block;padding:12px 24px;background:var(--primary);color:#fff;border-radius:8px;text-decoration:none;font-family:var(--font-body);font-size:0.9rem;">Get in touch</a>
+            <a href="https://www.energywithjess.com.au/booking" target="_blank" style="display:inline-block;padding:12px 24px;border:1.5px solid var(--primary);color:var(--primary);border-radius:8px;text-decoration:none;font-family:var(--font-body);font-size:0.9rem;">Book a session</a>
           </div>
         </div>
       </div>
@@ -2597,7 +2635,8 @@ function navigate(page, el) {
     lesson: 'Lesson',
     quiz: 'Quiz',
     profile: 'My Profile',
-    community: 'Community'
+    community: 'Community',
+    about: 'About Jess'
   };
   document.getElementById('page-title').textContent = titles[page] || page;
   if (page === 'dashboard') renderDashboard();
