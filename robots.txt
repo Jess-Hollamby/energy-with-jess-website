@@ -19,5 +19,18 @@ Disallow: /pre-discovery-soul-support
 Disallow: /pre-discovery-unbecoming
 Disallow: /emotion-reset-download
 Disallow: /crm-template/
+Disallow: /pre-discovery-reiki-mentoring
+Disallow: /pre-discovery-solid-ground
+Disallow: /1on1-confirmed
+Disallow: /market-signup
+Disallow: /sg-post-yes-intake
+Disallow: /sg-30-day-checklist
+Disallow: /sg-deeper-ai-starter-prompts
+Disallow: /sg-client-inquiry-template
+Disallow: /ewj-client-app
+Disallow: /ewj-grounded-and-growing
+Disallow: /subscribe
+Disallow: /mcc
+Disallow: /experience-decoder
 
 Sitemap: https://www.energywithjess.com.au/sitemap.xml
