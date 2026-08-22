@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Book a Session - Reiki, Readings & Healing Adelaide | Energy with Jess</title>
-  <meta name="description" content="Book a psychic reading, tarot reading, Reiki healing or mentoring session with Jess Hollamby. Online and in-person in Adelaide and Port Elliot, SA.">
+  <meta name="description" content="Book a psychic reading, tarot reading, Reiki healing or mentoring session with Jess Hollamby. Online and in-person in Adelaide, SA.">
 <link rel="canonical" href="https://www.energywithjess.com.au/booking" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -660,7 +660,6 @@
         <button class="filter-btn active" onclick="filterSessions('all', this)">All</button>
         <button class="filter-btn" onclick="filterSessions('clarity', this)">Clarity &amp; Healing</button>
         <button class="filter-btn" onclick="filterSessions('inperson', this)">In Person - Adelaide</button>
-        <button class="filter-btn" onclick="filterSessions('artofyou', this)">Art of You - Port Elliot</button>
       </div>
 
       <!-- Online group label -->
@@ -750,44 +749,6 @@
 
       </div>
 
-      <!-- Art of You group label -->
-      <div class="filter-group-label svc-group-artofyou">Art of You &middot; Port Elliot &middot; Fortnightly Wednesdays</div>
-      <div class="cards-grid">
-
-        <div class="svc-card svc-artofyou svc-multi">
-          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="icon">🃏</span>
-          <h3>Tarot Reading</h3>
-          <p>A focused tarot session in the beautiful Art of You space at Port Elliot.</p>
-          <div class="dur-pills">
-            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - Port Elliot','30 min','$60')">30 min · $60</button>
-            <button class="dur-pill" onclick="selectDuration(event,this,'Tarot Reading - Port Elliot','45 min','$75')">45 min · $75</button>
-          </div>
-        </div>
-
-        <div class="svc-card svc-artofyou svc-multi">
-          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="icon">💫</span>
-          <h3>Intuitive Healing</h3>
-          <p>Intuitive energy work in the Art of You space. Grounded, present, and held.</p>
-          <div class="dur-pills">
-            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - Port Elliot','60 min','$120')">60 min · $120</button>
-            <button class="dur-pill" onclick="selectDuration(event,this,'Intuitive Healing - Port Elliot','90 min','$150')">90 min · $150</button>
-          </div>
-        </div>
-
-        <div class="svc-card svc-artofyou svc-multi">
-          <div class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="icon">🌿</span>
-          <h3>Reiki</h3>
-          <p>In-person Reiki at the beautiful Art of You space. Gentle, grounding, restorative.</p>
-          <div class="dur-pills">
-            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Port Elliot','60 min','$120')">60 min · $120</button>
-            <button class="dur-pill" onclick="selectDuration(event,this,'Reiki - Port Elliot','90 min','$150')">90 min · $150</button>
-          </div>
-        </div>
-
-      </div>
 
       <div class="btn-row btn-row-end">
         <button class="btn btn-primary" id="next-1" disabled onclick="goToStep(2)">Next &rarr;</button>
@@ -844,7 +805,7 @@
           <select id="sformat">
             <option value="">Select...</option>
             <option value="in-person">In-person (Adelaide)</option>
-            <option value="port-elliot">In-person (Port Elliot)</option>
+
             <option value="online">Online (Zoom)</option>
           </select>
         </div>
@@ -1867,22 +1828,7 @@
   const ONLINE_BOOKED_THU = [];
   const ONLINE_BOOKED_SAT = [1, 3];
 
-  // Art of You - Port Elliot: fortnightly Wednesdays(3)
-  // Reference Wednesday = May 6 2026 = Week A (4pm-8pm)
-  // Alternates: A=4pm-8pm, B=1pm-5pm every fortnight
-  const AOY_REF = new Date(2026, 4, 6); // May 6, 2026
-  const AOY_TIMES_A = ['4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM','7:00 PM','7:30 PM'];
-  const AOY_TIMES_B = ['1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'];
-  const AOY_BOOKED  = [];
-
-  function getAoyType(date) {
-    if (date.getDay() !== 3) return null; // Not a Wednesday
-    const weeksDiff = Math.round((date - AOY_REF) / (7 * 24 * 3600 * 1000));
-    if (weeksDiff < 0 || weeksDiff % 2 !== 0) return null; // Not an AOY Wednesday
-    return (weeksDiff / 2) % 2 === 0 ? 'A' : 'B';
-  }
-
-  let selServiceType = null; // 'online' | 'inperson' | 'artofyou'
+  let selServiceType = null; // 'online' | 'inperson'
 
   // ── BOOK FROM PROGRAMS & PACKS ──
   // Lets cards in Programs & Packs trigger the booking flow directly.
@@ -1964,14 +1910,13 @@
 
     // Detect service type
     if (el.classList.contains('svc-inperson'))    selServiceType = 'inperson';
-    else if (el.classList.contains('svc-artofyou')) selServiceType = 'artofyou';
     else selServiceType = 'online';
 
     // Pre-select format field
     const fmt = document.getElementById('sformat');
     if (fmt) {
       if (selServiceType === 'online')       fmt.value = 'online';
-      else if (selServiceType === 'artofyou') fmt.value = 'port-elliot';
+
       else                                   fmt.value = 'in-person';
     }
 
@@ -1999,7 +1944,6 @@
     const hints = {
       inperson:  '<strong>In-person - Adelaide:</strong> Monday &amp; Tuesday · 3:00 PM ACST · One appointment per day',
       online:    onlineHint,
-      artofyou:  '<strong>Art of You - Port Elliot:</strong> Fortnightly Wednesdays · alternating 4:00 PM - 8:00 PM &amp; 1:00 PM - 5:00 PM ACST'
     };
     hint.innerHTML = hints[selServiceType] || '';
     hint.style.display = 'block';
@@ -2023,8 +1967,6 @@
       let unavailable;
       if (selServiceType === 'inperson') {
         unavailable = past || !INPERSON_DAYS.includes(dow) || isBlocked(date);
-      } else if (selServiceType === 'artofyou') {
-        unavailable = past || getAoyType(date) === null || isBlocked(date);
       } else {
         // Online: date-aware (Fri+Sat until July, Thu+Sat from July) + Reiki teaching days blocked
         unavailable = past || !getOnlineDays(date).includes(dow) || isBlocked(date) || isOnlineBlocked(date);
@@ -2097,10 +2039,7 @@
     if (selServiceType === 'inperson') {
       times  = INPERSON_TIMES;
       booked = INPERSON_BOOKED;
-    } else if (selServiceType === 'artofyou') {
-      const aoyType = selDate ? getAoyType(selDate) : null;
-      times  = aoyType === 'B' ? AOY_TIMES_B : AOY_TIMES_A;
-      booked = AOY_BOOKED;
+
       grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
       const calEvents  = await fetchPortElliotBooked(selDate);
       const durMins    = selDuration ? (parseInt(selDuration) || 60) : 60;
@@ -2161,7 +2100,7 @@
   function applyCoupon() {
     const code = document.getElementById('coupon-input').value.trim().toUpperCase();
     const msg  = document.getElementById('coupon-msg');
-    const isInPerson = selServiceType === 'inperson' || selServiceType === 'artofyou';
+    const isInPerson = selServiceType === 'inperson';
     msg.style.display = 'block';
     if (code === 'CASH') {
       if (!isInPerson) {
@@ -2187,7 +2126,6 @@
     const isDiscovery = !!(selService && selService.includes('Discovery Call'));
     const fmt = document.getElementById('sformat').value;
     const fmtLabel = fmt==='in-person' ? 'In-person (Adelaide)'
-                   : fmt==='port-elliot' ? 'In-person (Port Elliot)'
                    : fmt==='online' ? 'Online (Zoom)' : 'TBC';
     const dateStr = selDate ? selDate.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'}) : '-';
 
@@ -2494,7 +2432,6 @@
     discovery: 'online',
     alignflow: 'online',
     inperson:  'inperson',
-    artofyou:  'artofyou',
     all:       null,
   };
 
@@ -2521,30 +2458,26 @@
     const discoveryCards  = document.querySelectorAll('.svc-discovery');
     const alignflowCards  = document.querySelectorAll('.svc-alignflow');
     const inpersonCards   = document.querySelectorAll('.svc-inperson');
-    const artofyouCards   = document.querySelectorAll('.svc-artofyou');
+
     const clarityLabels   = document.querySelectorAll('.svc-group-clarity');
     const discoveryLabels = document.querySelectorAll('.svc-group-discovery');
     const alignflowLabels = document.querySelectorAll('.svc-group-alignflow');
     const inpersonLabel   = document.querySelector('.svc-group-inperson');
-    const artofyouLabel   = document.querySelector('.svc-group-artofyou');
+
     const packsNote       = document.getElementById('alignflow-packs-note');
 
     const showClarity   = type === 'all' || type === 'clarity';
     const showDiscovery = type === 'all' || type === 'discovery';
     const showAlignflow = type === 'all' || type === 'alignflow';
     const showInperson  = type === 'all' || type === 'inperson';
-    const showArtofyou  = type === 'all' || type === 'artofyou';
-
     clarityCards.forEach(c   => c.style.display = showClarity   ? '' : 'none');
     discoveryCards.forEach(c => c.style.display = showDiscovery ? '' : 'none');
     alignflowCards.forEach(c => c.style.display = showAlignflow ? '' : 'none');
     inpersonCards.forEach(c  => c.style.display = showInperson  ? '' : 'none');
-    artofyouCards.forEach(c  => c.style.display = showArtofyou  ? '' : 'none');
     clarityLabels.forEach(l  => l.style.display = showClarity   ? '' : 'none');
     discoveryLabels.forEach(l => l.style.display = showDiscovery ? '' : 'none');
     alignflowLabels.forEach(l => l.style.display = showAlignflow ? '' : 'none');
     if (inpersonLabel) inpersonLabel.style.display = showInperson ? '' : 'none';
-    if (artofyouLabel) artofyouLabel.style.display = showArtofyou ? '' : 'none';
     if (packsNote) packsNote.style.display = showAlignflow ? '' : 'none';
 
     // Deselect if hidden card was selected
@@ -2617,7 +2550,7 @@
   fetchGcalBlockedDates();
 
   // ── HASH-BASED ROUTING (tabs + session filters) ──
-  const FILTER_HASHES = new Set(['clarity','inperson','artofyou']);
+  const FILTER_HASHES = new Set(['clarity','inperson']);
 
   function openTabByHash() {
     const hash = window.location.hash.replace('#','');
@@ -2630,7 +2563,7 @@
       return;
     }
 
-    // Session filter hashes (e.g. #clarity, #discovery, #inperson, #artofyou, #alignflow)
+    // Session filter hashes (e.g. #clarity, #discovery, #inperson, #alignflow)
     if (FILTER_HASHES.has(hash)) {
       // Make sure we're on the sessions tab
       const sessBtn = [...document.querySelectorAll('.tab-btn')].find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes("'sessions'"));
