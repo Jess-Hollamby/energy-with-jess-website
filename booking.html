@@ -950,11 +950,11 @@
       </div>
       <p style="font-size:0.78rem;color:var(--brown-mid);text-align:center;margin-bottom:6px;">Pay your 50% deposit to secure your booking:</p>
       <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;margin-bottom:16px;">
-        <a id="stripe-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:var(--lavender);justify-content:center;" onclick="submitSession()">
+        <a id="stripe-btn" href="#" class="btn btn-primary" style="text-align:center;text-decoration:none;background:var(--lavender);justify-content:center;" onclick="return payAndOpen(event, this)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
           Pay deposit with Stripe
         </a>
-        <a id="paypal-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:#0070BA;justify-content:center;" onclick="submitSession()">
+        <a id="paypal-btn" href="#" class="btn btn-primary" style="text-align:center;text-decoration:none;background:#0070BA;justify-content:center;" onclick="return payAndOpen(event, this)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 4.643-5.813 4.643h-2.189c-.988 0-1.829.722-1.984 1.698L9.47 19.57a.641.641 0 0 0 .633.74h3.894c.524 0 .968-.382 1.05-.9l.453-2.872a1.07 1.07 0 0 1 1.05-.9h.666c3.77 0 6.024-1.85 6.806-5.512.33-1.55.158-2.844-.8-3.81z"/></svg>
           Pay deposit with PayPal
         </a>
@@ -962,11 +962,11 @@
 
       <p style="font-size:0.78rem;color:var(--brown-mid);text-align:center;margin-bottom:6px;">Or pay the full amount now and you're all done:</p>
       <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;">
-        <a id="stripe-full-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:var(--sage);justify-content:center;" onclick="submitSession()">
+        <a id="stripe-full-btn" href="#" class="btn btn-primary" style="text-align:center;text-decoration:none;background:var(--sage);justify-content:center;" onclick="return payAndOpen(event, this)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
           Pay in full with Stripe
         </a>
-        <a id="paypal-full-btn" href="#" target="_blank" class="btn btn-primary" style="text-align:center;text-decoration:none;background:#0070BA;justify-content:center;" onclick="submitSession()">
+        <a id="paypal-full-btn" href="#" class="btn btn-primary" style="text-align:center;text-decoration:none;background:#0070BA;justify-content:center;" onclick="return payAndOpen(event, this)">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.082-8.558 6.082h-2.19c-1.717 0-3.187 1.255-3.451 2.952l-1.12 7.106a.641.641 0 0 0 .633.74h4.606c.524 0 .968-.382 1.05-.9l.867-5.488c.19-1.204 1.216-2.088 2.434-2.088h.522c3.878 0 6.91-1.576 7.794-6.133.36-1.867.11-3.374-.94-4.084z"/></svg>
           Pay in full with PayPal
         </a>
@@ -2326,13 +2326,17 @@
     try { localStorage.setItem('ewj_pending_booking', JSON.stringify({ ...payload, webhookUrl: CALENDAR_WEBHOOK_URL })); } catch(e) {}
 
     // POST to Google Calendar webhook (Google Apps Script)
+    // Returned so callers (payment buttons) can wait for this to finish
+    // before opening a new tab - opening a new tab can interrupt an
+    // in-flight fetch on some mobile browsers, silently dropping the booking.
+    let webhookPromise = Promise.resolve();
     if (CALENDAR_WEBHOOK_URL && CALENDAR_WEBHOOK_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
-      fetch(CALENDAR_WEBHOOK_URL, {
+      webhookPromise = fetch(CALENDAR_WEBHOOK_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-      }).catch(() => {}); // fire and forget - don't block UX
+      }).catch(() => {});
     }
 
     [1,2,3,4].forEach(i => { const el = document.getElementById('step-'+i); if(el) el.style.display='none'; });
@@ -2361,6 +2365,21 @@
       const subject = (isDiscovery ? 'Discovery call reschedule: ' : 'Reschedule request: ') + selService + ' on ' + dateStr;
       successReschedule.href = 'mailto:energywjess@gmail.com?subject=' + encodeURIComponent(subject);
     }
+
+    return webhookPromise;
+  }
+
+  // Ensures the booking webhook request finishes before opening a payment
+  // link in a new tab - opening a new tab can interrupt an in-flight fetch
+  // on some mobile browsers, silently dropping the booking (this is what
+  // caused bookings to go missing with no confirmation or Zoom link).
+  function payAndOpen(evt, el) {
+    evt.preventDefault();
+    const link = el.getAttribute('href');
+    Promise.resolve(submitSession()).finally(() => {
+      if (link && link !== '#') window.open(link, '_blank');
+    });
+    return false;
   }
   function resetSession() {
     selService=null; selDate=null; selTime=null; selServiceType=null;
