@@ -1992,12 +1992,12 @@
     renderCal();
     renderTimes();
   }
-  // ── PORT ELLIOT SLOT BLOCKING ──
-  let aoyEventCache = {};
+  // ── BLOCKED CALENDAR EVENTS (in-person slot checking) ──
+  let blockedEventCache = {};
 
-  async function fetchPortElliotBooked(date) {
+  async function fetchBlockedEvents(date) {
     const key = date.toDateString();
-    if (aoyEventCache[key]) return aoyEventCache[key];
+    if (blockedEventCache[key]) return blockedEventCache[key];
     if (!GCAL_BLOCKED_CALENDAR_ID || !GCAL_API_KEY) return [];
     const dayStart = new Date(date); dayStart.setHours(0,0,0,0);
     const dayEnd   = new Date(date); dayEnd.setHours(23,59,59,999);
@@ -2013,7 +2013,7 @@
       const events = (data.items || [])
         .filter(ev => ev.start && ev.start.dateTime)
         .map(ev => ({ start: new Date(ev.start.dateTime), end: new Date(ev.end.dateTime) }));
-      aoyEventCache[key] = events;
+      blockedEventCache[key] = events;
       return events;
     } catch(e) { return []; }
   }
@@ -2041,10 +2041,9 @@
       booked = INPERSON_BOOKED;
 
       grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
-      const calEvents  = await fetchPortElliotBooked(selDate);
+      const calEvents  = await fetchBlockedEvents(selDate);
       const durMins    = selDuration ? (parseInt(selDuration) || 60) : 60;
-      const blockEndStr = aoyType === 'B' ? '5:00 PM' : '8:00 PM';
-      const blockEnd    = timeStrToDate(blockEndStr, selDate);
+      const blockEnd    = timeStrToDate('8:00 PM', selDate);
       grid.innerHTML   = times.map((t, i) => {
         const slotStart  = timeStrToDate(t, selDate);
         const slotEnd    = new Date(slotStart.getTime() + durMins * 60000);

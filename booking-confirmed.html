@@ -205,7 +205,6 @@
           ? d.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', timeZone: 'Australia/Adelaide' }) + ' ACST'
           : '-';
         var fmtLabel = data.format === 'in-person' ? 'In-person (Adelaide)'
-                     : data.format === 'port-elliot' ? 'In-person (Port Elliot)'
                      : data.format === 'online' ? 'Online (Zoom)' : (data.format || '-');
         document.getElementById('sumFormat').textContent = fmtLabel;
         document.getElementById('summaryBox').classList.add('show');
