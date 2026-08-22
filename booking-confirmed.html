@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed | Energy with Jess</title>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://www.energywithjess.com.au/booking-confirmed" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FAF6F1;
+      --cream-2:  #F0E8DF;
+      --rose:     #B08B8B;
+      --rose-light: #D4B5B5;
+      --rose-dark:  #8A6565;
+      --lavender: #9B8DB8;
+      --lavender-light: #C4BAD8;
+      --gold:     #C8A96E;
+      --sage:     #8FA68E;
+      --brown:    #3A2E2E;
+      --brown-mid:#6B5757;
+      --border:   #E0D3C8;
+      --white:    #FFFFFF;
+      --shadow:   rgba(58,46,46,0.08);
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--brown);
+      min-height: 100vh;
+      font-weight: 300;
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      max-width: 520px;
+      width: 100%;
+      padding: 44px 36px;
+      text-align: center;
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+
+    .icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--rose-light), var(--lavender-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.7rem;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 5vw, 2.1rem);
+      font-weight: 400;
+      color: var(--brown);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .sub {
+      font-size: 0.88rem;
+      color: var(--brown-mid);
+      max-width: 380px;
+      margin: 0 auto 26px;
+    }
+
+    .summary {
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-align: left;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .summary.show { display: block; }
+    .summary-row {
+      display: flex; gap: 10px; padding: 7px 0;
+      border-bottom: 1px solid var(--cream-2);
+      font-size: 0.84rem;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-lbl { color: var(--brown-mid); min-width: 90px; flex-shrink: 0; }
+    .summary-val { color: var(--brown); font-weight: 400; }
+
+    .notice {
+      background: #F2EEF9;
+      border: 1px solid var(--lavender-light);
+      border-radius: 10px;
+      padding: 13px 15px;
+      font-size: 0.82rem;
+      color: var(--brown-mid);
+      margin-bottom: 26px;
+      line-height: 1.55;
+      text-align: left;
+    }
+    .notice strong { color: var(--lavender); }
+
+    .status-line {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      margin-bottom: 20px;
+    }
+    .status-line.error { color: var(--rose-dark); }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 12px 28px; border-radius: 50px; border: none;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; transition: all 0.2s;
+      background: var(--rose); color: var(--white);
+    }
+    .btn:hover { background: var(--rose-dark); transform: translateY(-1px); }
+
+    .fallback { display: none; }
+    .fallback.show { display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="icon">✦</div>
+    <p class="eyebrow">Energy with Jess</p>
+
+    <div id="confirmedState">
+      <h1>You're all set.</h1>
+      <p class="sub">Your payment has been received and your session is confirmed.</p>
+
+      <div class="summary" id="summaryBox">
+        <div class="summary-row"><span class="summary-lbl">Session</span><span class="summary-val" id="sumService"></span></div>
+        <div class="summary-row"><span class="summary-lbl">Date</span><span class="summary-val" id="sumDate"></span></div>
+        <div class="summary-row"><span class="summary-lbl">Time</span><span class="summary-val" id="sumTime"></span></div>
+        <div class="summary-row"><span class="summary-lbl">Format</span><span class="summary-val" id="sumFormat"></span></div>
+      </div>
+
+      <div class="notice">
+        <strong>Check your email</strong> - a confirmation with your full booking details (and Zoom link, if your session is online) is on its way to your inbox now.
+      </div>
+
+      <p class="status-line" id="statusLine">Finalising your booking&hellip;</p>
+
+      <a href="https://www.energywithjess.com.au" class="btn">Back to the site</a>
+    </div>
+
+    <div class="fallback" id="fallbackState">
+      <h1>Thanks for your payment.</h1>
+      <p class="sub">We couldn't find your booking details in this browser (this can happen if you paid from a different device or tab). Don't worry - your payment has gone through and Jess will be in touch to confirm your session shortly.</p>
+      <a href="https://www.energywithjess.com.au" class="btn">Back to the site</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var raw = null;
+      try { raw = localStorage.getItem('ewj_pending_booking'); } catch (e) {}
+
+      var confirmedState = document.getElementById('confirmedState');
+      var fallbackState  = document.getElementById('fallbackState');
+      var statusLine     = document.getElementById('statusLine');
+
+      if (!raw) {
+        confirmedState.style.display = 'none';
+        fallbackState.classList.add('show');
+        return;
+      }
+
+      var data;
+      try { data = JSON.parse(raw); } catch (e) {
+        confirmedState.style.display = 'none';
+        fallbackState.classList.add('show');
+        return;
+      }
+
+      // Populate summary from what we already know client-side
+      try {
+        var d = data.startISO ? new Date(data.startISO) : null;
+        document.getElementById('sumService').textContent = data.service || '-';
+        document.getElementById('sumDate').textContent = d
+          ? d.toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Adelaide' })
+          : '-';
+        document.getElementById('sumTime').textContent = d
+          ? d.toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit', timeZone: 'Australia/Adelaide' }) + ' ACST'
+          : '-';
+        var fmtLabel = data.format === 'in-person' ? 'In-person (Adelaide)'
+                     : data.format === 'port-elliot' ? 'In-person (Port Elliot)'
+                     : data.format === 'online' ? 'Online (Zoom)' : (data.format || '-');
+        document.getElementById('sumFormat').textContent = fmtLabel;
+        document.getElementById('summaryBox').classList.add('show');
+      } catch (e) {}
+
+      var webhookUrl = data.webhookUrl;
+
+      function finish(message) {
+        statusLine.textContent = message;
+        try { localStorage.removeItem('ewj_pending_booking'); } catch (e) {}
+      }
+
+      if (!webhookUrl) {
+        finish('Booking recorded.');
+        return;
+      }
+
+      var payload = Object.assign({}, data, { type: 'deposit_paid' });
+      delete payload.webhookUrl;
+
+      fetch(webhookUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function () { finish('Booking confirmed - check your email shortly.'); })
+        .catch(function () { finish('Booking confirmed.'); });
+    })();
+  </script>
+
+</body>
+</html>
