@@ -2113,18 +2113,17 @@
   // In Person - Adelaide
   // Before Sep 28 2026: Mon(1)+Tue(2), 3:00 PM only
   // From Sep 28 2026:   Tue(2)+Wed(3), 3:00 PM - 8:00 PM
+  // In Person - Adelaide
+  // Days switch Sep 28 2026: Mon+Tue → Tue+Wed
+  // Times: 3:00 PM - 8:00 PM (effective now)
   const INPERSON_CHANGE     = new Date(2026, 8, 28); // Sep 28 2026
   const INPERSON_DAYS_PRE   = [1, 2]; // Mon, Tue
   const INPERSON_DAYS_POST  = [2, 3]; // Tue, Wed
-  const INPERSON_TIMES_PRE  = ['3:00 PM'];
-  const INPERSON_TIMES_POST = ['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM'];
-  const INPERSON_BOOKED = [];
+  const INPERSON_TIMES      = ['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM'];
+  const INPERSON_BOOKED     = [];
 
   function getInPersonDays(date) {
     return date >= INPERSON_CHANGE ? INPERSON_DAYS_POST : INPERSON_DAYS_PRE;
-  }
-  function getInPersonTimes(date) {
-    return date >= INPERSON_CHANGE ? INPERSON_TIMES_POST : INPERSON_TIMES_PRE;
   }
 
   // Online - Clarity + Healing
@@ -2263,7 +2262,7 @@
       : '<strong>Online:</strong> Friday 10:00 AM - 8:00 PM · Saturday 10:00 AM - 4:00 PM ACST';
     const inPersonHint = isNewInPersonWindow
       ? '<strong>In-person - Adelaide:</strong> Tuesday &amp; Wednesday · 3:00 PM - 8:00 PM ACST'
-      : '<strong>In-person - Adelaide:</strong> Monday &amp; Tuesday · 3:00 PM ACST · One appointment per day';
+      : '<strong>In-person - Adelaide:</strong> Monday &amp; Tuesday · 3:00 PM - 8:00 PM ACST';
     const hints = {
       inperson: inPersonHint,
       online:   onlineHint,
@@ -2360,7 +2359,7 @@
 
     let times, booked;
     if (selServiceType === 'inperson') {
-      times  = getInPersonTimes(selDate);
+      times  = INPERSON_TIMES;
       booked = INPERSON_BOOKED;
 
       grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
