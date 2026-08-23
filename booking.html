@@ -533,11 +533,13 @@
     .event-card-r3 .event-date { background: var(--lavender-light); }
     .event-card-r3 .event-date .day, .event-card-r3 .event-date .mon { color: var(--brown); }
     .event-card-r3:hover { border-color: #b8a2d0; box-shadow: 0 6px 22px rgba(196,176,212,0.25); }
-    .event-card-itd { border-color: #bf4288; background: linear-gradient(135deg, #fff5fb 0%, #fff 100%); }
-    .event-card-itd .event-date { background: linear-gradient(135deg, #bf4288, #d4619d); }
-    .event-card-itd .event-date .day, .event-card-itd .event-date .mon { color: #fff; }
-    .event-card-itd h3 { color: #bf4288; }
-    .event-card-itd:hover { border-color: #a33276; box-shadow: 0 6px 22px rgba(191,66,136,0.2); }
+    .event-card-itd { border-color: #1E2E32; background: linear-gradient(135deg, #f0f5f6 0%, #fff 100%); }
+    .event-card-itd .event-date { background: linear-gradient(135deg, #1E2E32, #2e4a52); }
+    .event-card-itd .event-date .day, .event-card-itd .event-date .mon { color: #FAF7F2; }
+    .event-card-itd h3 { color: #1E2E32; }
+    .event-card-itd:hover { border-color: #3B5E6E; box-shadow: 0 6px 22px rgba(30,46,50,0.2); }
+    .year-separator { display:flex;align-items:center;gap:16px;margin:28px 0 4px;color:var(--brown-mid);font-family:'Belleza',sans-serif;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase; }
+    .year-separator::before,.year-separator::after { content:'';flex:1;height:1px;background:var(--border); }
     .event-date {
       display: flex; flex-direction: column; align-items: center;
       justify-content: center; min-width: 54px; height: 54px;
@@ -1478,7 +1480,7 @@
       </div>
     </div>
 
-    <!-- ── 2027 EVENTS ── -->
+    <div class="year-separator"><span>2027</span></div>
 
     <div class="event-card event-card-itd">
       <div class="event-date"><span class="day">8</span><span class="mon">Feb</span></div>
