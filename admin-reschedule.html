@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reschedule a Booking | Energy with Jess</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #FAF6F1; --cream-2: #F0E8DF;
+      --rose: #B08B8B; --rose-light: #D4B5B5; --rose-dark: #8A6565;
+      --lavender: #9B8DB8;
+      --sage: #8FA68E;
+      --brown: #3A2E2E; --brown-mid: #6B5757;
+      --border: #E0D3C8; --white: #FFFFFF;
+      --shadow: rgba(58,46,46,0.08);
+    }
+    body {
+      font-family: 'Jost', sans-serif; background: var(--cream); color: var(--brown);
+      min-height: 100vh; font-weight: 300; line-height: 1.6;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+    }
+    .card {
+      background: var(--white); border: 1.5px solid var(--border); border-radius: 20px;
+      max-width: 480px; width: 100%; padding: 40px 32px; box-shadow: 0 8px 32px var(--shadow);
+    }
+    .eyebrow { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; text-align: center; }
+    h1 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 5vw, 1.9rem);
+      font-weight: 400; margin-bottom: 8px; text-align: center;
+    }
+    .sub { font-size: 0.82rem; color: var(--brown-mid); text-align: center; margin-bottom: 28px; }
+    .fg { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .fg label { font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--brown-mid); }
+    .fg input {
+      border: 1.5px solid var(--border); border-radius: 8px; padding: 11px 13px;
+      font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 300;
+      color: var(--brown); background: var(--white); outline: none; width: 100%;
+    }
+    .fg input:focus { border-color: var(--rose); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn {
+      display: block; width: 100%; text-align: center; padding: 13px 26px; border-radius: 50px;
+      border: none; cursor: pointer; font-family: 'Jost', sans-serif; font-size: 0.75rem;
+      font-weight: 400; letter-spacing: 2px; text-transform: uppercase;
+      background: var(--rose); color: var(--white); margin-top: 6px; transition: background 0.2s;
+    }
+    .btn:hover { background: var(--rose-dark); }
+    .btn:disabled { opacity: 0.5; cursor: default; }
+    .msg { font-size: 0.85rem; margin-top: 16px; text-align: center; display: none; line-height: 1.5; }
+    .msg.show { display: block; }
+    .msg.ok { color: var(--sage); }
+    .msg.err { color: var(--rose-dark); }
+    .hint { font-size: 0.72rem; color: var(--brown-mid); margin-top: -8px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <p class="eyebrow">Energy with Jess &middot; Internal</p>
+    <h1>Reschedule a booking</h1>
+    <p class="sub">Finds the client's existing booking, moves their Zoom meeting and calendar event, and emails them the updated confirmation.</p>
+
+    <form id="reschedForm">
+      <div class="fg">
+        <label>Client name</label>
+        <input type="text" id="clientName" required placeholder="Full name" />
+      </div>
+      <div class="fg">
+        <label>Client email</label>
+        <input type="email" id="clientEmail" required placeholder="client@email.com" />
+      </div>
+      <div class="fg">
+        <label>Original session date</label>
+        <input type="date" id="oldDate" required />
+      </div>
+      <p class="hint">Used to find their booking - doesn't need to be exact if you're unsure of the year, just get the date close.</p>
+      <div class="row2">
+        <div class="fg">
+          <label>New date</label>
+          <input type="date" id="newDate" required />
+        </div>
+        <div class="fg">
+          <label>New time</label>
+          <input type="time" id="newTime" required />
+        </div>
+      </div>
+      <button type="submit" class="btn" id="submitBtn">Reschedule booking</button>
+      <p class="msg" id="msg"></p>
+    </form>
+  </div>
+
+  <script>
+    const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbz5gc-NWWOFlyJrXXE1BcgG4PiKiAc-kaDh1k6YJHKNcuzwrQlNsVFj-ub4nctEK-1S/exec';
+
+    document.getElementById('reschedForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const msg = document.getElementById('msg');
+      msg.className = 'msg'; msg.textContent = '';
+
+      const clientName  = document.getElementById('clientName').value.trim();
+      const clientEmail = document.getElementById('clientEmail').value.trim();
+      const oldDate      = document.getElementById('oldDate').value;
+      const newDate       = document.getElementById('newDate').value;
+      const newTime        = document.getElementById('newTime').value;
+
+      if (!clientName || !clientEmail || !oldDate || !newDate || !newTime) return;
+
+      const oldDateISO = oldDate + 'T00:00:00+09:30';
+      const newStartISO = newDate + 'T' + newTime + ':00+09:30';
+
+      btn.disabled = true;
+      btn.textContent = 'Rescheduling…';
+
+      fetch(WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'reschedule',
+          clientName: clientName,
+          email: clientEmail,
+          oldDateISO: oldDateISO,
+          newStartISO: newStartISO
+        })
+      })
+        .then(function () {
+          msg.classList.add('show', 'ok');
+          msg.textContent = 'Request sent. Since this uses a fire-and-forget request, double-check the client\'s calendar event and confirmation email shortly to make sure it landed.';
+        })
+        .catch(function () {
+          msg.classList.add('show', 'err');
+          msg.textContent = 'Something went wrong sending the request. Check your connection and try again.';
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Reschedule booking';
+        });
+    });
+  </script>
+
+</body>
+</html>
