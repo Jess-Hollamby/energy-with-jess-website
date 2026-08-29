@@ -652,6 +652,11 @@
 
 <div class="wrap">
 
+  <div id="reschedule-banner" class="notice notice-gold" style="display:none;margin-bottom:24px;">
+    <strong>Rescheduling your session</strong><br>
+    <span id="reschedule-banner-text"></span> - pick a new date and time below, and we'll update everything for you (no need to re-enter your details or pay again).
+  </div>
+
   <!-- ════════════════════════════════
        TAB 1: BOOK A SESSION
   ════════════════════════════════ -->
@@ -801,7 +806,7 @@
       </div>
       <div class="btn-row">
         <button class="btn btn-ghost" onclick="goToStep(1)">&larr; Back</button>
-        <button class="btn btn-primary" id="next-2" disabled onclick="goToStep(3)">Next &rarr;</button>
+        <button class="btn btn-primary" id="next-2" disabled onclick="handleNext2()">Next &rarr;</button>
       </div>
     </div>
 
@@ -963,6 +968,16 @@
         <p class="success-body-msg">Your deposit has been received. Jess will be in touch within 24 hours with your confirmation and any preparation notes.</p>
         <p style="font-size:0.8rem;color:#a08080;margin-top:6px;">Need to reschedule or cancel? <a id="success-reschedule-link" href="mailto:energywjess@gmail.com?subject=Reschedule%20request" style="color:var(--lavender);">Email Jess</a> at least 48 hours before your session.</p>
         <button class="btn btn-primary" onclick="resetSession()" style="margin-top:20px;">Book another session</button>
+      </div>
+    </div>
+
+    <!-- Reschedule success -->
+    <div id="reschedule-success" style="display:none;">
+      <div class="success-screen">
+        <div class="success-icon">✦</div>
+        <h2>You're all rescheduled.</h2>
+        <p class="success-body-msg">Your session has been moved to the new time. Your Zoom link (if applicable) stays the same, and you'll get an email confirming the new details shortly.</p>
+        <p style="font-size:0.8rem;color:#a08080;margin-top:6px;">Need to make another change? <a href="mailto:energywjess@gmail.com?subject=Reschedule%20request" style="color:var(--lavender);">Email Jess</a> and she'll sort it.</p>
       </div>
     </div>
 
@@ -2867,10 +2882,91 @@
     });
   }
 
+  // ── RESCHEDULE MODE ──
+  // Reached via a link like booking.html?reschedule=1&name=...&email=...
+  // &oldDate=2026-08-29T00:30:00.000Z&service=Tarot%20Reading&duration=45%20min&format=online
+  // Skips straight to date/time picking, then posts a 'reschedule' request
+  // to the same webhook the admin tool uses - no re-payment, no re-entering details.
+  let rescheduleMode = false;
+  let rescheduleData = null;
+
+  function initRescheduleMode() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('reschedule') !== '1') return;
+
+    const email    = params.get('email')    || '';
+    const name     = params.get('name')     || '';
+    const oldDate  = params.get('oldDate')  || '';
+    const service  = params.get('service')  || '';
+    const duration = params.get('duration') || '';
+    const format   = params.get('format')   || 'online';
+
+    if (!email || !oldDate) return; // not enough info to proceed
+
+    rescheduleMode = true;
+    rescheduleData = { email: email, clientName: name, oldDateISO: oldDate, service: service, format: format };
+
+    selService     = service;
+    selDuration    = duration;
+    selServiceType = format === 'in-person' ? 'inperson' : 'online';
+
+    const bannerText = document.getElementById('reschedule-banner-text');
+    if (bannerText) bannerText.textContent = (service || 'Your session') + (name ? ' for ' + name : '');
+    const banner = document.getElementById('reschedule-banner');
+    if (banner) banner.style.display = 'block';
+
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.style.display = 'none'; });
+
+    renderCal();
+    updateAvailHint();
+    goToStep(2);
+  }
+
+  function handleNext2() {
+    if (rescheduleMode) { submitReschedule(); return; }
+    goToStep(3);
+  }
+
+  function submitReschedule() {
+    if (!selDate || !selTime || !rescheduleData) return;
+    const [timePart, meridiem] = selTime.split(' ');
+    let [h, m] = timePart.split(':').map(Number);
+    if (meridiem === 'PM' && h !== 12) h += 12;
+    if (meridiem === 'AM' && h === 12) h = 0;
+    const newStart = new Date(selDate.getFullYear(), selDate.getMonth(), selDate.getDate(), h, m, 0);
+
+    const payload = {
+      type: 'reschedule',
+      clientName: rescheduleData.clientName,
+      email: rescheduleData.email,
+      oldDateISO: rescheduleData.oldDateISO,
+      newStartISO: newStart.toISOString()
+    };
+
+    if (CALENDAR_WEBHOOK_URL && CALENDAR_WEBHOOK_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+      fetch(CALENDAR_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).finally(function() {
+        [1, 2, 3, 4].forEach(function(i) {
+          const el = document.getElementById('step-' + i);
+          if (el) el.style.display = 'none';
+        });
+        const banner = document.getElementById('reschedule-banner');
+        if (banner) banner.style.display = 'none';
+        document.getElementById('reschedule-success').style.display = 'block';
+        updateDots(0);
+      });
+    }
+  }
+
   // ── INIT ──
   renderCal();
   renderProgPayments();
   fetchGcalBlockedDates();
+  initRescheduleMode();
 
   // ── HASH-BASED ROUTING (tabs + session filters) ──
   const FILTER_HASHES = new Set(['clarity','inperson']);
