@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="15" fill="#1E2E32"/>
+  <!-- Gold crescent moon -->
+  <circle cx="45" cy="56" r="32" fill="#C4A96A"/>
+  <circle cx="60" cy="45" r="26" fill="#1E2E32"/>
+  <!-- Pink 4-pointed star, top right -->
+  <path d="M79 16 L82 25 L91 28 L82 31 L79 40 L76 31 L67 28 L76 25 Z" fill="#bf4288"/>
+  <!-- Smaller pink star, left -->
+  <path d="M20 32 L22 38 L28 40 L22 42 L20 48 L18 42 L12 40 L18 38 Z" fill="#bf4288" opacity="0.8"/>
+</svg>
