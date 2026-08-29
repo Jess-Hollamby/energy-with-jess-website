@@ -2780,7 +2780,7 @@ function renderMyLearning() {
 
 // ══ COURSE DETAIL ══
 function openCourse(id) {
-  if (courses[id] && courses[id].comingSoon) {
+  if (courses[id] && courses[id].comingSoon && !courses[id].enrolled) {
     showToast('This course is coming soon - stay tuned! ✨');
     return;
   }
