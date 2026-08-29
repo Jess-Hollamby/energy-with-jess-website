@@ -2505,7 +2505,7 @@ const courses = [
         { title: 'What\'s Next', type: 'Video', done: false, youtubeId: '',
           body: 'You\'ve built the foundation and gone deeper. What comes next depends on where you want to go.',
           whatNext: [
-            { label: 'Keep going', url: '', note: 'You have everything you need. Use it.' },
+            { label: 'Keep going solo', url: '', note: 'You have everything you need. Use it.', noLink: true },
             { label: 'Align + Flow', url: 'https://www.energywithjess.com.au/expansion.html#align-flow', note: '1:1 with Jess · when you need a thinking partner' },
             { label: 'Soul-Led Business Pack', url: 'https://www.energywithjess.com.au/expansion.html#soul-led-business', note: 'For women ready to grow what\'s already built' },
           ],
@@ -2989,12 +2989,16 @@ function openLesson(moduleIdx, lessonIdx) {
     ? `<div class="what-next-block">
         <div class="in-this-lesson-label" style="color:var(--secondary);margin-bottom:14px;">What's Next</div>
         <div class="what-next-links">
-          ${lesson.whatNext.map(w => `
-            <a class="what-next-link" href="${w.url || '#'}" ${w.url ? 'target="_blank"' : `onclick="showToast('Link coming soon ✨')"`}>
-              <span>${w.label}</span>
-              ${w.note ? `<span class="what-next-note">${w.note}</span>` : ''}
-              <span style="margin-left:auto;">→</span>
-            </a>`).join('')}
+          ${lesson.whatNext.map(w => w.noLink
+            ? `<div class="what-next-link" style="cursor:default;">
+                <span>${w.label}</span>
+                ${w.note ? `<span class="what-next-note">${w.note}</span>` : ''}
+              </div>`
+            : `<a class="what-next-link" href="${w.url || '#'}" ${w.url ? 'target="_blank"' : `onclick="showToast('Link coming soon ✨')"`}>
+                <span>${w.label}</span>
+                ${w.note ? `<span class="what-next-note">${w.note}</span>` : ''}
+                <span style="margin-left:auto;">→</span>
+              </a>`).join('')}
         </div>
       </div>`
     : '';
