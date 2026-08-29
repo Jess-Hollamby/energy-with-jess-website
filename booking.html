@@ -981,6 +981,29 @@
       </div>
     </div>
 
+    <!-- Cancel confirm -->
+    <div id="cancel-confirm-screen" style="display:none;">
+      <div class="success-screen">
+        <div class="success-icon">✦</div>
+        <h2>Cancel this session?</h2>
+        <p class="success-body-msg" id="cancel-confirm-text">Are you sure you want to cancel your session? This can't be undone.</p>
+        <div class="notice" id="cancel-policy-notice" style="text-align:left;max-width:420px;margin:0 auto 20px;"></div>
+        <div class="btn-row" style="flex-direction:column;gap:10px;align-items:stretch;max-width:320px;margin:0 auto;">
+          <button class="btn btn-primary" onclick="confirmCancel()" style="justify-content:center;background:var(--rose-dark);">Yes, cancel my session</button>
+          <a href="https://www.energywithjess.com.au" class="btn btn-ghost" style="justify-content:center;">No, keep my booking</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cancel success -->
+    <div id="cancel-success" style="display:none;">
+      <div class="success-screen">
+        <div class="success-icon">✦</div>
+        <h2>You're cancelled.</h2>
+        <p class="success-body-msg">Your session has been cancelled. You'll get a confirmation email shortly, and Jess will be in touch about your deposit if a refund is owed.</p>
+      </div>
+    </div>
+
   </div>
 
   <!-- ════════════════════════════════
@@ -2040,6 +2063,9 @@
   // Leave blank to disable (manual BLOCKED_DATES array is used instead).
   const GCAL_BLOCKED_CALENDAR_ID = 'd6c52250d57ffa6e936d4406696d5f63baa61403d38e4d82910aaaf61cf6ee97@group.calendar.google.com';
   const GCAL_API_KEY             = 'AIzaSyDoSWDIH46nzEQboqqKnjUv9jWTjebB_hU';
+
+  // Minimum gap (minutes) kept clear before and after every booked session
+  const BUFFER_MINUTES = 15;
   // ════════════════════════════════════════════════
 
   // ── STATE ──
@@ -2331,7 +2357,7 @@
     renderCal();
     renderTimes();
   }
-  // ── BLOCKED CALENDAR EVENTS (in-person slot checking) ──
+  // ── BLOCKED CALENDAR EVENTS (real per-slot conflict checking, all formats) ──
   let blockedEventCache = {};
 
   async function fetchBlockedEvents(date) {
@@ -2374,41 +2400,34 @@
     const grid = document.getElementById('time-slots');
     grid.style.display = 'grid';
 
-    let times, booked;
+    let times, booked, blockEndTime;
     if (selServiceType === 'inperson') {
-      times  = INPERSON_TIMES;
-      booked = INPERSON_BOOKED;
-
-      grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
-      const calEvents  = await fetchBlockedEvents(selDate);
-      const durMins    = selDuration ? (parseInt(selDuration) || 60) : 60;
-      const blockEnd    = timeStrToDate('8:00 PM', selDate);
-      grid.innerHTML   = times.map((t, i) => {
-        const slotStart  = timeStrToDate(t, selDate);
-        const slotEnd    = new Date(slotStart.getTime() + durMins * 60000);
-        const isTaken    = booked.includes(i) || slotOverlaps(slotStart, slotEnd, calEvents) || slotEnd > blockEnd;
-        const isSel      = t === selTime;
-        return `<button class="time-slot${isSel?' selected':''}" ${isTaken?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`;
-      }).join('');
-      return;
+      times = INPERSON_TIMES; booked = INPERSON_BOOKED; blockEndTime = '8:00 PM';
     } else {
       // Online - day-specific slots (Thu from July, Fri before July, Sat year-round)
       const dow = selDate ? selDate.getDay() : 5;
-      if (dow === 6) {
-        times  = ONLINE_TIMES_SAT;
-        booked = ONLINE_BOOKED_SAT;
-      } else if (dow === 4) {
-        times  = ONLINE_TIMES_THU;
-        booked = ONLINE_BOOKED_THU;
-      } else {
-        times  = ONLINE_TIMES_FRI;
-        booked = ONLINE_BOOKED_FRI;
-      }
+      if (dow === 6)      { times = ONLINE_TIMES_SAT; booked = ONLINE_BOOKED_SAT; blockEndTime = '4:00 PM'; }
+      else if (dow === 4) { times = ONLINE_TIMES_THU; booked = ONLINE_BOOKED_THU; blockEndTime = '8:00 PM'; }
+      else                { times = ONLINE_TIMES_FRI; booked = ONLINE_BOOKED_FRI; blockEndTime = '8:00 PM'; }
     }
 
-    grid.innerHTML = times.map((t,i) =>
-      `<button class="time-slot" ${booked.includes(i)?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`
-    ).join('');
+    // Real conflict check against actual existing bookings (both online and
+    // in-person) - a slot is only shown as available if nothing already
+    // booked on that day overlaps it, with a buffer gap on either side.
+    grid.innerHTML = '<p style="color:var(--brown-mid);font-size:0.85rem;grid-column:1/-1;text-align:center;padding:12px 0;">Checking availability...</p>';
+    const calEvents = await fetchBlockedEvents(selDate);
+    const durMins   = selDuration ? (parseInt(selDuration) || 60) : 60;
+    const blockEnd  = timeStrToDate(blockEndTime, selDate);
+
+    grid.innerHTML = times.map((t, i) => {
+      const slotStart      = timeStrToDate(t, selDate);
+      const slotEnd         = new Date(slotStart.getTime() + durMins * 60000);
+      const bufferedStart    = new Date(slotStart.getTime() - BUFFER_MINUTES * 60000);
+      const bufferedEnd       = new Date(slotEnd.getTime() + BUFFER_MINUTES * 60000);
+      const isTaken = booked.includes(i) || slotOverlaps(bufferedStart, bufferedEnd, calEvents) || slotEnd > blockEnd;
+      const isSel   = t === selTime;
+      return `<button class="time-slot${isSel?' selected':''}" ${isTaken?'disabled':''} onclick="pickTime(this,'${t}')">${t}</button>`;
+    }).join('');
   }
   function pickTime(el, t) {
     const isAlreadySelected = el.classList.contains('selected');
@@ -2962,11 +2981,80 @@
     }
   }
 
+  // ── CANCEL MODE ──
+  // Reached via a link like booking.html?cancel=1&name=...&email=...
+  // &oldDate=2026-08-29T00:30:00.000Z&service=Tarot%20Reading
+  let cancelData = null;
+
+  function initCancelMode() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('cancel') !== '1') return;
+
+    const email   = params.get('email')  || '';
+    const name    = params.get('name')   || '';
+    const oldDate = params.get('oldDate') || '';
+    const service = params.get('service') || '';
+
+    if (!email || !oldDate) return;
+
+    cancelData = { email: email, clientName: name, oldDateISO: oldDate, service: service };
+
+    [1, 2, 3, 4].forEach(function(i) {
+      const el = document.getElementById('step-' + i);
+      if (el) el.style.display = 'none';
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b) { b.style.display = 'none'; });
+
+    const d = new Date(oldDate);
+    const dateStr = isNaN(d.getTime()) ? '' : d.toLocaleDateString('en-AU', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Australia/Adelaide'
+    });
+    const timeStr = isNaN(d.getTime()) ? '' : d.toLocaleTimeString('en-AU', {
+      hour: '2-digit', minute: '2-digit', timeZone: 'Australia/Adelaide'
+    }) + ' ACST';
+
+    document.getElementById('cancel-confirm-text').textContent =
+      'Are you sure you want to cancel your ' + (service || 'session') +
+      (dateStr ? ' on ' + dateStr + (timeStr ? ' at ' + timeStr : '') : '') + '? This can\'t be undone.';
+
+    const hoursUntil = isNaN(d.getTime()) ? null : (d - new Date()) / (1000 * 60 * 60);
+    const policyNotice = document.getElementById('cancel-policy-notice');
+    if (hoursUntil !== null) {
+      policyNotice.innerHTML = hoursUntil < 48
+        ? '<strong>Note:</strong> this is within 48 hours of your session, so your deposit is forfeited per the booking policy.'
+        : '<strong>Good to know:</strong> you\'re cancelling with more than 48 hours notice, so a refund is owed per the booking policy.';
+    }
+
+    document.getElementById('cancel-confirm-screen').style.display = 'block';
+  }
+
+  function confirmCancel() {
+    if (!cancelData) return;
+    const payload = {
+      type: 'cancel',
+      clientName: cancelData.clientName,
+      email: cancelData.email,
+      oldDateISO: cancelData.oldDateISO
+    };
+    if (CALENDAR_WEBHOOK_URL && CALENDAR_WEBHOOK_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
+      fetch(CALENDAR_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).finally(function() {
+        document.getElementById('cancel-confirm-screen').style.display = 'none';
+        document.getElementById('cancel-success').style.display = 'block';
+      });
+    }
+  }
+
   // ── INIT ──
   renderCal();
   renderProgPayments();
   fetchGcalBlockedDates();
   initRescheduleMode();
+  initCancelMode();
 
   // ── HASH-BASED ROUTING (tabs + session filters) ──
   const FILTER_HASHES = new Set(['clarity','inperson']);
