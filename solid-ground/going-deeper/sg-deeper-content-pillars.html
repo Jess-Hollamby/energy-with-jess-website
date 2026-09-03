@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Pillars Index | Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .page-wrap {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .eyebrow {
+    font-family: 'Belleza', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--teal);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .intro-box {
+    background: white;
+    border-left: 4px solid var(--teal);
+    padding: 20px 24px;
+    margin-bottom: 48px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--dark);
+  }
+
+  .intro-box strong { color: var(--teal); }
+
+  .section {
+    margin-bottom: 52px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--pink);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .section-desc {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .pillar-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  .pillar-name {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .pillar-desc {
+    font-size: 13.5px;
+    color: #555;
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+
+  .examples-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .examples {
+    background: var(--cream);
+    border-radius: 4px;
+    padding: 12px 16px;
+  }
+
+  .examples ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .examples ul li {
+    font-size: 13.5px;
+    color: var(--dark);
+    padding: 3px 0 3px 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .examples ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pink);
+    font-size: 11px;
+    top: 5px;
+  }
+
+  .tip-box {
+    background: #f0f4f6;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 32px;
+    font-size: 13px;
+    color: var(--dark);
+    line-height: 1.7;
+  }
+
+  .tip-box strong {
+    color: var(--teal);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .soul-check {
+    background: white;
+    border: 2px solid var(--lavender);
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-top: 56px;
+    text-align: center;
+  }
+
+  .soul-check h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  .soul-check p {
+    font-size: 14px;
+    color: #666;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: #aaa;
+    text-align: center;
+  }
+
+  @media print {
+    body { background: white; }
+    .page-wrap { padding: 24px 24px 40px; }
+    .pillar-card { break-inside: avoid; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="header">
+    <div class="eyebrow">Solid Ground · Module 7 Resource</div>
+    <h1>Content Pillars Index</h1>
+    <p class="subtitle">A starting point. Pick 3-4 that feel true for you and build from there.</p>
+  </div>
+
+  <div class="intro-box">
+    <strong>How to use this.</strong> A content pillar is a theme that's always true about your work - something you could talk about every week without running dry. Think of it as a lane, not a single topic. "How I work" is a pillar. "Why I always start a session in silence" is a post that lives inside it. Most practitioners need 3-4 pillars. Once you have them, you'll always know where to start. Add your own at the bottom of each section.
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Pillar group 01</span>
+      <h2>Your Practice</h2>
+    </div>
+    <p class="section-desc">What you do, how you do it, and why it works. The most practical and trust-building pillar group.</p>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">How I work</div>
+      <div class="pillar-desc">Your philosophy, your approach, your non-negotiables. This is where people decide whether they trust you before they ever book.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>Why I always start a session in silence</li>
+          <li>What I won't do in a treatment room (and why)</li>
+          <li>The thing I tell every new client before we begin</li>
+          <li>Why I keep my sessions to a set length</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">What a session actually involves</div>
+      <div class="pillar-desc">Demystify the experience. Most people have never had a session - they don't know what happens, what to expect, or what to wear. Answering these questions is content.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What to expect in your first Reiki session</li>
+          <li>What I'm doing when I work with your energy field</li>
+          <li>Why you might feel emotional after a session</li>
+          <li>The most common question I get asked before a booking</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">What happens after a session</div>
+      <div class="pillar-desc">The integration piece - what the body and energy do after the work is done. Underrated and high-value content.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>Why you might feel tired after a treatment (it's not a bad sign)</li>
+          <li>What I recommend for the 24 hours after a session</li>
+          <li>The shift that happens slowly, not all at once</li>
+          <li>Signs the work is moving through you</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Gut check</strong>
+      If you could only post about one of these three for a month, which one would you choose? Start there.
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Pillar group 02</span>
+      <h2>Your Modality</h2>
+    </div>
+    <p class="section-desc">Education builds authority without you having to claim it. Teach what you know - people follow practitioners who explain things clearly.</p>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">What [your modality] actually is</div>
+      <div class="pillar-desc">Not the Wikipedia version. Your version - what it is, what it does, and who it's for. Write this in the words your clients use, not the words you learned in training.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What Reiki actually is (from someone who does it every day)</li>
+          <li>The difference between relaxation massage and remedial - and how to know which one you need</li>
+          <li>What people get wrong about energy healing</li>
+          <li>What I say when someone asks me to explain what I do at a dinner party</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">The questions people are afraid to ask</div>
+      <div class="pillar-desc">Every practitioner has a list of questions they hear constantly. Answer them in public - it signals safety and saves the person Googling at midnight.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>Does Reiki work if you don't believe in it?</li>
+          <li>Can massage make anxiety worse?</li>
+          <li>What if I cry during a session?</li>
+          <li>Do I have to talk during a session or can I just be quiet?</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">Who this work is for</div>
+      <div class="pillar-desc">Specificity attracts. The more clearly you describe who your work is for, the more those people recognise themselves.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>Who I see most often in my treatment room (and what they all have in common)</li>
+          <li>Signs your nervous system is asking for something different</li>
+          <li>This isn't for everyone - but it might be for you</li>
+          <li>The person who gets the most out of this work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Pillar group 03</span>
+      <h2>The Practitioner Behind the Practice</h2>
+    </div>
+    <p class="section-desc">People book people, not services. Sharing who you are - without oversharing - builds the kind of trust that turns a follower into a client.</p>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">Why I do this work</div>
+      <div class="pillar-desc">Your origin story - the moment, the realisation, or the slow accumulation of experiences that led you here. You don't have to share everything. Share what's true and what's relevant.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What made me choose this over everything else</li>
+          <li>The moment I knew this was the right path</li>
+          <li>What I was doing before this (and why I left)</li>
+          <li>The experience that changed how I approach my work</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">What I'm still learning</div>
+      <div class="pillar-desc">Continuing education, professional development, what you're currently studying or exploring. This signals commitment to your craft and models what it looks like to keep growing.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What I'm studying right now and why</li>
+          <li>The course that changed how I practice</li>
+          <li>What I thought I knew about X before I learned Y</li>
+          <li>The thing I wish I'd been taught in training</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">My own practice and healing</div>
+      <div class="pillar-desc">What you do to stay regulated, grounded, and resourced as a practitioner. Optional - share only what you're genuinely comfortable with. Authenticity always over vulnerability performance.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What I do after a heavy session</li>
+          <li>My non-negotiables for staying well in this work</li>
+          <li>What I've had to unlearn to take better care of myself</li>
+          <li>The practice I return to when everything else falls away</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Pillar group 04</span>
+      <h2>Holding Space + Client Care</h2>
+    </div>
+    <p class="section-desc">The relational side of your work. What it feels like to be in your care - before, during, and after.</p>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">How I prepare for a session</div>
+      <div class="pillar-desc">Your rituals, your setup, the way you arrive for a client. This is gold for trust - it shows your work has intention behind it.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What I do before every client arrives</li>
+          <li>Why I don't book back-to-back sessions</li>
+          <li>The 10 minutes before a session that change everything</li>
+          <li>How I clear my space (and my own energy) between clients</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">Boundaries in practice</div>
+      <div class="pillar-desc">What you hold and what you don't. This content attracts clients who respect you and filters out the ones who won't.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What I do when a session stays with me after the client leaves</li>
+          <li>Why I have a late cancellation policy (and what it protects)</li>
+          <li>The boundary I had to learn the hard way</li>
+          <li>When I refer a client out - and why that's part of good care</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Pillar group 05</span>
+      <h2>The Solo Business Reality</h2>
+    </div>
+    <p class="section-desc">The honest, unglamorous truth of running a practice alone. This content builds a community around you - other practitioners and future clients who appreciate realness.</p>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">What solo practice actually looks like</div>
+      <div class="pillar-desc">The admin, the in-between, the deciding everything yourself. Normalise this - it's what most practitioners experience and nobody talks about.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What a Tuesday looks like when you work for yourself</li>
+          <li>The part of running a practice nobody warned me about</li>
+          <li>What I do on a week with no bookings</li>
+          <li>The decision I had to make completely alone (and how)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">Pricing and being paid</div>
+      <div class="pillar-desc">One of the most-searched topics for practitioners. Your honest take on pricing, valuing your work, and getting comfortable asking for money.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>How I decided what to charge for my first service</li>
+          <li>What changed when I raised my prices</li>
+          <li>Why "I can't afford that" doesn't always mean what we think</li>
+          <li>The conversation about money I had to have with myself first</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">How I found my first clients</div>
+      <div class="pillar-desc">Practical and vulnerable. Every practitioner starts somewhere - and most people think it was easier for everyone else than it was for them.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>My first paying client - what I charged and how nervous I was</li>
+          <li>What actually worked when I was starting out</li>
+          <li>What didn't work (and what I do differently now)</li>
+          <li>Where most of my clients have come from over the years</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">Pillar group 06</span>
+      <h2>Seasonal + Cyclical</h2>
+    </div>
+    <p class="section-desc">Content that maps to natural rhythms - seasonal, lunar, or annual. Evergreen structure with fresh angles every cycle.</p>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">What the body needs in [season]</div>
+      <div class="pillar-desc">Seasonal body wisdom gives you four built-in content angles a year - and it's endlessly relevant because the seasons always come back.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What winter is asking of your nervous system</li>
+          <li>The seasonal shift I see most in my treatment room right now</li>
+          <li>What to do with your body in the transition between seasons</li>
+          <li>Why [season] is the hardest time of year for sensitive people</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-name">Pillar</div>
+      <div class="pillar-title">Rest as a practice</div>
+      <div class="pillar-desc">For you and for your clients. Rest is countercultural and deeply relevant - especially for the people who come to practitioners because they've been running on empty.</div>
+      <div class="examples-label">Example posts</div>
+      <div class="examples">
+        <ul>
+          <li>What I've learned about rest from watching my clients</li>
+          <li>The kind of rest that actually restores you</li>
+          <li>Why I build rest into my business - not just my life</li>
+          <li>What happens in the body when you finally stop</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="soul-check">
+    <h3>Pick your three.</h3>
+    <p>Scroll back through and mark the pillars that feel most like you. Pick one from at least two different groups. You're not committing forever - you're starting. Pillars shift as your practice does.</p>
+  </div>
+
+  <div class="footer">
+    Solid Ground · Energy with Jess · energywithjess.com.au
+  </div>
+
+</div>
+</body>
+</html>
