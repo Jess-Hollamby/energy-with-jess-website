@@ -1105,6 +1105,29 @@
   }
   .download-btn.slides:hover { background: var(--primary); color: var(--white); }
 
+  /* Take a Moment card */
+  .take-a-moment-block {
+    margin-top: 24px;
+    background: var(--light);
+    border-left: 3px solid var(--secondary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 20px 22px;
+  }
+  .take-a-moment-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--secondary);
+    margin-bottom: 12px;
+  }
+  .take-a-moment-block p {
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--text-mid);
+    margin-bottom: 12px;
+  }
+  .take-a-moment-block p:last-child { margin-bottom: 0; }
+
   /* Audio files */
   .audio-files { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
   .audio-placeholder {
@@ -2690,6 +2713,7 @@ const courses = [
           body: 'You\'re not behind. You\'re building.\n\nThis course exists because nothing like it existed when Jess needed it. She\'s been building since 2020 - still in the middle of it. This isn\'t "I made it, here\'s how." It\'s "I\'ve been in this long enough to know every corner of it - and here\'s what I wish I\'d had."\n\nHow the course works, how to move through it at your own pace, and a somatic check-in: where are you starting from? Notice what\'s in your body right now. No need to fix it.\n\nThe one rule: done beats perfect.',
           bonusDownload: { label: 'Workbook — Welcome Page', url: 'pdfs/sg-welcome-workbook.pdf' },
           bonusDownload2: { label: 'Workbook — Screen Version', url: 'solid-ground-workbook.html' },
+          takeAMoment: "Grounding is a simple practice - it just means bringing your attention back into your body and the present moment instead of staying in your head. You can do it any time.<br><br>Take a breath. Not a busy one. A real one. Feel your feet on the floor. Notice the weight of your body in your chair. You are here. A lot of people think about doing something like this for a long time before they actually do it. You\'re doing it. Take a moment to feel that before you move on.",
         },
       ]},
       { title: 'Module 1 - What You Actually Need', desc: '1 lesson · video', done: false, lessons: [
@@ -2697,6 +2721,7 @@ const courses = [
           topics: ['What counts as an offer', 'How to describe what you do without freezing', 'The solo-specific trap: waiting for external confirmation', 'Your first offer doesn\'t have to be your forever offer'],
           body: 'Before you start - vs. what everyone tells you.\n\nYou\'ll leave with a real, usable offer: defined, roughly priced, ready to say out loud.',
           bonusDownload: { label: 'Workbook — Module 1', url: 'pdfs/sg-module-1.pdf' },
+          takeAMoment: "Somewhere in this module, something might have tightened. A thought that sounded like <em>but I don\'t have enough yet.</em> That\'s worth noticing. Somatic awareness is simply the practice of paying attention to what\'s happening in your body - not just your thoughts. Your body often knows something before your mind catches up.<br><br>Put a hand on your chest. Take a breath. Where does the <em>not yet</em> feeling live? Your chest? Your throat? Just notice - you don\'t have to fix it. The feeling doesn\'t mean you\'re not ready. It means you\'re human and you\'re about to do something that matters.",
         },
       ]},
       { title: 'Module 2 - The Tools That Do the Job', desc: '1 lesson · video', done: false, lessons: [
@@ -2704,6 +2729,7 @@ const courses = [
           topics: ['The only tools you need before your first dollar comes in', 'Google Workspace free tier', 'Canva free tier', 'A booking link', 'Stripe or PayPal', 'Separate bank account for business income'],
           body: 'Free, functional, and nothing you don\'t need yet.',
           bonusDownload: { label: 'Workbook — Module 2', url: 'pdfs/sg-module-2.pdf' },
+          takeAMoment: "This module might have felt overwhelming, or surprisingly simple. Either is fine. Take a breath and set your feet flat on the floor. Notice: are you in your head right now, or in your body? If something is spinning - come back to the breath. You don\'t need to have everything set up today. One thing at a time is still moving forward.<br><br>What\'s the one thing from this module you can do in the next 24 hours? Just one. That\'s enough.",
         },
       ]},
       { title: 'Module 3 - Brand Basics', desc: '1 lesson · video', done: false, lessons: [
@@ -2711,6 +2737,7 @@ const courses = [
           topics: ['Choosing and registering a business name', 'Brand voice: how to describe what you do in your own words', 'Visual basics: two colours, one font, one feeling', 'Using Canva to create a simple, consistent look'],
           body: 'Not a logo. A foundation.',
           bonusDownload: { label: 'Workbook — Module 3', url: 'pdfs/sg-module-3.pdf' },
+          takeAMoment: "Before your brand is a colour or a font or a logo - it\'s a feeling. Let\'s come back to that visualisation practice.<br><br>Visualisation is a practice of imagining something as if it\'s already happening. Your nervous system responds to an imagined experience almost the same way it responds to a real one - which means you can start building the feeling of something before it exists.<br><br>Close your eyes. Picture someone finding you for the first time. They see your name, a photo, a few words. How do you want them to feel in that very first moment? Not impressed - that\'s not the goal. Safe? Curious? Like they\'ve just found something they didn\'t know they were looking for? Hold that feeling. You already know what you want your brand to be. The rest is just matching everything else to that.",
         },
       ]},
       { title: 'Module 4 - How to Get Paid', desc: '1 lesson · video', done: false, lessons: [
@@ -2719,6 +2746,7 @@ const courses = [
           body: 'Simple and sorted from day one.',
           bonusDownload: { label: 'Workbook — Module 4', url: 'pdfs/sg-module-4.pdf' },
           resourceDownload: { label: 'Invoice Template', url: 'pdfs/sg-invoice-template.xlsx' },
+          takeAMoment: "Money carries a lot of energy - and most of us were never taught to notice it in our bodies. We were taught to think about it, stress about it, argue with it. But there\'s another layer underneath all of that.<br><br>Think about your price. Say it out loud if you can. Where do you feel that in your body? Tightening? Ease? Heat? Something in your stomach or chest? Just notice without judging it. Your body\'s response to your own price is information - not a reason to change it, just something worth knowing. Breathe. You deserve to be paid. Say that too if you can.",
         },
       ]},
       { title: 'Module 5 - Where Your First Clients Actually Come From', desc: '1 lesson · video', done: false, lessons: [
@@ -2726,6 +2754,7 @@ const courses = [
           topics: ['Your network isn\'t smaller because you\'re solo', 'The three circles: people who know you, know of you, strangers', 'What to actually say - DMs, captions, in-person', 'Why posting before you\'re ready is the marketing'],
           body: 'Not a perfect grid.',
           bonusDownload: { label: 'Workbook — Module 5', url: 'pdfs/sg-module-5.pdf' },
+          takeAMoment: "Telling people what you do is one of the most uncomfortable parts of starting. If you felt a charge while working through this module - a tightening, a wanting to skip past - you\'re not alone. In somatic work, we call it a charge: a feeling of activation or resistance that lives in the body before the mind catches up with it.<br><br>Put a hand on your heart. Take a breath. You are allowed to be seen before you feel ready. You are allowed to say <em>this is what I do</em> without it being perfect. Being seen is not the same as being judged. Breathe with that for a moment.",
         },
       ]},
       { title: 'Module 6 - The "I\'ll Start When..." Trap', desc: '1 lesson · video', done: false, lessons: [
@@ -2733,6 +2762,7 @@ const courses = [
           topics: ['Why preparation often isn\'t - and what it actually is', 'The solo layer: readiness becomes a moving target without external validation', 'Staying busy as a way to avoid what actually needs attention'],
           body: 'Spotting the stories keeping you stuck.',
           bonusDownload: { label: 'Workbook — Module 6', url: 'pdfs/sg-module-6.pdf' },
+          takeAMoment: "Come back to that visualisation practice for a moment. Close your eyes. Think of a decision you\'re currently holding - something you\'ve been turning over, maybe longer than you\'d like to admit.<br><br>Don\'t try to solve it right now. Instead, ask yourself: <em>what does my gut already know about this?</em> Not the fear response. The quiet knowing underneath it. Sit with it for a breath or two. You don\'t have to have the answer today. But you might find you already know more than you think you do.",
         },
       ]},
       { title: 'Module 7 - Content Creation + Showing Up Online', desc: '1 lesson · video', done: false, lessons: [
@@ -2740,6 +2770,7 @@ const courses = [
           topics: ['Why consistency beats volume every time', 'Content pillars: 3-4 themes that are always true for you', 'What to post when you have nothing', 'Video vs. static: what\'s worth your time as a solo operator'],
           body: 'Consistently, in your own voice, without it taking over.',
           bonusDownload: { label: 'Workbook — Module 7', url: 'pdfs/sg-module-7.pdf' },
+          takeAMoment: "Where does <em>showing up online</em> land in your body? Really notice. Is there a tightening in your chest? A slight nausea? A flicker of excitement underneath the dread? This is one of the most common places women in business carry fear - the fear of being seen, of saying the wrong thing, of being too much or not enough.<br><br>Put a hand on your heart. You are allowed to show up imperfectly. You are allowed to post something that doesn\'t perform. Every person you admire online started by posting into silence. Breathe. Then post the thing.",
         },
       ]},
       { title: 'Module 8 - How to Use AI in Your Business', desc: '1 lesson · video', done: false, lessons: [
@@ -2748,6 +2779,7 @@ const courses = [
           body: 'Your voice stays yours. AI works for you.',
           bonusDownload: { label: 'Workbook — Module 8', url: 'pdfs/sg-module-8.pdf' },
           bonusDownload2: { label: 'AI Starter Prompts', url: 'sg-deeper-ai-starter-prompts.html' },
+          takeAMoment: "Take a breath. You don\'t have to use any of this. Seriously. There\'s no rule that says AI belongs in your business - it\'s a tool, not a requirement.<br><br>Notice for a moment: was there any part of this module that felt like relief? A sense of <em>oh - I don\'t have to figure that out alone?</em> Or was there resistance - a part that said <em>this isn\'t for me?</em> Both are worth knowing. You\'re allowed to use the tools that exist. You\'re also allowed to leave them. Either way, you don\'t have to earn your way to support.",
         },
       ]},
       { title: 'Module 9 - The Energetics of Running Solo', desc: '1 lesson · video', done: false, lessons: [
@@ -2755,6 +2787,7 @@ const courses = [
           topics: ['You are the business - protecting your energy is business sense', 'The emotional weather of building alone', 'Energy debt: early warning signs', 'Visibility and the fear underneath it'],
           body: 'Nobody talks about this part.',
           bonusDownload: { label: 'Workbook — Module 9', url: 'pdfs/sg-module-9.pdf' },
+          takeAMoment: "Take a breath. Feet on the floor. Notice: where are you right now - in your head, or in your body?<br><br>This module names something that doesn\'t often get named. If something landed harder than you expected - that\'s information. If something felt like relief to finally hear out loud - that\'s information too. You don\'t have to do anything with it right now. Just let it settle.<br><br>What\'s one thing from this module you can actually hold onto? One anchor point, one permission, one thing you\'re taking with you. That\'s enough for today.",
         },
       ]},
       { title: 'Module 10 - Email List Building', desc: '1 lesson · video', done: false, lessons: [
@@ -2762,6 +2795,7 @@ const courses = [
           topics: ['Why an email list matters more than follower count', 'The simplest freebie that actually works', 'Setting up a free email platform', 'The welcome email', 'Moving people from the list to a booking'],
           body: 'Something you own, beyond the algorithm.',
           bonusDownload: { label: 'Workbook — Module 10', url: 'pdfs/sg-module-10.pdf' },
+          takeAMoment: "Take a breath and acknowledge what this module is really about. You\'re building something the algorithm can\'t touch. A direct line to people who chose to hear from you - not because an app showed them your content, but because they said yes.<br><br>If you\'ve added even one name to a list, you\'ve started. If you haven\'t yet - that\'s okay too. Notice how this module landed. Notice if something shifted. This is yours to build, at your pace, on your terms.",
         },
       ]},
       { title: 'Module 11 - Pricing for Growth', desc: '1 lesson · video', done: false, lessons: [
@@ -2770,6 +2804,7 @@ const courses = [
           body: 'From starting price to sustainable income.',
           bonusDownload: { label: 'Workbook — Module 11', url: 'pdfs/sg-module-11.pdf' },
           bonusDownload2: { label: 'Finance Template', url: 'pdfs/sg-finance-template.xlsx' },
+          takeAMoment: "Pricing is one of the most loaded places in business - because it was never really about the numbers. It\'s about what you believe you\'re worth. And most of us were taught, in ways both obvious and invisible, to believe that was less than it is.<br><br>Take a breath. Notice your body right now - what\'s present? Where? Your price, whatever it is today, is not where the story ends. The gap between where you are and where you want to be is just information. And you\'ve already done the hardest part. You showed up, you worked through it, you\'re still here. That counts.",
         },
       ]},
       { title: 'Module 12 - Making Decisions Alone', desc: '1 lesson · video', done: false, lessons: [
@@ -2777,6 +2812,7 @@ const courses = [
           topics: ['What to do when a decision lands and there\'s no one at the kitchen table', 'The body-based decision method: gut before Google', 'When to trust yourself vs. when to get outside input'],
           body: 'How to be your own sounding board.',
           bonusDownload: { label: 'Workbook — Module 12', url: 'pdfs/sg-module-12.pdf' },
+          takeAMoment: "Come back to that visualisation practice for a moment. Close your eyes. Think of a decision you\'re currently holding - something real, something you\'ve been sitting with.<br><br>Don\'t try to solve it right now. Ask yourself: <em>what does my body already know about this?</em> Not the fear response. The quiet knowing underneath it. Sit with it for a breath or two. You don\'t have to have the answer today. But you might find you already know more than you think you do.",
         },
       ]},
       { title: 'Bonus - The Legal + Tax Basics', desc: '1 lesson · slides only', done: false, lessons: [
@@ -2786,11 +2822,13 @@ const courses = [
           bonusDownload: { label: 'Workbook — Bonus Module', url: 'pdfs/sg-bonus-module.pdf' },
           bonusDownload2: { label: 'Invoice Tracker', url: 'https://docs.google.com/spreadsheets/d/1oj3p_14I-NyVe3o3CTHnQwheb9xpzLOuUh9TwNumMi0/edit?usp=sharing' },
           bonusDownload3: { label: 'Finance Template', url: 'https://docs.google.com/spreadsheets/d/1FCaWKSkkZGjhAyVMrFAgwRxniorAqAkRIr8Nm2d9P90/edit?usp=sharing' },
+          takeAMoment: "Take a breath. If something in this module made your stomach tighten, that\'s a nervous system response to unfamiliar territory. That\'s completely normal - most people were never taught this, and unfamiliar things can feel like threat even when they\'re not.<br><br>Feet on the floor. Shoulders down. The things in this module exist to protect you, not overwhelm you. You don\'t have to do all of it today. You don\'t have to have it figured out. You just need the next small step. What\'s yours?",
         },
       ]},
       { title: 'What\'s Next', desc: '1 lesson · closing', done: false, lessons: [
         { title: 'What\'s Next', type: 'Video', done: false, youtubeId: '',
           body: 'You\'ve built the foundation and gone deeper. What comes next depends on where you want to go.',
+          takeAMoment: "Take a moment. Close your eyes.<br><br>See yourself six months from now - still building, still showing up. You have a brand that feels like you. You know how to show up online. Your email list is growing. You\'re charging what you\'re worth, or getting closer. You did this. Not perfectly, not all at once - but you did it.<br><br>Open your eyes. That version of you isn\'t far away. You\'re already on your way.",
           whatNext: [
             { label: 'Keep going solo', url: '', note: 'You have everything you need. Use it.', noLink: true },
             { label: 'Align + Flow', url: 'https://www.energywithjess.com.au/expansion.html#align-flow', note: '1:1 with Jess · when you need a thinking partner' },
@@ -3270,6 +3308,14 @@ function openLesson(moduleIdx, lessonIdx) {
       </div>`
     : '';
 
+  // Take a Moment card
+  const takeAMomentHtml = lesson.takeAMoment
+    ? `<div class="take-a-moment-block">
+        <div class="take-a-moment-label">Take a Moment</div>
+        ${lesson.takeAMoment.split('<br><br>').map(p => `<p>${p.trim()}</p>`).join('')}
+      </div>`
+    : '';
+
   // Body text
   const bodyHtml = lesson.body
     ? lesson.body.split('\n\n').map(p => `<p>${p}</p>`).join('')
@@ -3288,6 +3334,7 @@ function openLesson(moduleIdx, lessonIdx) {
           ${whatNextHtml}
           ${telegramHtml}
           ${downloadsHtml}
+          ${takeAMomentHtml}
         </div>
 
         <div class="lesson-nav-btns">
