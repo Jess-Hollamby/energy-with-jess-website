@@ -2191,6 +2191,12 @@
       ? ONLINE_DAYS_POST : ONLINE_DAYS_PRE;
   }
 
+  // One-off extra available dates (days outside normal schedule opened individually)
+  const ONLINE_EXTRA_DATES = [
+    '2026-12-24',  // Christmas Eve (Thursday) - open instead of Dec 25
+  ];
+  function isOnlineExtra(date) { return ONLINE_EXTRA_DATES.includes(toIso(date)); }
+
   const ONLINE_TIMES_FRI = ['10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM'];
   const ONLINE_TIMES_THU = ['12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM'];
   const ONLINE_TIMES_SAT = ['10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM'];
@@ -2342,7 +2348,7 @@
         unavailable = past || !getInPersonDays(date).includes(dow) || isBlocked(date);
       } else {
         // Online: date-aware (Fri+Sat until July, Thu+Sat from July) + Reiki teaching days blocked
-        unavailable = past || !getOnlineDays(date).includes(dow) || isBlocked(date) || isOnlineBlocked(date);
+        unavailable = past || (!getOnlineDays(date).includes(dow) && !isOnlineExtra(date)) || isBlocked(date) || isOnlineBlocked(date);
       }
 
       const isSel = selDate && selDate.getDate()===d && selDate.getMonth()===calMonth && selDate.getFullYear()===calYear;
