@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Intake Form — Energy with Jess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Belleza&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal:#3B5E6E; --pink:#bf4288; --dark:#1E2E32; --cream:#FAF7F2;
+      --lavender:#C4B0D4; --border:#E4EAEC; --gold:#f2c14e;
+      --muted:#6b7d84; --white:#ffffff; --shadow:rgba(30,46,50,0.08);
+    }
+    body { font-family:'Belleza',sans-serif; background:var(--cream); color:var(--dark); min-height:100vh; line-height:1.7; }
+    .page-wrap { max-width:640px; margin:0 auto; padding:0 24px 80px; }
+    .form-header { text-align:center; padding:56px 0 40px; }
+    .eyebrow { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--pink); margin-bottom:12px; font-weight:600; }
+    .form-header h1 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(1.9rem,5vw,2.7rem); line-height:1.2; color:var(--teal); margin-bottom:14px; }
+    .intro-text { max-width:460px; margin:0 auto; font-size:0.95rem; color:var(--muted); line-height:1.85; }
+    .privacy-note { max-width:460px; margin:16px auto 0; font-size:0.8rem; color:var(--muted); font-style:italic; }
+    .form-card { background:var(--white); border:1.5px solid var(--border); border-radius:16px; padding:44px 40px; box-shadow:0 4px 24px var(--shadow); }
+    @media(max-width:480px){ .form-card { padding:30px 20px; } }
+    .field-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:26px; }
+    @media(max-width:480px){ .field-row { grid-template-columns:1fr; } }
+    .field { display:flex; flex-direction:column; gap:7px; margin-bottom:26px; }
+    .field:last-of-type { margin-bottom:0; }
+    label.field-label { font-size:0.78rem; letter-spacing:0.5px; color:var(--teal); font-weight:600; }
+    .field-note { font-size:0.8rem; color:var(--muted); font-style:italic; margin-top:-2px; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], textarea {
+      font-family:'Belleza',sans-serif; font-size:0.95rem; color:var(--dark);
+      background:var(--cream); border:1.5px solid var(--border); border-radius:8px;
+      padding:11px 14px; width:100%; outline:none; transition:border-color 0.2s; resize:vertical;
+    }
+    input:focus, textarea:focus { border-color:var(--pink); }
+    textarea { min-height:88px; }
+    .divider { height:1px; background:var(--border); margin:30px 0; }
+    .section-head { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--teal); margin-bottom:20px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .toggle-row { display:flex; gap:12px; }
+    .opt { flex:1; display:flex; align-items:center; gap:10px; cursor:pointer; padding:12px 16px; border:1.5px solid var(--border); border-radius:8px; background:var(--cream); transition:border-color 0.18s, background 0.18s; }
+    .opt:hover { border-color:var(--lavender); }
+    .opt.selected { border-color:var(--pink); background:rgba(191,66,136,0.06); }
+    .opt input[type="radio"] { width:17px; height:17px; accent-color:var(--pink); cursor:pointer; }
+    .opt-label { font-size:0.92rem; color:var(--dark); }
+    .checkline { display:flex; align-items:flex-start; gap:10px; margin-bottom:16px; }
+    .checkline input { width:18px; height:18px; min-width:18px; margin-top:2px; accent-color:var(--pink); cursor:pointer; }
+    .checkline label { font-size:0.88rem; color:var(--dark); line-height:1.5; cursor:pointer; }
+    .required::after { content:" *"; color:var(--pink); }
+    .btn-submit { width:100%; margin-top:34px; padding:15px 32px; background:var(--pink); color:#fff; border:none; border-radius:8px; font-family:'Belleza',sans-serif; font-size:0.85rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s; }
+    .btn-submit:hover { opacity:0.88; }
+    .btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
+    .ty-wrap { text-align:center; padding:80px 24px; display:none; }
+    .ty-icon { font-size:2.6rem; margin-bottom:22px; }
+    .ty-wrap h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.8rem,4vw,2.4rem); font-weight:600; color:var(--teal); margin-bottom:16px; }
+    .ty-wrap p { font-size:0.95rem; color:var(--muted); max-width:400px; margin:0 auto 10px; line-height:1.85; }
+    .ty-sig { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-style:italic; color:var(--pink); margin-top:18px; }
+    .page-footer { text-align:center; padding:40px 0 0; font-size:0.78rem; color:var(--muted); letter-spacing:0.5px; }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+<div class="page-wrap">
+
+  <header class="form-header">
+    <p class="eyebrow">Energy with Jess</p>
+    <h1>Before we begin</h1>
+    <p class="intro-text">This helps me understand where you're at before your first session. Take your time - there's no rush, and no wrong answers.</p>
+    <p class="privacy-note">Everything you share here is kept private and used only for your clinical record. Practitioner use only - not shared or sold.</p>
+  </header>
+
+  <div id="form-section">
+    <div class="form-card">
+      <form id="intakeForm" novalidate>
+
+        <p class="section-head">The basics</p>
+
+        <div class="field">
+          <label class="field-label required" for="fullName">Full name</label>
+          <input type="text" id="fullName" placeholder="Your full name" required />
+        </div>
+
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="dob">Date of birth</label>
+            <input type="date" id="dob" />
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label class="field-label" for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="0400 000 000" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label required" for="email">Email</label>
+          <input type="email" id="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="field">
+          <label class="field-label">Do you have a menstrual cycle we should factor into your treatment?</label>
+          <p class="field-note">This just helps me track things like cycle timing alongside your sessions - only relevant if it applies to you</p>
+          <div class="toggle-row">
+            <label class="opt"><input type="radio" name="hasUterus" value="yes" /><span class="opt-label">Yes</span></label>
+            <label class="opt"><input type="radio" name="hasUterus" value="no" /><span class="opt-label">No / not applicable</span></label>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="section-head">What brings you in</p>
+
+        <div class="field">
+          <label class="field-label required" for="chief">In your own words, what's going on?</label>
+          <p class="field-note">What you're noticing, how long it's been going on, anything that makes it better or worse</p>
+          <textarea id="chief" rows="4" required></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="section-head">Health background</p>
+
+        <div class="field">
+          <label class="field-label" for="conditions">Any current health conditions we should know about?</label>
+          <textarea id="conditions" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="medications">Are you currently taking any medications?</label>
+          <textarea id="medications" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="surgeries">Any past surgeries?</label>
+          <textarea id="surgeries" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="allergies">Any allergies we should know about?</label>
+          <textarea id="allergies" rows="2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="familyHistory">Anything relevant in your family's health history?</label>
+          <textarea id="familyHistory" rows="2"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="section-head">A little about your day to day</p>
+
+        <div class="field">
+          <label class="field-label" for="occupation">What do you do for work?</label>
+          <input type="text" id="occupation" />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="exercise">How active are you day to day?</label>
+          <input type="text" id="exercise" placeholder="e.g. daily walks, gym a few times a week, mostly sitting..." />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="stress">How would you describe your stress levels lately?</label>
+          <input type="text" id="stress" />
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="diet">Anything about your diet worth mentioning?</label>
+          <textarea id="diet" rows="2"></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="section-head">A little more</p>
+
+        <div class="field">
+          <label class="field-label" for="priorTreatment">Have you had acupuncture, myotherapy, or similar treatment before?</label>
+          <p class="field-note">What you tried, and how it went - no need for detail if there's nothing to share</p>
+          <textarea id="priorTreatment" rows="3"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="referral">How did you hear about me?</label>
+          <input type="text" id="referral" />
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="section-head">Consent</p>
+
+        <div class="checkline">
+          <input type="checkbox" id="consentTreatment" required />
+          <label for="consentTreatment">I consent to receiving treatment from Jess Hollamby, and understand I can ask questions or stop at any time.</label>
+        </div>
+        <div class="checkline">
+          <input type="checkbox" id="consentPrivacy" required />
+          <label for="consentPrivacy">I consent to my information being recorded and stored privately, for clinical record-keeping purposes only.</label>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">Send to Jess</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="ty-wrap" id="thankyou">
+    <div class="ty-icon">🌿</div>
+    <h2>Thank you, <em id="ty-name">lovely</em>.</h2>
+    <p>I'll read this before your session so we don't have to cover it all again in person.</p>
+    <p>See you soon.</p>
+    <p class="ty-sig">Jess x</p>
+  </div>
+
+  <footer class="page-footer"><p>energywithjess.com.au</p></footer>
+</div>
+
+<script>
+  const CRM_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+
+  document.querySelectorAll('.opt input').forEach(input => {
+    input.addEventListener('change', () => {
+      document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => r.closest('.opt').classList.remove('selected'));
+      input.closest('.opt').classList.toggle('selected', input.checked);
+    });
+  });
+
+  document.getElementById('intakeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const fullName = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const chief = document.getElementById('chief').value.trim();
+    const consentTreatment = document.getElementById('consentTreatment').checked;
+    const consentPrivacy = document.getElementById('consentPrivacy').checked;
+
+    if (!fullName || !email) { alert('Please add your name and email so I know who this is from.'); return; }
+    if (!chief) { alert('Please let me know a little about what\'s brought you in.'); return; }
+    if (!consentTreatment || !consentPrivacy) { alert('Both consent checkboxes are required before this can be sent.'); return; }
+
+    const hasUterusEl = document.querySelector('input[name="hasUterus"]:checked');
+
+    const data = {
+      formType: 'client-intake',
+      fullName,
+      email,
+      dob: document.getElementById('dob').value,
+      phone: document.getElementById('phone').value.trim(),
+      hasUterus: hasUterusEl ? hasUterusEl.value : '',
+      chief,
+      conditions: document.getElementById('conditions').value.trim(),
+      medications: document.getElementById('medications').value.trim(),
+      surgeries: document.getElementById('surgeries').value.trim(),
+      allergies: document.getElementById('allergies').value.trim(),
+      familyHistory: document.getElementById('familyHistory').value.trim(),
+      occupation: document.getElementById('occupation').value.trim(),
+      exercise: document.getElementById('exercise').value.trim(),
+      stress: document.getElementById('stress').value.trim(),
+      diet: document.getElementById('diet').value.trim(),
+      priorTreatment: document.getElementById('priorTreatment').value.trim(),
+      referral: document.getElementById('referral').value.trim(),
+      consentTreatment,
+      consentPrivacy,
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true; btn.textContent = 'Sending...';
+
+    fetch(CRM_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) }).catch(()=>{});
+
+    setTimeout(() => {
+      document.getElementById('form-section').style.display = 'none';
+      const ty = document.getElementById('thankyou');
+      ty.style.display = 'block';
+      document.getElementById('ty-name').textContent = fullName.split(' ')[0];
+    }, 600);
+  });
+</script>
+</body>
+</html>
