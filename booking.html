@@ -1460,21 +1460,6 @@
     <p class="section-sub">Group sessions, circles, and training intensives. All held with care and community in mind.</p>
 
     <!-- Learn Reiki training dates -->
-    <div class="event-card event-card-r1">
-      <div class="event-date"><span class="day">12</span><span class="mon">Sep</span></div>
-      <div class="event-info">
-        <h3>Learn Reiki - Level 1</h3>
-        <div class="event-meta"><span>📅 12th &amp; 13th September</span><span>💻 Online</span><span>10 hours over 2 days</span></div>
-        <p>Receive your Reiki Level 1 attunement and leave with a living practice to carry with you every day. Step into your Reiki practice.</p>
-        <div class="event-tags"><span class="tag tag-sage">Reiki Training</span><span class="tag tag-rose">Online</span><span class="tag tag-lav">Beginner Friendly</span></div>
-      </div>
-      <div class="event-action reiki-action" id="reiki-action-r1-sep" style="display:flex;flex-direction:column;gap:8px;min-width:185px;">
-        <button class="btn btn-primary reiki-book-btn" onclick="openReikiModal('r1-sep','deposit')">Secure your spot - $111</button>
-        <button class="btn btn-ghost reiki-book-btn" onclick="openReikiModal('r1-sep','full')">Pay in full - $333</button>
-        <p class="reiki-closed-msg" style="display:none;font-size:0.78rem;color:var(--brown-mid);text-align:center;line-height:1.5;">Bookings for this intake<br>are now closed.</p>
-      </div>
-    </div>
-
     <div class="event-card event-card-r2">
       <div class="event-date"><span class="day">3</span><span class="mon">Oct</span></div>
       <div class="event-info">
@@ -1491,10 +1476,10 @@
     </div>
 
     <div class="event-card event-card-r3">
-      <div class="event-date"><span class="day">21</span><span class="mon">Sep</span></div>
+      <div class="event-date"><span class="day">2</span><span class="mon">Nov</span></div>
       <div class="event-info">
         <h3>Reiki Master &amp; Master/Teacher</h3>
-        <div class="event-meta"><span>📅 From 30 November 2026</span><span>💻 Online via Zoom</span><span>Weekly sessions</span></div>
+        <div class="event-meta"><span>📅 From 2 November 2026</span><span>💻 Online via Zoom</span><span>Fortnightly sessions</span></div>
         <p>The highest level of Reiki training. Two pathways - Reiki Master (4 sessions, 12hrs) and Master/Teacher add-on (4 additional sessions, 12hrs). Runs once per year. Payment plans available.</p>
         <div class="event-tags"><span class="tag tag-lav">Reiki III</span><span class="tag tag-sage">Master Level</span><span class="tag tag-rose">Waitlist Open</span></div>
       </div>
@@ -2519,7 +2504,7 @@
     if (discoverySection) discoverySection.style.display = isDiscovery ? '' : 'none';
     if (depositRow)       depositRow.style.display       = isDiscovery ? 'none' : '';
     if (step4Sub) step4Sub.textContent = isDiscovery
-      ? 'Check the details below. Discovery calls are complimentary — no payment needed.'
+      ? 'Check the details below. Discovery calls are complimentary - no payment needed.'
       : 'Check the details below. A 50% deposit is required to hold your booking.';
 
     // Calculate deposit (50% of price)
@@ -2667,7 +2652,7 @@
     const successMsg   = document.querySelector('#step-success .success-body-msg');
     if (isDiscovery) {
       if (successTitle) successTitle.textContent = 'Your call is booked.';
-      if (successMsg)   successMsg.innerHTML = 'Your discovery call is confirmed. Check your inbox — your pre-discovery call form will arrive within 24 hours. Jess looks forward to connecting with you.';
+      if (successMsg)   successMsg.innerHTML = 'Your discovery call is confirmed. Check your inbox - your pre-discovery call form will arrive within 24 hours. Jess looks forward to connecting with you.';
     } else if (cashMode) {
       if (successTitle) successTitle.textContent = "You're booked in.";
       if (successMsg)   successMsg.innerHTML = 'Your booking is confirmed. Cash payment will be collected at your session. Jess will be in touch within 24 hours with any preparation notes.';
