@@ -132,7 +132,7 @@
   <!-- Blog -->
   <url>
     <loc>https://www.energywithjess.com.au/blog</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -151,6 +151,24 @@
   <url>
     <loc>https://www.energywithjess.com.au/what-is-an-akashic-record-reading</loc>
     <lastmod>2026-07-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.energywithjess.com.au/why-you-keep-saying-yes</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.energywithjess.com.au/you-were-never-supposed-to-feel-like-this</loc>
+    <lastmod>2026-09-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.energywithjess.com.au/what-nobody-tells-you-about-psychic-readings</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
