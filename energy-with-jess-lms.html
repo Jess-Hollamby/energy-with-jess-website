@@ -2741,6 +2741,8 @@ const courses = [
           bonusDownload2: { label: 'Workbook - Module 3', url: 'pdfs/sg-workbook-3.pdf' },
           bonusDownload3: { label: 'Invoice Template', url: 'pdfs/sg-invoice-template.xlsx' },
           bonusDownload4: { label: 'Finance Template', url: 'pdfs/sg-finance-template.xlsx' },
+          bonusDownload5: { label: 'Business Structures - ATO Guide', url: 'https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business/starting-your-own-business/business-structures-key-tax-obligations' },
+          bonusDownload6: { label: 'Policy Templates', url: 'pdfs/sg-policies-template.html' },
           takeAMoment: "Take a breath. If something in this module made your stomach tighten, that\'s a nervous system response to unfamiliar territory. That\'s completely normal - most people were never taught this, and unfamiliar things can feel like threat even when they\'re not.<br><br>Feet on the floor. Shoulders down. The things in this module exist to protect you, not overwhelm you. You don\'t have to do all of it today. You don\'t have to have it figured out. You just need the next small step. What\'s yours?",
         },
       ]},
@@ -3294,6 +3296,14 @@ function openLesson(moduleIdx, lessonIdx) {
         ${lesson.bonusDownload4?.label ? `
           <a class="download-btn bonus" href="${lesson.bonusDownload4.url || '#'}" ${lesson.bonusDownload4.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
             ⬇ Bonus: ${lesson.bonusDownload4.label}
+          </a>` : ''}
+        ${lesson.bonusDownload5?.label ? `
+          <a class="download-btn bonus" href="${lesson.bonusDownload5.url || '#'}" ${lesson.bonusDownload5.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
+            ⬇ Bonus: ${lesson.bonusDownload5.label}
+          </a>` : ''}
+        ${lesson.bonusDownload6?.label ? `
+          <a class="download-btn bonus" href="${lesson.bonusDownload6.url || '#'}" ${lesson.bonusDownload6.url ? 'target="_blank"' : 'onclick="showToast(\'Download link coming soon ✨\')"'}>
+            ⬇ Bonus: ${lesson.bonusDownload6.label}
           </a>` : ''}
         ${lesson.slidesUrl
           ? `<a class="download-btn slides" href="${lesson.slidesUrl}" target="_blank">⬇ Download Slides</a>`

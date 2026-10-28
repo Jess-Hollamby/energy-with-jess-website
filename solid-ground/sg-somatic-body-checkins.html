@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somatics and Body Check-Ins - Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    color: var(--dark);
+    background: white;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 36px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .module-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+    color: var(--teal);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    max-width: 580px;
+  }
+
+  .intro {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    margin-bottom: 44px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 28px;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .section-note {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 24px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* CORE PRACTICE */
+  .practice-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .practice-step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .practice-step:last-child {
+    border-bottom: none;
+  }
+
+  .step-num {
+    background: var(--cream);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 18px 0 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--lavender);
+    border-right: 1px solid var(--border);
+  }
+
+  .step-content {
+    padding: 16px 20px;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+
+  .step-duration {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+
+  .step-body {
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  /* QUICK CHECK-INS */
+  .checkin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .checkin-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .checkin-card-header {
+    background: var(--teal);
+    color: white;
+    padding: 12px 18px;
+  }
+
+  .checkin-when {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 2px;
+  }
+
+  .checkin-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .checkin-card-body {
+    padding: 16px 18px;
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  .checkin-card-body ol {
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .checkin-card-body ol li {
+    line-height: 1.55;
+  }
+
+  .checkin-time {
+    font-size: 11px;
+    color: var(--pink);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  /* SENSATIONS GUIDE */
+  .sensations-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .sensations-table th {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #6b7280;
+    padding: 0 16px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sensations-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 14px;
+  }
+
+  .sensations-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .sensation-type {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--teal);
+    white-space: nowrap;
+  }
+
+  .sensation-desc {
+    color: #4b5563;
+    line-height: 1.55;
+  }
+
+  /* DAILY PRACTICE */
+  .daily-box {
+    border: 1px solid var(--lavender);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .daily-header {
+    background: var(--lavender);
+    padding: 14px 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--dark);
+  }
+
+  .daily-body {
+    padding: 22px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.7;
+  }
+
+  .daily-body p {
+    margin-bottom: 12px;
+  }
+
+  .daily-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .daily-questions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+    padding: 16px 20px;
+    background: var(--cream);
+    border-radius: 6px;
+  }
+
+  .daily-questions li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dark);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .daily-questions li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--lavender);
+  }
+
+  .reminder-box {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-top: 40px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    background: white;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-print:hover { background: var(--cream); }
+
+  @media print {
+    body { font-size: 13px; }
+    .container { padding: 20px; }
+    .checkin-card { break-inside: avoid; }
+    .practice-step { break-inside: avoid; }
+    .no-print { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 30px; }
+    .container { padding: 28px 20px; }
+    .checkin-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="module-label">Solid Ground - Module 9</div>
+    <h1>Somatics and Body Check-Ins</h1>
+    <p class="subtitle">When you're making every decision alone, your body is your most reliable sounding board. Here's how to use it.</p>
+  </div>
+
+  <div class="intro">
+    Somatic awareness is the practice of noticing what's happening in your body - not just your thoughts. Your body holds information your mind often hasn't caught up with yet. A tightening in the chest, a drop in the stomach, a sudden lightness - these are signals. Learning to read them is one of the most useful skills you can build as a solo practitioner.
+  </div>
+
+  <!-- CORE PRACTICE -->
+  <div class="section">
+    <div class="section-eyebrow">The Core Practice</div>
+    <h2>A Full Body Check-In</h2>
+    <p class="section-note">10-15 minutes. Use this when you need a real answer - before a big decision, when something feels off, or at the start of your work day.</p>
+
+    <div class="practice-steps">
+      <div class="practice-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-duration">1-2 minutes</div>
+          <div class="step-title">Arrive</div>
+          <div class="step-body">Sit or lie down comfortably. Close your eyes if that feels okay. Take three slow breaths - not rushed, not performed. Just real. Feel your weight in your seat or on the floor. You're not trying to relax yet - just arrive.</div>
+        </div>
+      </div>
+
+      <div class="practice-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-duration">2-3 minutes</div>
+          <div class="step-title">Scan from the ground up</div>
+          <div class="step-body">Bring your attention to your feet. Notice any sensation - warmth, pressure, tingling, nothing. Move slowly upward: calves, knees, thighs, hips, belly, chest, shoulders, arms, hands, neck, face. You're not trying to change anything. Just notice what's there.</div>
+        </div>
+      </div>
+
+      <div class="practice-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-duration">3-4 minutes</div>
+          <div class="step-title">Find where you're holding</div>
+          <div class="step-body">Where in your body do you feel the most tension, tightness, or activation right now? Stay with it. Don't try to release it or explain it. Put your hand there if that helps. Breathe into it - not to fix it, just to acknowledge it. Ask: how long has this been here?</div>
+        </div>
+      </div>
+
+      <div class="practice-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-duration">2-3 minutes</div>
+          <div class="step-title">Ask the body a question</div>
+          <div class="step-body">Bring to mind the thing you've been sitting with - a decision, a task you're avoiding, something that's felt heavy. Don't think about it with your head. Ask your body: what do you know about this that I haven't listened to yet? Notice the first sensation that responds. That's information.</div>
+        </div>
+      </div>
+
+      <div class="practice-step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-duration">2 minutes</div>
+          <div class="step-title">Return slowly</div>
+          <div class="step-body">Take a few deeper breaths. Wiggle your fingers and toes. Open your eyes when you're ready. Before you move on, write down one thing you noticed - a sensation, a word, a feeling. Even if it doesn't make sense yet, write it down. It matters.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK CHECK-INS -->
+  <div class="section">
+    <div class="section-eyebrow">Quick Practices</div>
+    <h2>Check-Ins for Specific Moments</h2>
+    <p class="section-note">30 seconds to 2 minutes. Use these in the middle of your day when you don't have time for the full practice.</p>
+
+    <div class="checkin-grid">
+
+      <div class="checkin-card">
+        <div class="checkin-card-header">
+          <div class="checkin-when">Use this</div>
+          <div class="checkin-title">Before a client session</div>
+        </div>
+        <div class="checkin-card-body">
+          <div class="checkin-time">1-2 minutes</div>
+          <ol>
+            <li>Feet flat on the floor. Feel the ground.</li>
+            <li>Three slow breaths. In through the nose, out through the mouth.</li>
+            <li>Hands in your lap. Notice: where are you carrying tension right now?</li>
+            <li>Say quietly or internally: <em>I am here. They are welcome.</em></li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="checkin-card">
+        <div class="checkin-card-header">
+          <div class="checkin-when">Use this</div>
+          <div class="checkin-title">Before a big decision</div>
+        </div>
+        <div class="checkin-card-body">
+          <div class="checkin-time">2 minutes</div>
+          <ol>
+            <li>Close your eyes. Think of Option A. Notice what happens in your body - expansion or contraction?</li>
+            <li>Clear. Breathe. Think of Option B. Notice again.</li>
+            <li>Which one felt like opening, even slightly? Which felt like bracing?</li>
+            <li>You don't have to act on it yet. Just note what you felt.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="checkin-card">
+        <div class="checkin-card-header">
+          <div class="checkin-when">Use this</div>
+          <div class="checkin-title">When you're stuck or avoiding</div>
+        </div>
+        <div class="checkin-card-body">
+          <div class="checkin-time">1 minute</div>
+          <ol>
+            <li>Put one hand on your chest. Breathe.</li>
+            <li>Ask: where does the resistance live? Chest? Stomach? Throat?</li>
+            <li>Don't try to push through it. Just name it: <em>this is resistance.</em></li>
+            <li>Ask: is this fear, or is this a no? They feel different. Notice which one.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="checkin-card">
+        <div class="checkin-card-header">
+          <div class="checkin-when">Use this</div>
+          <div class="checkin-title">When something feels off</div>
+        </div>
+        <div class="checkin-card-body">
+          <div class="checkin-time">30 seconds</div>
+          <ol>
+            <li>Stop. Put both feet flat on the floor.</li>
+            <li>Take one slow breath all the way down into your belly.</li>
+            <li>Ask: what does my body already know that I haven't said out loud yet?</li>
+            <li>Don't answer with your head. Wait for a sensation. That's the answer.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="checkin-card">
+        <div class="checkin-card-header">
+          <div class="checkin-when">Use this</div>
+          <div class="checkin-title">At the end of your work day</div>
+        </div>
+        <div class="checkin-card-body">
+          <div class="checkin-time">2 minutes</div>
+          <ol>
+            <li>Before you close your laptop or leave the space: stop.</li>
+            <li>Scan your body from shoulders to feet. Where are you holding the day?</li>
+            <li>Shake your hands out gently. Roll your shoulders back.</li>
+            <li>Say: <em>the work is done for now.</em> Let the space shift.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="checkin-card">
+        <div class="checkin-card-header">
+          <div class="checkin-when">Use this</div>
+          <div class="checkin-title">When you feel overwhelmed</div>
+        </div>
+        <div class="checkin-card-body">
+          <div class="checkin-time">1-2 minutes</div>
+          <ol>
+            <li>Both feet on the floor. Both hands flat on a surface - your desk, your thighs, the wall.</li>
+            <li>Feel the pressure between your hands and the surface. Stay there.</li>
+            <li>Breathe slowly. You don't have to solve anything right now.</li>
+            <li>When the overwhelm softens slightly: what's the one next thing? Just one.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SENSATIONS GUIDE -->
+  <div class="section">
+    <div class="section-eyebrow">Reference</div>
+    <h2>What You Might Notice</h2>
+    <p class="section-note">Sensations are information, not diagnosis. This is a starting point for learning your own body's language - yours may be different.</p>
+
+    <table class="sensations-table">
+      <thead>
+        <tr>
+          <th style="width:200px">Sensation</th>
+          <th>What it might mean</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="sensation-type">Tightening or bracing</div></td>
+          <td><div class="sensation-desc">Often a protective response - the body anticipating something difficult. Could be fear, resistance, or a signal that something doesn't feel safe. Worth pausing with, not pushing through.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Expansion or lightness</div></td>
+          <td><div class="sensation-desc">Often a yes signal - the body opening toward something. Can appear in the chest, shoulders dropping, a sense of spaciousness. Not always comfortable, but it's directional.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Heaviness or sinking</div></td>
+          <td><div class="sensation-desc">Sometimes grief, sometimes exhaustion, sometimes a quiet no. Different from tightness - this is the body saying it's carrying something. May need rest more than action.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Heat or flushing</div></td>
+          <td><div class="sensation-desc">Activation - the nervous system is engaged. Could be excitement, anger, or anxiety. Notice where the heat lives (chest vs throat vs face) - that changes the meaning.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Nausea or stomach drop</div></td>
+          <td><div class="sensation-desc">A common no signal, especially in the gut. Also appears with fear of being seen. Worth asking: is this danger, or is this visibility?</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Numbness or nothing</div></td>
+          <td><div class="sensation-desc">Dissociation - the body has moved away from feeling. Usually means something is too much right now. Not a time to push. Come back to ground: feet, breath, surfaces.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Tingling or energy moving</div></td>
+          <td><div class="sensation-desc">Often a sign of release, or of something shifting. Can follow a breath or a moment of recognition. Let it move rather than trying to stop or hold it.</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HUMAN DESIGN -->
+  <div class="section">
+    <div class="section-eyebrow">Optional Tool</div>
+    <h2>Human Design and Your Decision-Making</h2>
+    <p class="section-note">Like AI, Human Design is a tool - not a requirement. If you already have your chart, this is worth knowing. If you don't, the practices in this guide work without it.</p>
+
+    <div class="intro" style="margin-bottom:20px">
+      Human Design is a system that maps how you're designed to make decisions, use your energy, and move through the world. One of its most practically useful elements is your <strong>inner authority</strong> - the part of the system that describes where in your body your best decisions come from. For some people it's the gut (Sacral). For others it's emotion over time, or a quiet inner knowing, or physical intuition. Whatever yours is, body check-ins become more useful when you know what you're listening for.
+    </div>
+
+    <table class="sensations-table">
+      <thead>
+        <tr>
+          <th style="width:200px">Authority type</th>
+          <th>What to listen for in check-ins</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="sensation-type">Sacral</div></td>
+          <td><div class="sensation-desc">An immediate gut response - a sound, a feeling of expansion or flatness. It comes before the mind catches up. Notice your very first response to something, not the one you rationalise into.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Emotional / Solar Plexus</div></td>
+          <td><div class="sensation-desc">Clarity comes over time, not in the moment. Your body check-ins are most useful across several days - notice how the same decision feels on a high day vs a low one. Wait for clarity before acting.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Splenic</div></td>
+          <td><div class="sensation-desc">A quiet, in-the-moment knowing that doesn't repeat. Easy to miss. Your body check-ins need to be done in stillness and silence - the signal is gentle and doesn't announce itself.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Self-Projected / Ego</div></td>
+          <td><div class="sensation-desc">Clarity comes through speaking. Body check-ins are most useful when paired with talking out loud - to yourself, to a trusted person, or even recorded. Notice what feels true when you hear yourself say it.</div></td>
+        </tr>
+        <tr>
+          <td><div class="sensation-type">Mental / Sounding Board</div></td>
+          <td><div class="sensation-desc">No inner authority - you gather information from the environment. Notice what your body does in different spaces and around different people. Your check-ins are most useful after conversations, not before them.</div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:16px;font-size:13px;color:#6b7280;font-style:italic;line-height:1.6">
+      Don't know your Human Design chart yet? You can get a free chart at jovianarchive.com using your birth date, time, and place. If you don't know your birth time, the practices in this guide still work - your body will teach you its own language regardless.
+    </div>
+  </div>
+
+  <!-- DAILY PRACTICE -->
+  <div class="section">
+    <div class="daily-box">
+      <div class="daily-header">Building the Habit - A Simple Daily Practice</div>
+      <div class="daily-body">
+        <p>You don't need to do the full check-in every day. What builds the skill is repetition - brief, consistent contact with your body rather than long occasional sessions.</p>
+
+        <p>Try this: once a day, before you start work, take 60 seconds to answer these three questions from your body - not your head:</p>
+
+        <ul class="daily-questions">
+          <li>Where am I holding tension right now?</li>
+          <li>What does my energy feel like today - expanded or contracted?</li>
+          <li>What does my body need from this work day?</li>
+        </ul>
+
+        <p>Write the answers down if you can. A line is enough. Over time, you'll start to notice patterns - the days your body warns you before your mind catches on, the sensations that reliably signal a yes or a no for you specifically.</p>
+
+        <p>This is how you build your own body's language. It takes time, and it's worth it.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="reminder-box">
+    Running solo doesn't mean running on thinking alone. Your body has been with you through everything that's shaped you - it has context your mind doesn't always have access to. The check-in practice is how you start a conversation with it.
+  </div>
+
+  <div class="no-print">
+    <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+</div>
+</body>
+</html>

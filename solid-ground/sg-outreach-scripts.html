@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>First Clients - Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    color: var(--dark);
+    background: white;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 36px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .module-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+    color: var(--teal);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    max-width: 560px;
+  }
+
+  .intro {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  /* THREE CIRCLES */
+  .circles-section {
+    margin-bottom: 50px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+
+  .circles-instruction {
+    font-size: 15px;
+    color: var(--dark);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .circles-instruction strong {
+    color: var(--teal);
+  }
+
+  .circles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .circle-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 16px;
+  }
+
+  .circle-num {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 2px;
+  }
+
+  .circle-name {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .name-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .name-line {
+    border: none;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+    padding: 4px 0;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+    background: transparent;
+  }
+
+  .name-line:focus {
+    border-bottom-color: var(--teal);
+  }
+
+  /* SCRIPTS */
+  .scripts-section {
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 28px;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .section-note {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  .script-block {
+    margin-bottom: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .script-header {
+    padding: 16px 22px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+    background: white;
+  }
+
+  .script-circle-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    white-space: nowrap;
+  }
+
+  .script-header h3 {
+    font-size: 20px;
+    color: var(--dark);
+  }
+
+  .script-desc {
+    font-size: 13px;
+    color: #6b7280;
+    font-style: italic;
+    margin-left: auto;
+    padding-left: 12px;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  .script-body {
+    padding: 22px;
+  }
+
+  .script-context {
+    font-size: 13px;
+    color: #4b5563;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .script-box {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.8;
+    position: relative;
+    margin-bottom: 14px;
+    white-space: pre-line;
+  }
+
+  .script-format-label {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+
+  .fill-in {
+    color: var(--teal);
+    font-style: italic;
+    border-bottom: 1px dashed var(--teal);
+  }
+
+  .script-tips {
+    margin-top: 14px;
+  }
+
+  .script-tips ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .script-tips ul li {
+    font-size: 13px;
+    color: #4b5563;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .script-tips ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--lavender);
+  }
+
+  .btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 14px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 12px;
+    color: #6b7280;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-copy:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .copy-ok {
+    font-size: 12px;
+    color: #2e7d32;
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: inline;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 44px 0;
+  }
+
+  .reminder-box {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+    margin-top: 8px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    background: white;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .btn-print:hover { background: var(--cream); }
+
+  @media print {
+    body { font-size: 13px; }
+    .container { padding: 20px; }
+    .script-block { break-inside: avoid; }
+    .no-print { display: none; }
+    .name-line { border-bottom-color: #ccc !important; }
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 30px; }
+    .container { padding: 28px 20px; }
+    .circles-grid { grid-template-columns: 1fr; }
+    .script-desc { display: none; }
+    .script-header { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="module-label">Solid Ground - Module 5</div>
+    <h1>Where Your First Clients Come From</h1>
+    <p class="subtitle">They're closer than you think. Start here, not on a cold Instagram grid.</p>
+  </div>
+
+  <div class="intro">
+    Your first clients are almost never strangers. They're people who already know you, trust you, or have seen your name somewhere. This exercise helps you find them - and gives you the words to reach out.
+  </div>
+
+  <!-- THREE CIRCLES -->
+  <div class="circles-section">
+    <div class="section-eyebrow">The Three Circles</div>
+    <p class="circles-instruction">Write as many names as you can in each circle. Don't overthink it. <strong>Your first clients are almost certainly in Circles 1 and 2.</strong></p>
+
+    <div class="circles-grid">
+      <div class="circle-card">
+        <div class="circle-num">Circle 1</div>
+        <div class="circle-name">People who<br>know you</div>
+        <div class="name-lines">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+        </div>
+      </div>
+      <div class="circle-card">
+        <div class="circle-num">Circle 2</div>
+        <div class="circle-name">People who<br>know of you</div>
+        <div class="name-lines">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+        </div>
+      </div>
+      <div class="circle-card">
+        <div class="circle-num">Circle 3</div>
+        <div class="circle-name">Strangers</div>
+        <div class="name-lines">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+          <input type="text" class="name-line" placeholder="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SCRIPTS -->
+  <div class="scripts-section">
+    <h2>Outreach Scripts</h2>
+    <p class="section-note">One for each circle. These are starting points - adjust the language so it sounds like you, not a template.</p>
+
+    <!-- CIRCLE 1 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-circle-tag">Circle 1</span>
+        <h3>People who know you</h3>
+        <span class="script-desc">Close friends, family,<br>existing contacts</span>
+      </div>
+      <div class="script-body">
+        <p class="script-context">These people already trust you. You don't need to sell - just tell them what you're doing and ask them to pass it on. Keep it personal and direct.</p>
+
+        <div class="script-format-label">Text / DM</div>
+        <div class="script-box" id="s1a">Hey <span class="fill-in">[name]</span>, I wanted to let you know I've officially started taking clients with <span class="fill-in">[business name]</span>. I'm offering <span class="fill-in">[what you do, e.g. Reiki sessions online and in-person]</span>. If you know anyone who might be interested, I'd love it if you passed on my details. Here's my booking link if you ever want to try a session yourself: <span class="fill-in">[link]</span></div>
+
+        <div class="script-format-label">In person</div>
+        <div class="script-box" id="s1b">"I've just started <span class="fill-in">[business name]</span> - I'm doing <span class="fill-in">[brief description]</span>. I'm building my client base at the moment so if you know anyone who might be keen, send them my way."</div>
+
+        <div class="script-tips">
+          <ul>
+            <li>Don't apologise for reaching out. You're sharing something, not imposing.</li>
+            <li>Personalise each message - one line that shows you thought of them specifically goes a long way.</li>
+            <li>You don't need a big announcement. A direct message to five people beats a vague post to 500.</li>
+          </ul>
+        </div>
+        <button class="btn-copy no-print" onclick="copyScript('s1a', this)">Copy text message</button>
+        <span class="copy-ok"></span>
+      </div>
+    </div>
+
+    <!-- CIRCLE 2 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-circle-tag">Circle 2</span>
+        <h3>People who know of you</h3>
+        <span class="script-desc">Acquaintances, former colleagues,<br>social media connections</span>
+      </div>
+      <div class="script-body">
+        <p class="script-context">These people recognise your name but may not know what you do now. You're reconnecting and letting them know. Keep it warm, not salesy - you're informing, not pitching.</p>
+
+        <div class="script-format-label">DM or email</div>
+        <div class="script-box" id="s2a">Hi <span class="fill-in">[name]</span>, hope you're well. I've recently started <span class="fill-in">[business name]</span> - I offer <span class="fill-in">[brief description, e.g. Reiki and energy healing for women who need to slow down]</span>. I'm just getting started and building my client base, so if you or anyone you know has been curious about <span class="fill-in">[what you do]</span>, I'd love to help. You can see what I offer and book here: <span class="fill-in">[link]</span></div>
+
+        <div class="script-format-label">Comment reply or story mention</div>
+        <div class="script-box" id="s2b">Thanks so much - and yes, I've just launched <span class="fill-in">[business name]</span>! I do <span class="fill-in">[what you do]</span>. If you ever want to know more, my link is in my bio.</div>
+
+        <div class="script-tips">
+          <ul>
+            <li>A brief "hope you're well" acknowledgment goes further than jumping straight to business.</li>
+            <li>If you haven't spoken in a while, lead with connection - not your offer.</li>
+            <li>One clear link is enough. Don't list everything you do.</li>
+          </ul>
+        </div>
+        <button class="btn-copy no-print" onclick="copyScript('s2a', this)">Copy DM script</button>
+        <span class="copy-ok"></span>
+      </div>
+    </div>
+
+    <!-- CIRCLE 3 -->
+    <div class="script-block">
+      <div class="script-header">
+        <span class="script-circle-tag">Circle 3</span>
+        <h3>Strangers</h3>
+        <span class="script-desc">Public posts, new followers,<br>online communities</span>
+      </div>
+      <div class="script-body">
+        <p class="script-context">You're not trying to close a sale here - you're making yourself visible and letting people know you exist. These posts plant seeds. Results take longer, but they're worth doing alongside the direct outreach above.</p>
+
+        <div class="script-format-label">Instagram / Facebook caption</div>
+        <div class="script-box" id="s3a">I've been quiet about this for a while, but I'm officially open for bookings.
+
+I'm <span class="fill-in">[your name]</span> and I offer <span class="fill-in">[what you do]</span> for <span class="fill-in">[who it's for]</span>.
+
+If you've been curious about <span class="fill-in">[service]</span> - or you know someone who could use it - now's a good time to reach out.
+
+<span class="fill-in">[Link in bio / DM me / Book here: link]</span></div>
+
+        <div class="script-format-label">Community / Facebook group post</div>
+        <div class="script-box" id="s3b">Hi everyone - I'm <span class="fill-in">[name]</span>, based in <span class="fill-in">[location]</span>. I've just launched <span class="fill-in">[business name]</span> - I offer <span class="fill-in">[what you do]</span> <span class="fill-in">[online / in-person / both]</span>. If you have questions or want to know more, feel free to message me. Happy to chat.</div>
+
+        <div class="script-tips">
+          <ul>
+            <li>Post before you feel ready. "Almost ready" is not a reason to wait.</li>
+            <li>Being personal in your caption - even a little vulnerable - outperforms polished every time.</li>
+            <li>One clear CTA at the end: link in bio, DM me, or a direct booking link. Pick one.</li>
+            <li>Consistency matters more than the perfect post. Show up regularly and let people find you.</li>
+          </ul>
+        </div>
+        <button class="btn-copy no-print" onclick="copyScript('s3a', this)">Copy Instagram caption</button>
+        <span class="copy-ok"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="reminder-box">
+    Send the messages first. Post to strangers second. Your first client is almost always someone who already knows you - and they're waiting to hear from you.
+  </div>
+
+  <div class="no-print">
+    <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+</div>
+
+<script>
+  function copyScript(id, btn) {
+    const el = document.getElementById(id);
+    const text = el.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const confirm = btn.nextElementSibling;
+      confirm.textContent = 'Copied';
+      confirm.style.opacity = '1';
+      setTimeout(() => confirm.style.opacity = '0', 2000);
+    });
+  }
+</script>
+</body>
+</html>

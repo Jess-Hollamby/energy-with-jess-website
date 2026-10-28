@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Breakdown - Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    color: var(--dark);
+    background: white;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 36px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .module-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+    color: var(--teal);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    max-width: 560px;
+  }
+
+  .intro {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  .section {
+    margin-bottom: 40px;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    color: var(--lavender);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: var(--teal);
+  }
+
+  .section-note {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 18px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .field-group {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 15px;
+    color: var(--dark);
+    background: white;
+    transition: border-color 0.15s;
+    outline: none;
+    resize: vertical;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: var(--teal);
+  }
+
+  .field-hint {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .colour-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+
+  .colour-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .colour-picker-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 10px;
+    background: white;
+  }
+
+  input[type="color"] {
+    width: 36px;
+    height: 36px;
+    border: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .hex-input {
+    flex: 1;
+    border: none;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    outline: none;
+    background: transparent;
+    min-width: 0;
+  }
+
+  .colour-label-name {
+    font-size: 12px;
+    color: #6b7280;
+  }
+
+  .word-tags-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 10px;
+    min-height: 44px;
+    cursor: text;
+    background: white;
+  }
+
+  .word-tags-input:focus-within {
+    border-color: var(--teal);
+  }
+
+  .word-tag {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--teal);
+  }
+
+  .word-tag .remove {
+    cursor: pointer;
+    color: #9ca3af;
+    font-size: 16px;
+    line-height: 1;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  .word-tag .remove:hover {
+    color: var(--pink);
+  }
+
+  .tag-input {
+    border: none;
+    outline: none;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    background: transparent;
+    flex: 1;
+    min-width: 80px;
+    color: var(--dark);
+  }
+
+  .statement-box {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  .statement-template {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .statement-template span {
+    color: var(--teal);
+    border-bottom: 1px dashed var(--teal);
+  }
+
+  .statement-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .statement-field label {
+    color: #6b7280;
+    font-size: 11px;
+  }
+
+  .statement-field input {
+    border-color: #d1d5db;
+  }
+
+  .preview-output {
+    margin-top: 16px;
+    padding: 14px;
+    background: white;
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 52px;
+    display: none;
+  }
+
+  .btn-save {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-save:hover {
+    background: #2f4e5c;
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    margin-left: 12px;
+    background: white;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-print:hover {
+    background: var(--cream);
+  }
+
+  .actions {
+    margin-top: 8px;
+  }
+
+  @media print {
+    body { font-size: 13px; }
+    .container { padding: 20px; }
+    .actions { display: none; }
+    input, textarea { border-color: #ccc !important; }
+    .section { break-inside: avoid; }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 30px; }
+    .container { padding: 28px 20px; }
+    .two-col { grid-template-columns: 1fr; }
+    .statement-inputs { grid-template-columns: 1fr; }
+    .colour-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="module-label">Solid Ground - Module 3</div>
+    <h1>Brand Breakdown</h1>
+    <p class="subtitle">Your brand in one place. Fill this in and come back to it whenever you create something new.</p>
+  </div>
+
+  <div class="intro">
+    Brand isn't a logo. It's the feeling someone has when they find you for the first time - the colours they see, the words they read, the sense of whether this is for them or not. Getting clear on your basics early means everything you create points in the same direction. Fill in what you know. Leave blank what you don't yet - that's fine.
+  </div>
+
+  <!-- SECTION 1: YOUR BUSINESS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <h2>Your Business</h2>
+    </div>
+
+    <div class="field-group">
+      <label for="biz-name">Business name</label>
+      <input type="text" id="biz-name" placeholder="e.g. Bloom Healing">
+    </div>
+
+    <div class="field-group">
+      <label for="tagline">Tagline</label>
+      <input type="text" id="tagline" placeholder="One line that says what you do or who you're for">
+      <div class="field-hint">Doesn't have to be clever. "Reiki for women who need to breathe again" is enough.</div>
+    </div>
+
+    <div class="field-group">
+      <label for="who-help">Who you help</label>
+      <input type="text" id="who-help" placeholder="e.g. Busy mums who've lost themselves in the giving">
+    </div>
+
+    <div class="field-group">
+      <label for="main-offer">Your main offer</label>
+      <input type="text" id="main-offer" placeholder="e.g. 1:1 Reiki sessions online and in-person, Adelaide">
+    </div>
+  </div>
+
+  <!-- SECTION 2: COLOURS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <h2>Your Colours</h2>
+    </div>
+    <div class="section-note">You don't need more than 3-4 colours. One primary, one accent, one dark, one light background is plenty. Pick colours that feel like you - not what's trendy.</div>
+
+    <div class="colour-row">
+      <div class="colour-field">
+        <span class="colour-label-name">Primary colour</span>
+        <div class="colour-picker-wrap">
+          <input type="color" id="col1" value="#3B5E6E" oninput="syncHex('col1','hex1')">
+          <input type="text" id="hex1" class="hex-input" value="#3B5E6E" maxlength="7" oninput="syncColor('hex1','col1')" placeholder="#000000">
+        </div>
+      </div>
+      <div class="colour-field">
+        <span class="colour-label-name">Accent colour</span>
+        <div class="colour-picker-wrap">
+          <input type="color" id="col2" value="#bf4288" oninput="syncHex('col2','hex2')">
+          <input type="text" id="hex2" class="hex-input" value="#bf4288" maxlength="7" oninput="syncColor('hex2','col2')" placeholder="#000000">
+        </div>
+      </div>
+      <div class="colour-field">
+        <span class="colour-label-name">Dark / text colour</span>
+        <div class="colour-picker-wrap">
+          <input type="color" id="col3" value="#1E2E32" oninput="syncHex('col3','hex3')">
+          <input type="text" id="hex3" class="hex-input" value="#1E2E32" maxlength="7" oninput="syncColor('hex3','col3')" placeholder="#000000">
+        </div>
+      </div>
+      <div class="colour-field">
+        <span class="colour-label-name">Background / light</span>
+        <div class="colour-picker-wrap">
+          <input type="color" id="col4" value="#FAF7F2" oninput="syncHex('col4','hex4')">
+          <input type="text" id="hex4" class="hex-input" value="#FAF7F2" maxlength="7" oninput="syncColor('hex4','col4')" placeholder="#000000">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: FONTS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <h2>Your Fonts</h2>
+    </div>
+    <div class="section-note">Two fonts is enough - one for headings, one for body text. More than two starts to look messy. Google Fonts has thousands of free options. Canva also has a solid library built in.</div>
+
+    <div class="two-col">
+      <div class="field-group">
+        <label for="font-heading">Heading font</label>
+        <input type="text" id="font-heading" placeholder="e.g. Cormorant Garamond">
+        <div class="field-hint">Usually a serif - elegant and warm</div>
+      </div>
+      <div class="field-group">
+        <label for="font-body">Body font</label>
+        <input type="text" id="font-body" placeholder="e.g. Belleza">
+        <div class="field-hint">Usually a sans-serif - clean and readable</div>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="font-where">Where to find them</label>
+      <input type="text" id="font-where" placeholder="e.g. fonts.google.com / Canva / Adobe Fonts">
+    </div>
+  </div>
+
+  <!-- SECTION 4: VOICE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <h2>Your Voice</h2>
+    </div>
+    <div class="section-note">Voice is how you sound in writing. It shapes everything - captions, emails, your website, how you describe what you do. Getting clear on your voice means your content stops sounding like everyone else's.</div>
+
+    <div class="field-group">
+      <label>Three words that describe your tone</label>
+      <div class="word-tags-input" id="tone-tags" onclick="document.getElementById('tone-input').focus()">
+        <input type="text" id="tone-input" class="tag-input" placeholder="Type a word and press Enter" onkeydown="addTag(event, 'tone-tags', 'tone-input', 3)">
+      </div>
+      <div class="field-hint">e.g. warm, grounded, direct - how do you want people to feel when they read your words?</div>
+    </div>
+
+    <div class="field-group">
+      <label>Words and phrases you use (your "open" words)</label>
+      <div class="word-tags-input" id="open-tags" onclick="document.getElementById('open-input').focus()">
+        <input type="text" id="open-input" class="tag-input" placeholder="Type a word and press Enter" onkeydown="addTag(event, 'open-tags', 'open-input', 20)">
+      </div>
+      <div class="field-hint">Language that feels like you. Words you reach for naturally.</div>
+    </div>
+
+    <div class="field-group">
+      <label>Words you never use (your "close" words)</label>
+      <div class="word-tags-input" id="close-tags" onclick="document.getElementById('close-input').focus()">
+        <input type="text" id="close-input" class="tag-input" placeholder="Type a word and press Enter" onkeydown="addTag(event, 'close-tags', 'close-input', 20)">
+      </div>
+      <div class="field-hint">Jargon, hype language, words that make you cringe. If it doesn't sound like you, add it here.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: VISUAL FEEL -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <h2>Your Visual Feel</h2>
+    </div>
+
+    <div class="two-col">
+      <div class="field-group">
+        <label for="photo-style">Photography style</label>
+        <input type="text" id="photo-style" placeholder="e.g. soft and natural / moody and still">
+        <div class="field-hint">What feeling do your images carry?</div>
+      </div>
+      <div class="field-group">
+        <label for="overall-feel">Overall feel in 2-3 words</label>
+        <input type="text" id="overall-feel" placeholder="e.g. calm, warm, real">
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="not-words">What it's NOT</label>
+      <input type="text" id="not-words" placeholder="e.g. Not clinical, not loud, not corporate">
+      <div class="field-hint">Sometimes knowing what you're not is as useful as knowing what you are.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: BRAND STATEMENT -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <h2>Your Brand Statement</h2>
+    </div>
+    <div class="section-note">Not for your website necessarily - for you. Knowing this clearly means you can answer "what do you do?" without freezing.</div>
+
+    <div class="statement-box">
+      <div class="statement-template">
+        I help <span id="s-who">women who...</span> feel <span id="s-feel">...</span> through <span id="s-how">...</span>.
+      </div>
+
+      <div class="statement-inputs">
+        <div class="statement-field field-group">
+          <label for="st-who">Who you help</label>
+          <input type="text" id="st-who" placeholder="e.g. exhausted mums" oninput="updateStatement()">
+        </div>
+        <div class="statement-field field-group">
+          <label for="st-feel">How they feel after working with you</label>
+          <input type="text" id="st-feel" placeholder="e.g. grounded and clear" oninput="updateStatement()">
+        </div>
+        <div class="statement-field field-group" style="grid-column: 1 / -1">
+          <label for="st-how">What you offer / how you do it</label>
+          <input type="text" id="st-how" placeholder="e.g. Reiki and intuitive energy healing" oninput="updateStatement()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+</div>
+
+<script>
+  function syncHex(colorId, hexId) {
+    document.getElementById(hexId).value = document.getElementById(colorId).value;
+  }
+
+  function syncColor(hexId, colorId) {
+    const val = document.getElementById(hexId).value;
+    if (/^#[0-9A-Fa-f]{6}$/.test(val)) {
+      document.getElementById(colorId).value = val;
+    }
+  }
+
+  function addTag(event, containerId, inputId, maxTags) {
+    if (event.key === 'Enter' || event.key === ',') {
+      event.preventDefault();
+      const input = document.getElementById(inputId);
+      const val = input.value.trim().replace(/,$/, '');
+      if (!val) return;
+
+      const container = document.getElementById(containerId);
+      const existing = container.querySelectorAll('.word-tag').length;
+      if (existing >= maxTags) return;
+
+      const tag = document.createElement('span');
+      tag.className = 'word-tag';
+      tag.innerHTML = `${val} <button class="remove" onclick="this.parentElement.remove()" tabindex="-1">&times;</button>`;
+
+      container.insertBefore(tag, input);
+      input.value = '';
+    }
+    if (event.key === 'Backspace' && !event.target.value) {
+      const container = document.getElementById(containerId);
+      const tags = container.querySelectorAll('.word-tag');
+      if (tags.length > 0) tags[tags.length - 1].remove();
+    }
+  }
+
+  function updateStatement() {
+    const who = document.getElementById('st-who').value || 'women who...';
+    const feel = document.getElementById('st-feel').value || '...';
+    const how = document.getElementById('st-how').value || '...';
+
+    document.getElementById('s-who').textContent = who;
+    document.getElementById('s-feel').textContent = feel;
+    document.getElementById('s-how').textContent = how;
+  }
+</script>
+</body>
+</html>

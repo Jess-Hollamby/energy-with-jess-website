@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Stack Checklist - Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    color: var(--dark);
+    background: white;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 36px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .module-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+    color: var(--teal);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    max-width: 560px;
+  }
+
+  .intro {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  .category {
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+
+  .category-note {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+
+  .tool-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .tool {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .tool:hover {
+    border-color: var(--teal);
+  }
+
+  .tool.checked {
+    background: var(--cream);
+    border-color: var(--teal);
+  }
+
+  .tool input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-top: 2px;
+    accent-color: var(--teal);
+    cursor: pointer;
+  }
+
+  .tool-content {
+    flex: 1;
+  }
+
+  .tool-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+
+  .tool-desc {
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.5;
+  }
+
+  .tool-badge {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 4px;
+    display: inline-block;
+  }
+
+  .badge-free {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .badge-freemium {
+    background: #fff8e1;
+    color: #f57c00;
+  }
+
+  .badge-paid {
+    background: #fce4ec;
+    color: #c2185b;
+  }
+
+  .badge-percent {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  .footer-note {
+    font-size: 13px;
+    color: #6b7280;
+    background: var(--cream);
+    padding: 16px 20px;
+    border-radius: 6px;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+
+  .footer-note strong {
+    color: var(--teal);
+  }
+
+  .progress-bar-wrap {
+    margin-bottom: 8px;
+  }
+
+  .progress-label {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 0%;
+  }
+
+  @media print {
+    body { font-size: 13px; }
+    .container { padding: 20px; }
+    .tool { break-inside: avoid; }
+    .category { break-inside: avoid; }
+    .progress-bar-wrap, .progress-bar { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 30px; }
+    .container { padding: 28px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="module-label">Solid Ground - Module 2</div>
+    <h1>Tech Stack Checklist</h1>
+    <p class="subtitle">The free and low-cost tools that do the job. Start here, add more only when you need them.</p>
+  </div>
+
+  <div class="intro">
+    You don't need to spend money on tools before you've made money. Everything on this list has a free tier that will carry you through your first clients, your first consistent income, and beyond. Tick the ones you have set up. If something's missing, that's your next step.
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-label" id="progress-label">0 of 22 tools set up</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+
+  <!-- WORKSPACE -->
+  <div class="category">
+    <h2>Workspace &amp; Files</h2>
+    <div class="category-note">Where you store documents, manage your calendar, and communicate.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Google Workspace (free)</div>
+          <div class="tool-desc">Gmail, Google Drive, Docs, Sheets, Slides, and Calendar in one account. 15GB storage free. This is your business home base.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Google Drive</div>
+          <div class="tool-desc">Included with your Google account. Store client files, templates, invoices, and session notes. Share files directly without email attachments.</div>
+          <span class="tool-badge badge-free">Free (included)</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- BOOKINGS -->
+  <div class="category">
+    <h2>Bookings &amp; Scheduling</h2>
+    <div class="category-note">Pick one and set it up properly. A booking link removes back-and-forth completely.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Calendly (free tier)</div>
+          <div class="tool-desc">One event type, unlimited bookings. Connects to Google Calendar. Sends automatic reminders to your clients. Free tier is enough to start.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Acuity Scheduling (free tier)</div>
+          <div class="tool-desc">More customisable than Calendly at the free level. Good for practitioners with intake forms or multiple session types.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Square Appointments</div>
+          <div class="tool-desc">Free for individual practitioners. Includes a basic booking page and integrates with Square payments.</div>
+          <span class="tool-badge badge-free">Free for solo</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- PAYMENTS -->
+  <div class="category">
+    <h2>Payments</h2>
+    <div class="category-note">No monthly fees on any of these - they take a small percentage per transaction only. Set up at least one before you take your first client.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Stripe</div>
+          <div class="tool-desc">Accepts cards, Apple Pay, Google Pay. Easy to send payment links. ~1.7% + 30c per transaction in Australia. Funds arrive in your bank in 2 days.</div>
+          <span class="tool-badge badge-percent">~1.7% per transaction</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">PayPal</div>
+          <div class="tool-desc">Most people already have it. Easy for clients who prefer not to enter card details. ~2.6% + fixed fee. Good to have as a backup to Stripe.</div>
+          <span class="tool-badge badge-percent">~2.6% per transaction</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Square</div>
+          <div class="tool-desc">Great if you take in-person payments. Free card reader available. ~1.6-1.9% per transaction in Australia.</div>
+          <span class="tool-badge badge-percent">~1.6-1.9% per transaction</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- DESIGN -->
+  <div class="category">
+    <h2>Design</h2>
+    <div class="category-note">You don't need a graphic designer to start. You need one good tool and your brand basics.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Canva (free tier)</div>
+          <div class="tool-desc">Create social posts, stories, PDFs, business cards, and more. Templates for everything. The free tier is genuinely sufficient for most practitioners.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Remove.bg</div>
+          <div class="tool-desc">Removes backgrounds from photos. Five free images per month. Useful for headshots and product images.</div>
+          <span class="tool-badge badge-freemium">5/month free</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA -->
+  <div class="category">
+    <h2>Social Media</h2>
+    <div class="category-note">Pick the platform where your ideal client spends time. You don't need to be everywhere.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Instagram Business Account</div>
+          <div class="tool-desc">Your primary shop window. Free. Switch from personal to business in settings to access analytics and add a booking link in your bio.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Facebook Business Page</div>
+          <div class="tool-desc">Secondary to Instagram but worth setting up for social proof. Many clients search Facebook before Instagram.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Linktree (free)</div>
+          <div class="tool-desc">One link in your Instagram bio that goes to multiple destinations - booking page, services, email list, etc. Free tier works well.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="category">
+    <h2>Email &amp; Newsletter</h2>
+    <div class="category-note">Start your list early. You don't need to send anything straight away - just have the platform ready when you do.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">MailerLite (free tier)</div>
+          <div class="tool-desc">Up to 1,000 subscribers and 12,000 emails per month free. Clean, simple to use. Recommended for practitioners starting their list.</div>
+          <span class="tool-badge badge-free">Free to 1,000 subscribers</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Mailchimp (free tier)</div>
+          <div class="tool-desc">500 contacts, 1,000 emails per month free. Well-known, lots of integrations. Gets expensive quickly once you grow.</div>
+          <span class="tool-badge badge-freemium">Free to 500 contacts</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Brevo (free tier)</div>
+          <div class="tool-desc">300 emails per day free, unlimited contacts. Good if you have a larger list and send less frequently.</div>
+          <span class="tool-badge badge-free">Free (300/day limit)</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- VIDEO CALLS -->
+  <div class="category">
+    <h2>Video Calls</h2>
+    <div class="category-note">For online sessions and discovery calls. Pick one and stick with it - make it easy for clients to know how they'll reach you.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Google Meet</div>
+          <div class="tool-desc">Included with your Google account. No time limits on 1:1 calls. Your client doesn't need to download anything - they click a link. Recommended.</div>
+          <span class="tool-badge badge-free">Free (included)</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Zoom (free tier)</div>
+          <div class="tool-desc">40-minute limit on group calls but unlimited time on 1:1 calls. Most clients already have it. Familiar and reliable.</div>
+          <span class="tool-badge badge-free">Free (40 min groups)</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <!-- WEBSITE -->
+  <div class="category">
+    <h2>Website (when you're ready)</h2>
+    <div class="category-note">You don't need a website before you have clients. Instagram + a booking link is enough to start. These are free options for when you are ready.</div>
+    <div class="tool-grid">
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Carrd</div>
+          <div class="tool-desc">Single-page sites, free. Clean and minimal. Good for a simple "here's who I am, here's how to book" page before you're ready for a full site.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+      <label class="tool">
+        <input type="checkbox" onchange="updateProgress(this)">
+        <div class="tool-content">
+          <div class="tool-name">Google Sites</div>
+          <div class="tool-desc">Free, simple, no domain needed. Looks basic but functions fine. Good as a placeholder while you build something better.</div>
+          <span class="tool-badge badge-free">Free</span>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer-note">
+    <strong>The rule:</strong> Don't pay for a tool until you're making consistent income and that tool would save you significant time or unlock something you genuinely can't do without it. Most practitioners run for 6-12 months on free tools before upgrading anything. That's not cutting corners - that's sensible.
+  </div>
+
+</div>
+
+<script>
+  function updateProgress(checkbox) {
+    const tool = checkbox.closest('.tool');
+    if (checkbox.checked) {
+      tool.classList.add('checked');
+    } else {
+      tool.classList.remove('checked');
+    }
+    const total = document.querySelectorAll('input[type="checkbox"]').length;
+    const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    const pct = Math.round((checked / total) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-label').textContent = checked + ' of ' + total + ' tools set up';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing Worksheet - Solid Ground</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #3B5E6E;
+    --pink: #bf4288;
+    --dark: #1E2E32;
+    --cream: #FAF7F2;
+    --lavender: #C4B0D4;
+    --border: #E4EAEC;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Belleza', sans-serif;
+    color: var(--dark);
+    background: white;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 48px 36px;
+  }
+
+  .header {
+    border-bottom: 2px solid var(--teal);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+
+  .module-label {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+    color: var(--teal);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+
+  .subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    max-width: 560px;
+  }
+
+  .intro {
+    background: var(--cream);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.65;
+  }
+
+  .part {
+    margin-bottom: 44px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .part-header {
+    background: var(--teal);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .part-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .part-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+  }
+
+  .part-body {
+    padding: 24px;
+  }
+
+  .part-note {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .calc-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .calc-row:last-child {
+    border-bottom: none;
+  }
+
+  .calc-label {
+    font-size: 14px;
+    color: var(--dark);
+  }
+
+  .calc-hint {
+    font-size: 12px;
+    color: #9ca3af;
+    font-style: italic;
+  }
+
+  .calc-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dollar {
+    color: #6b7280;
+    font-size: 15px;
+  }
+
+  input[type="number"],
+  input[type="text"] {
+    width: 120px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 15px;
+    color: var(--dark);
+    text-align: right;
+    outline: none;
+    background: white;
+    transition: border-color 0.15s;
+  }
+
+  input[type="number"]:focus,
+  input[type="text"]:focus {
+    border-color: var(--teal);
+  }
+
+  .result-row {
+    background: var(--cream);
+    border-radius: 4px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .result-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: var(--teal);
+  }
+
+  .result-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .divider-row {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0;
+  }
+
+  .market-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .market-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .market-card h3 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 10px;
+  }
+
+  .market-card input {
+    width: 100%;
+    text-align: center;
+  }
+
+  .service-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+  }
+
+  .service-table th {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #6b7280;
+    padding: 0 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .service-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .service-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .service-table input[type="text"] {
+    width: 100%;
+    text-align: left;
+  }
+
+  .service-table input[type="number"] {
+    width: 90px;
+  }
+
+  .comfort-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .comfort-opt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .comfort-opt input[type="radio"] {
+    accent-color: var(--teal);
+    width: auto;
+    text-align: left;
+  }
+
+  .comfort-opt span {
+    font-size: 13px;
+    color: var(--dark);
+  }
+
+  .sensecheck-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sensecheck-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .sensecheck-q {
+    font-size: 14px;
+    color: var(--dark);
+    flex: 1;
+    padding-right: 20px;
+  }
+
+  .yn-wrap {
+    display: flex;
+    gap: 8px;
+  }
+
+  .yn-btn {
+    padding: 5px 14px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: white;
+    font-family: 'Belleza', sans-serif;
+    font-size: 13px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .yn-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .yn-btn.active-yes {
+    background: #e8f5e9;
+    border-color: #2e7d32;
+    color: #2e7d32;
+  }
+
+  .yn-btn.active-no {
+    background: #fce4ec;
+    border-color: #c62828;
+    color: #c62828;
+  }
+
+  .field-group {
+    margin-bottom: 16px;
+  }
+
+  label.field-label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  input.full-width {
+    width: 100%;
+    text-align: left;
+  }
+
+  .reminder-box {
+    background: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 3px solid #0284c7;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #075985;
+    line-height: 1.6;
+  }
+
+  .add-row-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 13px;
+    color: #6b7280;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .add-row-btn:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  .btn-print {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    background: white;
+    color: var(--teal);
+    border: 1px solid var(--teal);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Belleza', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .btn-print:hover { background: var(--cream); }
+
+  @media print {
+    body { font-size: 13px; }
+    .container { padding: 20px; }
+    .part { break-inside: avoid; }
+    .no-print { display: none; }
+    input { border-color: #ccc !important; }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 30px; }
+    .container { padding: 28px 20px; }
+    .market-grid { grid-template-columns: 1fr; }
+    .calc-row { grid-template-columns: 1fr; gap: 6px; }
+    input[type="number"] { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="module-label">Solid Ground - Module 11</div>
+    <h1>Pricing Worksheet</h1>
+    <p class="subtitle">Work out what you need, what the market charges, and what to put on your services page.</p>
+  </div>
+
+  <div class="intro">
+    Pricing is one of the most emotionally loaded parts of starting out. Most practitioners underprice themselves - not because their work isn't worth more, but because they haven't done this part clearly. Go through each section. The numbers give you something to stand on.
+  </div>
+
+  <!-- PART 1: YOUR NUMBERS -->
+  <div class="part">
+    <div class="part-header">
+      <span class="part-num">Part 1</span>
+      <span class="part-title">What You Actually Need</span>
+    </div>
+    <div class="part-body">
+      <div class="part-note">Before you can price anything, you need to know your floor - the minimum you need to bring in each month to cover your life. This isn't your goal; it's your safety net number.</div>
+
+      <div class="calc-row">
+        <div>
+          <div class="calc-label">Monthly personal expenses</div>
+          <div class="calc-hint">Rent/mortgage, food, bills, transport, subscriptions - everything you personally spend</div>
+        </div>
+        <div class="calc-input-wrap"><span class="dollar">$</span><input type="number" id="exp-personal" value="" placeholder="0" oninput="calcFloor()"></div>
+      </div>
+
+      <div class="calc-row">
+        <div>
+          <div class="calc-label">Monthly business costs</div>
+          <div class="calc-hint">Software, insurance, room hire, supplies - only ongoing costs, not one-offs</div>
+        </div>
+        <div class="calc-input-wrap"><span class="dollar">$</span><input type="number" id="exp-business" value="" placeholder="0" oninput="calcFloor()"></div>
+      </div>
+
+      <div class="calc-row">
+        <div>
+          <div class="calc-label">Buffer / savings</div>
+          <div class="calc-hint">What you'd like to set aside each month - even a small amount</div>
+        </div>
+        <div class="calc-input-wrap"><span class="dollar">$</span><input type="number" id="exp-buffer" value="" placeholder="0" oninput="calcFloor()"></div>
+      </div>
+
+      <div class="result-row">
+        <span class="result-label">Total I need per month</span>
+        <span class="result-value" id="total-monthly">$—</span>
+      </div>
+
+      <div class="divider-row" style="margin-top:20px"></div>
+
+      <div class="calc-row" style="margin-top:12px">
+        <div>
+          <div class="calc-label">Sessions I can realistically do per week</div>
+          <div class="calc-hint">Be honest - not your maximum, your sustainable number</div>
+        </div>
+        <div class="calc-input-wrap"><input type="number" id="sessions-week" value="" placeholder="0" oninput="calcFloor()"></div>
+      </div>
+
+      <div class="calc-row">
+        <div>
+          <div class="calc-label">Sessions per month <span class="calc-hint">(weeks per week × 4)</span></div>
+        </div>
+        <div class="calc-input-wrap"><input type="number" id="sessions-month" value="" placeholder="0" readonly style="background:#f9fafb;color:#6b7280"></div>
+      </div>
+
+      <div class="result-row">
+        <span class="result-label">Minimum rate per session to cover expenses</span>
+        <span class="result-value" id="min-rate">$—</span>
+      </div>
+
+      <div class="reminder-box">
+        This is your floor, not your ceiling. It tells you the minimum you can charge and still keep the lights on. Your actual rate should be higher than this.
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 2: MARKET -->
+  <div class="part">
+    <div class="part-header">
+      <span class="part-num">Part 2</span>
+      <span class="part-title">What the Market Charges</span>
+    </div>
+    <div class="part-body">
+      <div class="part-note">Look up 5-10 practitioners who offer something similar in your area or online. What do they charge? Don't copy anyone - this is context only. You're looking for the range, not the average.</div>
+
+      <div class="market-grid">
+        <div class="market-card">
+          <h3>Low end</h3>
+          <div class="calc-input-wrap" style="justify-content:center"><span class="dollar">$</span><input type="number" id="market-low" placeholder="0" style="width:80px;text-align:center"></div>
+        </div>
+        <div class="market-card">
+          <h3>Mid range</h3>
+          <div class="calc-input-wrap" style="justify-content:center"><span class="dollar">$</span><input type="number" id="market-mid" placeholder="0" style="width:80px;text-align:center"></div>
+        </div>
+        <div class="market-card">
+          <h3>High end</h3>
+          <div class="calc-input-wrap" style="justify-content:center"><span class="dollar">$</span><input type="number" id="market-high" placeholder="0" style="width:80px;text-align:center"></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Where do you sit in this range, and why?</label>
+        <input type="text" class="full-width" placeholder="e.g. Mid-range - I'm newer but my training is solid and I offer something specific">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Notes on what you found</label>
+        <input type="text" class="full-width" placeholder="Anything surprising, useful, or worth remembering">
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 3: YOUR RATES -->
+  <div class="part">
+    <div class="part-header">
+      <span class="part-num">Part 3</span>
+      <span class="part-title">Your Services and Rates</span>
+    </div>
+    <div class="part-body">
+      <div class="part-note">List each service you offer, its duration, and your price. Start with what feels right - you can adjust. The goal is a number you're willing to say out loud with a straight face.</div>
+
+      <table class="service-table" id="service-table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Duration</th>
+            <th style="text-align:right">Price (AUD)</th>
+          </tr>
+        </thead>
+        <tbody id="service-rows">
+          <tr>
+            <td><input type="text" class="full-width" placeholder="e.g. Reiki session"></td>
+            <td><input type="text" style="width:90px" placeholder="60 min"></td>
+            <td style="text-align:right"><div class="calc-input-wrap" style="justify-content:flex-end"><span class="dollar">$</span><input type="number" placeholder="0"></div></td>
+          </tr>
+          <tr>
+            <td><input type="text" class="full-width" placeholder="e.g. Discovery call"></td>
+            <td><input type="text" style="width:90px" placeholder="30 min"></td>
+            <td style="text-align:right"><div class="calc-input-wrap" style="justify-content:flex-end"><span class="dollar">$</span><input type="number" placeholder="Free"></div></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button class="add-row-btn" onclick="addRow()">+ Add another service</button>
+
+      <div style="margin-top:20px">
+        <div class="field-group">
+          <label class="field-label">Do you want to offer a payment plan?</label>
+          <div class="comfort-row">
+            <label class="comfort-opt"><input type="radio" name="payment-plan" value="yes"><span>Yes - I'll offer installments</span></label>
+            <label class="comfort-opt"><input type="radio" name="payment-plan" value="no"><span>Not for now</span></label>
+            <label class="comfort-opt"><input type="radio" name="payment-plan" value="some"><span>For higher-priced services only</span></label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Can you say your rate out loud right now?</label>
+          <div class="comfort-row">
+            <label class="comfort-opt"><input type="radio" name="comfort" value="yes"><span>Yes, feels right</span></label>
+            <label class="comfort-opt"><input type="radio" name="comfort" value="nearly"><span>Nearly - still a bit wobbly</span></label>
+            <label class="comfort-opt"><input type="radio" name="comfort" value="no"><span>Not quite yet</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="reminder-box">
+        Say your price out loud before anyone asks you. In the mirror, in the car, to a friend. The wobble in your voice when you say your own rate is the wobble your client feels. Practice until it comes out steady.
+      </div>
+    </div>
+  </div>
+
+  <!-- PART 4: SENSE CHECK -->
+  <div class="part">
+    <div class="part-header">
+      <span class="part-num">Part 4</span>
+      <span class="part-title">Sense Check</span>
+    </div>
+    <div class="part-body">
+      <div class="part-note">A few final questions to make sure your pricing works before you publish it anywhere.</div>
+
+      <div class="sensecheck-list">
+        <div class="sensecheck-item">
+          <div class="sensecheck-q">Does your rate cover your monthly expenses? (check Part 1)</div>
+          <div class="yn-wrap">
+            <button class="yn-btn" onclick="toggleYN(this, 'yes')">Yes</button>
+            <button class="yn-btn" onclick="toggleYN(this, 'no')">No</button>
+          </div>
+        </div>
+        <div class="sensecheck-item">
+          <div class="sensecheck-q">Is your rate above the floor number you calculated?</div>
+          <div class="yn-wrap">
+            <button class="yn-btn" onclick="toggleYN(this, 'yes')">Yes</button>
+            <button class="yn-btn" onclick="toggleYN(this, 'no')">No</button>
+          </div>
+        </div>
+        <div class="sensecheck-item">
+          <div class="sensecheck-q">Does your rate sit somewhere in the market range you found?</div>
+          <div class="yn-wrap">
+            <button class="yn-btn" onclick="toggleYN(this, 'yes')">Yes</button>
+            <button class="yn-btn" onclick="toggleYN(this, 'no')">No</button>
+          </div>
+        </div>
+        <div class="sensecheck-item">
+          <div class="sensecheck-q">Would you feel comfortable if a potential client asked you your price right now?</div>
+          <div class="yn-wrap">
+            <button class="yn-btn" onclick="toggleYN(this, 'yes')">Yes</button>
+            <button class="yn-btn" onclick="toggleYN(this, 'no')">Almost</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group" style="margin-top:20px">
+        <label class="field-label">Set a price review date</label>
+        <input type="text" class="full-width" placeholder="e.g. 3 months from now, or after my first 10 clients">
+        <div style="font-size:12px;color:#9ca3af;margin-top:4px;font-style:italic">Your pricing today is not your pricing forever. You get to raise it. Set a date to revisit it.</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Anything else you want to note</label>
+        <input type="text" class="full-width" placeholder="Questions, things to check, reminders for yourself">
+      </div>
+    </div>
+  </div>
+
+  <div class="no-print">
+    <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+</div>
+
+<script>
+  function calcFloor() {
+    const personal = parseFloat(document.getElementById('exp-personal').value) || 0;
+    const business = parseFloat(document.getElementById('exp-business').value) || 0;
+    const buffer = parseFloat(document.getElementById('exp-buffer').value) || 0;
+    const total = personal + business + buffer;
+
+    document.getElementById('total-monthly').textContent = total > 0 ? '$' + total.toLocaleString('en-AU', {minimumFractionDigits: 0}) : '$—';
+
+    const weeklyS = parseFloat(document.getElementById('sessions-week').value) || 0;
+    const monthly = weeklyS * 4;
+    document.getElementById('sessions-month').value = monthly > 0 ? monthly : '';
+
+    if (total > 0 && monthly > 0) {
+      const minRate = Math.ceil(total / monthly);
+      document.getElementById('min-rate').textContent = '$' + minRate.toLocaleString('en-AU');
+    } else {
+      document.getElementById('min-rate').textContent = '$—';
+    }
+  }
+
+  function addRow() {
+    const tbody = document.getElementById('service-rows');
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td><input type="text" class="full-width" placeholder="Service name"></td>
+      <td><input type="text" style="width:90px" placeholder="Duration"></td>
+      <td style="text-align:right"><div class="calc-input-wrap" style="justify-content:flex-end"><span class="dollar">$</span><input type="number" placeholder="0"></div></td>
+    `;
+    tbody.appendChild(row);
+  }
+
+  function toggleYN(btn, type) {
+    const wrap = btn.closest('.yn-wrap');
+    wrap.querySelectorAll('.yn-btn').forEach(b => {
+      b.classList.remove('active-yes', 'active-no');
+    });
+    btn.classList.add(type === 'yes' ? 'active-yes' : 'active-no');
+  }
+</script>
+</body>
+</html>
