@@ -3693,24 +3693,40 @@ async function initCommunity() {
     document.getElementById('pin-toggle-wrap').style.display = 'flex';
   }
 
-  // Ensure General channel exists
-  const generalRef = db.collection('channels').doc('general');
-  const generalDoc = await generalRef.get();
-  if (!generalDoc.exists) {
-    await generalRef.set({
-      name: 'general',
-      createdBy: currentUser.uid,
-      createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      order: 0
-    });
+  // Seed default channels (creates if missing, backfills label/order if existing)
+  const DEFAULT_CHANNELS = [
+    { id: 'general',              label: 'General',               order: 0 },
+    { id: 'empowered-empath',     label: 'Empowered Empath',      order: 1 },
+    { id: 'emotional-regulation', label: 'Emotional Regulation',  order: 2 },
+    { id: 'nervous-system',       label: 'Nervous System',        order: 3 },
+    { id: 'solid-ground',         label: 'Solid Ground',          order: 4 },
+  ];
+  for (const ch of DEFAULT_CHANNELS) {
+    try {
+      const ref = db.collection('channels').doc(ch.id);
+      const snap = await ref.get();
+      if (!snap.exists) {
+        await ref.set({
+          name: ch.id,
+          label: ch.label,
+          order: ch.order,
+          createdBy: currentUser.uid,
+          createdByName: (currentUser.displayName || 'Jess').split(' ')[0],
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+      } else if (!snap.data().label) {
+        await ref.update({ label: ch.label, order: ch.order });
+      }
+    } catch(e) {}
   }
 
-  // Listen for channels
+  // Listen for channels, sort by order then createdAt
   db.collection('channels').orderBy('createdAt').onSnapshot(snap => {
-    const channels = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const channels = snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
     renderChannelList(channels);
-    if (!currentChannelId) selectChannel('general', 'general');
+    if (!currentChannelId) selectChannel('general', 'General');
   });
 }
 
@@ -3718,8 +3734,8 @@ function renderChannelList(channels) {
   const list = document.getElementById('channel-list');
   if (!list) return;
   list.innerHTML = channels.map(c => `
-    <div class="channel-item ${c.id === currentChannelId ? 'active' : ''}" onclick="selectChannel('${c.id}','${escHtml(c.name)}')">
-      <span style="color:var(--text-light);">#</span> ${escHtml(c.name)}
+    <div class="channel-item ${c.id === currentChannelId ? 'active' : ''}" onclick="selectChannel('${c.id}','${escHtml(c.label || c.name)}')">
+      <span style="color:var(--text-light);">#</span> ${escHtml(c.label || c.name)}
     </div>
   `).join('');
 }
