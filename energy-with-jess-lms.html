@@ -3294,7 +3294,7 @@ function openLesson(moduleIdx, lessonIdx) {
       : '');
 
   // Audio files (native HTML5 player + download button)
-  const audioHtml = isAudioLesson && lesson.audioFiles ? lesson.audioFiles.map(a => a.audioUrl
+  const audioHtml = lesson.audioFiles ? lesson.audioFiles.map(a => a.audioUrl
     ? `<div class="audio-player-block">
         <div class="audio-player-label"><span>🎧</span>${a.label}</div>
         <audio controls preload="none">
