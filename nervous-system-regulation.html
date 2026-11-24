@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nervous System Regulation - 12-Week Self-Paced Course | Energy with Jess</title>
+<meta name="description" content="Twelve weeks going underneath the emotions and into the system that processes them. Polyvagal Theory, somatic awareness, breathwork, and rewiring toward a new baseline. Opening 16 December 2026.">
+<link rel="canonical" href="https://www.energywithjess.com.au/nervous-system-regulation" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Belleza&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+
+/* ── HERO OVERRIDES ── */
+.ns-hero-sub {
+  font-size: 17px;
+  color: rgba(250,247,242,0.72);
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 20px 0 36px;
+}
+.ns-hero-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.ns-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(250,247,242,0.08);
+  border: 1px solid rgba(250,247,242,0.14);
+  border-radius: 24px;
+  padding: 7px 16px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(250,247,242,0.75);
+}
+.ns-badge.opening {
+  background: rgba(196,176,212,0.12);
+  border-color: rgba(196,176,212,0.35);
+  color: var(--lavender);
+}
+
+/* ── COMING SOON BANNER ── */
+.ns-opening-banner {
+  background: rgba(196,176,212,0.06);
+  border-bottom: 1px solid rgba(196,176,212,0.15);
+  text-align: center;
+  padding: 14px 20px;
+}
+.ns-opening-banner p {
+  font-size: 13px;
+  color: rgba(196,176,212,0.8);
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+.ns-opening-banner strong { color: var(--lavender); }
+
+/* ── INTRO ── */
+.ns-intro { padding: 100px 0; }
+.ns-intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.ns-intro p { font-size: 15.5px; color: rgba(250,247,242,0.65); line-height: 1.88; margin-bottom: 18px; }
+.ns-intro p strong { color: var(--cream); }
+.ns-quote {
+  font-family: var(--h);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--lavender);
+  border-left: 3px solid rgba(196,176,212,0.5);
+  padding-left: 22px;
+  margin: 32px 0;
+  line-height: 1.6;
+}
+.ns-stats-card {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.07);
+  border-radius: 20px;
+  padding: 40px 36px;
+}
+.ns-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(250,247,242,0.06);
+}
+.ns-stat-row:last-child { border-bottom: none; }
+.ns-stat-label { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(250,247,242,0.38); }
+.ns-stat-value { font-family: var(--h); font-size: 18px; font-weight: 400; color: var(--cream); }
+.ns-stat-value.lav { color: var(--lavender); }
+
+/* ── FOR WHO ── */
+.ns-who { padding: 80px 0; background: var(--mid); }
+.ns-who-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 48px; }
+.ns-who-item {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 12px;
+  padding: 22px 24px;
+}
+.ns-who-item p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.65; margin: 0; }
+.ns-who-item p strong { color: var(--cream); display: block; margin-bottom: 5px; font-size: 13.5px; letter-spacing: 0.03em; }
+
+/* ── MODULES ── */
+.ns-modules { padding: 100px 0; }
+.ns-modules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 48px; }
+.ns-module-pill {
+  background: rgba(250,247,242,0.03);
+  border: 1px solid rgba(250,247,242,0.06);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.ns-module-num {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  flex-shrink: 0;
+  margin-top: 2px;
+  min-width: 36px;
+}
+.ns-module-title { font-size: 14px; color: var(--cream); line-height: 1.4; }
+.ns-module-desc { font-size: 12.5px; color: rgba(250,247,242,0.42); margin-top: 4px; line-height: 1.5; }
+
+/* ── COMING SOON CTA ── */
+.ns-cta { padding: 100px 0; background: var(--mid); }
+.ns-cta-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ns-opening-block {
+  margin: 48px 0 40px;
+}
+.ns-opening-date {
+  font-family: var(--h);
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1.1;
+}
+.ns-opening-label {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(196,176,212,0.5);
+  margin-top: 10px;
+}
+.ns-price-note {
+  font-family: var(--h);
+  font-size: 28px;
+  font-weight: 300;
+  color: rgba(250,247,242,0.4);
+  margin-top: 20px;
+}
+.ns-cta-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.btn-coming {
+  background: rgba(196,176,212,0.08);
+  color: rgba(196,176,212,0.5);
+  border: 1px solid rgba(196,176,212,0.15);
+  border-radius: 8px;
+  padding: 16px 36px;
+  font-family: var(--b);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: not-allowed;
+  display: inline-block;
+}
+.btn-waitlist {
+  background: transparent;
+  color: var(--lavender);
+  border: 1px solid rgba(196,176,212,0.4);
+  border-radius: 8px;
+  padding: 16px 36px;
+  font-family: var(--b);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.25s;
+}
+.btn-waitlist:hover { background: rgba(196,176,212,0.08); }
+.ns-cta-note {
+  font-size: 13px;
+  color: rgba(250,247,242,0.3);
+  margin-top: 20px;
+}
+
+/* ── DISCLAIMER ── */
+.ns-disclaimer {
+  background: rgba(250,247,242,0.02);
+  border: 1px solid rgba(250,247,242,0.05);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-top: 60px;
+  text-align: left;
+}
+.ns-disclaimer p {
+  font-size: 12px;
+  color: rgba(250,247,242,0.3);
+  line-height: 1.65;
+  margin: 0;
+}
+.ns-disclaimer p strong { color: rgba(250,247,242,0.45); }
+
+/* ── BUNDLE CALLOUT ── */
+.ns-bundle { padding: 80px 0; }
+.ns-bundle-inner {
+  background: rgba(196,176,212,0.05);
+  border: 1px solid rgba(196,176,212,0.15);
+  border-radius: 20px;
+  padding: 52px 48px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+}
+.ns-bundle-inner h3 { font-family: var(--h); font-size: 32px; font-weight: 400; color: var(--cream); margin-bottom: 12px; }
+.ns-bundle-inner h3 em { font-style: italic; color: var(--lavender); }
+.ns-bundle-inner p { font-size: 15px; color: rgba(250,247,242,0.58); line-height: 1.8; margin-bottom: 0; }
+.ns-bundle-inner p + p { margin-top: 10px; }
+.ns-bundle-price-block { text-align: center; flex-shrink: 0; }
+.ns-bundle-price {
+  font-family: var(--h);
+  font-size: 56px;
+  font-weight: 300;
+  color: var(--lavender);
+  line-height: 1;
+}
+.ns-bundle-was {
+  font-size: 13px;
+  color: rgba(250,247,242,0.3);
+  text-decoration: line-through;
+  font-family: var(--h);
+  margin-bottom: 4px;
+}
+.ns-bundle-save {
+  font-size: 11px;
+  color: var(--lavender);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.ns-bundle-coming {
+  margin-top: 20px;
+  background: rgba(196,176,212,0.1);
+  border: 1px solid rgba(196,176,212,0.2);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ── SEE ALSO ── */
+.ns-see-also { padding: 60px 0; background: var(--mid); }
+.ns-see-also-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.ns-see-also h3 { font-family: var(--h); font-size: 26px; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
+.ns-see-also h3 em { font-style: italic; color: var(--rose); }
+.ns-see-also p { font-size: 14px; color: rgba(250,247,242,0.52); line-height: 1.65; max-width: 480px; }
+.btn-outline-pink {
+  background: transparent;
+  color: var(--rose);
+  border: 1px solid rgba(191,66,136,0.4);
+  border-radius: 8px;
+  padding: 14px 28px;
+  font-family: var(--b);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+.btn-outline-pink:hover { background: rgba(191,66,136,0.07); border-color: rgba(191,66,136,0.6); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .ns-intro-grid { grid-template-columns: 1fr; gap: 48px; }
+  .ns-bundle-inner { grid-template-columns: 1fr; gap: 32px; }
+  .ns-bundle-price-block { text-align: left; }
+  .ns-see-also-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 760px) {
+  .ns-intro { padding: 72px 0; }
+  .ns-who { padding: 60px 0; }
+  .ns-modules { padding: 72px 0; }
+  .ns-cta { padding: 72px 0; }
+  .ns-bundle { padding: 60px 0; }
+  .ns-who-grid { grid-template-columns: 1fr; }
+  .ns-modules-grid { grid-template-columns: 1fr; }
+  .ns-bundle-inner { padding: 36px 24px; }
+  .ns-opening-date { font-size: 40px; }
+}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+
+<div class="ns-opening-banner">
+  <p>Opening <strong>16 December 2026</strong> &nbsp;&middot;&nbsp; Join the waitlist to be notified</p>
+</div>
+
+<nav class="solid" id="mainNav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Energy with Jess</a>
+    <div class="nav-links">
+      <a href="about.html">About</a>
+      <a href="offerings.html" class="active">Offerings</a>
+      <a href="connect.html">Connect</a>
+      <a href="booking.html" class="nav-book">Book Now</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="about.html" onclick="closeMobile()">About</a>
+  <a href="offerings.html" onclick="closeMobile()">Offerings</a>
+  <a href="connect.html" onclick="closeMobile()">Connect</a>
+  <a href="booking.html" onclick="closeMobile()">Book Now</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="gallery-3.jpg" alt="Nervous System Regulation - Self-Paced Course" style="object-position: center 35%;" />
+  </div>
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="container page-hero-content">
+    <span class="label">Self-Paced Course</span>
+    <h1>Nervous System <em>Regulation</em></h1>
+    <p class="ns-hero-sub">Twelve weeks going underneath the emotions and into the system that processes them. Polyvagal Theory, somatic awareness, breathwork, and rewiring toward a new baseline.</p>
+    <div class="ns-hero-badges">
+      <span class="ns-badge opening">Opening 16 December</span>
+      <span class="ns-badge">12 Weeks</span>
+      <span class="ns-badge">Self-Paced</span>
+      <span class="ns-badge">Lifetime Access</span>
+      <span class="ns-badge">$555 AUD</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── INTRO ── -->
+<section class="ns-intro">
+  <div class="container">
+    <div class="ns-intro-grid">
+      <div class="reveal left">
+        <span class="label">What This Is</span>
+        <h2 class="section-title">The <em>operating system</em> underneath everything</h2>
+        <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div></div>
+        <p>Emotional Regulation builds the vocabulary. Nervous System Regulation builds the foundation beneath it. This is where we go into the body itself - the system that processes every emotion, every relationship, every pattern you carry.</p>
+        <p><strong>This is not just about stress.</strong> It's about every pattern in your life. The way you relate to people. The way your body responds to uncertainty. The reactions you understand intellectually but can't seem to change. All of it runs through the nervous system.</p>
+        <blockquote class="ns-quote">"You can know you're safe and still have a nervous system that doesn't believe it. This is the work of closing that gap."</blockquote>
+        <p>Twelve weeks of genuine depth - Polyvagal Theory, somatic awareness, breath as a tool, co-regulation, and building real felt safety in the body. The kind of work that shifts something at a baseline level.</p>
+      </div>
+      <div class="reveal right">
+        <div class="ns-stats-card">
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Duration</span>
+            <span class="ns-stat-value">12 Weeks</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Format</span>
+            <span class="ns-stat-value">Self-Paced</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Modules</span>
+            <span class="ns-stat-value">12 Weeks + Welcome</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">What's Included</span>
+            <span class="ns-stat-value">Video Lessons + Workbook</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Access</span>
+            <span class="ns-stat-value">Lifetime</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Available</span>
+            <span class="ns-stat-value">Worldwide</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Opens</span>
+            <span class="ns-stat-value lav">16 December 2026</span>
+          </div>
+          <div class="ns-stat-row">
+            <span class="ns-stat-label">Investment</span>
+            <span class="ns-stat-value lav">$555 AUD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOR WHO ── -->
+<section class="ns-who">
+  <div class="container">
+    <span class="label">Is This For You</span>
+    <h2 class="section-title">This course is for you <em>if</em></h2>
+    <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div></div>
+    <div class="ns-who-grid">
+      <div class="ns-who-item">
+        <p><strong>You've done the mindset work</strong>You understand your patterns. You can name the triggers. But the body still responds the same way and you can't seem to shift it. This goes deeper.</p>
+      </div>
+      <div class="ns-who-item">
+        <p><strong>You're chronically activated</strong>You live in a low-grade state of "on" - never fully relaxed, always waiting for something to go wrong. You want to understand what's driving that.</p>
+      </div>
+      <div class="ns-who-item">
+        <p><strong>Your relationships keep repeating</strong>The same dynamics, different people. The nervous system is at the centre of every pattern in how we connect - this is where that work lives.</p>
+      </div>
+      <div class="ns-who-item">
+        <p><strong>You feel disconnected from your body</strong>You know, intellectually, what's happening. But there's a gap between understanding and actually feeling it. This bridges that.</p>
+      </div>
+      <div class="ns-who-item">
+        <p><strong>You've completed Emotional Regulation</strong>Or you've done similar foundational work and you're ready to go into the system underneath. This is the natural next step.</p>
+      </div>
+      <div class="ns-who-item">
+        <p><strong>You want depth, not quick fixes</strong>Twelve weeks. Real practice. The nervous system learns through repetition and experience - this course is built around that truth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MODULES ── -->
+<section class="ns-modules">
+  <div class="container">
+    <span class="label">What's Inside</span>
+    <h2 class="section-title">Twelve weeks. <em>Genuine depth.</em></h2>
+    <div class="divider"><div class="divider-line"></div><div class="divider-dot"></div></div>
+    <p style="font-size: 15px; color: rgba(250,247,242,0.55); line-height: 1.8; max-width: 620px; margin-bottom: 0;">Each week builds on the last - theory, practice, and a weekly exercise to bring it into your body. Video lessons, guided reflections, and a companion workbook throughout. Go at your pace.</p>
+    <div class="ns-modules-grid">
+      <div class="ns-module-pill">
+        <span class="ns-module-num">Intro</span>
+        <div>
+          <div class="ns-module-title">Welcome</div>
+          <div class="ns-module-desc">What this course is, how to use it, what to expect</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W1</span>
+        <div>
+          <div class="ns-module-title">Your Nervous System, Your Story</div>
+          <div class="ns-module-desc">The nervous system as operating system - two branches, chronic stress, dysregulation as adaptation not flaw</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W2</span>
+        <div>
+          <div class="ns-module-title">Polyvagal Theory</div>
+          <div class="ns-module-desc">The three states, the vagus nerve, neuroception, co-regulation</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W3</span>
+        <div>
+          <div class="ns-module-title">Window of Tolerance</div>
+          <div class="ns-module-desc">The zone where you can function - hyperarousal, hypoarousal, widening the window</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W4</span>
+        <div>
+          <div class="ns-module-title">Somatic Awareness</div>
+          <div class="ns-module-desc">The felt sense, interoception, disconnection as protection, the body scan</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W5</span>
+        <div>
+          <div class="ns-module-title">Reading Your Body in Real Time</div>
+          <div class="ns-module-desc">The escalation pathway, early warning signals, real-time grounding</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W6</span>
+        <div>
+          <div class="ns-module-title">Patterns &amp; Triggers at Depth</div>
+          <div class="ns-module-desc">What a trigger actually is, somatic memory, how old does this feel</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W7</span>
+        <div>
+          <div class="ns-module-title">Somatic Release</div>
+          <div class="ns-module-desc">The stress response cycle, completing it, the body's natural ways of discharging</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W8</span>
+        <div>
+          <div class="ns-module-title">Breath as Medicine</div>
+          <div class="ns-module-desc">The exhale activates the parasympathetic - diaphragmatic breathing, the physiological sigh</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W9</span>
+        <div>
+          <div class="ns-module-title">Completion &amp; Integration</div>
+          <div class="ns-module-desc">The nervous system needs time - signs of integration, the non-linear nature of the process</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W10</span>
+        <div>
+          <div class="ns-module-title">Building Safety in the Body</div>
+          <div class="ns-module-desc">Felt safety vs cognitive safety, glimmers, safety anchors, the negativity bias</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W11</span>
+        <div>
+          <div class="ns-module-title">Co-Regulation &amp; Healthy Connection</div>
+          <div class="ns-module-desc">What co-regulation is, why relationships matter biologically, self-compassion as internal co-regulation</div>
+        </div>
+      </div>
+      <div class="ns-module-pill">
+        <span class="ns-module-num">W12</span>
+        <div>
+          <div class="ns-module-title">Your New Baseline</div>
+          <div class="ns-module-desc">What you've built, peace as capacity not absence, what's possible from here</div>
+        </div>
+      </div>
+      <div class="ns-module-pill" style="border-color: rgba(196,176,212,0.15); background: rgba(196,176,212,0.03);">
+        <span class="ns-module-num" style="color: var(--lavender);">+</span>
+        <div>
+          <div class="ns-module-title">Companion Workbook</div>
+          <div class="ns-module-desc">Exercises, reflections, and weekly practices for each module - downloadable PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMING SOON CTA ── -->
+<section class="ns-cta">
+  <div class="container">
+    <div class="ns-cta-inner">
+      <span class="label">Enrolment</span>
+      <h2 class="section-title">Opening <em>December</em></h2>
+      <div class="divider" style="justify-content: center;"><div class="divider-line"></div><div class="divider-dot"></div></div>
+      <p style="font-size: 15px; color: rgba(250,247,242,0.58); line-height: 1.8; max-width: 480px; margin: 0 auto;">Doors open 16 December 2026. Join the waitlist to be notified when enrolment opens - and to get early access.</p>
+      <div class="ns-opening-block">
+        <div class="ns-opening-date">16 December</div>
+        <div class="ns-opening-label">Enrolment Opens</div>
+        <div class="ns-price-note">$555 AUD &nbsp;&middot;&nbsp; Lifetime Access</div>
+      </div>
+      <div class="ns-cta-buttons">
+        <a href="regulation-waitlist.html" class="btn-waitlist">Join the Waitlist</a>
+        <span class="btn-coming">Enrol by Card (Dec 16)</span>
+      </div>
+      <p class="ns-cta-note">Already completed Emotional Regulation? You're ready for this.</p>
+      <div class="ns-disclaimer">
+        <p><strong>Please note:</strong> This course is for personal development and educational purposes. It is not therapy and is not a substitute for professional mental health support. Jess is not a licensed therapist or mental health professional. If you are currently in crisis, or under the care of a mental health professional, please speak with your practitioner before beginning. Lifeline: 13 11 14 &nbsp;&middot;&nbsp; Beyond Blue: 1300 22 4636</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUNDLE UPGRADE ── -->
+<section class="ns-bundle">
+  <div class="container">
+    <div class="ns-bundle-inner">
+      <div>
+        <span class="label">Also Available</span>
+        <h3>Full Regulation <em>Bundle</em></h3>
+        <p>Get Emotional Regulation and Nervous System Regulation together as one continuous pathway - connected by an exclusive bridging module that exists only in the bundle.</p>
+        <p>23 modules &middot; 18 weeks &middot; Self-paced &middot; Lifetime access &middot; Also opening 16 December</p>
+      </div>
+      <div class="ns-bundle-price-block">
+        <div class="ns-bundle-was">$784 separately</div>
+        <div class="ns-bundle-price">$699</div>
+        <div class="ns-bundle-save">Save $85</div>
+        <div class="ns-bundle-coming">Opening 16 December</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SEE ALSO ── -->
+<section class="ns-see-also">
+  <div class="container">
+    <div class="ns-see-also-inner">
+      <div>
+        <span class="label">Start Here First</span>
+        <h3>Emotional <em>Regulation</em></h3>
+        <p>Build your emotional vocabulary and understand your patterns before going deeper into the nervous system. Six weeks, self-paced, available now for $229.</p>
+      </div>
+      <a href="emotional-regulation.html" class="btn-outline-pink">Enrol Now - $229</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">Energy with Jess</div>
+    <div class="footer-tagline">Your energy. Your terms. Your pace.</div>
+    <p style="margin: 10px 0 0; font-size: 12px;"><a href="freebies.html" style="color: rgba(250,247,242,0.35); text-decoration: none; letter-spacing: 0.08em;" onmouseover="this.style.color='#bf4288'" onmouseout="this.style.color='rgba(250,247,242,0.35)'">Free Resources</a></p>
+    <p class="footer-copy">&copy; 2026 Energy with Jess. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+</script>
+<script src="search.js"></script>
+</body>
+</html>
