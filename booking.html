@@ -1985,8 +1985,8 @@
   // Days switch Sep 28 2026: Mon+Tue → Tue+Wed
   // Times: 3:00 PM - 8:00 PM (effective now)
   const INPERSON_CHANGE     = new Date(2026, 8, 28); // Sep 28 2026
-  const INPERSON_DAYS_PRE   = [1, 2]; // Mon, Tue
-  const INPERSON_DAYS_POST  = [2, 3]; // Tue, Wed
+  const INPERSON_DAYS_PRE   = [3, 4]; // Wed, Thu
+  const INPERSON_DAYS_POST  = [3, 4]; // Wed, Thu
   const INPERSON_TIMES      = ['3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM'];
   const INPERSON_BOOKED     = [];
 
@@ -2135,8 +2135,8 @@
       ? '<strong>Online:</strong> Thursday 12:00 PM - 8:00 PM · Saturday 10:00 AM - 4:00 PM ACST'
       : '<strong>Online:</strong> Friday 10:00 AM - 8:00 PM · Saturday 10:00 AM - 4:00 PM ACST';
     const inPersonHint = isNewInPersonWindow
-      ? '<strong>In-person - Adelaide:</strong> Tuesday &amp; Wednesday · 3:00 PM - 8:00 PM ACST'
-      : '<strong>In-person - Adelaide:</strong> Monday &amp; Tuesday · 3:00 PM - 8:00 PM ACST';
+      ? '<strong>In-person - Adelaide:</strong> Wednesday &amp; Thursday · 3:00 PM - 8:00 PM ACST'
+      : '<strong>In-person - Adelaide:</strong> Wednesday &amp; Thursday · 3:00 PM - 8:00 PM ACST';
     const hints = {
       inperson: inPersonHint,
       online:   onlineHint,
