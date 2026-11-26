@@ -2985,9 +2985,8 @@
       if (!intake) return;
       const cutoff = new Date(intake.cutoff);
       if (today >= cutoff) {
-        el.querySelectorAll('.reiki-book-btn').forEach(function(b) { b.style.display = 'none'; });
-        const msg = el.querySelector('.reiki-closed-msg');
-        if (msg) msg.style.display = 'block';
+        const card = el.closest('.event-card');
+        if (card) card.style.display = 'none';
       }
     });
   })();
