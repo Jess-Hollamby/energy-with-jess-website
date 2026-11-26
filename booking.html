@@ -1618,16 +1618,14 @@
 
   const STRIPE_PAYMENT_LINK  = 'https://buy.stripe.com/8x28wP0Gk3D67Y246OcZa02'; // $60 deposit
 
+    // In-person payment links (75 min $125, 90 min $160, relaxation 120 min $210 and their deposits) were removed 26 Nov 2026 pending new prices. Re-add keys 63/80/105 to the deposit maps and 125/160/210 to the full maps once new links exist.
   // ── STRIPE DEPOSIT LINKS (per deposit amount) ──
   const STRIPE_DEPOSIT_LINKS = {
     20:  'https://buy.stripe.com/aFa4gz60Ea1uguy8n4cZa0b',  // 3 Card Tarot ($40 total)
     30:  'https://buy.stripe.com/fZubJ1cp23D63HM32KcZa0c',  // 30min Tarot ($60 total)
     38:  'https://buy.stripe.com/5kQ8wP3Sw2z20vAeLscZa0d',  // 45min Tarot ($75 total)
     60:  'https://buy.stripe.com/8x28wP0Gk3D67Y246OcZa02',  // Akashic, Reiki 60min
-    63:  'https://buy.stripe.com/6oUdR9exa7Tmdim5aScZa0e',  // Reiki/Intuitive/Myotherapy 75min ($125 total)
     75:  'https://buy.stripe.com/aFadR92Os8Xq6TYbzgcZa0g',  // Reiki 90min, Align+Flow, Port Elliot 90min ($150 total)
-    80:  'https://buy.stripe.com/28EfZhcp24Ha6TYeLscZa0f',  // Intuitive/Myotherapy/Relaxation 90min ($160 total)
-    105: 'https://buy.stripe.com/8x200j0GkddG1zEcDkcZa0h',  // Relaxation 120min ($210 total)
   };
 
   // ── STRIPE PAY IN FULL LINKS (per total price) ──
@@ -1636,10 +1634,7 @@
     60:  'https://buy.stripe.com/28EcN54WA8Xq2DI8n4cZa04',  // 30min Tarot
     75:  'https://buy.stripe.com/dRm3cv88M3D6fqu1YGcZa05',  // 45min Tarot
     120: 'https://buy.stripe.com/cNifZhfBe2z27Y20UCcZa06',  // Akashic, Reiki 60min
-    125: 'https://buy.stripe.com/8x26oH9cQddGguy0UCcZa07',  // Reiki/Intuitive/Myotherapy 75min
     150: 'https://buy.stripe.com/bJe28r60EddG4LQ5aScZa08',  // Reiki 90min, Align+Flow
-    160: 'https://buy.stripe.com/8x2cN59cQflO9261YGcZa09',  // Intuitive/Myotherapy/Relaxation 90min
-    210: 'https://buy.stripe.com/eVq00j3Swc9CfqugTAcZa0a',  // Relaxation 120min
   };
 
   // ── PAYPAL DEPOSIT LINKS (per deposit amount) ──
@@ -1648,10 +1643,7 @@
     30:  'https://www.paypal.com/ncp/payment/7YA8BNSADSECQ',  // 30min Tarot ($60 total)
     38:  'https://www.paypal.com/ncp/payment/U3ZYKEKV4ZZ9J',  // 45min Tarot ($75 total)
     60:  'https://www.paypal.com/ncp/payment/P8CFRVWQQXPM6',  // Akashic, Reiki 60min ($120 total)
-    63:  'https://www.paypal.com/ncp/payment/2EFC4ZBTCRUN2',  // Reiki/Intuitive/Myotherapy 75min ($125 total)
     75:  'https://www.paypal.com/ncp/payment/3UM87JANFD29C',  // Reiki 90min, Align+Flow, Port Elliot 90min ($150 total)
-    80:  'https://www.paypal.com/ncp/payment/E759WMPLACEPQ',  // Intuitive/Myotherapy/Relaxation 90min ($160 total)
-    105: 'https://www.paypal.com/ncp/payment/TC66EETSYW8XC',  // Relaxation 120min ($210 total)
   };
 
   // ── PAYPAL PAY IN FULL LINKS (per total price) ──
@@ -1660,10 +1652,7 @@
     60:  'https://www.paypal.com/ncp/payment/A8PGTH7XZW866',  // 30min Tarot
     75:  'https://www.paypal.com/ncp/payment/5VR3KFDHZE9U4',  // 45min Tarot
     120: 'https://www.paypal.com/ncp/payment/V9P44RE3J6LFA',  // Akashic, Reiki 60min
-    125: 'https://www.paypal.com/ncp/payment/AMUWAVYP7Z5SA',  // Reiki/Intuitive/Myotherapy 75min
     150: 'https://www.paypal.com/ncp/payment/S884KCBTU96N2',  // Reiki 90min, Align+Flow
-    160: 'https://www.paypal.com/ncp/payment/6RBBEQU2U475U',  // Intuitive/Myotherapy/Relaxation 90min
-    210: 'https://www.paypal.com/ncp/payment/8MZDCDA83YRYW',  // Relaxation 120min
   };
 
   // ── PROGRAM & PACK PAYMENT LINKS ──
@@ -2371,7 +2360,11 @@
       }
     }
 
-    // Update reschedule link with session-specific subject
+    // In-person sessions have no online payment links right now
+if (selServiceType === 'inperson' && !STRIPE_DEPOSIT_LINKS[depositNum] && !STRIPE_FULL_LINKS[priceNum] && !PAYPAL_DEPOSIT_LINKS[depositNum] && !PAYPAL_FULL_LINKS[priceNum] && policyNotice) {
+policyNotice.innerHTML = '<strong>In-person payment:</strong> online payment for in-person sessions is being updated. Please <a href="connect" style="color:var(--lavender);">get in touch</a> to book this session.';
+}
+// Update reschedule link with session-specific subject
     const rescheduleLink = document.getElementById('reschedule-link');
     if (rescheduleLink) {
       const subject = 'Reschedule request: ' + selService + ' on ' + dateStr;
