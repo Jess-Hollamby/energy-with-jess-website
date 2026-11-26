@@ -78,12 +78,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://www.energywithjess.com.au/reiki-training</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
 
   <!-- Programs -->
   <url>
@@ -116,12 +111,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://www.energywithjess.com.au/solid-ground-1on1</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
   <url>
     <loc>https://www.energywithjess.com.au/into-the-dark</loc>
     <lastmod>2026-08-20</lastmod>
