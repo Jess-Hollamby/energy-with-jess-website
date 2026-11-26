@@ -563,26 +563,18 @@
   </div>
 </section>
 
-<!-- ── WAITLIST ── -->
-<section class="sg-optin" id="sg-waitlist">
+<!-- OPEN NOW -->
+<section class="sg-optin" id="sg-enrol">
   <div class="container">
     <div class="sg-optin-inner reveal">
-      <span class="label" style="color: var(--gold);">Opening 28 October</span>
-      <h2>Get on the list. <em>Hear first when doors open.</em></h2>
-      <p>Solid Ground opens on 28 October. Join the waitlist and you'll be the first to know - with a link straight to the option you're interested in.</p>
-      <form id="sg-waitlist-form" class="sg-optin-form" onsubmit="handleSgWaitlist(event)" style="flex-direction:column;max-width:420px;gap:10px;">
-        <input type="text" name="firstName" placeholder="First name" required autocomplete="given-name">
-        <input type="email" name="email" placeholder="Email address" required autocomplete="email">
-        <select name="interest" style="background:rgba(250,247,242,0.06);border:1px solid rgba(250,247,242,0.15);color:#FAF7F2;padding:13px 16px;border-radius:3px;font-family:inherit;font-size:14px;appearance:none;">
-          <option value="Self-Paced" style="background:#1E2E32;">Self-paced course</option>
-          <option value="Not sure yet" style="background:#1E2E32;">Not sure yet</option>
-        </select>
-        <button type="submit" id="sg-waitlist-btn" style="background:var(--teal);color:#FAF7F2;border:none;padding:13px 28px;font-family:inherit;font-size:14px;letter-spacing:0.08em;cursor:pointer;border-radius:3px;">Get Notified When It Opens</button>
-      </form>
-      <div id="sg-waitlist-success" style="display:none; padding: 24px 0;">
-        <p class="sg-optin-thanks">You're on the list. Doors open 28 October - you'll hear first.</p>
+      <span class="label" style="color: var(--gold);">Open now</span>
+      <h2>Solid Ground is open. <em>Start when you're ready.</em></h2>
+      <p>One self-paced course with lifetime access. Enrol today and work through it at your own pace. One-time payment of $333, with payment plans available.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+        <a href="https://buy.stripe.com/9B68wPcp24Hafqu0UCcZa0Y" class="btn btn-primary" style="font-size: 13px;">Enrol Now - $333</a>
+        <a href="https://www.paypal.com/ncp/payment/P9L4T8K9J9YJ2" class="btn btn-ghost" style="font-size: 13px;">Pay with PayPal</a>
       </div>
-      <p class="sg-optin-note">No spam. Just a heads-up when it opens, and the occasional email from Jess when she has something worth saying.</p>
+      <p class="sg-optin-note">Not ready yet? Grab the free guide above and come back whenever you are.</p>
     </div>
   </div>
 </section>
@@ -672,24 +664,6 @@ reveals.forEach(r => observer.observe(r));
 
 /* ── FREE GUIDE OPT-IN ── */
 const SG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzaH7RnLM4ZmySkYXxuvqLVQf_a7EOMv7LFMX1pQNmNBUkdxmGS1cN66CFez1liTZHjew/exec';
-
-function handleSgWaitlist(e) {
-  e.preventDefault();
-  const btn = document.getElementById('sg-waitlist-btn');
-  const form = document.getElementById('sg-waitlist-form');
-  const firstName = form.querySelector('[name="firstName"]').value.trim();
-  const email = form.querySelector('[name="email"]').value.trim();
-  const interest = form.querySelector('[name="interest"]').value;
-
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  const url = SG_SCRIPT_URL + '?source=sg_waitlist&first_name=' + encodeURIComponent(firstName) + '&email=' + encodeURIComponent(email) + '&interest=' + encodeURIComponent(interest);
-  fetch(url, { mode: 'no-cors' }).catch(() => {});
-
-  form.style.display = 'none';
-  document.getElementById('sg-waitlist-success').style.display = 'block';
-}
 
 function handleSgOptIn(e) {
   e.preventDefault();
