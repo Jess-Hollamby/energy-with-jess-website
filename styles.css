@@ -569,3 +569,13 @@ body.ewj-search-open { overflow: hidden; }
   #ewj-search-overlay { padding-top: 20px; align-items: flex-start; }
   #ewj-search-inner { margin: 12px; border-radius: 10px; }
 }
+
+/* FAQ sections */
+.faq-section{padding:72px 0;background:rgba(250,247,242,0.015)}
+.faq-list{max-width:720px;margin:52px auto 0}
+.faq-item{border-bottom:1px solid rgba(250,247,242,0.07);padding:28px 0}
+.faq-item:first-child{border-top:1px solid rgba(250,247,242,0.07)}
+.faq-q{font-family:var(--h);font-size:20px;font-weight:400;color:var(--cream);margin-bottom:12px}
+.faq-a{font-size:15px;color:rgba(250,247,242,0.6);line-height:1.8}
+.faq-a a{color:var(--lavender);text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
